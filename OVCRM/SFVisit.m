@@ -8,7 +8,7 @@
 
 #import "SFVisit.h"
 
-#define SFVisit_columns @"test test"
+#define SFVisit_columns @"test test test 555"
 
 @implementation SFVisit
 
