@@ -11,6 +11,17 @@
 
 @implementation SFSyncResponder
 
+- (void)request:(SFRestRequest *)request 
+didLoadResponse:(id)jsonResponse{
+    
+    OVDatabase *db = [OVDatabase sharedInstance];
+    
+    if([db initSqlTableOf:self]){
+        [db insertOrReplaceTable:self withData:[jsonResponse objectForKey:@"records"]];
+    }
+    
+}
+
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder{
     
     SFRestRequest *request = [[SFRestAPI sharedInstance] requestForQuery:query];    

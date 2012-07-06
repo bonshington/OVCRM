@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "SFRestRequest.h"
+#import "SFObjectProtocal.h"
 #import "OVDatabase.h"
 #import "NSString+Extension.h"
+#import "NSDictionary+SFSchema.h"
 
 
-@interface SFSyncResponder : NSObject<SFRestDelegate>
+@interface SFSyncResponder : NSObject<SFRestDelegate, SFObjectProtocal>
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder;
+
 
 @end

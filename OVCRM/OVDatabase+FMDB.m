@@ -12,48 +12,43 @@
 #import "FMDatabase.h"
 #import "AppDelegate.h"
 #import "NSDictionary+NullHandling.h"
+#import "NSDictionary+SFSchema.h"
 
 @implementation OVDatabase (FMDB)
 
-
--(BOOL) insertOrReplaceTable:(NSString *)tableName 
-                     columns:(NSArray *)columns
-                        data:(NSArray *)rows{
+-(BOOL) insertOrReplaceTable:(id<SFObjectProtocal>)object withData:(NSArray *)rows{
+    
+    NSString *script = [NSString stringWithFormat:
+                        @"insert or replace into %@ (Id,%@)"
+                        , [object SFName]
+                        , [[[object schema] toSqlColumn] componentsJoinedByString:@","]
+                        ];
     
     BOOL result = YES;
-    NSMutableArray *args = [NSMutableArray new];
-    
-    // build 'values' clause
-    NSMutableArray *values = [NSMutableArray new];
-    [columns enumerateObjectsUsingBlock:^(NSString *columnName, NSUInteger index, BOOL *stop){
-        [values addObject:@"?"];
-    }];
-    
-    // build insert or replace clause
-    NSString *insertOrReplace = [NSString stringWithFormat:@"insert or replace into %@ (%@) values (%@)", tableName, [columns componentsJoinedByString:@","], [values componentsJoinedByString:@","]];
     
     if(!self.open)[self open];
     
-    if([self beginTransaction]){
-    
+    if(result && [self beginTransaction]){
         for(NSDictionary *entry in rows){
-            
-            [args removeAllObjects];
-            
-            [columns enumerateObjectsUsingBlock:^(id col,NSUInteger j,BOOL *jStop){
-                
-                [args addObject:[entry emptyIfNull:col]];
-            }];
-            
-            result = result && [self executeUpdate:insertOrReplace withArgumentsInArray:args];
+            result = result && [self executeUpdate:script withArgumentsInArray:[entry allValues]];
         }
     }
+    
     return result && [self commit];
- 
 }
 
+-(BOOL) initSqlTableOf:(id<SFObjectProtocal>)object{
 
-
+    NSString *script = [NSString stringWithFormat:
+                        @"create table if not exists %@(Id TEXT primary key,%@)"
+                        , [object SFName]
+                        , [[[object schema] toSqlColumnWithType] componentsJoinedByString:@","]
+                        ];
+    
+    if(!self.open) [self open];
+    
+    return [self executeUpdate:script];
+}
 
 
 @end

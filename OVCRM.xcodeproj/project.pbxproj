@@ -15,6 +15,7 @@
 		187F5EC615A2D66400EA0A37 /* OVDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC515A2D66400EA0A37 /* OVDatabase.m */; };
 		187F5ED215A2E1EB00EA0A37 /* OVDatabase+SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */; };
 		187F5ED515A2E1FE00EA0A37 /* OVDatabase+FMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */; };
+		188C06EF15A69DE00043DBC7 /* NSDictionary+SFSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */; };
 		18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048615A56A1F000719DB /* NSString+Extension.m */; };
 		18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */; };
 		18B1048D15A5961D000719DB /* SFVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048C15A5961D000719DB /* SFVisit.m */; };
@@ -80,6 +81,9 @@
 		187F5EC515A2D66400EA0A37 /* OVDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVDatabase.m; sourceTree = "<group>"; };
 		187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVDatabase+SFAccount.m"; sourceTree = "<group>"; };
 		187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVDatabase+FMDB.m"; sourceTree = "<group>"; };
+		188C06EB15A693DB0043DBC7 /* SFObjectProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFObjectProtocal.h; sourceTree = "<group>"; };
+		188C06ED15A69DE00043DBC7 /* NSDictionary+SFSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SFSchema.h"; sourceTree = "<group>"; };
+		188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SFSchema.m"; sourceTree = "<group>"; };
 		18B1048515A568B5000719DB /* NSString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		18B1048615A56A1F000719DB /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullHandling.h"; sourceTree = "<group>"; };
@@ -270,9 +274,19 @@
 			name = FMDatabase;
 			sourceTree = "<group>";
 		};
+		188C06F015A6A3F30043DBC7 /* Protocal */ = {
+			isa = PBXGroup;
+			children = (
+				188C06EB15A693DB0043DBC7 /* SFObjectProtocal.h */,
+			);
+			name = Protocal;
+			sourceTree = "<group>";
+		};
 		18B1048315A56896000719DB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				188C06ED15A69DE00043DBC7 /* NSDictionary+SFSchema.h */,
+				188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */,
 				18B1048515A568B5000719DB /* NSString+Extension.h */,
 				18B1048615A56A1F000719DB /* NSString+Extension.m */,
 				18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */,
@@ -553,6 +567,7 @@
 		18EE3F4715A160E100A08B29 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				188C06F015A6A3F30043DBC7 /* Protocal */,
 				18B1048315A56896000719DB /* Extension */,
 				18EE3F6215A1730B00A08B29 /* View */,
 				18EE3F6115A1730100A08B29 /* Model */,
@@ -712,6 +727,7 @@
 				18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */,
 				18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */,
 				18B1048D15A5961D000719DB /* SFVisit.m in Sources */,
+				188C06EF15A69DE00043DBC7 /* NSDictionary+SFSchema.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,9 +11,6 @@
 
 @interface SFVisit : SFSyncResponder
 
-- (void)request:(SFRestRequest *)request 
-didLoadResponse:(id)jsonResponse;
-
 +(void) loadAfterDate:(NSString *)date;
 
 @end

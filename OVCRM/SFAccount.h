@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SFSyncResponder.h"
 
-@interface SFAccount : SFSyncResponder <SFRestDelegate>
+@interface SFAccount : SFSyncResponder
 
 - (void)request:(SFRestRequest *)request 
 didLoadResponse:(id)jsonResponse;

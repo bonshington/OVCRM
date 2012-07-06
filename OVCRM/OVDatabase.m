@@ -27,8 +27,6 @@
         // Build the path to the database file
         NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.db", [SFRestAPI sharedInstance].coordinator.credentials.userId]]];
         
-        NSFileManager *filemgr = [NSFileManager defaultManager];
-        
         app.db = [self initWithPath:databasePath];
         app.db.logsErrors = YES;
         

@@ -10,6 +10,7 @@
 #import "SFRestAPI.h"
 #import "SFRestRequest.h"
 #import "FMDatabase.h"
+#import "SFObjectProtocal.h"
 
 @interface OVDatabase : FMDatabase
 
@@ -21,9 +22,8 @@
 
 @interface OVDatabase (FMDB)
 
--(BOOL) insertOrReplaceTable:(NSString *)tableName 
-                              columns:(NSArray *)columns
-                                 data:(NSArray *)rows;
+-(BOOL) initSqlTableOf:(id<SFObjectProtocal>)object;
+-(BOOL) insertOrReplaceTable:(id<SFObjectProtocal>)object withData:(NSArray *)rows;
 
 @end
 
