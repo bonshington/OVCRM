@@ -11,5 +11,6 @@
 @interface NSString(Extension)
 
 -(NSString *) stringByReplace:(NSArray *)array withString:(NSString *)withString;
+-(NSString *) htmlEncode;
 
 @end

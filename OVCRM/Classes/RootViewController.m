@@ -46,11 +46,11 @@
         // Load splitted parts
         AppDelegate *app = [AppDelegate sharedInstance];
         
-        app.menu = [[OVMenuController alloc] initWithStyle:UITableViewStyleGrouped];
+        app.master = [[OVMenuController alloc] initWithStyle:UITableViewStyleGrouped];
         app.detail = [[OVNavigationController alloc] init];
         app.db = [OVDatabase new];
         
-        self.viewControllers = [NSArray arrayWithObjects:app.menu, app.detail, nil];
+        self.viewControllers = [NSArray arrayWithObjects:app.master, app.detail, nil];
     }
     return self;
 }

@@ -11,6 +11,7 @@
 #import "SFRestRequest.h"
 #import "FMDatabase.h"
 #import "SFObjectProtocal.h"
+#import "NSString+Extension.h"
 
 @interface OVDatabase : FMDatabase
 

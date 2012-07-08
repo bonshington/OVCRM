@@ -28,13 +28,15 @@
 #import "FMDatabase.h"
 #import "OVDatabase.h"
 #import "SFSyncResponder.h"
+#import "Constant.h"
+#import "NSString+Extension.h"
 
 @interface AppDelegate : SFNativeRestAppDelegate {
 
 }
 
-@property (nonatomic, retain) UIViewController *menu;
-@property (nonatomic, retain) UIViewController *detail;
+@property (nonatomic, retain) UIViewController *master;
+@property (nonatomic, retain) UINavigationController *detail;
 @property (nonatomic, retain) OVDatabase *db;
 @property (nonatomic, retain) id<SFRestDelegate> sync;
 

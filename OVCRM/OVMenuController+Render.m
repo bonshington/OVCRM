@@ -10,12 +10,15 @@
 #import "RKJSONParserJSONKit.h"
 #import "NSDictionary+SFSchema.h"
 
+#import "Constant.h"
+
 @implementation OVMenuController (Render)
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView planForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *cellId = [NSString stringWithFormat:@"plan:%@", [[self.todayPlan objectAtIndex:indexPath.row] objectForKey:@"Id"]];
+    NSDictionary *data = [self.todayPlan objectAtIndex:indexPath.row];
+    NSString *cellId = [NSString stringWithFormat:@"plan:%@", [data objectForKey:@"Id"]];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
@@ -23,15 +26,24 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         
-        NSDictionary *data = [self.todayPlan objectAtIndex:indexPath.row];
-                
-        //id test = [data extractObjectForKey:@"What" withProperty:@"Name"];
-        
-        cell.textLabel.text = [data extractObjectForKey:@"What" withProperty:@"Name"];
+        cell.textLabel.text = [data objectForKey:@"What"];
         cell.detailTextLabel.text = [data objectForKey:@"time"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.tag = tagForCellPlanVisit;
         
-        //[tableView accessoryButtonTappedForRowWithIndexPath]
+        
+        UILabel *labelForAccountId = [UILabel new];
+        labelForAccountId.tag = tagForSFAccountId;
+        labelForAccountId.text = [data objectForKey:@"WhatId"];
+        labelForAccountId.hidden = YES;
+        
+        UILabel *labelForEventId = [UILabel new];
+        labelForEventId.tag = tagForSFEventId;
+        labelForEventId.text = [data objectForKey:@"Id"];
+        labelForEventId.hidden = YES;
+        
+        [cell addSubview:labelForAccountId];
+        [cell addSubview:labelForEventId];
     }
     
     return cell;
@@ -39,25 +51,30 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView checkinForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *cellId = [NSString stringWithFormat:@"checkin:%@", [[self.todayPlan objectAtIndex:indexPath.row] objectForKey:@"Id"]];
+    NSDictionary *data = [self.todayPlan objectAtIndex:indexPath.row];
+    NSString *cellId = [NSString stringWithFormat:@"checkin:%@", [data objectForKey:@"Id"]];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
+        
+        cell.tag = tagForCellCheckedIn;
         
     }
     
     return cell;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView accountForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView menuForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *cellId = [NSString stringWithFormat:@"account:%@", [[self.todayPlan objectAtIndex:indexPath.row] objectForKey:@"Id"]];
+    NSDictionary *data = [self.todayPlan objectAtIndex:indexPath.row];
+    NSString *cellId = [NSString stringWithFormat:@"menu:%@", [data objectForKey:@"Id"]];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
         
+        cell.tag = tagForCellMenu;
     }
     
     return cell;

@@ -10,4 +10,20 @@
 
 @interface OVWebViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+
+-(id) initForSFObject:(NSString *)url 
+        withArguments:(NSDictionary *)arguments 
+   withRightBarButton:(UIBarButtonItem *)button;
+
+-(NSDictionary *)mustache;
+
+@end
+
+
+
+@interface OVWebViewController (UIWebViewDelegate) <UIWebViewDelegate>
+
+
+
 @end

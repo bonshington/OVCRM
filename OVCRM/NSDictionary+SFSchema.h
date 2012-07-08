@@ -17,4 +17,6 @@
 
 -(NSString *) extractObjectForKey:(NSString *)key withProperty:(NSString *)prop;
 
+-(NSArray *)extractSFValueFrom:(NSDictionary *)json;
+
 @end

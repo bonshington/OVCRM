@@ -14,6 +14,8 @@
 - (void)request:(SFRestRequest *)request 
 didLoadResponse:(id)jsonResponse{
     
+    NSLog(@"Got response for: %@", self.class);
+    
     OVDatabase *db = [OVDatabase sharedInstance];
     
     if([db initSqlTableOf:self]){

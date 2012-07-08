@@ -18,19 +18,20 @@
     return [NSDictionary dictionaryWithObjectsAndKeys:
             //@"Id", @"TEXT",
             @"TEXT", @"IsAllDayEvent",
-            @"LOOKUP", @"Owner",
-            @"LOOKUP", @"CreatedBy",
+            @"LOOKUP.Name", @"Owner",
+            @"LOOKUP.Name", @"CreatedBy",
             @"TEXT", @"ActivityDate",
             @"TEXT", @"Description",
             @"NUMBER", @"DurationInMinutes",
             //@"TEXT", @"Email",
             @"TEXT", @"EndDateTime",
-            @"LOOKUP", @"LastModifiedBy",
+            @"LOOKUP.Name", @"LastModifiedBy",
             @"TEXT", @"Location",
             @"LOOKUP", @"Who",
             //@"TEXT", @"Phone",
             @"TEXT", @"IsPrivate",
             @"LOOKUP", @"What",
+            @"TEXT", @"WhatId",
             @"TEXT", @"ShowAs",
             @"TEXT", @"StartDateTime",
             @"TEXT", @"Subject",
@@ -78,7 +79,7 @@
     
     if(!db.open)[db open];
     
-    return [db executeQuery:@"select *, TIME(substr(StartDateTime, 1, 23)) as time from Event where StartDateTime >= CURRENT_DATE order by DATETIME(StartDateTime)"];
+    return [db executeQuery:@"select *, substr(TIME(substr(StartDateTime, 1, 23)), 1, 5) as time from Event where StartDateTime >= CURRENT_DATE order by DATETIME(StartDateTime)"];
 }
 
 @end

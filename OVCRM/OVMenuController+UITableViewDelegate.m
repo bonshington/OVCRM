@@ -7,8 +7,57 @@
 //
 
 #import "OVMenuController.h"
+#import "OVWebViewController.h"
+#import "AppDelegate.h"
 
 @implementation OVMenuController (UITableViewDelegate)
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    AppDelegate *app = [AppDelegate sharedInstance];
+    UITableViewCell *tappedCell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    //if !confirm, return
+    
+    
+    [app.detail popToRootViewControllerAnimated:NO];
+    
+    switch (tappedCell.tag) {
+        case tagForCellPlanVisit:{
+            
+            // show account with checkin
+            [app.detail pushViewController:[[OVWebViewController alloc] initForSFObject:@"Account" 
+                                                                          withArguments:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                         ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text, @"Account.Id", 
+                                                                                         ((UILabel *)[tappedCell viewWithTag:tagForSFEventId]).text, @"Event.Id", 
+                                                                                         nil]
+                                                                     withRightBarButton:[[UIBarButtonItem alloc] initWithTitle:@"Check-in" 
+                                                                                                                         style:UIBarButtonItemStyleDone 
+                                                                                                                        target:nil 
+                                                                                                                        action:nil]] 
+                                  animated:YES];
+            
+            // show plan detail
+        }break;
+            
+        case tagForCellCheckedIn:
+            // show account with checkout
+            ;
+            
+            break;
+            
+        case tagForCellMenu:
+            // present modal
+            ;
+            break;
+    }
+}
+
+
+
+
+
+
 
 /*
 - (UIView *) tableView:(UITableView *)tableView 

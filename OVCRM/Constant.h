@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Constant : NSObject
+#define tagForCellMenu      101
+#define tagForCellPlanVisit 102
 
-@end
+#define tagForCellCheckedIn 201
+
+
+#define tagForSFAccountId   1001
+#define tagForSFEventId     1002

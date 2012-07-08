@@ -22,4 +22,20 @@
     return result;
 }
 
+-(NSString *)htmlEncode{
+    
+    if(self == nil || self.length == 0)
+        return @"";
+    
+    NSString *encoded = [self stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    
+    encoded = [encoded stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"];
+    encoded = [encoded stringByReplacingOccurrencesOfString:@"'" withString:@"&apos;"];
+    
+    encoded = [encoded stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
+    encoded = [encoded stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
+    
+    return encoded;
+}
+
 @end

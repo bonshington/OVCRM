@@ -44,7 +44,7 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
-@synthesize db, menu, detail, sync;
+@synthesize db, master, detail, sync;
 
 SFIdentityCoordinator *_coordinator;
 
@@ -94,9 +94,7 @@ SFIdentityCoordinator *_coordinator;
     //rootVC = [[OVLandingController alloc] init];
     */
     
-    
-    
-    return [[OVLandingController alloc] init];
+    return [OVLandingController new];
 }
 
 @end

@@ -32,13 +32,7 @@
     
     if(result && [self beginTransaction]){
         for(NSDictionary *entry in rows){
-            
-            NSMutableArray *args = [NSMutableArray new];
-            
-            [args addObject:[entry objectForKey:@"Id"]];
-            [args addObjectsFromArray:[[entry replaceNilValueWithEmpty] allValues]];
-            
-            result = result && [self executeUpdate:script withArgumentsInArray:args];
+            result = result && [self executeUpdate:script withArgumentsInArray:[schema extractSFValueFrom:entry]];
         }
     }
     

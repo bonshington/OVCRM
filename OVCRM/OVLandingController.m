@@ -28,6 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+    
 }
 
 - (void)viewDidUnload
@@ -44,10 +46,25 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [self.parentViewController dismissModalViewControllerAnimated:animated];
+    AppDelegate *app = [AppDelegate sharedInstance];
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.window setRootViewController:[[RootViewController alloc] init]];
+    app.window.rootViewController = [RootViewController new];
+    
+    //[self.parentViewController dismissViewControllerAnimated:animated completion:nil];
+    
+    //[self dismissModal:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    
+}
+
+-(IBAction)dismissModal:(id)sender{
+    
+    AppDelegate *app = [AppDelegate sharedInstance];
+    
+    app.window.rootViewController = [RootViewController new];
+
 }
 
 @end

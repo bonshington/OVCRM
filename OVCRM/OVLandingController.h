@@ -10,4 +10,6 @@
 
 @interface OVLandingController : UIViewController
 
+-(IBAction)dismissModal:(id)sender;
+
 @end

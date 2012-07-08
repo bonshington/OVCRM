@@ -8,6 +8,7 @@
 
 #import "OVMenuController.h"
 #import "SFVisit.h"
+#import "SFAccount.h"
 #import "AppDelegate.h"
 
 
@@ -32,14 +33,19 @@
     
     [AppDelegate sharedInstance].db = [OVDatabase new];
     
-    //[SFAccount loadAccountsWithRoute:@"10390230"];
+    
+    //if(![AppDelegate sharedInstance].db.open)[[AppDelegate sharedInstance].db open];
     
     
+    //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Account"];
     //BOOL ok = [[AppDelegate sharedInstance].db initSqlTableOf:[SFVisit new]];
     
-    [SFVisit loadNewVisit];
+    
+    //[SFAccount loadAccountsWithRoute:@"10390230"];
+    //[SFVisit loadNewVisit];
     
     
+    /* init menu */
     FMResultSet *result = [SFVisit selectToday];
     NSMutableArray *plan = [NSMutableArray new];
     
@@ -49,6 +55,7 @@
     }
 
     self.todayPlan = plan;
+    /********************************************/
 }
 
 - (void)viewDidUnload

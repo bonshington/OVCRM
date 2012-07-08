@@ -33,6 +33,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView planForRowAtIndexPath:(NSIndexPath *)indexPath;
 -(UITableViewCell *)tableView:(UITableView *)tableView checkinForRowAtIndexPath:(NSIndexPath *)indexPath;
--(UITableViewCell *)tableView:(UITableView *)tableView accountForRowAtIndexPath:(NSIndexPath *)indexPath;
+-(UITableViewCell *)tableView:(UITableView *)tableView menuForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
+
+
