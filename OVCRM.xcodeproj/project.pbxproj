@@ -19,6 +19,8 @@
 		18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048615A56A1F000719DB /* NSString+Extension.m */; };
 		18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */; };
 		18B1048D15A5961D000719DB /* SFVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048C15A5961D000719DB /* SFVisit.m */; };
+		18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */; };
+		18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */; };
 		18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EA915A160DF00A08B29 /* CoreData.framework */; };
 		18EE3EAC15A160DF00A08B29 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EAB15A160DF00A08B29 /* SystemConfiguration.framework */; };
 		18EE3EAE15A160DF00A08B29 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EAD15A160DF00A08B29 /* Security.framework */; };
@@ -90,6 +92,9 @@
 		18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullHandling.m"; sourceTree = "<group>"; };
 		18B1048B15A5961D000719DB /* SFVisit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFVisit.h; sourceTree = "<group>"; };
 		18B1048C15A5961D000719DB /* SFVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFVisit.m; sourceTree = "<group>"; };
+		18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+Render.m"; sourceTree = "<group>"; };
+		18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LINQ.h"; sourceTree = "<group>"; };
+		18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LINQ.m"; sourceTree = "<group>"; };
 		18EE3EA515A160DF00A08B29 /* OVCRM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OVCRM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EE3EA915A160DF00A08B29 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		18EE3EAB15A160DF00A08B29 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -291,6 +296,8 @@
 				18B1048615A56A1F000719DB /* NSString+Extension.m */,
 				18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */,
 				18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */,
+				18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */,
+				18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -594,6 +601,7 @@
 			children = (
 				18EE3F6515A173BD00A08B29 /* OVMenuController.h */,
 				18EE3F6615A173BD00A08B29 /* OVMenuController.m */,
+				18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */,
 				187F5EB615A2B08400EA0A37 /* OVMenuController+UITableViewDataSource.m */,
 				187F5EBA15A2B1CF00EA0A37 /* OVMenuController+UITableViewDelegate.m */,
 				187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */,
@@ -728,6 +736,8 @@
 				18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */,
 				18B1048D15A5961D000719DB /* SFVisit.m in Sources */,
 				188C06EF15A69DE00043DBC7 /* NSDictionary+SFSchema.m in Sources */,
+				18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */,
+				18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 
 @interface SFVisit : SFSyncResponder
 
-+(void) loadAfterDate:(NSString *)date;
++(void) loadNewVisit;
++(FMResultSet *) selectToday;
 
 @end

@@ -12,40 +12,73 @@
 
 @implementation SFVisit
 
+-(NSString *)SFName{ return @"Event";}
+
 -(NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
             //@"Id", @"TEXT",
-            @"ActivityDateTime", @"TEXT",
-            @"toLabel(Type)", @"TEXT",
-            @"IsVisibleInSelfService", @"TEXT",
-            @"Account_Name__c", @"TEXT",
-            @"Call_Card__c", @"TEXT",
-            @"Collection__c", @"TEXT",
-            @"Competitive_Activities__c", @"TEXT",
-            @"Delivery__c", @"TEXT",
-            @"Frequency__c", @"TEXT",
-            @"Goods_Return__c", @"TEXT",
-            @"Latitude__c", @"NUMBER",
-            @"Longtitude__c", @"NUMBER",
-            @"Merchaindising__c", @"TEXT",
-            @"Order_Taking__c", @"TEXT",
-            @"PC_Brief__c", @"TEXT",
-            @"Sales_Talk__c", @"TEXT",
-            @"Source_System__c", @"TEXT",
-            @"Time_in__c", @"TEXT",
-            @"Time_Out__c", @"TEXT",
-            @"Trade_Program_Execution__c", @"TEXT",
-            @"User_ID__c", @"TEXT",
-            @"UserVisit__c", @"TEXT",
-            @"Visit__c", @"TEXT",
-            @"toLabel(Visit_Type__c)", @"TEXT",
+            @"TEXT", @"IsAllDayEvent",
+            @"LOOKUP", @"Owner",
+            @"LOOKUP", @"CreatedBy",
+            @"TEXT", @"ActivityDate",
+            @"TEXT", @"Description",
+            @"NUMBER", @"DurationInMinutes",
+            //@"TEXT", @"Email",
+            @"TEXT", @"EndDateTime",
+            @"LOOKUP", @"LastModifiedBy",
+            @"TEXT", @"Location",
+            @"LOOKUP", @"Who",
+            //@"TEXT", @"Phone",
+            @"TEXT", @"IsPrivate",
+            @"LOOKUP", @"What",
+            @"TEXT", @"ShowAs",
+            @"TEXT", @"StartDateTime",
+            @"TEXT", @"Subject",
+            @"TEXT", @"ActivityDateTime",
+            @"PICKUP", @"Type",
+            //@"TEXT", @"IsVisibleInSelfService",
+            @"TEXT", @"Account_Name__c",
+            @"TEXT", @"Call_Card__c",
+            @"TEXT", @"Collection__c",
+            @"TEXT", @"Competitive_Activities__c",
+            @"TEXT", @"Delivery__c",
+            @"TEXT", @"Frequency__c",
+            @"TEXT", @"Goods_Return__c",
+            @"NUMBER", @"Latitude__c",
+            @"NUMBER", @"Longtitude__c",
+            @"TEXT", @"Merchaindising__c",
+            @"TEXT", @"Order_Taking__c",
+            @"TEXT", @"PC_Brief__c",
+            @"TEXT", @"Sales_Talk__c",
+            @"TEXT", @"Source_System__c",
+            @"TEXT", @"Time_in__c",
+            @"TEXT", @"Time_Out__c",
+            @"TEXT", @"Trade_Program_Execution__c",
+            @"TEXT", @"User_ID__c",
+            @"TEXT", @"UserVisit__c",
+            @"TEXT", @"Visit__c",
+            @"PICKLIST", @"Visit_Type__c",
             nil];
 
 }
 
-+(void) loadAfterDate:(NSString *)date{
++(void) loadNewVisit{
     
-    [super loadWithQuery:[NSString stringWithFormat:@"select %@ from Event where ActivityDate >= %@", SFVisit_columns, date] delegate:[SFVisit new]];
+    SFVisit *this = [SFVisit new];
+    
+    [super loadWithQuery:[NSString stringWithFormat:
+                          @"select Id,%@ from Event where StartDateTime >= TODAY"
+                          , [[[this schema] toSFColumns] componentsJoinedByString:@","]] 
+                delegate:this];
+}
+
++(FMResultSet *) selectToday{
+    
+    OVDatabase *db = [OVDatabase sharedInstance];
+    
+    if(!db.open)[db open];
+    
+    return [db executeQuery:@"select *, TIME(substr(StartDateTime, 1, 23)) as time from Event where StartDateTime >= CURRENT_DATE order by DATETIME(StartDateTime)"];
 }
 
 @end

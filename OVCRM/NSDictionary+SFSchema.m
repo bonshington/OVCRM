@@ -7,6 +7,7 @@
 //
 
 #import "NSDictionary+SFSchema.h"
+#import "NSArray+LINQ.h"
 
 @implementation NSDictionary (SFSchema)
 
@@ -31,6 +32,17 @@
     return [self allKeys];
 }
 
+-(NSArray *) toSqlArguments{
+    
+    NSMutableArray *result = [NSMutableArray new];
+    
+    for(id each in [self allKeys]){
+        [result addObject:@"?"];
+    }
+    
+    return result;
+}
+
 -(NSArray *) toSFColumns{
     
     NSMutableArray *result = [NSMutableArray new];
@@ -49,6 +61,16 @@
     }];
     
     return result;
+}
+
+-(NSString *) extractObjectForKey:(NSString *)key withProperty:(NSString *)prop{
+    
+    NSArray *phrases = [[[self objectForKey:key] componentsSeparatedByString:@"\n"] where:^BOOL(NSString * entry){
+        
+        return [[entry stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]] hasPrefix:[NSString stringWithFormat:@"%@ = ", prop]];
+    }];
+    
+    return [[[[phrases objectAtIndex:0] componentsSeparatedByString:@" = "] objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\";"]];
 }
 
 @end

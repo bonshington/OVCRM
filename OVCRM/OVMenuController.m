@@ -7,13 +7,13 @@
 //
 
 #import "OVMenuController.h"
-#import "SFAccount.h"
+#import "SFVisit.h"
 #import "AppDelegate.h"
 
 
 @implementation OVMenuController
 
-@synthesize checkedinAccount;
+@synthesize checkedinAccount, todayPlan;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +32,23 @@
     
     [AppDelegate sharedInstance].db = [OVDatabase new];
     
-    OVDatabase *db = [AppDelegate sharedInstance].db;
+    //[SFAccount loadAccountsWithRoute:@"10390230"];
     
-    [SFAccount loadAccountsWithRoute:@"10390230"];
+    
+    //BOOL ok = [[AppDelegate sharedInstance].db initSqlTableOf:[SFVisit new]];
+    
+    [SFVisit loadNewVisit];
+    
+    
+    FMResultSet *result = [SFVisit selectToday];
+    NSMutableArray *plan = [NSMutableArray new];
+    
+    while([result next]){
+        
+        [plan addObject:[result resultDictionary]];
+    }
 
+    self.todayPlan = plan;
 }
 
 - (void)viewDidUnload

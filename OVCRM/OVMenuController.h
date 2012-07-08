@@ -11,6 +11,7 @@
 @interface OVMenuController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, retain) NSDictionary *checkedinAccount;
+@property(nonatomic, retain) NSArray *todayPlan;
 
 
 @end
@@ -24,5 +25,14 @@
 -(void) plan;
 -(void) viewAccountId:(char *) accountId;
 -(void) pushViewController:(char *)name;
+
+@end
+
+
+@interface OVMenuController (Render)
+
+-(UITableViewCell *)tableView:(UITableView *)tableView planForRowAtIndexPath:(NSIndexPath *)indexPath;
+-(UITableViewCell *)tableView:(UITableView *)tableView checkinForRowAtIndexPath:(NSIndexPath *)indexPath;
+-(UITableViewCell *)tableView:(UITableView *)tableView accountForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

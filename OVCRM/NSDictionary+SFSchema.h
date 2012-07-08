@@ -12,6 +12,9 @@
 
 -(NSArray *) toSqlColumn;
 -(NSArray *) toSqlColumnWithType;
+-(NSArray *) toSqlArguments;
 -(NSArray *) toSFColumns;
+
+-(NSString *) extractObjectForKey:(NSString *)key withProperty:(NSString *)prop;
 
 @end

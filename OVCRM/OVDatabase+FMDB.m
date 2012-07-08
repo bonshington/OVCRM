@@ -18,10 +18,12 @@
 
 -(BOOL) insertOrReplaceTable:(id<SFObjectProtocal>)object withData:(NSArray *)rows{
     
+    NSDictionary *schema = [object schema];
     NSString *script = [NSString stringWithFormat:
-                        @"insert or replace into %@ (Id,%@)"
+                        @"insert or replace into %@ (Id,%@) values(?,%@)"
                         , [object SFName]
-                        , [[[object schema] toSqlColumn] componentsJoinedByString:@","]
+                        , [[schema toSqlColumn] componentsJoinedByString:@","]
+                        , [[schema toSqlArguments] componentsJoinedByString:@","]
                         ];
     
     BOOL result = YES;
@@ -30,7 +32,13 @@
     
     if(result && [self beginTransaction]){
         for(NSDictionary *entry in rows){
-            result = result && [self executeUpdate:script withArgumentsInArray:[entry allValues]];
+            
+            NSMutableArray *args = [NSMutableArray new];
+            
+            [args addObject:[entry objectForKey:@"Id"]];
+            [args addObjectsFromArray:[[entry replaceNilValueWithEmpty] allValues]];
+            
+            result = result && [self executeUpdate:script withArgumentsInArray:args];
         }
     }
     

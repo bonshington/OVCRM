@@ -36,7 +36,7 @@
 @property (nonatomic, retain) UIViewController *menu;
 @property (nonatomic, retain) UIViewController *detail;
 @property (nonatomic, retain) OVDatabase *db;
-@property (nonatomic, retain) SFSyncResponder *sync;
+@property (nonatomic, retain) id<SFRestDelegate> sync;
 
 -(SFIdentityData *) getIdentity;
 

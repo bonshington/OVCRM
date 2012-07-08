@@ -37,7 +37,7 @@ titleForHeaderInSection:(NSInteger)section{
     if(self.checkedinAccount == nil){
         switch(section){
                 
-            case 0: return @"Plan";
+            case 0: return @"Visit";
                 
             case 1: return @"Menu";
         }
@@ -47,7 +47,7 @@ titleForHeaderInSection:(NSInteger)section{
                 
             case 0: return @"Checkin";
                 
-            case 1: return @"Plan";
+            case 1: return @"Visit";
                 
             case 2: return @"Menu";
         }
@@ -59,18 +59,50 @@ titleForHeaderInSection:(NSInteger)section{
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section{
     
-    switch(section){
-        case 0: return 1;
-            
-        case 1: return 1;
-            
-        case 2: return 1;
-            
-        default: return 0;
+    if(self.checkedinAccount == nil){
+        switch(section){
+            case 0: return self.todayPlan.count;
+                
+            case 1: return 0;
+                
+            default: return 0;
+        }
+    }
+    else{
+        switch(section){
+            case 0: return 0;
+                
+            case 1: return self.todayPlan.count;
+                
+            case 2: return 0;
+                
+            default: return 0;
+        }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(self.checkedinAccount == nil){
+        switch(indexPath.section){
+            case 0: return [self tableView:tableView planForRowAtIndexPath:indexPath];
+                
+            case 1: return nil;
+                
+            default: return nil;
+        }
+    }
+    else{
+        switch(indexPath.section){
+            case 0: return nil;
+                
+            case 1: return [self tableView:tableView planForRowAtIndexPath:indexPath];
+                
+            case 2: return nil;
+                
+            default: return nil;
+        }
+    }
     
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     
@@ -78,6 +110,7 @@ titleForHeaderInSection:(NSInteger)section{
     
     return cell;
 }
+
 
 
 /*

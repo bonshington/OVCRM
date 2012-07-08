@@ -10,6 +10,7 @@
 
 @interface NSDictionary (NullHandling)
 
-- (id)emptyIfNull:(id)key;
+-(id) emptyIfNull:(id)key;
+-(id) replaceNilValueWithEmpty;
 
 @end

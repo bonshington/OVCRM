@@ -21,4 +21,14 @@
     }
 }
 
+-(id) replaceNilValueWithEmpty{
+    
+    for(id key in [self allKeys]){
+        if([self objectForKey:key] == nil)
+            [self setValue:@"" forKey:key];
+    }
+    
+    return self;
+}
+
 @end
