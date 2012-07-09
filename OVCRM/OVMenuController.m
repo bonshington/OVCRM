@@ -10,6 +10,7 @@
 #import "SFVisit.h"
 #import "SFAccount.h"
 #import "AppDelegate.h"
+#import "OVLandingController.h"
 
 
 @implementation OVMenuController
@@ -31,7 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [AppDelegate sharedInstance].db = [OVDatabase new];
+    AppDelegate *app = [AppDelegate sharedInstance];
+    app.db = [OVDatabase new];
     
     
     //if(![AppDelegate sharedInstance].db.open)[[AppDelegate sharedInstance].db open];
@@ -57,6 +59,8 @@
 
     self.todayPlan = plan;
     /********************************************/
+    
+    [app.detail pushViewController:[OVLandingController new] animated:NO];
 }
 
 - (void)viewDidUnload

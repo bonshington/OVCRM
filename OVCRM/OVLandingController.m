@@ -46,11 +46,25 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [self.parentViewController dismissViewControllerAnimated:animated completion:^(void){
-        ;//[self dismissModal:nil];
-    }];
+    // presented by SFRootViewController)
+    if(self.parentViewController == nil){
+        
+        // dismiss modal, due to SplitViewController cannot be presented as Modal    
+        [self dismissViewControllerAnimated:YES completion:^(void){
+            
+            [[AppDelegate sharedInstance].window setRootViewController:[RootViewController new]];
+            
+            //[AppDelegate sharedInstance].window.rootViewController = [RootViewController new];
+        }];
+    }
     
-    //[self dismissModal:nil];
+    // presented by OVRootViewController
+    else{
+        
+        //Show landing page
+        self.view.hidden = NO;
+        self.title = @"Home";
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -60,12 +74,7 @@
 
 -(IBAction)dismissModal:(id)sender{
     
-    [self dismissViewControllerAnimated:YES completion:^(void){
-        
-        [[AppDelegate sharedInstance].window setRootViewController:[RootViewController new]];
-        
-        //[AppDelegate sharedInstance].window.rootViewController = [RootViewController new];
-    }];
+    
 }
 
 @end

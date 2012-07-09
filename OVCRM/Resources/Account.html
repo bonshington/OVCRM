@@ -19,13 +19,20 @@
         </style>
         <script>
             $(function(){
-              $("#module-dufault").click();
+              
+              $("#module-default").click();
+              
+              $("[sf-checked]").each(function(){
+                $(this).attr("checked",$(this).attr("sf-checked") == "1").checkboxradio("refresh");
+              });
+              
+              $(".ui-disabled").removeClass("ui-disabled");
             });
         </script>
     </head>
     <body>
         <div data-role="page" data-theme="b">
-            <div data-role="content" style="padding: 10px;">
+            <div data-role="content" style="padding: 10px; padding-bottom: 40px;">
                 
                 <div id="module1" class="module">
                     <div class="ui-body ui-body-c">
@@ -48,7 +55,7 @@
                             <label>Customer Group:</label><span>{{Account.MD_Customer_Group__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Customer Business:</label><span>{{MD_Customer_Business__c}}</span>
+                            <label>Customer Business:</label><span>{{Account.MD_Customer_Business__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
                             <label>Account Number:</label><span>{{Account.AccountNumber}}</span>
@@ -172,6 +179,17 @@
                 </div>
                 
                 <div id="module3" class="module">
+                    <div class="ui-body ui-body-c">
+                        <h2>Payment Infomation</h2>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="ui-body ui-body-c">
+                        <h2>Promotion Infomation</h2>
+                        
+                    </div>
                 </div>
                 
                 <div id="module4" class="module">
@@ -195,33 +213,32 @@
                             <label>Visit Day Sequence:</label><span>{{Account.VisitDaySeq__c}}</span>
                         </div>
                         <div data-role="fieldcontain" data-theme="c">
-                            <label for="visit-one-time"><input type="checkbox" id="visit-one-time"/>One time</label>
+                            <label for="visit-one-time"><input type="checkbox" id="visit-one-time" sf-checked="{{OneTime__c}}" disabled="disabled"/>One time</label>
                         </div>
                     </div>
                     <br/>
                     <div class="ui-body ui-body-c">
-                        
                         <div data-role="fieldcontain">
-                            <fieldset data-role="controlgroup">
+                            <fieldset id="days" data-role="controlgroup" data-type="vertical">
                                 <legend>Days</legend>
-                                <label for="visit-sun"><input type="checkbox" id="visit-sun"/>Sunday</label>
-                                <label for="visit-mon"><input type="checkbox" id="visit-mon"/>Monday</label>
-                                <label for="visit-tue"><input type="checkbox" id="visit-tue"/>Tuesday</label>
-                                <label for="visit-wed"><input type="checkbox" id="visit-wed"/>Wednesday</label>
-                                <label for="visit-thu"><input type="checkbox" id="visit-thu"/>Thursday</label>
-                                <label for="visit-fri"><input type="checkbox" id="visit-fri"/>Friday</label>
-                                <label for="visit-sat"><input type="checkbox" id="visit-sat"/>Saturday</label>
+                                <label for="visit-sun"><input type="checkbox" id="visit-sun" sf-checked="{{Account.Sunday__c}}" disabled="disabled"/>Sunday</label>
+                                <label for="visit-mon"><input type="checkbox" id="visit-mon" sf-checked="{{Account.Monday__c}}" disabled="disabled"/>Monday</label>
+                                <label for="visit-tue"><input type="checkbox" id="visit-tue" sf-checked="{{Account.Tuesday__c}}" disabled="disabled"/>Tuesday</label>
+                                <label for="visit-wed"><input type="checkbox" id="visit-wed" sf-checked="{{Account.Wednesdayday__c}}" disabled="disabled"/>Wednesday</label>
+                                <label for="visit-thu"><input type="checkbox" id="visit-thu" sf-checked="{{Account.Thursday__c}}" disabled="disabled"/>Thursday</label>
+                                <label for="visit-fri"><input type="checkbox" id="visit-fri" sf-checked="{{Account.Friday__c}}" disabled="disabled"/>Friday</label>
+                                <label for="visit-sat"><input type="checkbox" id="visit-sat" sf-checked="{{Account.Saturday__c}}" disabled="disabled"/>Saturday</label>
                             </fieldset>
                         </div>
                         
-                        
                     </div>
+                    <br/>
                 </div>
             </div>
             <div data-role="footer" data-position="fixed" data-fullscreen="true">
                 <div data-role="navbar" data-theme="b">
                     <ul>                        
-                        <li onclick="$('.module').hide();$('#module1').show();"><a href="#" data-icon="star" id="module-dufault">Account</a></li>
+                        <li onclick="$('.module').hide();$('#module1').show();"><a href="#" data-icon="star" id="module-default">Account</a></li>
                         <li onclick="$('.module').hide();$('#module2').show();"><a href="#" data-icon="home">Contact</a></li>
                         <li onclick="$('.module').hide();$('#module3').show();"><a href="#">Promotion &amp; Payment</a></li>
                         <li onclick="$('.module').hide();$('#module4').show();"><a href="#" data-icon="grid">Visit</a></li>                    
