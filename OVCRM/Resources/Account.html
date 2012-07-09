@@ -35,23 +35,23 @@
                             <label>Account Number:</label><span>{{Account.AccountNumber}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Account Name:</label><span></span>
+                            <label>Account Name:</label><span>{{Account.Name}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Short Name:</label><span></span>
+                            <label>Short Name:</label><span>{{Account.Short_Name__c}}</span>
                         </div>
-                        
+            
                         <div data-role="fieldcontain">
-                            <label>Shop Type:</label><span></span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>Customer Group:</label><span></span>
+                            <label>Shop Type:</label><span>{{Account.Shop_Type__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Customer Business:</label><span></span>
+                            <label>Customer Group:</label><span>{{Account.MD_Customer_Group__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Account Number:</label><span></span>
+                            <label>Customer Business:</label><span>{{MD_Customer_Business__c}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Account Number:</label><span>{{Account.AccountNumber}}</span>
                         </div>
                         
                     </div>
@@ -60,19 +60,19 @@
                         <h2>Additional Information</h2>
                         
                         <div data-role="fieldcontain">
-                            <label>KWS Customer:</label><span></span>
+                            <label>KWS Customer:</label><span>{{Account.KWS_Customer__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Parent Account:</label><span></span>
+                            <label>Parent Account:</label><span>{{Account.Parent}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Parent Account Number:</label><span></span>
+                            <label>Parent Account Number:</label><span>{{Account.Parent_Account_Number__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Account Type:</label><span></span>
+                            <label>Account Type:</label><span>{{Account.Account_Type__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Source System:</label><span></span>
+                            <label>Source System:</label><span>{{Account.Source_System__c}}</span>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                             <label>Contact 1:</label><span>{{Account.Contact_1__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Contact 2:</label><span>{{Account.Contact_1__c}}</span>
+                            <label>Contact 2:</label><span>{{Account.Contact_2__c}}</span>
                         </div>
                         
                         <ol class="contact-list">
@@ -95,13 +95,6 @@
                                 <label>Tel :</label><span>{{Account.Contact_Tel_1__c}}</span>
                                 <br/>
                                 <label>Position :</label><span>{{Account.Contact_Position_1__c}}</span>
-                            </li>
-                            <li>
-                                <label>Name :</label><span>{{Account.Contact_Name_2__c}}</span>
-                                <br/>
-                                <label>Tel :</label><span>{{Account.Contact_Tel_2__c}}</span>
-                                <br/>
-                                <label>Position :</label><span>{{Account.Contact_Position_2__c}}</span>
                             </li>
                             <li>
                                 <label>Name :</label><span>{{Account.Contact_Name_2__c}}</span>
