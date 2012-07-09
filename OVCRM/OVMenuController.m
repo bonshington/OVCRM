@@ -38,6 +38,7 @@
     
     
     //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Account"];
+    //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Event"];
     //BOOL ok = [[AppDelegate sharedInstance].db initSqlTableOf:[SFVisit new]];
     
     

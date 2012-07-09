@@ -50,6 +50,10 @@
             // present modal
             ;
             break;
+            
+        case tagForCellSF:
+            ;
+            break;
     }
 }
 

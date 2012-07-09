@@ -635,6 +635,8 @@
 				18EE3F4915A160E100A08B29 /* AppDelegate.m */,
 				18EE3F4B15A160E100A08B29 /* RootViewController.h */,
 				18EE3F4C15A160E100A08B29 /* RootViewController.m */,
+				18EE3F6F15A1741500A08B29 /* OVLandingController.h */,
+				18EE3F7015A1741500A08B29 /* OVLandingController.m */,
 				08FC15AE15A95549005847AC /* Constant.h */,
 			);
 			name = Classes;
@@ -660,8 +662,6 @@
 				187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */,
 				18EE3F6A15A173F400A08B29 /* OVDetailController.h */,
 				18EE3F6B15A173F400A08B29 /* OVDetailController.m */,
-				18EE3F6F15A1741500A08B29 /* OVLandingController.h */,
-				18EE3F7015A1741500A08B29 /* OVLandingController.m */,
 				08FC15B515A95984005847AC /* OVWebViewController.h */,
 				08FC15B615A95984005847AC /* OVWebViewController.m */,
 				08FC15BE15A95B74005847AC /* OVWebViewController+UIWebViewDeleagte.m */,

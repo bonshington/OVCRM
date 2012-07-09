@@ -24,10 +24,10 @@
     */
     
     if(self.checkedinAccount == nil){
-        return 2;
+        return 3;
     }
     else {
-        return 3;
+        return 4;
     }
 }
 
@@ -40,6 +40,8 @@ titleForHeaderInSection:(NSInteger)section{
             case 0: return @"Visit";
                 
             case 1: return @"Menu";
+                
+            case 2: return @"SalesForce";
         }
     }
     else{
@@ -50,6 +52,8 @@ titleForHeaderInSection:(NSInteger)section{
             case 1: return @"Visit";
                 
             case 2: return @"Menu";
+                
+            case 3: return @"SalesForce";
         }
     }
     
@@ -65,6 +69,8 @@ titleForHeaderInSection:(NSInteger)section{
                 
             case 1: return 0;
                 
+            case 2: return 1;
+                
             default: return 0;
         }
     }
@@ -75,6 +81,8 @@ titleForHeaderInSection:(NSInteger)section{
             case 1: return self.todayPlan.count;
                 
             case 2: return 0;
+                
+            case 3: return 1;
                 
             default: return 0;
         }
@@ -89,6 +97,8 @@ titleForHeaderInSection:(NSInteger)section{
                 
             case 1: return nil;
                 
+            case 2: return [self tableView:tableView sfForRowAtIndexPath:indexPath];
+                
             default: return nil;
         }
     }
@@ -99,6 +109,8 @@ titleForHeaderInSection:(NSInteger)section{
             case 1: return [self tableView:tableView planForRowAtIndexPath:indexPath];
                 
             case 2: return nil;
+                
+            case 3: return [self tableView:tableView sfForRowAtIndexPath:indexPath];
                 
             default: return nil;
         }

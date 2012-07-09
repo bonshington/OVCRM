@@ -80,4 +80,25 @@
     return cell;
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView sfForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *cellId = [NSString stringWithFormat:@"sf:%d", indexPath.row];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if(cell == nil){
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+        
+        cell.textLabel.text = @"Sync";
+        cell.detailTextLabel.text = @"last sync date";
+        cell.accessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
+        cell.tag = tagForCellSF;
+        
+    }
+    
+    return cell;
+    
+}
+
 @end

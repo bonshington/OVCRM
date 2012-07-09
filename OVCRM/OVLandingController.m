@@ -46,25 +46,26 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    AppDelegate *app = [AppDelegate sharedInstance];
-    
-    app.window.rootViewController = [RootViewController new];
-    
-    //[self.parentViewController dismissViewControllerAnimated:animated completion:nil];
+    [self.parentViewController dismissViewControllerAnimated:animated completion:^(void){
+        ;//[self dismissModal:nil];
+    }];
     
     //[self dismissModal:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     
+    [self dismissModal:nil];
 }
 
 -(IBAction)dismissModal:(id)sender{
     
-    AppDelegate *app = [AppDelegate sharedInstance];
-    
-    app.window.rootViewController = [RootViewController new];
-
+    [self dismissViewControllerAnimated:YES completion:^(void){
+        
+        [[AppDelegate sharedInstance].window setRootViewController:[RootViewController new]];
+        
+        //[AppDelegate sharedInstance].window.rootViewController = [RootViewController new];
+    }];
 }
 
 @end

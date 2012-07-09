@@ -72,28 +72,6 @@ SFIdentityCoordinator *_coordinator;
 
 - (UIViewController*)newRootViewController {
     
-    /*
-    RootViewController *rootVC = [[RootViewController alloc] init];
-    //UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    //[rootVC release];
-    
-    //navVC.title = @"title";
-    
-    //AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    //[appDelegate.window setRootViewController:rootVC];
-    
-    //[self.window setRootViewController:rootVC];
-    
-    self.window.rootViewController = rootVC;
-    
-    [self.window makeKeyAndVisible];
-    
-    //self.viewController = rootVC;
-    
-    //rootVC = [[OVLandingController alloc] init];
-    */
-    
     return [OVLandingController new];
 }
 

@@ -78,11 +78,11 @@
     
     
     [super viewDidLoad];
-    
     NSLog(@"RootViewController.super:viewDidLoad");
     
-    self.title = @"";
     
+    self.title = @"Test Default";
+
 }
 
 
