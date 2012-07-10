@@ -3,9 +3,9 @@
         <meta name="viewport" content="width=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=700"> 
         <script type="text/javascript" src="{{jquery.js}}"></script>
         <script type="text/javascript" src="{{jquery.mobile.js}}"></script>
-            <script type="text/javascript" src="{{plugin.dateformat.js}}"></script>
-        <link rel="stylesheet" type=e"text/css" href="{{jquery.mobile.css}}"></link>
-        <link rel="stylesheet" type=e"text/css" href="{{site.css}}"></link>
+        <script type="text/javascript" src="{{plugin.dateformat.js}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{jquery.mobile.css}}"></link>
+        <link rel="stylesheet" type="text/css" href="{{site.css}}"></link>
         <style>
             .module{
                 display: none;
@@ -21,6 +21,20 @@
         <script>
             $(function(){
               
+              // init function
+              $("#module-default").click();
+              
+              $("[sf-checked]").each(function(){
+                                     $(this).attr("checked",$(this).attr("sf-checked") == "1").checkboxradio("refresh");
+                                     });
+              
+              $(".ui-disabled").removeClass("ui-disabled");
+              
+              
+              $.get(window.location.href+'?test=123', function(){alert('555');});
+              
+              
+              // init datetime
               var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
               
               $("[datetime]").each(function(){
@@ -29,33 +43,23 @@
                 var val = self.attr("datetime");
                 
                 if(val.length > 0){
+                   try{    
+                     var date = val.split("T")[0].split("-");
+                     var time = val.split("T")[1].split(":");
                                    
-                                   var date = val.split("T")[0].split("-");
-                                   var time = val.split("T")[1].split(":");
-                                   
-                                   var result = new Date(date[0], date[1], date[2], time[0], time[1]);
-                                   result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));
+                     var result = new Date(date[0], date[1], date[2], time[0], time[1]);
+                     result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));
                                                                       
-                                   self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
+                     self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
+                   } catch(err){}
                 }
-                                   
-                
               });
               
-              $("#module-default").click();
-              
-              $("[sf-checked]").each(function(){
-                $(this).attr("checked",$(this).attr("sf-checked") == "1").checkboxradio("refresh");
-              });
-              
-              $(".ui-disabled").removeClass("ui-disabled");
               
               
-              $.ajax({
-                     url:"/",
-                     data: {Event: "123"},
-                     method: "POST"
-                     });
+              
+              
+              
             });
         </script>
     </head>
@@ -65,6 +69,7 @@
                 
                 <div id="module1" class="module">
                     <div class="ui-body ui-body-c">
+                        
                         <h2>General Information</h2>
                         
                         <div data-role="fieldcontain">
@@ -111,9 +116,7 @@
                             <label>Source System:</label><span>{{Account.Source_System__c}}</span>
                         </div>
                     </div>
-                </div>
-                
-                <div id="module2" class="module">
+                    <br/>
                     <div class="ui-body ui-body-c">
                         <h2>Contact</h2>
                         
@@ -222,12 +225,8 @@
                     </div>
                     <br/>
                 </div>
-                
-<<<<<<< HEAD
-                <div id="module3" class="module">
-=======
+
                 <div id="module2" class="module">
->>>>>>> Daily sync
                     <div class="ui-body ui-body-c">
                         <h2>Payment Infomation</h2>
                         
@@ -285,7 +284,7 @@
                 </div>
                 
                 <div id="module4" class="module">
-                    
+                    {{Event.json}}
                     <div class="ui-body ui-body-c">
                         <h2>Visit</h2>
                         
@@ -323,77 +322,23 @@
                         
                     </div>
                     <br/>
-                    <div class="ui-body ui-body-c">
-                        <h2>Event | Calendar Detail</h2>
-                        <div data-role="fieldcontain">
-                            <label>Subject:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>Assigned To:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>Related To:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>Start:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>End:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>Name:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>Visit Type:</label><span>{{Account.}}</span>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="ui-body ui-body-c">
-                        <h2>Event | Working Time</h2>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                        <div data-role="fieldcontain">
-                            <label>:</label><span>{{Account.}}</span>
-                        </div>
-                    </div>
+                    <table>
+                        <colgroup>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+    
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div data-role="footer" data-position="fixed" data-fullscreen="true">
+            <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
                 <div data-role="navbar" data-theme="b">
                     <ul>                        
-                        <li onclick="$('.module').hide();$('#module1').show();"><a href="#" data-icon="star" id="module-default">Account</a></li>
+                        <li onclick="$('.module').hide();$('#module1').show();"><a href="#" data-icon="star" id="module-default">Account &amp; Contact</a></li>
                         <li onclick="$('.module').hide();$('#module2').show();"><a href="#" data-icon="home">Contact</a></li>
                         <li onclick="$('.module').hide();$('#module3').show();"><a href="#">Promotion &amp; Payment</a></li>
                         <li onclick="$('.module').hide();$('#module4').show();"><a href="#" data-icon="grid">Visit</a></li>                    
