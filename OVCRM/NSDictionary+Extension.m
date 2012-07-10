@@ -10,4 +10,9 @@
 
 @implementation NSDictionary (Extension)
 
+-(id)objectAtIndex:(NSInteger)index{
+    
+    return [self objectForKey:[[self allKeys] objectAtIndex:index]];
+}
+
 @end

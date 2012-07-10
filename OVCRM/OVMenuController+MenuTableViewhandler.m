@@ -7,9 +7,10 @@
 //
 
 #import "OVMenuController.h"
+#import "OVWebViewController.h"
+#import "OVSyncController.h"
 
-
-@implementation OVMenuController (UITableViewDataSource)
+@implementation OVMenuController (MenuTableViewhandler)
 
 #pragma mark - Sections
 
@@ -122,6 +123,58 @@ titleForHeaderInSection:(NSInteger)section{
     
     return cell;
 }
+
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    AppDelegate *app = [AppDelegate sharedInstance];
+    UITableViewCell *tappedCell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    //if !confirm, return
+    
+    
+    [app.detail popToRootViewControllerAnimated:NO];
+    
+    switch (tappedCell.tag) {
+        case tagForCellPlanVisit:{
+            
+            // show account with checkin
+            [app.detail pushViewController:[[OVWebViewController alloc] initForSFObject:@"Account" 
+                                                                          withArguments:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                         ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text, @"Account.Id", 
+                                                                                         ((UILabel *)[tappedCell viewWithTag:tagForSFEventId]).text, @"Event.Id", 
+                                                                                         nil]
+                                                                     withRightBarButton:[[UIBarButtonItem alloc] initWithTitle:@"Check-in" 
+                                                                                                                         style:UIBarButtonItemStyleDone 
+                                                                                                                        target:nil 
+                                                                                                                        action:nil]] 
+                                  animated:YES];
+            
+            // show plan detail
+        }break;
+            
+        case tagForCellCheckedIn:
+            // show account with checkout
+            ;
+            
+            break;
+            
+        case tagForCellMenu:
+            // present modal
+            ;
+            break;
+            
+        case tagForCellSF:
+            tableView.allowsSelection = NO;
+            [app.detail pushViewController:[[OVSyncController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            break;
+    }
+}
+
+
+
 
 
 

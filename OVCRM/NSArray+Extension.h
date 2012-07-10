@@ -10,4 +10,6 @@
 
 @interface NSArray (Extension)
 
+-(NSString *)toJson;
+
 @end

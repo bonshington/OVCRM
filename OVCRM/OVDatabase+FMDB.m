@@ -26,7 +26,7 @@
                         , [[schema toSqlArguments] componentsJoinedByString:@","]
                         ];
     
-    BOOL result = YES;
+    BOOL result = [self initSqlTableOf:object];
     
     if(!self.open)[self open];
     
@@ -41,6 +41,8 @@
 
 -(BOOL) initSqlTableOf:(id<SFObjectProtocal>)object{
 
+    //[self executeUpdate:[NSString stringWithFormat:@"drop table %@", [object SFName]]];
+    
     NSString *script = [NSString stringWithFormat:
                         @"create table if not exists %@(Id TEXT primary key,%@)"
                         , [object SFName]

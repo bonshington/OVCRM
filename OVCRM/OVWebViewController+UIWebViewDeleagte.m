@@ -10,6 +10,17 @@
 
 @implementation OVWebViewController (UIWebViewDeleagte)
 
+- (BOOL)            webView:(UIWebView *)webView 
+ shouldStartLoadWithRequest:(NSURLRequest *)request 
+             navigationType:(UIWebViewNavigationType)navigationType{
+    
+    NSString *queryString = request.URL.query;
+    int a = 5;
+    
+    return YES;
+}
+
+
 /*
  @optional
  - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request 

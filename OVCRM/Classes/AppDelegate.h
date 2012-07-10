@@ -29,7 +29,11 @@
 #import "OVDatabase.h"
 #import "SFSyncResponder.h"
 #import "Constant.h"
+#import "FMResultSet+Extension.h"
 #import "NSString+Extension.h"
+#import "NSArray+Extension.h"
+#import "NSDictionary+Extension.h"
+#import "Constant.h"
 
 @interface AppDelegate : SFNativeRestAppDelegate {
 

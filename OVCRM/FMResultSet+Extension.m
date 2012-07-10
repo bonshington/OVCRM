@@ -10,4 +10,18 @@
 
 @implementation FMResultSet (Extension)
 
+-(NSArray *) readToEnd{
+    
+    NSMutableArray *result = [NSMutableArray new];
+    
+    while([self next]){
+        [result addObject:[self resultDictionary]];
+    }
+    
+    [self close];
+    
+    return result;
+    
+}
+
 @end

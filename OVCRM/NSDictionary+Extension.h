@@ -10,4 +10,6 @@
 
 @interface NSDictionary (Extension)
 
+-(id)objectAtIndex:(NSInteger)index;
+
 @end

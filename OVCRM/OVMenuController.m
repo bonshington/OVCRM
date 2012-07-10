@@ -15,7 +15,7 @@
 
 @implementation OVMenuController
 
-@synthesize checkedinAccount, todayPlan;
+@synthesize checkedinAccount, todayPlan, resultView, resultManager, tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +33,14 @@
     
     // init default page
     [[AppDelegate sharedInstance].detail pushViewController:[OVLandingController new] animated:NO];
+    
+    //init result table
+    self.resultManager = [SFSearchManager new];
+    self.searchDisplayController.searchResultsDataSource = self.resultManager;
+    self.searchDisplayController.searchResultsDelegate = self.resultManager;
+    
+    [self.tableView addSubview:self.resultView];
+    
     
     
     // init menu

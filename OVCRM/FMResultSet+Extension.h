@@ -7,7 +7,10 @@
 //
 
 #import "FMResultSet.h"
+#import "FMDatabase.h"
 
 @interface FMResultSet (Extension)
+
+-(NSArray *) readToEnd;
 
 @end

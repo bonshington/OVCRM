@@ -54,7 +54,6 @@
             
             [[AppDelegate sharedInstance].window setRootViewController:[RootViewController new]];
             
-            //[AppDelegate sharedInstance].window.rootViewController = [RootViewController new];
         }];
     }
     

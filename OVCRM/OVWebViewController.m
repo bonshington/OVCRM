@@ -8,6 +8,8 @@
 
 #import "OVWebViewController.h"
 #import "OVDatabase.h"
+#import "FMResultSet+Extension.h"
+
 
 @implementation OVWebViewController{
     NSString        *object;
@@ -81,6 +83,7 @@
                                      [NSString stringWithFormat:@"%@jquery.js", resourcePath], @"jquery.js",
                                      [NSString stringWithFormat:@"%@jquery.mobile.js", resourcePath], @"jquery.mobile.js",
                                      [NSString stringWithFormat:@"%@jquery.mobile.css", resourcePath], @"jquery.mobile.css", 
+                                     [NSString stringWithFormat:@"%@plugin.js", resourcePath], @"plugin.js",
                                      [NSString stringWithFormat:@"%@site.css", resourcePath], @"site.css", 
                                      nil];
         
@@ -94,27 +97,31 @@
         
             NSString *obj = [[key componentsSeparatedByString:@"."] objectAtIndex:0];
             
-            FMResultSet *result = [db executeQuery:[NSString stringWithFormat:@"select * from %@ where Id = ?", obj], [args objectForKey:key]];
+            NSArray *result = [[db executeQuery:[NSString stringWithFormat:@"select * from %@ where Id = ?", obj], [args objectForKey:key]] readToEnd];
             
-            [result next];
             
-            NSDictionary * row = result.resultDictionary;
-            
-            for(NSString *col in [row allKeys]){
+            // single row mode
+            if(result.count == 1){
                 
-                id value = [row objectForKey:col];
+                NSDictionary * row = [result objectAtIndex:0];
                 
-                if([value isKindOfClass:[NSString class]]){
-                    [mustache setValue:[(NSString *)value htmlEncode] 
-                                forKey:[NSString stringWithFormat:@"%@.%@", obj, col]];
-                }
-                else{
-                    [mustache setValue:value 
-                                forKey:[NSString stringWithFormat:@"%@.%@", obj, col]];
+                for(NSString *col in [row allKeys]){
+                    
+                    id value = [row objectForKey:col];
+                    
+                    if([value isKindOfClass:[NSString class]]){
+                        [mustache setValue:[(NSString *)value htmlEncode] 
+                                    forKey:[NSString stringWithFormat:@"%@.%@", obj, col]];
+                    }
+                    else{
+                        [mustache setValue:value 
+                                    forKey:[NSString stringWithFormat:@"%@.%@", obj, col]];
+                    }
                 }
             }
-            
-            [result close];
+            else{
+                [mustache setValue:[result toJson] forKey:[NSString stringWithFormat:@"%@.json", obj]];
+            }
         }
     }];
     

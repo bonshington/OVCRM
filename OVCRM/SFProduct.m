@@ -21,7 +21,9 @@
 - (NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"LOOKUP", @"CreatedBy",
+            @"DATETIME", @"CreatedDate", 
             @"LOOKUP", @"LastModifiedBy",
+            @"DATETIME", @"LastModifiedDate",
             @"TEXT", @"Name",
             @"NUMBER", @"X1st_Inv__c",
             @"NUMBER", @"X1st_Order__c",

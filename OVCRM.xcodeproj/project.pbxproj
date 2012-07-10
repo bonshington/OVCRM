@@ -20,12 +20,15 @@
 		08FC15E515A96B13005847AC /* jquery.mobile.js in Resources */ = {isa = PBXBuildFile; fileRef = 08FC15DF15A96A71005847AC /* jquery.mobile.js */; };
 		08FC15E615A96B13005847AC /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = 08FC15E015A96A71005847AC /* jquery.js */; };
 		08FC15EF15A98669005847AC /* site.css in Resources */ = {isa = PBXBuildFile; fileRef = 08FC15EE15A98669005847AC /* site.css */; };
-		187F5EB715A2B08400EA0A37 /* OVMenuController+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EB615A2B08400EA0A37 /* OVMenuController+UITableViewDataSource.m */; };
-		187F5EBB15A2B1CF00EA0A37 /* OVMenuController+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EBA15A2B1CF00EA0A37 /* OVMenuController+UITableViewDelegate.m */; };
+		187F5EB715A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EB615A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m */; };
 		187F5EC315A2CDD300EA0A37 /* OVMenuController+CallVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */; };
 		187F5EC615A2D66400EA0A37 /* OVDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC515A2D66400EA0A37 /* OVDatabase.m */; };
 		187F5ED215A2E1EB00EA0A37 /* OVDatabase+SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */; };
 		187F5ED515A2E1FE00EA0A37 /* OVDatabase+FMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */; };
+		187F9A7515ABE3420021CE9F /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F9A7415ABE3420021CE9F /* NSDictionary+Extension.m */; };
+		187F9A7915ABF11E0021CE9F /* FMResultSet+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */; };
+		187F9A7D15AC16960021CE9F /* plugin.js in Sources */ = {isa = PBXBuildFile; fileRef = 187F9A7C15AC16960021CE9F /* plugin.js */; };
+		18854B9B15AC2E7300E7B4AB /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18854B9A15AC2E7300E7B4AB /* NSArray+Extension.m */; };
 		188C06EF15A69DE00043DBC7 /* NSDictionary+SFSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */; };
 		18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048615A56A1F000719DB /* NSString+Extension.m */; };
 		18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */; };
@@ -35,6 +38,10 @@
 		18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FC315AABF7C00C70E16 /* OVSyncController.xib */; };
 		18D52FC815AAC55A00C70E16 /* OVSyncController+UITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FC715AAC55A00C70E16 /* OVSyncController+UITableViewController.m */; };
 		18D52FCC15AAC8E700C70E16 /* OVSyncController+OVSyncProtocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FCB15AAC8E600C70E16 /* OVSyncController+OVSyncProtocal.m */; };
+		18D52FE415ABD6C400C70E16 /* OVMenuController+UISearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FE315ABD6C400C70E16 /* OVMenuController+UISearchBarDelegate.m */; };
+		18D52FE715ABD8F300C70E16 /* SFSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FE615ABD8F300C70E16 /* SFSearchManager.m */; };
+		18D52FED15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */; };
+		18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */; };
 		18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */; };
 		18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */; };
 		18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EA915A160DF00A08B29 /* CoreData.framework */; };
@@ -71,7 +78,6 @@
 		18EE3F6415A1736800A08B29 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F6315A1736800A08B29 /* RootViewController.xib */; };
 		18EE3F6815A173BD00A08B29 /* OVMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F6615A173BD00A08B29 /* OVMenuController.m */; };
 		18EE3F6D15A173F400A08B29 /* OVDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F6B15A173F400A08B29 /* OVDetailController.m */; };
-		18EE3F6E15A173F400A08B29 /* OVNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F6C15A173F400A08B29 /* OVNavigationController.xib */; };
 		18EE3F7215A1741500A08B29 /* OVLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F7015A1741500A08B29 /* OVLandingController.m */; };
 		18EE3F7315A1741500A08B29 /* OVLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F7115A1741500A08B29 /* OVLandingController.xib */; };
 /* End PBXBuildFile section */
@@ -103,13 +109,19 @@
 		08FC15DF15A96A71005847AC /* jquery.mobile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.mobile.js; path = Resources/jquery.mobile.js; sourceTree = "<group>"; };
 		08FC15E015A96A71005847AC /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = Resources/jquery.js; sourceTree = "<group>"; };
 		08FC15EE15A98669005847AC /* site.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = site.css; path = Resources/site.css; sourceTree = "<group>"; };
-		187F5EB615A2B08400EA0A37 /* OVMenuController+UITableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+UITableViewDataSource.m"; sourceTree = "<group>"; };
-		187F5EBA15A2B1CF00EA0A37 /* OVMenuController+UITableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+UITableViewDelegate.m"; sourceTree = "<group>"; };
+		187F5EB615A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+MenuTableViewhandler.m"; sourceTree = "<group>"; };
 		187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+CallVisit.m"; sourceTree = "<group>"; };
 		187F5EC415A2D66400EA0A37 /* OVDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVDatabase.h; sourceTree = "<group>"; };
 		187F5EC515A2D66400EA0A37 /* OVDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVDatabase.m; sourceTree = "<group>"; };
 		187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVDatabase+SFAccount.m"; sourceTree = "<group>"; };
 		187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVDatabase+FMDB.m"; sourceTree = "<group>"; };
+		187F9A7315ABE3420021CE9F /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
+		187F9A7415ABE3420021CE9F /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
+		187F9A7715ABF11E0021CE9F /* FMResultSet+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMResultSet+Extension.h"; sourceTree = "<group>"; };
+		187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMResultSet+Extension.m"; sourceTree = "<group>"; };
+		187F9A7C15AC16960021CE9F /* plugin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = plugin.js; path = Resources/plugin.js; sourceTree = "<group>"; };
+		18854B9915AC2E7300E7B4AB /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
+		18854B9A15AC2E7300E7B4AB /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
 		188C06EB15A693DB0043DBC7 /* SFObjectProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFObjectProtocal.h; sourceTree = "<group>"; };
 		188C06ED15A69DE00043DBC7 /* NSDictionary+SFSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SFSchema.h"; sourceTree = "<group>"; };
 		188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SFSchema.m"; sourceTree = "<group>"; };
@@ -127,6 +139,11 @@
 		18D52FC715AAC55A00C70E16 /* OVSyncController+UITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVSyncController+UITableViewController.m"; sourceTree = "<group>"; };
 		18D52FC915AAC82D00C70E16 /* OVSyncProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVSyncProtocal.h; sourceTree = "<group>"; };
 		18D52FCB15AAC8E600C70E16 /* OVSyncController+OVSyncProtocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVSyncController+OVSyncProtocal.m"; sourceTree = "<group>"; };
+		18D52FE315ABD6C400C70E16 /* OVMenuController+UISearchBarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+UISearchBarDelegate.m"; sourceTree = "<group>"; };
+		18D52FE515ABD8F300C70E16 /* SFSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSearchManager.h; sourceTree = "<group>"; };
+		18D52FE615ABD8F300C70E16 /* SFSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSearchManager.m; sourceTree = "<group>"; };
+		18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFSearchManager+UITableViewHandler.m"; sourceTree = "<group>"; };
+		18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVMenuController.xib; sourceTree = "<group>"; };
 		18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+Render.m"; sourceTree = "<group>"; };
 		18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LINQ.h"; sourceTree = "<group>"; };
 		18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LINQ.m"; sourceTree = "<group>"; };
@@ -265,7 +282,6 @@
 		18EE3F6615A173BD00A08B29 /* OVMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVMenuController.m; sourceTree = "<group>"; };
 		18EE3F6A15A173F400A08B29 /* OVDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVDetailController.h; sourceTree = "<group>"; };
 		18EE3F6B15A173F400A08B29 /* OVDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVDetailController.m; sourceTree = "<group>"; };
-		18EE3F6C15A173F400A08B29 /* OVNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVNavigationController.xib; sourceTree = "<group>"; };
 		18EE3F6F15A1741500A08B29 /* OVLandingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVLandingController.h; sourceTree = "<group>"; };
 		18EE3F7015A1741500A08B29 /* OVLandingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVLandingController.m; sourceTree = "<group>"; };
 		18EE3F7115A1741500A08B29 /* OVLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVLandingController.xib; sourceTree = "<group>"; };
@@ -325,6 +341,7 @@
 		08FC15F115A9DFDF005847AC /* js */ = {
 			isa = PBXGroup;
 			children = (
+				187F9A7C15AC16960021CE9F /* plugin.js */,
 				08FC15DF15A96A71005847AC /* jquery.mobile.js */,
 				08FC15E015A96A71005847AC /* jquery.js */,
 			);
@@ -360,6 +377,12 @@
 				18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */,
 				18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */,
 				18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */,
+				187F9A7315ABE3420021CE9F /* NSDictionary+Extension.h */,
+				187F9A7415ABE3420021CE9F /* NSDictionary+Extension.m */,
+				187F9A7715ABF11E0021CE9F /* FMResultSet+Extension.h */,
+				187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */,
+				18854B9915AC2E7300E7B4AB /* NSArray+Extension.h */,
+				18854B9A15AC2E7300E7B4AB /* NSArray+Extension.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -675,9 +698,9 @@
 				18EE3F6515A173BD00A08B29 /* OVMenuController.h */,
 				18EE3F6615A173BD00A08B29 /* OVMenuController.m */,
 				18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */,
-				187F5EB615A2B08400EA0A37 /* OVMenuController+UITableViewDataSource.m */,
-				187F5EBA15A2B1CF00EA0A37 /* OVMenuController+UITableViewDelegate.m */,
+				187F5EB615A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m */,
 				187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */,
+				18D52FE315ABD6C400C70E16 /* OVMenuController+UISearchBarDelegate.m */,
 				18EE3F6A15A173F400A08B29 /* OVDetailController.h */,
 				18EE3F6B15A173F400A08B29 /* OVDetailController.m */,
 				08FC15B515A95984005847AC /* OVWebViewController.h */,
@@ -702,6 +725,9 @@
 				18D52FBE15AAB36600C70E16 /* SFProduct.m */,
 				08FAFCDE15A48375007C52F5 /* SFSyncResponder.h */,
 				08FAFCDF15A48375007C52F5 /* SFSyncResponder.m */,
+				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
+				18D52FE615ABD8F300C70E16 /* SFSearchManager.m */,
+				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -710,10 +736,10 @@
 			isa = PBXGroup;
 			children = (
 				18D52FC315AABF7C00C70E16 /* OVSyncController.xib */,
-				18EE3F6C15A173F400A08B29 /* OVNavigationController.xib */,
 				18EE3F7115A1741500A08B29 /* OVLandingController.xib */,
 				18EE3F6315A1736800A08B29 /* RootViewController.xib */,
 				08FC15B715A95984005847AC /* OVWebViewController.xib */,
+				18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -786,7 +812,6 @@
 				18EE3F5215A160E100A08B29 /* SFNativeRootViewController.xib in Resources */,
 				18EE3F5A15A160E100A08B29 /* Settings.bundle in Resources */,
 				18EE3F6415A1736800A08B29 /* RootViewController.xib in Resources */,
-				18EE3F6E15A173F400A08B29 /* OVNavigationController.xib in Resources */,
 				18EE3F7315A1741500A08B29 /* OVLandingController.xib in Resources */,
 				08FC15B915A95984005847AC /* OVWebViewController.xib in Resources */,
 				08FC15DC15A96A5E005847AC /* Account.html in Resources */,
@@ -794,6 +819,7 @@
 				08FC15E215A96A71005847AC /* jquery.mobile.css in Resources */,
 				08FC15EF15A98669005847AC /* site.css in Resources */,
 				18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */,
+				18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,8 +836,7 @@
 				18EE3F6815A173BD00A08B29 /* OVMenuController.m in Sources */,
 				18EE3F6D15A173F400A08B29 /* OVDetailController.m in Sources */,
 				18EE3F7215A1741500A08B29 /* OVLandingController.m in Sources */,
-				187F5EB715A2B08400EA0A37 /* OVMenuController+UITableViewDataSource.m in Sources */,
-				187F5EBB15A2B1CF00EA0A37 /* OVMenuController+UITableViewDelegate.m in Sources */,
+				187F5EB715A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m in Sources */,
 				187F5EC315A2CDD300EA0A37 /* OVMenuController+CallVisit.m in Sources */,
 				187F5EC615A2D66400EA0A37 /* OVDatabase.m in Sources */,
 				187F5ED215A2E1EB00EA0A37 /* OVDatabase+SFAccount.m in Sources */,
@@ -832,6 +857,13 @@
 				18D52FC415AABF7D00C70E16 /* OVSyncController.m in Sources */,
 				18D52FC815AAC55A00C70E16 /* OVSyncController+UITableViewController.m in Sources */,
 				18D52FCC15AAC8E700C70E16 /* OVSyncController+OVSyncProtocal.m in Sources */,
+				18D52FE415ABD6C400C70E16 /* OVMenuController+UISearchBarDelegate.m in Sources */,
+				18D52FE715ABD8F300C70E16 /* SFSearchManager.m in Sources */,
+				18D52FED15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m in Sources */,
+				187F9A7515ABE3420021CE9F /* NSDictionary+Extension.m in Sources */,
+				187F9A7915ABF11E0021CE9F /* FMResultSet+Extension.m in Sources */,
+				187F9A7D15AC16960021CE9F /* plugin.js in Sources */,
+				18854B9B15AC2E7300E7B4AB /* NSArray+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

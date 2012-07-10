@@ -3,6 +3,7 @@
         <meta name="viewport" content="width=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=700"> 
         <script type="text/javascript" src="{{jquery.js}}"></script>
         <script type="text/javascript" src="{{jquery.mobile.js}}"></script>
+            <script type="text/javascript" src="{{plugin.dateformat.js}}"></script>
         <link rel="stylesheet" type=e"text/css" href="{{jquery.mobile.css}}"></link>
         <link rel="stylesheet" type=e"text/css" href="{{site.css}}"></link>
         <style>
@@ -20,6 +21,27 @@
         <script>
             $(function(){
               
+              var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              
+              $("[datetime]").each(function(){
+               
+                var self = $(this);
+                var val = self.attr("datetime");
+                
+                if(val.length > 0){
+                                   
+                                   var date = val.split("T")[0].split("-");
+                                   var time = val.split("T")[1].split(":");
+                                   
+                                   var result = new Date(date[0], date[1], date[2], time[0], time[1]);
+                                   result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));
+                                                                      
+                                   self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
+                }
+                                   
+                
+              });
+              
               $("#module-default").click();
               
               $("[sf-checked]").each(function(){
@@ -27,6 +49,13 @@
               });
               
               $(".ui-disabled").removeClass("ui-disabled");
+              
+              
+              $.ajax({
+                     url:"/",
+                     data: {Event: "123"},
+                     method: "POST"
+                     });
             });
         </script>
     </head>
@@ -175,12 +204,33 @@
                             <label>Website:</label><a href="{{Account.Website}}" target="__blank">{{Account.Website}}</a>
                         </div>
                     </div>
+                    </br>
+                    <div class="ui-body ui-body-c">
+                        <h2>System Information</h2>
+                        <div data-role="fieldcontain">
+                            <label>MD Customer Group:</label><span>{{Account.MD_Customer_Group__c}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>MD Customer Business:</label><span>{{Account.MD_Customer_Business__c}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Created By:</label><span>{{Account.CreatedBy}}, </span><span datetime="{{Account.CreatedDate}}"></span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Last Modified By:</label><span>{{Account.LastModifiedBy}}, </span><span datetime="{{Account.LastModifiedDate}}"></span>
+                        </div>
+                    </div>
+                    <br/>
                 </div>
                 
+<<<<<<< HEAD
                 <div id="module3" class="module">
+=======
+                <div id="module2" class="module">
+>>>>>>> Daily sync
                     <div class="ui-body ui-body-c">
                         <h2>Payment Infomation</h2>
-
+                        
 						<div data-role="fieldcontain">
                             <label>Price List No.:</label><span>{{Account.PriceListNo__c}}</span>
                         </div>
@@ -193,7 +243,7 @@
 						<div data-role="fieldcontain">
                             <label>Discount Sequence:</label><span>{{Account.DiscSeq__c}}</span>
                         </div>
-
+                        
 						<div data-role="fieldcontain">
                             <label>Limit:</label><span>{{Account.Limit__c}}</span>
                         </div>
@@ -217,7 +267,7 @@
 						<div data-role="fieldcontain">
                             <label>Item Promotion 3:</label><span>{{Account.ItemProm3__c}}</span>
                         </div>
-
+                        
 						<div data-role="fieldcontain">
                             <label>Group Promotion 1:</label><span>{{Account.GroupProm1__c}}</span>
                         </div>
@@ -228,6 +278,10 @@
                             <label>Group Promotion 3:</label><span>{{Account.GroupProm3__c}}</span>
                         </div>
                     </div>
+                </div>
+                
+                <div id="module3" class="module">
+                    
                 </div>
                 
                 <div id="module4" class="module">
@@ -253,9 +307,7 @@
                         <div data-role="fieldcontain" data-theme="c">
                             <label for="visit-one-time"><input type="checkbox" id="visit-one-time" sf-checked="{{OneTime__c}}" disabled="disabled"/>One time</label>
                         </div>
-                    </div>
-                    <br/>
-                    <div class="ui-body ui-body-c">
+                        <br/>
                         <div data-role="fieldcontain">
                             <fieldset id="days" data-role="controlgroup" data-type="vertical">
                                 <legend>Days</legend>
@@ -271,6 +323,71 @@
                         
                     </div>
                     <br/>
+                    <div class="ui-body ui-body-c">
+                        <h2>Event | Calendar Detail</h2>
+                        <div data-role="fieldcontain">
+                            <label>Subject:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Assigned To:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Related To:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Start:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>End:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Name:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>Visit Type:</label><span>{{Account.}}</span>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="ui-body ui-body-c">
+                        <h2>Event | Working Time</h2>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label>:</label><span>{{Account.}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div data-role="footer" data-position="fixed" data-fullscreen="true">

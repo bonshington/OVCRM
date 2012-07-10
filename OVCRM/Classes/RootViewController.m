@@ -46,7 +46,7 @@
         // Load splitted parts
         AppDelegate *app = [AppDelegate sharedInstance];
         
-        app.master = [[OVMenuController alloc] initWithStyle:UITableViewStyleGrouped];
+        app.master = [[OVMenuController alloc] initWithNibName:@"OVMenuController" bundle:[NSBundle mainBundle]];
         app.detail = [[OVNavigationController alloc] init];
         app.db = [OVDatabase new];
         

@@ -50,7 +50,7 @@
     [self enumerateKeysAndObjectsUsingBlock:^(NSString *col, NSString *type, BOOL *stop){
         
         if([type isEqualToString:@"TEXT"] || [type isEqualToString:@"NUMBER"]){
-            [result addObject:[NSString stringWithFormat:@"%@", col]];
+            [result addObject:col];
         }
         else if([type isEqualToString:@"PICKLIST"]){
             [result addObject:[NSString stringWithFormat:@"toLabel(%@)", col]];
@@ -60,6 +60,9 @@
         }
         else if([type isEqualToString:@"FK"]){
             [result addObject:[NSString stringWithFormat:@"%@.Id", col]];
+        }
+        else if([type isEqualToString:@"DATETIME"]){
+            [result addObject:col];
         }
     }];
     
@@ -104,6 +107,9 @@
         } 
         else if([type isEqualToString:@"FK"]){
             [args addObject:[json extractObjectForKey:col withProperty:@"Id"]];
+        } 
+        else if([type isEqualToString:@"DATETIME"]){
+            [args addObject:value];
         }
         else {
             [args addObject:value];

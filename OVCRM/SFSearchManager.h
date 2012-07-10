@@ -10,4 +10,14 @@
 
 @interface SFSearchManager : NSObject
 
+@property(nonatomic, retain) NSDictionary *fetched;
+
+-(void) search:(NSString *)text;
+
+@end
+
+
+
+@interface SFSearchManager (UITableViewHandler)<UITableViewDataSource, UITableViewDelegate>
+
 @end
