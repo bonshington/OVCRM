@@ -82,9 +82,7 @@
                             <label>Source System:</label><span>{{Account.Source_System__c}}</span>
                         </div>
                     </div>
-                </div>
-                
-                <div id="module2" class="module">
+                    <br/>
                     <div class="ui-body ui-body-c">
                         <h2>Contact</h2>
                         
@@ -139,7 +137,7 @@
                                 <label>Position :</label><span>{{Account.Contact_Position_6__c}}</span>
                             </li>
                         </ol>
-                                                
+                        
                     </div>
                     <br/>
                     <div class="ui-body ui-body-c">
@@ -175,6 +173,10 @@
                             <label>Website:</label><a href="{{Account.Website}}" target="__blank">{{Account.Website}}</a>
                         </div>
                     </div>
+                </div>
+                
+                <div id="module2" class="module">
+                    
                 </div>
                 
                 <div id="module3" class="module">
@@ -276,9 +278,9 @@
             <div data-role="footer" data-position="fixed" data-fullscreen="true">
                 <div data-role="navbar" data-theme="b">
                     <ul>                        
-                        <li onclick="$('.module').hide();$('#module1').show();"><a href="#" data-icon="star" id="module-default">Account</a></li>
-                        <li onclick="$('.module').hide();$('#module2').show();"><a href="#" data-icon="home">Contact</a></li>
-                        <li onclick="$('.module').hide();$('#module3').show();"><a href="#">Promotion &amp; Payment</a></li>
+                        <li onclick="$('.module').hide();$('#module1').show();"><a href="#" data-icon="star" id="module-default">Account &amp; Contact</a></li>
+                        <li onclick="$('.module').hide();$('#module2').show();"><a href="#" data-icon="home">Promotion &amp; Payment</a></li>
+                        <li onclick="$('.module').hide();$('#module3').show();"><a href="#">Sales</a></li>
                         <li onclick="$('.module').hide();$('#module4').show();"><a href="#" data-icon="grid">Visit</a></li>                    
                     </ul>
                 </div>

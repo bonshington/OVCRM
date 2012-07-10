@@ -11,9 +11,6 @@
 
 @interface SFAccount : SFSyncResponder
 
-- (void)request:(SFRestRequest *)request 
-didLoadResponse:(id)jsonResponse;
-
 + (void) loadAccountsWithRoute:(NSString *)route;
 
 //+(void) selectAccount

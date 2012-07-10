@@ -8,6 +8,7 @@
 
 #import "OVMenuController.h"
 #import "OVWebViewController.h"
+#import "OVSyncController.h"
 #import "AppDelegate.h"
 
 @implementation OVMenuController (UITableViewDelegate)
@@ -52,7 +53,8 @@
             break;
             
         case tagForCellSF:
-            ;
+            tableView.allowsSelection = NO;
+            [app.detail pushViewController:[[OVSyncController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
             break;
     }
 }

@@ -63,6 +63,16 @@
 
 }
 
+-(void)sync:(id<OVSyncProtocal>)controller{
+    
+    super.controller = controller;
+    
+    [SFSyncResponder loadWithQuery:[NSString stringWithFormat:
+                                    @"select Id,%@ from Event where StartDateTime >= TODAY"
+                                    , [[[self schema] toSFColumns] componentsJoinedByString:@","]] 
+                          delegate:self];
+}
+
 +(void) loadNewVisit{
     
     SFVisit *this = [SFVisit new];

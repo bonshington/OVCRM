@@ -13,6 +13,9 @@
 #define tagForCellCheckedIn 103
 #define tagForCellSF        104
 
+#define tagForCellSyncUpload    190
+#define tagForCellSyncDownload  191
+
 
 #define tagForSFAccountId   1001
 #define tagForSFEventId     1002

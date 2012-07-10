@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OVSyncProtocal.h"
 
 @protocol SFObjectProtocal <NSObject>
 
 @required
+-(void)sync:(id<OVSyncProtocal>)controller;
 -(NSDictionary *)schema;
 -(NSString *) SFName;
+
 
 @end

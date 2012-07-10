@@ -152,4 +152,17 @@
                 delegate:this];
 }
 
+-(void)sync:(id<OVSyncProtocal>)controller{
+    
+    super.controller = controller;
+    
+    NSString *route = @"10390230";
+    
+    [SFSyncResponder loadWithQuery:[NSString stringWithFormat:
+                                    @"select Id,%@ from Account where Route_no__c = '%@'"
+                                    , [[[self schema] toSFColumns] componentsJoinedByString:@","]
+                                    , route] 
+                          delegate:self];
+}
+
 @end

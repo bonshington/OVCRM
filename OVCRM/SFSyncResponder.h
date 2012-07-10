@@ -12,9 +12,11 @@
 #import "OVDatabase.h"
 #import "NSString+Extension.h"
 #import "NSDictionary+SFSchema.h"
-
+#import "OVSyncProtocal.h"
 
 @interface SFSyncResponder : NSObject<SFRestDelegate, SFObjectProtocal>
+
+@property (nonatomic, retain) id<OVSyncProtocal> controller;
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder;
 

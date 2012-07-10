@@ -13,6 +13,8 @@
 @property(nonatomic, retain) NSDictionary *checkedinAccount;
 @property(nonatomic, retain) NSArray *todayPlan;
 
+-(BOOL) verifyDatabase;
+-(void) sync;
 
 @end
 

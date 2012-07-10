@@ -30,13 +30,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
-    AppDelegate *app = [AppDelegate sharedInstance];
-    app.db = [OVDatabase new];
+    // init default page
+    [[AppDelegate sharedInstance].detail pushViewController:[OVLandingController new] animated:NO];
     
     
-    //if(![AppDelegate sharedInstance].db.open)[[AppDelegate sharedInstance].db open];
+    // init menu
+    FMResultSet *result = [SFVisit selectToday];
+    NSMutableArray *plan = [NSMutableArray new];
+
+    while([result next]){
+    
+        [plan addObject:[result resultDictionary]];
+    }
+
+    self.todayPlan = plan;
+    
+    
+    // init sync
+    if(![self verifyDatabase]){
+        [self sync];
+    }
     
     
     //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Account"];
@@ -46,21 +60,6 @@
     
     //[SFAccount loadAccountsWithRoute:@"10390230"];
     //[SFVisit loadNewVisit];
-    
-    
-    /* init menu */
-    FMResultSet *result = [SFVisit selectToday];
-    NSMutableArray *plan = [NSMutableArray new];
-    
-    while([result next]){
-        
-        [plan addObject:[result resultDictionary]];
-    }
-
-    self.todayPlan = plan;
-    /********************************************/
-    
-    [app.detail pushViewController:[OVLandingController new] animated:NO];
 }
 
 - (void)viewDidUnload
@@ -73,6 +72,47 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
+}
+
+-(BOOL) verifyDatabase{
+    
+    AppDelegate *app = [AppDelegate sharedInstance];
+    app.db = [OVDatabase new];
+    
+    if(!app.db.open) [app.db open];
+    
+    FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter"];
+    
+    BOOL valid = result != nil && result.hasAnotherRow;
+    
+    [result close];
+    
+    
+    if (!valid){    
+        NSArray *initScript = [[NSArray alloc] initWithObjects:
+                               @"create table if not exists Parameter(tag TEXT, key TEXT, label TEXT)", 
+                               @"insert into Parameter(tag, key, label) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
+                               nil];
+        
+        [app.db beginTransaction];
+        
+        for (NSString *script in initScript) {
+            [app.db executeUpdate:script];
+        }
+        
+        [app.db commit];
+    }
+    
+    return valid;
+}
+
+-(void) sync{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)[self.tableView viewWithTag:tagForCellSF]];
+    
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
 }
 
 @end
