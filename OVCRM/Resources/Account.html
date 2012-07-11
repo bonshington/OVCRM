@@ -1,11 +1,9 @@
 <html>
     <head>
-        <meta name="viewport" content="width=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=700"> 
+        <meta name="viewport" content="width=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=700"/> 
         <script type="text/javascript" src="{{jquery.js}}"></script>
         <script type="text/javascript" src="{{jquery.mobile.js}}"></script>
-        <script type="text/javascript" src="{{plugin.dateformat.js}}"></script>
         <link rel="stylesheet" type="text/css" href="{{jquery.mobile.css}}"></link>
-        <link rel="stylesheet" type="text/css" href="{{site.css}}"></link>
         <style>
             .module{
                 display: none;
@@ -13,14 +11,166 @@
             .contact-list li{
                 padding-bottom: 20px;
             }
+            .json{
+                display: none;
+            }
             span{
                 font-weight: bold;
                 margin-left: 10px;
             }
+			table.grid{
+				width: 100%;
+			}
+			
+			/*** grid ***/
+			table.grid{
+			    overflow-x:auto;
+			    width: 100%;
+			    border-collapse: collapse;
+			    border-spacing: 0px;
+			    border: 0px;
+			    background-color: White;
+			}
+			table.grid>thead{
+			    font-size: 1em; 
+			    background-color:White;
+			}
+			table.grid>thead td{
+			    text-align: left;
+			    height: 40px;
+			}
+			table.grid>thead th{
+			    padding: 0px 2px;
+			    margin: 0px;
+			    vertical-align: bottom;
+			}
+			table.grid>thead th{
+			    width: 100%;
+			    height: 40px;
+			    text-align:center;
+			    margin:0px;
+			    border-style:none;
+			    cursor: pointer;
+			    background-color: transparent;
+			    border-left: 1px solid #e2e2e2;
+			    border-bottom: 1px solid #cecece;
+			    background: #f5f5f5; 
+			    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f2f2f2)); 
+			    background: -moz-linear-gradient(100% 100% 90deg, #fffff, #f2f2f2); 
+			    padding: 3px 15px 3px 20px !important;
+				white-space:nowrap;
+			}
+			table.grid>tbody{
+			    text-align: left;
+			}
+			table.grid>tbody td{
+			    padding: 8px 5px 2px 5px;
+			    font-size: 0.9em;
+			    white-space: nowrap;
+			}
+			table.grid>tbody tr{
+			    border-bottom: 1px solid #e8eef4;
+			}
+			table.grid>tbody tr:hover {
+			    cursor: pointer;
+			    background-color: #F8FAFC;
+			}
+			table.grid td[sf-type='bool']{
+				text-align: center;
+			}
+            span.checkbox{
+				background: rgba(0, 0, 0, .4);
+				background-image: url(images/icons-18-white.png);
+				background-repeat: no-repeat;
+				width: 18px;
+				height: 18px;
+				display: inline-block;
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+				border-radius: 3px;
+				background-position: -684px 50%;
+			}
+			span.checkbox.checked{
+				background-position: -648px 50%;
+				background-color: #4596CE;
+			}
         </style>
-        <script>
-            var Event = {{Event.json}};
-        </script>
+        <script type="text/javascript" id="plugin">
+                                                    String.prototype.format = function (args) {
+                                                    var newStr = this;
+                                                    for (var key in args) {
+                                                    newStr = newStr.replace('{' + key + '}', args[key]);
+                                                    }
+                                                    return newStr;
+                                                    }
+                                                    
+                                                    String.prototype.htmlEncode= function(){return this.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\'/g, "&apos;").replace(/\"/g, "&quot;");}
+                                                    
+                                                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                                    
+                                                    (function($){
+                                                    
+                                                    $.fn.display =  function(){
+                                                    $.each(this, function(){
+                                                    var self = $(this);
+                                                    var type = self.attr("sf-type");
+                                                    var val = self.attr("sf-val");
+                                                    
+                                                    if(val == null || val.length == 0)return;
+                                                    
+                                                    try{
+                                                    switch(type){
+                                                    case "datetime":    
+                                                    var date = val.split("T")[0].split("-");
+                                                    var time = val.split("T")[1].split(":");
+                                                    var result = new Date(date[0], date[1], date[2], time[0], time[1]);
+                                                    
+                                                    result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));             
+                                                    self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
+                                                    
+                                                    break;
+                                                    
+                                                    case "bool":
+                                                    if(val == "1")
+                                                    self.append('<span class="checkbox checked"></span>');
+                                                    else
+                                                    self.append('<span class="checkbox"></span>');
+                                                    break;
+                                                    
+                                                    default: break;
+                                                    }	
+                                                    } catch(err){}
+                                                    });
+                                                    };
+                                                    
+                                                    $.fn.jsonGrid = function(data){
+                                                    
+                                                    var self = this;
+                                                    var columns = this.find("thead>tr>th");
+                                                    
+                                                    $.each(data, function(index){
+                                                    var row = this;
+                                                    self.children("tbody").append("<tr></tr>");
+                                                    
+                                                    var tr = self.children("tbody").children("tr:last");
+                                                    
+                                                    columns.each(function(){
+                                                    var th = $(this);
+                                                    
+                                                    if(row[th.attr("json-column")] != null){
+                                                    if(th.attr("json-type") != null && th.attr("json-type").length > 0){
+                                                    tr.append("<td sf-type=\""+th.attr("json-type")+"\" sf-val=\""+row[th.attr("json-column")]+"\"></td>");
+                                                    }
+                                                    else{
+                                                    tr.append("<td>"+row[th.attr("json-column")].htmlEncode()+"</td>");
+                                                    }
+                                                    }
+                                                    });
+                                                    });
+                                                    };
+                                                    
+                                                    })(jQuery);
+            </script>
         <script>
             $(function(){
               
@@ -33,36 +183,9 @@
               
               $(".ui-disabled").removeClass("ui-disabled");
               
+              $("#event-grid").jsonGrid(eval($("#event-data").html()));
               
-              $.get(window.location.href+'?test=123', function(){alert('555');});
-              
-              
-              // init datetime
-              var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              
-              $("[datetime]").each(function(){
-               
-                var self = $(this);
-                var val = self.attr("datetime");
-                
-                if(val.length > 0){
-                   try{    
-                     var date = val.split("T")[0].split("-");
-                     var time = val.split("T")[1].split(":");
-                                   
-                     var result = new Date(date[0], date[1], date[2], time[0], time[1]);
-                     result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));
-                                                                      
-                     self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
-                   } catch(err){}
-                }
-              });
-              
-              
-              
-              
-              
-              
+		      $("[sf-type][sf-val]").display();
             });
         </script>
     </head>
@@ -220,10 +343,10 @@
                             <label>MD Customer Business:</label><span>{{Account.MD_Customer_Business__c}}</span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Created By:</label><span>{{Account.CreatedBy}}, </span><span datetime="{{Account.CreatedDate}}"></span>
+                            <label>Created By:</label><span>{{Account.CreatedBy}}, </span><span sf-type"datetime" sf-val="{{Account.CreatedDate}}"></span>
                         </div>
                         <div data-role="fieldcontain">
-                            <label>Last Modified By:</label><span>{{Account.LastModifiedBy}}, </span><span datetime="{{Account.LastModifiedDate}}"></span>
+                            <label>Last Modified By:</label><span>{{Account.LastModifiedBy}}, </span><span sf-type="datetime" sf-val="{{Account.LastModifiedDate}}"></span>
                         </div>
                     </div>
                     <br/>
@@ -283,11 +406,11 @@
                 </div>
                 
                 <div id="module3" class="module">
-                    
+                    mod 3
                 </div>
                 
                 <div id="module4" class="module">
-                    {{Event.json}}
+                    <div id="event-data" class="json">{{Event.json}}</div>
                     <div class="ui-body ui-body-c">
                         <h2>Visit</h2>
                         
@@ -322,20 +445,46 @@
                                 <label for="visit-sat"><input type="checkbox" id="visit-sat" sf-checked="{{Account.Saturday__c}}" disabled="disabled"/>Saturday</label>
                             </fieldset>
                         </div>
-                        
                     </div>
                     <br/>
-                    <table>
+                    <h2>History</h2>
+                    <div style="width: 700px; overflow-x:auto;overflow-y:visible;margin-left: -10px;">
+                    <table id="event-grid" class="grid">
                         <colgroup>
                         </colgroup>
                         <thead>
                             <tr>
+                                <th json-column="Subject">Subject</th>
+                                <th json-column="Visit_Type__c">Visit Type</th>
+                                <th json-column="Who">Who</th>
+                                <th json-column="Description">Description</th>
+                                <th json-column="Location">Location</th>
+                                <th json-column="ActivityDateTime" json-type="datetime">Activity Time</th>
+                                <th json-column="StartDateTime" json-type="datetime">Start</th>
+                                <th json-column="EndDateTime" json-type="datetime">End</th>
+                                <th json-column="Time_in__c" json-type="datetime">Time in</th>
+                                <th json-column="Time_out__c" json-type="datetime">Time out</th>
+                                
+                                <th json-column="Visit__c" json-type="bool">Visit</th>
+                                <th json-column="Call_Card__c" json-type="bool">Call Card</th>
+                                <th json-column="Merchaindising__c" json-type="bool">Market Intelligence</th>
+                                <th json-column="Good_Return__c" json-type="bool">Market Hygiene</th>
+                                <th json-column="Competitive_Activities__c" json-type="bool">Competitive Activities</th>
+                                <th json-column="Trade_Program_Execution__c" json-type="bool">Trade Program Execution</th>
+                                <th json-column="Order_Taking__c" json-type="bool">Order Taking</th>
+                                <th json-column="Delivery__c" json-type="bool">Delivery</th>
+                                <th json-column="Collection__c" json-type="bool">Collection</th>
+                                <th json-column="PC_Brief__c" json-type="bool">PC Brief</th>
                             </tr>
                         </thead>
                         <tbody>
-    
                         </tbody>
                     </table>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
             </div>
             <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">

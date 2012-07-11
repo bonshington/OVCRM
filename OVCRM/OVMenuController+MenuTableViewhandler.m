@@ -140,19 +140,24 @@ titleForHeaderInSection:(NSInteger)section{
     switch (tappedCell.tag) {
         case tagForCellPlanVisit:{
             
+            NSString *accountId = ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text;
+            
+            NSDictionary *viewData = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [[app.db executeQuery:@"select * from Account where Id = ?", accountId] readToEnd], @"Account", 
+                                      [[app.db executeQuery:@"select * from Event where WhatId = ?", accountId] readToEnd], @"Event", 
+                                      nil];
+            
+            UIBarButtonItem *checkin = [[UIBarButtonItem alloc] initWithTitle:@"Check-in" 
+                                                                        style:UIBarButtonItemStyleDone 
+                                                                       target:nil 
+                                                                       action:nil];
+            
             // show account with checkin
             [app.detail pushViewController:[[OVWebViewController alloc] initForSFObject:@"Account" 
-                                                                          withArguments:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                         ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text, @"Account.Id", 
-                                                                                         ((UILabel *)[tappedCell viewWithTag:tagForSFEventId]).text, @"Event.Id", 
-                                                                                         nil]
-                                                                     withRightBarButton:[[UIBarButtonItem alloc] initWithTitle:@"Check-in" 
-                                                                                                                         style:UIBarButtonItemStyleDone 
-                                                                                                                        target:nil 
-                                                                                                                        action:nil]] 
+                                                                           withMustache:viewData 
+                                                                     withRightBarButton:checkin]
                                   animated:YES];
             
-            // show plan detail
         }break;
             
         case tagForCellCheckedIn:

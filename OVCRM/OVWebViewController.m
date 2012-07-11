@@ -12,26 +12,26 @@
 #import "NSArray+Extension.h"
 
 @implementation OVWebViewController{
-    NSString        *object;
-    NSDictionary    *args;
-    UIBarButtonItem *rightBarButton;
+    NSString        *_sObject;
+    NSDictionary    *_mustache;
+    UIBarButtonItem *_rightBarButton;
 }
 
-@synthesize webView;
+@synthesize webView, mustache;
 
 
 
--(id) initForSFObject:(NSString *)url 
-        withArguments:(NSDictionary *)arguments 
+-(id) initForSFObject:(NSString *)sObject 
+        withMustache:(NSDictionary *)data 
    withRightBarButton:(UIBarButtonItem *)button{
 
     self = [super initWithNibName:@"OVWebViewController" bundle:nil];
     
     if(self != nil){
         
-        object = [NSString stringWithString:url];
-        args = arguments;
-        rightBarButton = button;
+        _sObject = [NSString stringWithString:sObject];
+        self.mustache = data;
+        _rightBarButton = button;
     }
     
     return self;
@@ -42,12 +42,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSString* html = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:object ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
-    NSDictionary *mustache = [self mustache];
+    NSString* html = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_sObject ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
     
-    for(NSString *key in [mustache allKeys]){
+    for(NSString *key in [self.mustache allKeys]){
         
-        id value = [mustache objectForKey:key];
+        id value = [self.mustache objectForKey:key];
         
         if(![value isKindOfClass:[NSString class]]){
             value = [NSString stringWithFormat:@"%@", value];
@@ -58,8 +57,8 @@
     
     [self.webView loadHTMLString:html baseURL:nil];
     
-    if(rightBarButton != nil)
-        self.navigationItem.rightBarButtonItem = rightBarButton;
+    if(_rightBarButton != nil)
+        self.navigationItem.rightBarButtonItem = _rightBarButton;
 }
 
 - (void)viewDidUnload
@@ -75,58 +74,41 @@
 }
 
 
--(NSDictionary *)mustache{
+#pragma mark - accessor
+
+-(NSDictionary *)getMustache{
+    return _mustache;
+}
+
+-(void)setMustache:(NSDictionary *)value{
+    
+    if(value == nil)
+        _mustache = nil;
     
     NSURL *resourcePath = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]];
     
-    NSMutableDictionary *mustache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                     [NSString stringWithFormat:@"%@jquery.js", resourcePath], @"jquery.js",
-                                     [NSString stringWithFormat:@"%@jquery.mobile.js", resourcePath], @"jquery.mobile.js",
-                                     [NSString stringWithFormat:@"%@jquery.mobile.css", resourcePath], @"jquery.mobile.css", 
-                                     [NSString stringWithFormat:@"%@plugin.js", resourcePath], @"plugin.js",
-                                     [NSString stringWithFormat:@"%@site.css", resourcePath], @"site.css", 
-                                     nil];
-        
-    OVDatabase *db = [OVDatabase sharedInstance];
     
-    if(!db.open)[db open];
+    _mustache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                 [NSString stringWithFormat:@"%@jquery.js", resourcePath], @"jquery.js",
+                 [NSString stringWithFormat:@"%@jquery.mobile.js", resourcePath], @"jquery.mobile.js",
+                 [NSString stringWithFormat:@"%@jquery.mobile.css", resourcePath], @"jquery.mobile.css", 
+                 [NSString stringWithFormat:@"%@plugin.js", resourcePath], @"plugin.js",
+                 [NSString stringWithFormat:@"%@site.css", resourcePath], @"site.css", 
+                 nil];
     
-    [args enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop){
+    
+    [value enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *entries, BOOL *stopLoop){
         
-        if([key hasSuffix:@".Id"]){
-        
-            NSString *obj = [[key componentsSeparatedByString:@"."] objectAtIndex:0];
+        if(entries.count > 0){
             
-            NSArray *result = [[db executeQuery:[NSString stringWithFormat:@"select * from %@ where Id = ?", obj], [args objectForKey:key]] readToEnd];
+            [[entries objectAtIndex:0] enumerateKeysAndObjectsUsingBlock:^(NSString *col, id val, BOOL *stopFindColumn){
+                [_mustache setValue:val forKey:[NSString stringWithFormat:@"%@.%@", key, col]];
+            }];
             
-            
-            // single row mode
-            if(result.count == 1){
-                
-                NSDictionary * row = [result objectAtIndex:0];
-                
-                for(NSString *col in [row allKeys]){
-                    
-                    id value = [row objectForKey:col];
-                    
-                    if([value isKindOfClass:[NSString class]]){
-                        [mustache setValue:[(NSString *)value htmlEncode] 
-                                    forKey:[NSString stringWithFormat:@"%@.%@", obj, col]];
-                    }
-                    else{
-                        [mustache setValue:value 
-                                    forKey:[NSString stringWithFormat:@"%@.%@", obj, col]];
-                    }
-                }
-            }
-            else{
-                [mustache setValue:[result toJson] 
-                            forKey:[NSString stringWithFormat:@"%@.json", obj]];
-            }
+            [_mustache setValue:[entries toJson] forKey:[NSString stringWithFormat:@"%@.json", key]];
         }
     }];
     
-    return mustache;
 }
 
 @end

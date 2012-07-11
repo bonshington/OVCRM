@@ -11,12 +11,11 @@
 @interface OVWebViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain, getter = getMustache, setter = setMustache:) NSDictionary *mustache;
 
--(id) initForSFObject:(NSString *)url 
-        withArguments:(NSDictionary *)arguments 
+-(id) initForSFObject:(NSString *)sObject 
+         withMustache:(NSDictionary *)data 
    withRightBarButton:(UIBarButtonItem *)button;
-
--(NSDictionary *)mustache;
 
 @end
 
