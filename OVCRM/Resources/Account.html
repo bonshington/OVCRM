@@ -95,82 +95,87 @@
 				background-color: #4596CE;
 			}
         </style>
+        <script id="extension">
+            String.prototype.format = function (args) {
+                var newStr = this;
+                for (var key in args) {
+                    newStr = newStr.replace('{' + key + '}', args[key]);
+                }
+                return newStr;
+            }
+            
+            String.prototype.htmlEncode= function(){
+                return this.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\'/g, "&apos;").replace(/\"/g, "&quot;");
+            }
+        </script>
         <script type="text/javascript" id="plugin">
-                                                    String.prototype.format = function (args) {
-                                                    var newStr = this;
-                                                    for (var key in args) {
-                                                    newStr = newStr.replace('{' + key + '}', args[key]);
-                                                    }
-                                                    return newStr;
-                                                    }
-                                                    
-                                                    String.prototype.htmlEncode= function(){return this.replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;").replace(/\'/g, "&apos;").replace(/\"/g, "&quot;");}
-                                                    
-                                                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                                                    
-                                                    (function($){
-                                                    
-                                                    $.fn.display =  function(){
-                                                    $.each(this, function(){
-                                                    var self = $(this);
-                                                    var type = self.attr("sf-type");
-                                                    var val = self.attr("sf-val");
-                                                    
-                                                    if(val == null || val.length == 0)return;
-                                                    
-                                                    try{
-                                                    switch(type){
-                                                    case "datetime":    
-                                                    var date = val.split("T")[0].split("-");
-                                                    var time = val.split("T")[1].split(":");
-                                                    var result = new Date(date[0], date[1], date[2], time[0], time[1]);
-                                                    
-                                                    result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));             
-                                                    self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
-                                                    
-                                                    break;
-                                                    
-                                                    case "bool":
-                                                    if(val == "1")
-                                                    self.append('<span class="checkbox checked"></span>');
-                                                    else
-                                                    self.append('<span class="checkbox"></span>');
-                                                    break;
-                                                    
-                                                    default: break;
-                                                    }	
-                                                    } catch(err){}
-                                                    });
-                                                    };
-                                                    
-                                                    $.fn.jsonGrid = function(data){
-                                                    
-                                                    var self = this;
-                                                    var columns = this.find("thead>tr>th");
-                                                    
-                                                    $.each(data, function(index){
-                                                    var row = this;
-                                                    self.children("tbody").append("<tr></tr>");
-                                                    
-                                                    var tr = self.children("tbody").children("tr:last");
-                                                    
-                                                    columns.each(function(){
-                                                    var th = $(this);
-                                                    
-                                                    if(row[th.attr("json-column")] != null){
-                                                    if(th.attr("json-type") != null && th.attr("json-type").length > 0){
-                                                    tr.append("<td sf-type=\""+th.attr("json-type")+"\" sf-val=\""+row[th.attr("json-column")]+"\"></td>");
-                                                    }
-                                                    else{
-                                                    tr.append("<td>"+row[th.attr("json-column")].htmlEncode()+"</td>");
-                                                    }
-                                                    }
-                                                    });
-                                                    });
-                                                    };
-                                                    
-                                                    })(jQuery);
-            </script>
+            
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            
+		(function($){
+             
+            $.fn.display =  function(){
+                $.each(this, function(){
+                    var self = $(this);
+                    var type = self.attr("sf-type");
+                    var val = self.attr("sf-val");
+                    
+                    if(val == null || val.length == 0)return;
+                    
+                    try{
+                        switch(type){
+                            case "datetime":    
+                                var date = val.split("T")[0].split("-");
+                                var time = val.split("T")[1].split(":");
+                                var result = new Date(date[0], date[1], date[2], time[0], time[1]);
+                    
+                                result.setMinutes(result.getMinutes() + (-(new Date()).getTimezoneOffset()));             
+                                self.text(result.getDate()+" "+months[result.getMonth() - 1]+" "+result.getFullYear()+" - "+result.getHours()+":"+result.getMinutes());
+                    
+                                break;
+                    
+                            case "bool":
+                                if(val == "1")
+                                    self.append('<span class="checkbox checked"></span>');
+                                else
+                                    self.append('<span class="checkbox"></span>');
+                                break;
+                    
+                            default: break;
+                        }	
+                    } catch(err){}
+                });
+             };
+             
+             $.fn.jsonGrid = function(data){
+             
+                var self = this;
+                var columns = this.find("thead>tr>th");
+             
+                $.each(data, function(index){
+                    var row = this;
+                    self.children("tbody").append("<tr></tr>");
+                    
+					var tr = self.children("tbody").children("tr:last");
+                    
+					columns.each(function(){
+						var th = $(this);
+                                 
+						if(row[th.attr("json-column")] != null){
+							if(th.attr("json-type") != null && th.attr("json-type").length > 0){
+								tr.append("<td sf-type=\""+th.attr("json-type")+"\" sf-val=\""+row[th.attr("json-column")]+"\"></td>");
+							}
+							else{
+								tr.append("<td>"+row[th.attr("json-column")].htmlEncode()+"</td>");
+							}
+						}
+					});
+				});
+			};
+             
+		})(jQuery);
+                                                                                                                                              
+        </script>
         <script>
             $(function(){
               
@@ -178,8 +183,8 @@
               $("#module-default").click();
               
               $("[sf-checked]").each(function(){
-                                     $(this).attr("checked",$(this).attr("sf-checked") == "1").checkboxradio("refresh");
-                                     });
+				$(this).attr("checked",$(this).attr("sf-checked") == "1").checkboxradio("refresh");
+			  });
               
               $(".ui-disabled").removeClass("ui-disabled");
               
