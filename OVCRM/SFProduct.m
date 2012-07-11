@@ -71,12 +71,12 @@
     
     [super.controller updateStatus:@"Requesting data"];
     
-    [SFSyncResponder loadWithQuery:[NSString stringWithFormat:
-                                    @"select Id,%@ from Product__c where CreatedDate >= %@T00:00:00z LastModifiedDate >= %@T00:00:00z"
-                                    , [[[self schema] toSFColumns] componentsJoinedByString:@","]
-                                    , lastSyncDate
-                                    , lastSyncDate] 
-                          delegate:self];
+    [sObject loadWithQuery:[NSString stringWithFormat:
+							@"select Id,%@ from Product__c where CreatedDate >= %@T00:00:00z LastModifiedDate >= %@T00:00:00z"
+							, [[self toSFColumns] componentsJoinedByString:@","]
+                            , lastSyncDate
+                            , lastSyncDate] 
+				  delegate:self];
 }
 
 @end

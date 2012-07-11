@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0887ED8C15ADD9E500D3312B /* SFCallCard.m */; };
 		08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDC15A48317007C52F5 /* SFAccount.m */; };
-		08FAFCE015A48375007C52F5 /* SFSyncResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDF15A48375007C52F5 /* SFSyncResponder.m */; };
+		08FAFCE015A48375007C52F5 /* sObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDF15A48375007C52F5 /* sObject.m */; };
 		08FC15B815A95984005847AC /* OVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FC15B615A95984005847AC /* OVWebViewController.m */; };
 		08FC15B915A95984005847AC /* OVWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08FC15B715A95984005847AC /* OVWebViewController.xib */; };
 		08FC15BF15A95B74005847AC /* OVWebViewController+UIWebViewDeleagte.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FC15BE15A95B74005847AC /* OVWebViewController+UIWebViewDeleagte.m */; };
@@ -82,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0887ED8B15ADD9E500D3312B /* SFCallCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCallCard.h; sourceTree = "<group>"; };
+		0887ED8C15ADD9E500D3312B /* SFCallCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCallCard.m; sourceTree = "<group>"; };
 		08FAFCCD15A48032007C52F5 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		08FAFCCE15A48032007C52F5 /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		08FAFCCF15A48032007C52F5 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -95,8 +98,8 @@
 		08FAFCD715A48032007C52F5 /* FMResultSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		08FAFCDB15A48317007C52F5 /* SFAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFAccount.h; sourceTree = "<group>"; };
 		08FAFCDC15A48317007C52F5 /* SFAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFAccount.m; sourceTree = "<group>"; };
-		08FAFCDE15A48375007C52F5 /* SFSyncResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSyncResponder.h; sourceTree = "<group>"; };
-		08FAFCDF15A48375007C52F5 /* SFSyncResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSyncResponder.m; sourceTree = "<group>"; };
+		08FAFCDE15A48375007C52F5 /* sObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sObject.h; sourceTree = "<group>"; };
+		08FAFCDF15A48375007C52F5 /* sObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sObject.m; sourceTree = "<group>"; };
 		08FC15AE15A95549005847AC /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		08FC15B515A95984005847AC /* OVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVWebViewController.h; sourceTree = "<group>"; };
 		08FC15B615A95984005847AC /* OVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVWebViewController.m; sourceTree = "<group>"; };
@@ -714,14 +717,16 @@
 				187F5EC515A2D66400EA0A37 /* OVDatabase.m */,
 				187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */,
 				187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */,
+				08FAFCDE15A48375007C52F5 /* sObject.h */,
+				08FAFCDF15A48375007C52F5 /* sObject.m */,
 				08FAFCDB15A48317007C52F5 /* SFAccount.h */,
 				08FAFCDC15A48317007C52F5 /* SFAccount.m */,
+				0887ED8B15ADD9E500D3312B /* SFCallCard.h */,
+				0887ED8C15ADD9E500D3312B /* SFCallCard.m */,
 				18B1048B15A5961D000719DB /* SFVisit.h */,
 				18B1048C15A5961D000719DB /* SFVisit.m */,
 				18D52FBD15AAB36600C70E16 /* SFProduct.h */,
 				18D52FBE15AAB36600C70E16 /* SFProduct.m */,
-				08FAFCDE15A48375007C52F5 /* SFSyncResponder.h */,
-				08FAFCDF15A48375007C52F5 /* SFSyncResponder.m */,
 				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
 				18D52FE615ABD8F300C70E16 /* SFSearchManager.m */,
 				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
@@ -838,7 +843,7 @@
 				187F5ED215A2E1EB00EA0A37 /* OVDatabase+SFAccount.m in Sources */,
 				187F5ED515A2E1FE00EA0A37 /* OVDatabase+FMDB.m in Sources */,
 				08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */,
-				08FAFCE015A48375007C52F5 /* SFSyncResponder.m in Sources */,
+				08FAFCE015A48375007C52F5 /* sObject.m in Sources */,
 				18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */,
 				18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */,
 				18B1048D15A5961D000719DB /* SFVisit.m in Sources */,
@@ -860,6 +865,7 @@
 				187F9A7915ABF11E0021CE9F /* FMResultSet+Extension.m in Sources */,
 				187F9A7D15AC16960021CE9F /* plugin.js in Sources */,
 				18854B9B15AC2E7300E7B4AB /* NSArray+Extension.m in Sources */,
+				0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

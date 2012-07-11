@@ -27,7 +27,7 @@
 #import "SFNativeRestAppDelegate.h"
 #import "FMDatabase.h"
 #import "OVDatabase.h"
-#import "SFSyncResponder.h"
+#import "sObject.h"
 #import "Constant.h"
 #import "FMResultSet+Extension.h"
 #import "NSString+Extension.h"

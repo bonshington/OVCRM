@@ -28,8 +28,8 @@
 
 @interface RootViewController : UISplitViewController {
     
-    NSMutableArray *dataRows;
-    IBOutlet UITableView *tableView;    
+    //NSMutableArray *dataRows;
+    //IBOutlet UITableView *tableView;    
 
 }
 

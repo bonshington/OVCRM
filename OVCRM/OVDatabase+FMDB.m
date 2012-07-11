@@ -22,8 +22,8 @@
     NSString *script = [NSString stringWithFormat:
                         @"insert or replace into %@ (Id,%@) values(?,%@)"
                         , [object SFName]
-                        , [[schema toSqlColumn] componentsJoinedByString:@","]
-                        , [[schema toSqlArguments] componentsJoinedByString:@","]
+                        , [[object toSqlColumn] componentsJoinedByString:@","]
+                        , [[object toSqlArguments] componentsJoinedByString:@","]
                         ];
     
     BOOL result = [self initSqlTableOf:object];
@@ -46,7 +46,7 @@
     NSString *script = [NSString stringWithFormat:
                         @"create table if not exists %@(Id TEXT primary key,%@)"
                         , [object SFName]
-                        , [[[object schema] toSqlColumnWithType] componentsJoinedByString:@","]
+                        , [[object toSqlColumnWithType] componentsJoinedByString:@","]
                         ];
     
     if(!self.open) [self open];

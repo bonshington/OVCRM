@@ -69,10 +69,10 @@
     
     super.controller = controller;
     
-    [SFSyncResponder loadWithQuery:[NSString stringWithFormat:
-                                    @"select Id,%@ from Event where StartDateTime >= TODAY"
-                                    , [[[self schema] toSFColumns] componentsJoinedByString:@","]] 
-                          delegate:self];
+    [sObject loadWithQuery:[NSString stringWithFormat:
+							@"select Id,%@ from Event where StartDateTime >= TODAY"
+							, [[self toSFColumns] componentsJoinedByString:@","]] 
+				  delegate:self];
 }
 
 +(void) loadNewVisit{
@@ -81,7 +81,7 @@
     
     [super loadWithQuery:[NSString stringWithFormat:
                           @"select Id,%@ from Event where StartDateTime >= TODAY"
-                          , [[[this schema] toSFColumns] componentsJoinedByString:@","]] 
+                          , [[this toSFColumns] componentsJoinedByString:@","]] 
                 delegate:this];
 }
 

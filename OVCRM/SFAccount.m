@@ -149,7 +149,7 @@
     
     [super loadWithQuery:[NSString stringWithFormat:
                           @"select Id,%@ from Account where Route_no__c = '%@'"
-                          , [[[this schema] toSFColumns] componentsJoinedByString:@","]
+                          , [[this toSFColumns] componentsJoinedByString:@","]
                           , route] 
                 delegate:this];
 }
@@ -160,11 +160,11 @@
     
     NSString *route = @"10390230";
     
-    [SFSyncResponder loadWithQuery:[NSString stringWithFormat:
-                                    @"select Id,%@ from Account where Route_no__c = '%@'"
-                                    , [[[self schema] toSFColumns] componentsJoinedByString:@","]
-                                    , route] 
-                          delegate:self];
+    [sObject loadWithQuery:[NSString stringWithFormat:
+							@"select Id,%@ from Account where Route_no__c = '%@'"
+							, [[self toSFColumns] componentsJoinedByString:@","]
+							, route] 
+				  delegate:self];
 }
 
 @end

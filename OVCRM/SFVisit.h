@@ -7,9 +7,9 @@
 //8888888
 // Test GitHub
 
-#import "SFSyncResponder.h"
+#import "sObject.h"
 
-@interface SFVisit : SFSyncResponder
+@interface SFVisit : sObject
 
 +(void) loadNewVisit;
 +(FMResultSet *) selectToday;

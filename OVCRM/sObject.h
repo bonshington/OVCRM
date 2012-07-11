@@ -14,7 +14,7 @@
 #import "NSDictionary+SFSchema.h"
 #import "OVSyncProtocal.h"
 
-@interface SFSyncResponder : NSObject<SFRestDelegate, SFObjectProtocal>
+@interface sObject : NSObject<SFRestDelegate, SFObjectProtocal>
 
 @property (nonatomic, retain) id<OVSyncProtocal> controller;
 

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SFSyncResponder.h"
+#import "sObject.h"
 
-@interface SFAccount : SFSyncResponder
+@interface SFAccount : sObject
 
 + (void) loadAccountsWithRoute:(NSString *)route;
 

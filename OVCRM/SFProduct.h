@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SFSyncResponder.h"
+#import "sObject.h"
 
-@interface SFProduct : SFSyncResponder
+@interface SFProduct : sObject
 
 
 

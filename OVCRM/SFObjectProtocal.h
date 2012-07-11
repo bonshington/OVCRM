@@ -15,6 +15,9 @@
 -(void)sync:(id<OVSyncProtocal>)controller;
 -(NSDictionary *)schema;
 -(NSString *) SFName;
-
+-(NSArray *) toSqlColumn;
+-(NSArray *) toSqlColumnWithType;
+-(NSArray *) toSqlArguments;
+-(NSArray *) toSFColumns;
 
 @end
