@@ -156,14 +156,12 @@
 
 -(void)sync:(id<OVSyncProtocal>)controller{
     
-    super.controller = controller;
-    
-    NSString *route = @"10390230";
+    self.controller = controller;
     
     [sObject loadWithQuery:[NSString stringWithFormat:
 							@"select Id,%@ from Account where Route_no__c = '%@'"
 							, [[self toSFColumns] componentsJoinedByString:@","]
-							, route] 
+							, [[AppDelegate sharedInstance].user objectForKey:@"route"]] 
 				  delegate:self];
 }
 

@@ -39,6 +39,7 @@
 
 }
 
+@property (nonatomic, retain) NSDictionary *user;
 @property (nonatomic, retain) UIViewController *master;
 @property (nonatomic, retain) UINavigationController *detail;
 @property (nonatomic, retain) OVDatabase *db;

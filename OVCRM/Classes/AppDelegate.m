@@ -44,7 +44,7 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
-@synthesize db, master, detail, sync;
+@synthesize db, master, detail, sync, user;
 
 SFIdentityCoordinator *_coordinator;
 
@@ -72,6 +72,8 @@ SFIdentityCoordinator *_coordinator;
 
 - (UIViewController*)newRootViewController {
     
+	self.user = [NSDictionary dictionaryWithObjectsAndKeys:@"10390230", @"route", nil];
+	
     return [OVLandingController new];
 }
 

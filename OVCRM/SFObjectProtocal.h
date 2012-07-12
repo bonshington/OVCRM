@@ -13,11 +13,17 @@
 
 @required
 -(void)sync:(id<OVSyncProtocal>)controller;
--(NSDictionary *)schema;
+
 -(NSString *) SFName;
+
+-(NSDictionary *)schema;
+
 -(NSArray *) toSqlColumn;
 -(NSArray *) toSqlColumnWithType;
 -(NSArray *) toSqlArguments;
 -(NSArray *) toSFColumns;
+
+@optional
+-(NSDictionary *)mapping;
 
 @end

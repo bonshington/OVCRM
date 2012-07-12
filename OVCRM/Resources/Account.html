@@ -23,6 +23,12 @@
 			}
 			
 			/*** grid ***/
+			div.grid{
+				width: 700px; 
+				overflow-x:auto;
+				overflow-y:visible;
+				margin-left: -10px;
+			}
 			table.grid{
 			    overflow-x:auto;
 			    width: 100%;
@@ -96,6 +102,24 @@
 			}
         </style>
         <script id="extension">
+			Array.prototype.groupBy = function(keyOf){
+				var result = {};
+				var self = this;
+				for(var index in this){
+					var entry = this[index];
+					var key = keyOf(entry);
+					
+					if(key != null){
+						if(result[key] == null)
+						result[key] = [];
+						
+						result[key].push(entry);
+					}
+				}
+				
+				return result;
+			}
+			
             String.prototype.format = function (args) {
                 var newStr = this;
                 for (var key in args) {
@@ -189,8 +213,32 @@
               $(".ui-disabled").removeClass("ui-disabled");
               
               $("#event-grid").jsonGrid(eval($("#event-data").html()));
+			  $("#stock-grid").jsonGrid(eval($("#stock-data").html()));
               
 		      $("[sf-type][sf-val]").display();
+			  
+			  var stockRows = $("#stock-grid>tbody>tr");
+			  var mergeRow = null;
+			  var stockDate = "";
+			
+			  for(var i = 0; i < stockRows.length; i++){
+			  
+				var tr = $(stockRows[i]);
+				var td = tr.children("td:first");
+			  
+				if(td.text() == stockDate){
+			  
+					td.remove();
+			  
+					var mergeTd = mergeRow.children("td:first");
+					mergeTd.attr("rowspan", parseInt(mergeTd.attr("rowspan")||"1") +1);
+				}
+				else{
+					mergeRow = tr;
+					stockDate = mergeRow.children("td:first").text();
+				}
+			  }
+			  
             });
         </script>
     </head>
@@ -356,8 +404,29 @@
                     </div>
                     <br/>
                 </div>
+				
+				<div id="module2" class="module">
+                    <h2>Stock</h2>
+					<div id="stock-data" class="json">{{Stock.json}}</div>
+					<div class="grid">
+						<table id="stock-grid" class="grid">
+							<thead>
+								<tr>
+									<th json-column="Stock_Update__c">Date</th>
+									<th json-column="Product_Name">Product</th>
+									<th json-column="InStock">In Stock</th>
+									<th json-column="OnShelf">Remains</th>
+									<th json-column="Periods_of_Stock__c">Peroid of Stock</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<br/>
+                </div>
 
-                <div id="module2" class="module">
+                <div id="module3" class="module">
                     <div class="ui-body ui-body-c">
                         <h2>Payment Infomation</h2>
                         
@@ -410,10 +479,6 @@
                     </div>
                 </div>
                 
-                <div id="module3" class="module">
-                    mod 3
-                </div>
-                
                 <div id="module4" class="module">
                     <div id="event-data" class="json">{{Event.json}}</div>
                     <div class="ui-body ui-body-c">
@@ -453,7 +518,7 @@
                     </div>
                     <br/>
                     <h2>Activities</h2>
-                    <div style="width: 700px; overflow-x:auto;overflow-y:visible;margin-left: -10px;">
+                    <div class="grid">
                     <table id="event-grid" class="grid">
                         <colgroup>
                         </colgroup>

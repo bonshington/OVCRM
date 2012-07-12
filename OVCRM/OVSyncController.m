@@ -36,8 +36,9 @@
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
                      [SFAccount new], @"Account", 
+					 [SFVisit new], @"Visit", 
+					 [SFStock new], @"Stock",
                      [SFProduct new], @"Product", 
-                     [SFVisit new], @"Visit", 
                      nil];
 }
 

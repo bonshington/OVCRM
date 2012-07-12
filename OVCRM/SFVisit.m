@@ -67,7 +67,7 @@
 
 -(void)sync:(id<OVSyncProtocal>)controller{
     
-    super.controller = controller;
+    self.controller = controller;
     
     [sObject loadWithQuery:[NSString stringWithFormat:
 							@"select Id,%@ from Event where StartDateTime >= TODAY"

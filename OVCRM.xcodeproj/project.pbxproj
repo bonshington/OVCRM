@@ -20,6 +20,7 @@
 		08FC15E415A96A71005847AC /* jquery.js in Sources */ = {isa = PBXBuildFile; fileRef = 08FC15E015A96A71005847AC /* jquery.js */; };
 		08FC15E515A96B13005847AC /* jquery.mobile.js in Resources */ = {isa = PBXBuildFile; fileRef = 08FC15DF15A96A71005847AC /* jquery.mobile.js */; };
 		08FC15E615A96B13005847AC /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = 08FC15E015A96A71005847AC /* jquery.js */; };
+		1851883115AE81FA00A4967D /* SFStock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1851883015AE81FA00A4967D /* SFStock.m */; };
 		187F5EB715A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EB615A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m */; };
 		187F5EC315A2CDD300EA0A37 /* OVMenuController+CallVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */; };
 		187F5EC615A2D66400EA0A37 /* OVDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC515A2D66400EA0A37 /* OVDatabase.m */; };
@@ -110,6 +111,8 @@
 		08FC15DE15A96A71005847AC /* jquery.mobile.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = jquery.mobile.css; path = Resources/jquery.mobile.css; sourceTree = "<group>"; };
 		08FC15DF15A96A71005847AC /* jquery.mobile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.mobile.js; path = Resources/jquery.mobile.js; sourceTree = "<group>"; };
 		08FC15E015A96A71005847AC /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = Resources/jquery.js; sourceTree = "<group>"; };
+		1851882F15AE81FA00A4967D /* SFStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFStock.h; sourceTree = "<group>"; };
+		1851883015AE81FA00A4967D /* SFStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFStock.m; sourceTree = "<group>"; };
 		187F5EB615A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+MenuTableViewhandler.m"; sourceTree = "<group>"; };
 		187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+CallVisit.m"; sourceTree = "<group>"; };
 		187F5EC415A2D66400EA0A37 /* OVDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVDatabase.h; sourceTree = "<group>"; };
@@ -730,6 +733,8 @@
 				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
 				18D52FE615ABD8F300C70E16 /* SFSearchManager.m */,
 				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
+				1851882F15AE81FA00A4967D /* SFStock.h */,
+				1851883015AE81FA00A4967D /* SFStock.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				187F9A7D15AC16960021CE9F /* plugin.js in Sources */,
 				18854B9B15AC2E7300E7B4AB /* NSArray+Extension.m in Sources */,
 				0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */,
+				1851883115AE81FA00A4967D /* SFStock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

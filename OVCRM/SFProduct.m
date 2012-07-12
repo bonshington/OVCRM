@@ -63,9 +63,11 @@
             nil];
 }
 
+
+
 -(void)sync:(id<OVSyncProtocal>)controller{
     
-    super.controller = controller;
+    self.controller = controller;
     
     NSString *lastSyncDate = @"2000-01-01";
     

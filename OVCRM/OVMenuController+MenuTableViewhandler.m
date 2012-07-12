@@ -144,7 +144,8 @@ titleForHeaderInSection:(NSInteger)section{
             
             NSDictionary *viewData = [NSDictionary dictionaryWithObjectsAndKeys:
                                       [[app.db executeQuery:@"select * from Account where Id = ?", accountId] readToEnd], @"Account", 
-                                      [[app.db executeQuery:@"select * from Event where WhatId = ?", accountId] readToEnd], @"Event", 
+                                      [[app.db executeQuery:@"select * from Event where WhatId = ?", accountId] readToEnd], @"Event",
+									  [[app.db executeQuery:@"select * from Stock where AccountId__c = ? or 1=1 order by Stock_Update__c desc, Product_Name asc", accountId] readToEnd], @"Stock", 
                                       nil];
             
             UIBarButtonItem *checkin = [[UIBarButtonItem alloc] initWithTitle:@"Check-in" 

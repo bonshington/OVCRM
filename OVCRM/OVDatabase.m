@@ -27,10 +27,14 @@
         // Build the path to the database file
         NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.db", [SFRestAPI sharedInstance].coordinator.credentials.userId]]];
         
+		NSLog(databasePath);
+		
         app.db = [self initWithPath:databasePath];
         app.db.logsErrors = YES;
         
         [app.db open];
+		
+		//[app.db executeUpdate:@"drop table Stock__c"];
     }  
     else{
         self = app.db;

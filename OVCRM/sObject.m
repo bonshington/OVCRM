@@ -56,15 +56,28 @@ didLoadResponse:(id)jsonResponse{
 #pragma mark - sObject
 
 -(NSArray *) toSqlColumnWithType{
-    NSMutableArray *result = [NSMutableArray new];
     
+	NSMutableArray *result = [NSMutableArray new];
+    NSDictionary *mapping = nil;
+	
+	
+	if([self respondsToSelector:@selector(mapping)]){
+		mapping = [self mapping];
+	}
+	
     [[self schema] enumerateKeysAndObjectsUsingBlock:^(NSString *col, NSString *type, BOOL *stop){
         
+		NSString *transform = [NSString stringWithString:col];
+		
+		if(mapping != nil && [mapping objectForKey:col] != nil)
+			transform = [mapping objectForKey:col];
+		
+		
         if([type isEqualToString:@"NUMBER"]){
-            [result addObject:[NSString stringWithFormat:@"%@ NUMBER", col]];
+            [result addObject:[NSString stringWithFormat:@"%@ NUMBER", transform]];
         }
         else{
-            [result addObject:[NSString stringWithFormat:@"%@ TEXT", col]];
+            [result addObject:[NSString stringWithFormat:@"%@ TEXT", transform]];
         }
     }];
     
@@ -73,7 +86,26 @@ didLoadResponse:(id)jsonResponse{
 
 -(NSArray *) toSqlColumn{
 	
-    return [[self schema] allKeys];
+	if([self respondsToSelector:@selector(mapping)]){
+	
+		NSDictionary *mapping = [self mapping];
+		NSMutableArray *result = [NSMutableArray new];
+		
+		[[[self schema] allKeys] enumerateObjectsUsingBlock:^(NSString *sfCol, NSUInteger index, BOOL *stop){
+			
+			NSString *transform = [mapping objectForKey:sfCol];
+			
+			if(transform != nil)
+				[result addObject:transform];
+			else
+				[result addObject:sfCol];
+		}];
+		
+		return result;
+	}
+	else{
+		return [[self schema] allKeys];
+	}
 }
 
 -(NSArray *) toSqlArguments{
