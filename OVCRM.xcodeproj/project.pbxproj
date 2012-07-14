@@ -34,6 +34,14 @@
 		18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048615A56A1F000719DB /* NSString+Extension.m */; };
 		18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */; };
 		18B1048D15A5961D000719DB /* SFVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048C15A5961D000719DB /* SFVisit.m */; };
+		18C4C6E415B12DE900C2ACB0 /* SFMerchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6E315B12DE900C2ACB0 /* SFMerchandise.m */; };
+		18C4C6E815B1394E00C2ACB0 /* SFGoodsReturn.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6E715B1394E00C2ACB0 /* SFGoodsReturn.m */; };
+		18C4C6EB15B13B3900C2ACB0 /* SFCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6EA15B13B3800C2ACB0 /* SFCollection.m */; };
+		18C4C6EE15B13D8800C2ACB0 /* SFOrderTaking.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6ED15B13D8700C2ACB0 /* SFOrderTaking.m */; };
+		18C4C6F115B13D9900C2ACB0 /* SFOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F015B13D9800C2ACB0 /* SFOrderDetail.m */; };
+		18C4C6F415B13DB700C2ACB0 /* SFPriceBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F315B13DB500C2ACB0 /* SFPriceBook.m */; };
+		18C4C6F715B13DDA00C2ACB0 /* SFPCBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */; };
+		18C4C6FA15B13DED00C2ACB0 /* SFSalesTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */; };
 		18D52FBF15AAB36600C70E16 /* SFProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FBE15AAB36600C70E16 /* SFProduct.m */; };
 		18D52FC415AABF7D00C70E16 /* OVSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FC215AABF7C00C70E16 /* OVSyncController.m */; };
 		18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FC315AABF7C00C70E16 /* OVSyncController.xib */; };
@@ -135,6 +143,22 @@
 		18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullHandling.m"; sourceTree = "<group>"; };
 		18B1048B15A5961D000719DB /* SFVisit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFVisit.h; sourceTree = "<group>"; };
 		18B1048C15A5961D000719DB /* SFVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFVisit.m; sourceTree = "<group>"; };
+		18C4C6E215B12DE800C2ACB0 /* SFMerchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMerchandise.h; sourceTree = "<group>"; };
+		18C4C6E315B12DE900C2ACB0 /* SFMerchandise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMerchandise.m; sourceTree = "<group>"; };
+		18C4C6E615B1394D00C2ACB0 /* SFGoodsReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGoodsReturn.h; sourceTree = "<group>"; };
+		18C4C6E715B1394E00C2ACB0 /* SFGoodsReturn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGoodsReturn.m; sourceTree = "<group>"; };
+		18C4C6E915B13B3700C2ACB0 /* SFCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCollection.h; sourceTree = "<group>"; };
+		18C4C6EA15B13B3800C2ACB0 /* SFCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCollection.m; sourceTree = "<group>"; };
+		18C4C6EC15B13D8600C2ACB0 /* SFOrderTaking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOrderTaking.h; sourceTree = "<group>"; };
+		18C4C6ED15B13D8700C2ACB0 /* SFOrderTaking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOrderTaking.m; sourceTree = "<group>"; };
+		18C4C6EF15B13D9700C2ACB0 /* SFOrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOrderDetail.h; sourceTree = "<group>"; };
+		18C4C6F015B13D9800C2ACB0 /* SFOrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOrderDetail.m; sourceTree = "<group>"; };
+		18C4C6F215B13DB500C2ACB0 /* SFPriceBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPriceBook.h; sourceTree = "<group>"; };
+		18C4C6F315B13DB500C2ACB0 /* SFPriceBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPriceBook.m; sourceTree = "<group>"; };
+		18C4C6F515B13DD800C2ACB0 /* SFPCBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPCBrief.h; sourceTree = "<group>"; };
+		18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPCBrief.m; sourceTree = "<group>"; };
+		18C4C6F815B13DEB00C2ACB0 /* SFSalesTalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSalesTalk.h; sourceTree = "<group>"; };
+		18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSalesTalk.m; sourceTree = "<group>"; };
 		18D52FBD15AAB36600C70E16 /* SFProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFProduct.h; sourceTree = "<group>"; };
 		18D52FBE15AAB36600C70E16 /* SFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFProduct.m; sourceTree = "<group>"; };
 		18D52FC115AABF7C00C70E16 /* OVSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVSyncController.h; sourceTree = "<group>"; };
@@ -289,6 +313,7 @@
 		18EE3F6F15A1741500A08B29 /* OVLandingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVLandingController.h; sourceTree = "<group>"; };
 		18EE3F7015A1741500A08B29 /* OVLandingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVLandingController.m; sourceTree = "<group>"; };
 		18EE3F7115A1741500A08B29 /* OVLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVLandingController.xib; sourceTree = "<group>"; };
+		18F5685115B005EA003F6DD7 /* OVWebViewProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVWebViewProtocal.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +390,7 @@
 			children = (
 				188C06EB15A693DB0043DBC7 /* SFObjectProtocal.h */,
 				18D52FC915AAC82D00C70E16 /* OVSyncProtocal.h */,
+				18F5685115B005EA003F6DD7 /* OVWebViewProtocal.h */,
 			);
 			name = Protocal;
 			sourceTree = "<group>";
@@ -735,6 +761,22 @@
 				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
 				1851882F15AE81FA00A4967D /* SFStock.h */,
 				1851883015AE81FA00A4967D /* SFStock.m */,
+				18C4C6E215B12DE800C2ACB0 /* SFMerchandise.h */,
+				18C4C6E315B12DE900C2ACB0 /* SFMerchandise.m */,
+				18C4C6E615B1394D00C2ACB0 /* SFGoodsReturn.h */,
+				18C4C6E715B1394E00C2ACB0 /* SFGoodsReturn.m */,
+				18C4C6E915B13B3700C2ACB0 /* SFCollection.h */,
+				18C4C6EA15B13B3800C2ACB0 /* SFCollection.m */,
+				18C4C6EC15B13D8600C2ACB0 /* SFOrderTaking.h */,
+				18C4C6ED15B13D8700C2ACB0 /* SFOrderTaking.m */,
+				18C4C6EF15B13D9700C2ACB0 /* SFOrderDetail.h */,
+				18C4C6F015B13D9800C2ACB0 /* SFOrderDetail.m */,
+				18C4C6F215B13DB500C2ACB0 /* SFPriceBook.h */,
+				18C4C6F315B13DB500C2ACB0 /* SFPriceBook.m */,
+				18C4C6F515B13DD800C2ACB0 /* SFPCBrief.h */,
+				18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */,
+				18C4C6F815B13DEB00C2ACB0 /* SFSalesTalk.h */,
+				18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -872,6 +914,14 @@
 				18854B9B15AC2E7300E7B4AB /* NSArray+Extension.m in Sources */,
 				0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */,
 				1851883115AE81FA00A4967D /* SFStock.m in Sources */,
+				18C4C6E415B12DE900C2ACB0 /* SFMerchandise.m in Sources */,
+				18C4C6E815B1394E00C2ACB0 /* SFGoodsReturn.m in Sources */,
+				18C4C6EB15B13B3900C2ACB0 /* SFCollection.m in Sources */,
+				18C4C6EE15B13D8800C2ACB0 /* SFOrderTaking.m in Sources */,
+				18C4C6F115B13D9900C2ACB0 /* SFOrderDetail.m in Sources */,
+				18C4C6F415B13DB700C2ACB0 /* SFPriceBook.m in Sources */,
+				18C4C6F715B13DDA00C2ACB0 /* SFPCBrief.m in Sources */,
+				18C4C6FA15B13DED00C2ACB0 /* SFSalesTalk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

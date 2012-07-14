@@ -7,6 +7,7 @@
 //
 
 #import "OVSyncController.h"
+#import "OVMenuController.h"
 
 @implementation OVSyncController (OVSyncProtocal)
 
@@ -30,6 +31,27 @@
     if([self.tableView cellForRowAtIndexPath:self.processing] != nil){
         [self sync];
     }
+	else{
+		
+		// Syned
+		
+		self.processing = nil;
+		[self.tableView selectRowAtIndexPath:nil animated:YES scrollPosition:UITableViewScrollPositionNone];
+		[(OVMenuController *)[AppDelegate sharedInstance].master setActive:YES];
+		
+		// update last sync
+		
+		NSDateFormatter* dateFormatter = [NSDateFormatter new];
+		[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+		
+		NSString *today = [dateFormatter stringFromDate:[NSDate date]];
+
+		[[OVDatabase sharedInstance] executeQuery:@"update Parameter set val = ? where tag = 'CONFIG' key = 'LAST_SYNC' ", today];
+		
+		[[AppDelegate sharedInstance].user setValue:today
+											 forKey:@"lastSyncDate"];
+		[(OVMenuController *)[AppDelegate sharedInstance].master reloadData];
+	}
 }
 
 @end

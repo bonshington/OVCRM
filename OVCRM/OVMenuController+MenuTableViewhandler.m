@@ -24,7 +24,7 @@
      
     */
     
-    if(self.checkedinAccount == nil){
+    if(self.checkedAccountId == nil){
         return 3;
     }
     else {
@@ -35,7 +35,7 @@
 - (NSString *)tableView:(UITableView *)tableView 
 titleForHeaderInSection:(NSInteger)section{
 
-    if(self.checkedinAccount == nil){
+    if(self.checkedAccountId == nil){
         switch(section){
                 
             case 0: return @"Visit";
@@ -64,7 +64,7 @@ titleForHeaderInSection:(NSInteger)section{
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section{
     
-    if(self.checkedinAccount == nil){
+    if(self.checkedAccountId == nil){
         switch(section){
             case 0: return self.todayPlan.count;
                 
@@ -92,7 +92,7 @@ titleForHeaderInSection:(NSInteger)section{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(self.checkedinAccount == nil){
+    if(self.checkedAccountId == nil){
         switch(indexPath.section){
             case 0: return [self tableView:tableView planForRowAtIndexPath:indexPath];
                 
@@ -141,23 +141,17 @@ titleForHeaderInSection:(NSInteger)section{
         case tagForCellPlanVisit:{
             
             NSString *accountId = ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text;
-            
-            NSDictionary *viewData = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [[app.db executeQuery:@"select * from Account where Id = ?", accountId] readToEnd], @"Account", 
-                                      [[app.db executeQuery:@"select * from Event where WhatId = ?", accountId] readToEnd], @"Event",
-									  [[app.db executeQuery:@"select * from Stock where AccountId__c = ? or 1=1 order by Stock_Update__c desc, Product_Name asc", accountId] readToEnd], @"Stock", 
-                                      nil];
-            
+            self.checkinEventId = ((UILabel *)[tappedCell viewWithTag:tagForSFEventId]).text;
+			
             UIBarButtonItem *checkin = [[UIBarButtonItem alloc] initWithTitle:@"Check-in" 
                                                                         style:UIBarButtonItemStyleDone 
-                                                                       target:nil 
-                                                                       action:nil];
+                                                                       target:self 
+                                                                       action:@selector(checkin)];
             
             // show account with checkin
-            [app.detail pushViewController:[[OVWebViewController alloc] initForSFObject:@"Account" 
-                                                                           withMustache:viewData 
-                                                                     withRightBarButton:checkin]
-                                  animated:YES];
+			[self invokeSFObject:@"Account" 
+					withMustache:[SFAccount selectAccountContextOf:accountId] 
+			  withRightBarButton:checkin];
             
         }break;
             
@@ -173,7 +167,7 @@ titleForHeaderInSection:(NSInteger)section{
             break;
             
         case tagForCellSF:
-            tableView.allowsSelection = NO;
+            [self setActive:NO];
             [app.detail pushViewController:[[OVSyncController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
             break;
     }

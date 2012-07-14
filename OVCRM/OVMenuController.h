@@ -9,17 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "SFSearchManager.h"
 #import "Appdelegate.h"
+#import "OVWebViewProtocal.h"
 
-@interface OVMenuController : UIViewController 
+@interface OVMenuController : UIViewController <OVWebViewProtocal>
+
 
 @property(nonatomic, retain) IBOutlet UITableView *tableView;
 @property(nonatomic, retain) IBOutlet UITableView *resultView;
-@property(nonatomic, retain) NSDictionary *checkedinAccount;
+@property(nonatomic, retain) NSString *checkinEventId;
+@property(nonatomic, retain) NSString *checkedAccountId;
 @property(nonatomic, retain) NSArray *todayPlan;
 @property(nonatomic, retain) SFSearchManager *resultManager;
 
+-(void) setActive:(BOOL)isActive;
+-(void) reloadData;
 -(BOOL) verifyDatabase;
 -(void) sync;
+
+- (void) invokeSFObject:(NSString *)sObject 
+		   withMustache:(NSDictionary *)data 
+	 withRightBarButton:(UIBarButtonItem *)button;
 
 @end
 
@@ -27,7 +36,7 @@
 
 
 
--(void) checkinWithAccountId:(char *) accountID;
+-(void) checkin;
 -(void) checkout;
 -(void) plan;
 -(void) viewAccountId:(char *) accountId;

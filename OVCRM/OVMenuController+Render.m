@@ -91,11 +91,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         
         cell.textLabel.text = @"Sync";
-        cell.detailTextLabel.text = @"last sync date";
         cell.accessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
         cell.tag = tagForCellSF;
         
     }
+	
+	cell.detailTextLabel.text = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
     
     return cell;
     

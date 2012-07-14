@@ -11,8 +11,25 @@
 @implementation OVMenuController (CallVisit)
 
 
--(void) checkinWithAccountId:(char *) accountID{
+-(void) checkin{
     
+	OVDatabase *db = [OVDatabase sharedInstance];
+	
+	FMResultSet *result = [db executeQuery:@"select Id from Account where Id in (select WhatId from Event where Id = ?)", self.checkinEventId];
+	
+	if(result.hasAnotherRow){
+		[result next];
+		self.checkedAccountId = [result stringForColumnIndex:0];
+		
+		if(self.checkedAccountId != nil){
+			[db registerUpload:@"Checkin" withData:[NSDictionary dictionaryWithObjectsAndKeys:
+													self.checkedAccountId, @"AccountId",
+													self.checkinEventId, @"EventId", 
+													@"my id", @"UserId",
+													@"date time", @"time"
+													nil]];
+		}
+	}
 }
 
 -(void) checkout{

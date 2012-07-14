@@ -59,6 +59,14 @@ SFIdentityCoordinator *_coordinator;
     return OAuthRedirectURI;
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application{
+	
+	[super applicationDidBecomeActive:application];
+	
+	if(self.master != nil)
+		[self.master reloadData];
+}
+
 +(AppDelegate *) sharedInstance{
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
@@ -72,7 +80,10 @@ SFIdentityCoordinator *_coordinator;
 
 - (UIViewController*)newRootViewController {
     
-	self.user = [NSDictionary dictionaryWithObjectsAndKeys:@"10390230", @"route", nil];
+	self.user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+				 @"10390230", @"route",
+				 @"2000-01-01", @"lastSyncDate", 
+				 nil];
 	
     return [OVLandingController new];
 }

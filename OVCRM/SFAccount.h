@@ -13,6 +13,6 @@
 
 + (void) loadAccountsWithRoute:(NSString *)route;
 
-//+(void) selectAccount
++(NSDictionary *) selectAccountContextOf:(NSString *)accountId;
 
 @end

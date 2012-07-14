@@ -26,8 +26,8 @@
             @"NUMBER", @"DurationInMinutes",
             //@"TEXT", @"Email",
             @"TEXT", @"EndDateTime",
-            @"LOOKUP", @"LastModifiedBy",
-            @"DATETIME", @"LastModifiedDate",
+            //@"LOOKUP", @"LastModifiedBy",
+            //@"DATETIME", @"LastModifiedDate",
             @"TEXT", @"Location",
             @"LOOKUP", @"Who",
             //@"TEXT", @"Phone",
@@ -70,7 +70,7 @@
     self.controller = controller;
     
     [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Event where StartDateTime >= TODAY"
+							@"select Id,%@ from Event "
 							, [[self toSFColumns] componentsJoinedByString:@","]] 
 				  delegate:self];
 }
@@ -80,7 +80,7 @@
     SFVisit *this = [SFVisit new];
     
     [super loadWithQuery:[NSString stringWithFormat:
-                          @"select Id,%@ from Event where StartDateTime >= TODAY"
+                          @"select Id,%@ from Event "
                           , [[this toSFColumns] componentsJoinedByString:@","]] 
                 delegate:this];
 }

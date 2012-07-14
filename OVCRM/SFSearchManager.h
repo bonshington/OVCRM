@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OVWebViewProtocal.h"
 
 @interface SFSearchManager : NSObject
 
-@property(nonatomic, retain) NSDictionary *fetched;
+@property (nonatomic, retain) id<OVWebViewProtocal> delegate;
+@property (nonatomic, retain) NSDictionary *fetched;
+@property (nonatomic, retain) UISearchBar *searchBox;
 
--(void) search:(NSString *)text;
+- (void)searchBar:(UISearchBar *)searchBar search:(NSString *)text;
 
 @end
 

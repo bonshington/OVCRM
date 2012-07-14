@@ -18,7 +18,7 @@
     self.resultView.hidden = !isSearching;
     
     if(isSearching){
-        [self.resultManager search:searchBar.text];
+        [self.resultManager searchBar:searchBar search:searchBar.text];
     }
 }
 

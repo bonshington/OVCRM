@@ -42,6 +42,7 @@
 			@"InStock", @"In_Stock__c",
 			@"CallCard_PK", @"Call_Card__c",
 			@"Stock", @"Stock__c",
+			@"PK", @"Id",
 			nil];
 }
 

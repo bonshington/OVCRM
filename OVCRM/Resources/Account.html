@@ -196,6 +196,37 @@
 					});
 				});
 			};
+		 
+			$.fn.mergeColumn = function(nth){
+				
+				$.each(this, function(){
+					var self = $(this);
+					   
+					var stockRows = self.children("tbody").children("tr");
+					var mergeRow = null;
+					var stockDate = "";
+					   
+					for(var i = 0; i < stockRows.length; i++){
+					   
+						var tr = $(stockRows[i]);
+						var td = tr.children("td:nth-child("+nth+")");
+					   
+						if(td.text() == stockDate){
+					   
+							td.remove();
+					   
+							var mergeTd = mergeRow.children("td:first");
+							mergeTd.attr("rowspan", parseInt(mergeTd.attr("rowspan")||"1") +1);
+						}
+						else{
+							mergeRow = tr;
+							stockDate = mergeRow.children("td:first").text();
+						}
+					}
+					
+				});
+		 
+			}
              
 		})(jQuery);
                                                                                                                                               
@@ -214,30 +245,13 @@
               
               $("#event-grid").jsonGrid(eval($("#event-data").html()));
 			  $("#stock-grid").jsonGrid(eval($("#stock-data").html()));
+			  $("#merchandise-grid").jsonGrid(eval($("#merchandise-data").html()));
+
               
 		      $("[sf-type][sf-val]").display();
 			  
-			  var stockRows = $("#stock-grid>tbody>tr");
-			  var mergeRow = null;
-			  var stockDate = "";
-			
-			  for(var i = 0; i < stockRows.length; i++){
+			  $("#stock-grid,#merchandise-grid").mergeColumn(1);
 			  
-				var tr = $(stockRows[i]);
-				var td = tr.children("td:first");
-			  
-				if(td.text() == stockDate){
-			  
-					td.remove();
-			  
-					var mergeTd = mergeRow.children("td:first");
-					mergeTd.attr("rowspan", parseInt(mergeTd.attr("rowspan")||"1") +1);
-				}
-				else{
-					mergeRow = tr;
-					stockDate = mergeRow.children("td:first").text();
-				}
-			  }
 			  
             });
         </script>
@@ -406,23 +420,44 @@
                 </div>
 				
 				<div id="module2" class="module">
-                    <h2>Stock</h2>
-					<div id="stock-data" class="json">{{Stock.json}}</div>
-					<div class="grid">
-						<table id="stock-grid" class="grid">
-							<thead>
-								<tr>
-									<th json-column="Stock_Update__c">Date</th>
-									<th json-column="Product_Name">Product</th>
-									<th json-column="InStock">In Stock</th>
-									<th json-column="OnShelf">Remains</th>
-									<th json-column="Periods_of_Stock__c">Peroid of Stock</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
+					<div class="grid-container">
+						<h2>Stock</h2>
+						<div id="stock-data" class="json">{{Stock.json}}</div>
+						<div class="grid">
+							<table id="stock-grid" class="grid">
+								<thead>
+									<tr>
+										<th json-column="Stock_Update__c">Date</th>
+										<th json-column="Product_Name">Product</th>
+										<th json-column="InStock">In Stock</th>
+										<th json-column="OnShelf">On Shelf</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
 					</div>
+					<br/>
+					<div class="grid-container">
+						<h2>Merchandise</h2>
+						<div id="merchandise-data" class="json">{{Merchandise.json}}</div>
+						<div class="grid">
+							<table id="merchandise-grid" class="grid">
+								<thead>
+									<tr>
+										<th json-column="Date__c">Date</th>
+										<th json-column="Item_code__c">Item Code</th>
+										<th json-column="Name">Name</th>
+										<th json-column="MCD_Price">Price</th>
+										<th json-column="Pack_Size__c">Pack Size</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+					<br/>
 					<br/>
                 </div>
 

@@ -17,6 +17,8 @@
 
 + (OVDatabase *) sharedInstance;
 
+-(void) registerUpload:(NSString *)name withData:(NSDictionary *)data;
+
 @end
 
 

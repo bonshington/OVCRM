@@ -15,6 +15,9 @@
 #import "SFProduct.h"
 #import "SFVisit.h"
 #import "SFStock.h"
+#import "SFMerchandise.h"
+#import "SFGoodsReturn.h"
+#import "SFCollection.h"
 
 #define OVSYNC_SECTION_UPLOAD   0
 #define OVSYNC_SECTION_DOWNLOAD 1

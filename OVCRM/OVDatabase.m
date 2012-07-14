@@ -34,13 +34,20 @@
         
         [app.db open];
 		
-		//[app.db executeUpdate:@"drop table Stock__c"];
+		//[app.db executeUpdate:@"drop table Event"];
     }  
     else{
         self = app.db;
     }
     
     return self;
+}
+
+-(void) registerUpload:(NSString *)name withData:(NSDictionary *)data{
+	
+	// serialize data (json)
+	// insert to db
+	
 }
 
 + (OVDatabase *) sharedInstance{

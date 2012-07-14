@@ -7,7 +7,7 @@
 //
 
 #import "SFProduct.h"
-
+#import "AppDelegate.h"
 
 
 @implementation SFProduct
@@ -38,6 +38,7 @@
             @"PICKLIST", @"Class__c",
             @"TEXT", @"Description__c",
             @"NUMBER", @"In_Stock__c",
+			@"TEXT", @"Is_Main__c",
             @"TEXT", @"IsDelMassCreate__c",
             @"TEXT", @"List_Price__c",
             @"NUMBER", @"On_Shelf__c",
@@ -69,12 +70,12 @@
     
     self.controller = controller;
     
-    NSString *lastSyncDate = @"2000-01-01";
+    NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
     
     [super.controller updateStatus:@"Requesting data"];
     
     [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Product__c where CreatedDate >= %@T00:00:00z LastModifiedDate >= %@T00:00:00z"
+							@"select Id,%@ from Product__c where CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z"
 							, [[self toSFColumns] componentsJoinedByString:@","]
                             , lastSyncDate
                             , lastSyncDate] 

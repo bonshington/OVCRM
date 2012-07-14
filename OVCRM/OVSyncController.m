@@ -9,6 +9,7 @@
 #import "OVSyncController.h"
 
 
+
 @implementation OVSyncController
 
 @synthesize upload, download, processing;
@@ -30,8 +31,6 @@
 
     self.upload = [NSDictionary dictionaryWithObjectsAndKeys:
                    @"", @"test task1", 
-                   @"", @"test task2", 
-                   @"", @"test task3", 
                    nil];
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -39,6 +38,9 @@
 					 [SFVisit new], @"Visit", 
 					 [SFStock new], @"Stock",
                      [SFProduct new], @"Product", 
+					 [SFMerchandise new], @"Merchandise",
+					 [SFGoodsReturn new], @"Goods Return",
+					 [SFCollection new], @"Collection",
                      nil];
 }
 

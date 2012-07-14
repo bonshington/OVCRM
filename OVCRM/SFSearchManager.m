@@ -11,10 +11,12 @@
 
 @implementation SFSearchManager
 
-@synthesize fetched;
+@synthesize fetched, delegate, searchBox;
 
--(void) search:(NSString *)text{
+- (void)searchBar:(UISearchBar *)searchBar search:(NSString *)text;{
     
+	self.searchBox = searchBar;
+	
     OVDatabase *db = [AppDelegate sharedInstance].db;
     
     if(!db.open)[db open];

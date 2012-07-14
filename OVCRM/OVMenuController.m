@@ -9,13 +9,15 @@
 #import "OVMenuController.h"
 #import "SFVisit.h"
 #import "SFAccount.h"
+#import "SFProduct.h"
 #import "AppDelegate.h"
 #import "OVLandingController.h"
+#import "OVWebViewController.h"
 
 
 @implementation OVMenuController
 
-@synthesize checkedinAccount, todayPlan, resultView, resultManager, tableView;
+@synthesize checkinEventId, checkedAccountId, todayPlan, resultView, resultManager, tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +38,8 @@
     
     //init result table
     self.resultManager = [SFSearchManager new];
+	self.resultManager.delegate = self;
+	
     self.searchDisplayController.searchResultsDataSource = self.resultManager;
     self.searchDisplayController.searchResultsDelegate = self.resultManager;
     
@@ -68,6 +72,8 @@
     
     //[SFAccount loadAccountsWithRoute:@"10390230"];
     //[SFVisit loadNewVisit];
+	
+	//[[SFProduct new] sync:nil];
 }
 
 - (void)viewDidUnload
@@ -89,6 +95,8 @@
     
     if(!app.db.open) [app.db open];
     
+	//[app.db executeUpdate:@"drop table Parameter"];
+	
     FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter"];
     
     BOOL valid = result != nil && result.hasAnotherRow;
@@ -98,8 +106,8 @@
     
     if (!valid){    
         NSArray *initScript = [[NSArray alloc] initWithObjects:
-                               @"create table if not exists Parameter(tag TEXT, key TEXT, label TEXT)", 
-                               @"insert into Parameter(tag, key, label) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
+                               @"create table if not exists Parameter(tag text, key text, val text, primary key (tag, key))", 
+                               @"insert or replace into Parameter(tag, key, val) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
                                nil];
         
         [app.db beginTransaction];
@@ -121,6 +129,37 @@
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
     
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
+
+- (void) invokeSFObject:(NSString *)sObject 
+		   withMustache:(NSDictionary *)data 
+	 withRightBarButton:(UIBarButtonItem *)button{
+	
+	[[AppDelegate sharedInstance].detail pushViewController:[[OVWebViewController alloc] initForSFObject:sObject
+																							withMustache:data 
+																					  withRightBarButton:button]
+												   animated:YES];
+
+}
+
+- (void) reloadData{
+	[self.tableView reloadData];
+}
+
+-(void) setActive:(BOOL)isActive{
+	
+	self.tableView.allowsSelection = isActive;
+	
+	if(isActive){
+	
+		[self.searchDisplayController.searchBar setUserInteractionEnabled:YES];
+		[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+	}
+	else{
+		[self.searchDisplayController setActive:NO];
+		[self.searchDisplayController.searchBar setUserInteractionEnabled:NO];
+	}
 }
 
 @end
