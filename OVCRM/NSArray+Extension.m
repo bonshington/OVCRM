@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+Extension.h"
+#import "RKObjectSerializer.h"
 
 @implementation NSArray (Extension)
 

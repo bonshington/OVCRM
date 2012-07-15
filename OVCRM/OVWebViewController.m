@@ -51,6 +51,9 @@
         if(![value isKindOfClass:[NSString class]]){
             value = [NSString stringWithFormat:@"%@", value];
         }
+		else if(![key hasSuffix:@".json"]){
+			value = [value htmlEncode];
+		}
         
         html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"{{%@}}", key] withString:value];
     }

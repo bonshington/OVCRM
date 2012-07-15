@@ -12,5 +12,6 @@
 
 -(id) emptyIfNull:(id)key;
 -(id) replaceNilValueWithEmpty;
+-(id) coalesce:(NSString *)keys, ...;
 
 @end

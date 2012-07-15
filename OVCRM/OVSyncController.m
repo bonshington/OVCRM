@@ -29,9 +29,7 @@
     
     //self.tableView.allowsSelection = NO;
 
-    self.upload = [NSDictionary dictionaryWithObjectsAndKeys:
-                   @"", @"test task1", 
-                   nil];
+	self.upload = [[[OVDatabase sharedInstance] executeQuery:@"select * from Upload where syncTime is null order by createTime"] readToEnd];
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
                      [SFAccount new], @"Account", 
@@ -59,7 +57,12 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-    self.processing = [NSIndexPath indexPathForRow:0 inSection:1];
+	if(self.upload.count == 0){
+		self.processing = [NSIndexPath indexPathForRow:0 inSection:1];
+	}
+	else {
+		self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
+	}
     
     [self sync];
 }
@@ -73,7 +76,7 @@
     
     switch (self.processing.section) {
         case OVSYNC_SECTION_UPLOAD:
-            ;
+            [self upsert:((UILabel *)[cell viewWithTag:tagForUploadPk]).text];
             break;
             
         case OVSYNC_SECTION_DOWNLOAD:

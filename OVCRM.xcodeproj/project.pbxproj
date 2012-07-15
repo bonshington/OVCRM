@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0819583A15B18AC300CFDFE9 /* SFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0819583915B18AC300CFDFE9 /* SFUser.m */; };
+		0819584915B19F9200CFDFE9 /* CustomBadge.h in Sources */ = {isa = PBXBuildFile; fileRef = 0819584715B19DF000CFDFE9 /* CustomBadge.h */; };
+		081E57EB15B1A05E0007055E /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0819584815B19DF000CFDFE9 /* CustomBadge.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		081E57EE15B1A4FF0007055E /* OVSyncController+UploadProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57ED15B1A4FF0007055E /* OVSyncController+UploadProcess.m */; };
+		081E57F515B1C7660007055E /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57F415B1C7660007055E /* UITableView+Extension.m */; };
+		081E57F815B1C7E50007055E /* UILabel+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57F715B1C7E50007055E /* UILabel+Extension.m */; };
+		081E57FB15B1CBE20007055E /* OVSyncController+SFRestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57FA15B1CBE10007055E /* OVSyncController+SFRestDelegate.m */; };
+		081E57FE15B1D24C0007055E /* NSMutableDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */; };
+		081E580115B1D7C90007055E /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E580015B1D7C80007055E /* NSDate+Extension.m */; };
 		0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0887ED8C15ADD9E500D3312B /* SFCallCard.m */; };
 		08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDC15A48317007C52F5 /* SFAccount.m */; };
 		08FAFCE015A48375007C52F5 /* sObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDF15A48375007C52F5 /* sObject.m */; };
@@ -92,6 +101,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0819583815B18AC300CFDFE9 /* SFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFUser.h; sourceTree = "<group>"; };
+		0819583915B18AC300CFDFE9 /* SFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFUser.m; sourceTree = "<group>"; };
+		0819584015B1964B00CFDFE9 /* SFJsonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFJsonUtils.h; sourceTree = "<group>"; };
+		0819584715B19DF000CFDFE9 /* CustomBadge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
+		0819584815B19DF000CFDFE9 /* CustomBadge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
+		081E57ED15B1A4FF0007055E /* OVSyncController+UploadProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVSyncController+UploadProcess.m"; sourceTree = "<group>"; };
+		081E57F215B1A7BB0007055E /* OVUploadProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVUploadProtocal.h; sourceTree = "<group>"; };
+		081E57F315B1C7660007055E /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
+		081E57F415B1C7660007055E /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
+		081E57F615B1C7E50007055E /* UILabel+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extension.h"; sourceTree = "<group>"; };
+		081E57F715B1C7E50007055E /* UILabel+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extension.m"; sourceTree = "<group>"; };
+		081E57FA15B1CBE10007055E /* OVSyncController+SFRestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVSyncController+SFRestDelegate.m"; sourceTree = "<group>"; };
+		081E57FC15B1D24C0007055E /* NSMutableDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Extension.h"; sourceTree = "<group>"; };
+		081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extension.m"; sourceTree = "<group>"; };
+		081E57FF15B1D7C80007055E /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		081E580015B1D7C80007055E /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		0887ED8B15ADD9E500D3312B /* SFCallCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCallCard.h; sourceTree = "<group>"; };
 		0887ED8C15ADD9E500D3312B /* SFCallCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCallCard.m; sourceTree = "<group>"; };
 		08FAFCCD15A48032007C52F5 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -341,6 +366,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0819584615B19DD300CFDFE9 /* CustomBadge */ = {
+			isa = PBXGroup;
+			children = (
+				0819584715B19DF000CFDFE9 /* CustomBadge.h */,
+				0819584815B19DF000CFDFE9 /* CustomBadge.m */,
+			);
+			name = CustomBadge;
+			path = OVCRM;
+			sourceTree = "<group>";
+		};
 		08FAFCCC15A48020007C52F5 /* FMDatabase */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +426,7 @@
 				188C06EB15A693DB0043DBC7 /* SFObjectProtocal.h */,
 				18D52FC915AAC82D00C70E16 /* OVSyncProtocal.h */,
 				18F5685115B005EA003F6DD7 /* OVWebViewProtocal.h */,
+				081E57F215B1A7BB0007055E /* OVUploadProtocal.h */,
 			);
 			name = Protocal;
 			sourceTree = "<group>";
@@ -412,6 +448,14 @@
 				187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */,
 				18854B9915AC2E7300E7B4AB /* NSArray+Extension.h */,
 				18854B9A15AC2E7300E7B4AB /* NSArray+Extension.m */,
+				081E57F315B1C7660007055E /* UITableView+Extension.h */,
+				081E57F415B1C7660007055E /* UITableView+Extension.m */,
+				081E57F615B1C7E50007055E /* UILabel+Extension.h */,
+				081E57F715B1C7E50007055E /* UILabel+Extension.m */,
+				081E57FC15B1D24C0007055E /* NSMutableDictionary+Extension.h */,
+				081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */,
+				081E57FF15B1D7C80007055E /* NSDate+Extension.h */,
+				081E580015B1D7C80007055E /* NSDate+Extension.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -419,6 +463,7 @@
 		18EE3E9915A160DF00A08B29 = {
 			isa = PBXGroup;
 			children = (
+				0819584615B19DD300CFDFE9 /* CustomBadge */,
 				18EE3EB915A160DF00A08B29 /* OVCRM */,
 				18EE3EA815A160DF00A08B29 /* Frameworks */,
 				18EE3EA615A160DF00A08B29 /* Products */,
@@ -638,6 +683,7 @@
 		18EE3F2315A160E100A08B29 /* SalesforceSDK */ = {
 			isa = PBXGroup;
 			children = (
+				0819584015B1964B00CFDFE9 /* SFJsonUtils.h */,
 				18EE3F2415A160E100A08B29 /* SalesforceSDKConstants.h */,
 				18EE3F2515A160E100A08B29 /* SFApplication.h */,
 				18EE3F2615A160E100A08B29 /* SFAuthorizingViewController.h */,
@@ -724,6 +770,8 @@
 				18D52FC215AABF7C00C70E16 /* OVSyncController.m */,
 				18D52FC715AAC55A00C70E16 /* OVSyncController+UITableViewController.m */,
 				18D52FCB15AAC8E600C70E16 /* OVSyncController+OVSyncProtocal.m */,
+				081E57ED15B1A4FF0007055E /* OVSyncController+UploadProcess.m */,
+				081E57FA15B1CBE10007055E /* OVSyncController+SFRestDelegate.m */,
 				18EE3F6515A173BD00A08B29 /* OVMenuController.h */,
 				18EE3F6615A173BD00A08B29 /* OVMenuController.m */,
 				18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */,
@@ -777,6 +825,8 @@
 				18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */,
 				18C4C6F815B13DEB00C2ACB0 /* SFSalesTalk.h */,
 				18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */,
+				0819583815B18AC300CFDFE9 /* SFUser.h */,
+				0819583915B18AC300CFDFE9 /* SFUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -878,6 +928,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				081E57EB15B1A05E0007055E /* CustomBadge.m in Sources */,
+				0819584915B19F9200CFDFE9 /* CustomBadge.h in Sources */,
 				18EE3EC015A160DF00A08B29 /* main.m in Sources */,
 				18EE3F4A15A160E100A08B29 /* AppDelegate.m in Sources */,
 				18EE3F4D15A160E100A08B29 /* RootViewController.m in Sources */,
@@ -922,6 +974,13 @@
 				18C4C6F415B13DB700C2ACB0 /* SFPriceBook.m in Sources */,
 				18C4C6F715B13DDA00C2ACB0 /* SFPCBrief.m in Sources */,
 				18C4C6FA15B13DED00C2ACB0 /* SFSalesTalk.m in Sources */,
+				0819583A15B18AC300CFDFE9 /* SFUser.m in Sources */,
+				081E57EE15B1A4FF0007055E /* OVSyncController+UploadProcess.m in Sources */,
+				081E57F515B1C7660007055E /* UITableView+Extension.m in Sources */,
+				081E57F815B1C7E50007055E /* UILabel+Extension.m in Sources */,
+				081E57FB15B1CBE20007055E /* OVSyncController+SFRestDelegate.m in Sources */,
+				081E57FE15B1D24C0007055E /* NSMutableDictionary+Extension.m in Sources */,
+				081E580115B1D7C90007055E /* NSDate+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

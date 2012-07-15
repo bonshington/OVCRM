@@ -44,9 +44,13 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
-@synthesize db, master, detail, sync, user;
+@synthesize db, master, detail, sync, user, registeredUploadStatusChange;
 
 SFIdentityCoordinator *_coordinator;
+
++(AppDelegate *) sharedInstance{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 #pragma mark - Remote Access / OAuth configuration
 
@@ -67,8 +71,39 @@ SFIdentityCoordinator *_coordinator;
 		[self.master reloadData];
 }
 
-+(AppDelegate *) sharedInstance{
-    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+#pragma mark - Upload Process
+
+-(void) registerUploadTaskChange:(id<OVUploadProtocal>)control{
+	
+	if(self.registeredUploadStatusChange == nil)
+		self.registeredUploadStatusChange = [NSMutableArray new];
+	
+	[self.registeredUploadStatusChange addObject:control];
+}
+
+-(int) refreshUploadTask{
+	
+	FMResultSet *result = [self.db executeQuery:@"select count(*) from Upload where syncTime is null"];
+	
+	[result next];
+	
+	int left = [result intForColumnIndex:0];
+	
+	[result close];
+	
+	if(self.registeredUploadStatusChange != nil){
+		[self.registeredUploadStatusChange enumerateObjectsUsingBlock:^(id<OVUploadProtocal> control, NSUInteger index, BOOL *stop){
+			[control updateUploadStatus:left];
+		}];
+	}
+	
+	return left;
+}
+
+-(void) updateUploadStatus:(int)tasksLeft{
+	
+	[UIApplication sharedApplication].applicationIconBadgeNumber = tasksLeft;
 }
 
 
@@ -80,6 +115,13 @@ SFIdentityCoordinator *_coordinator;
 
 - (UIViewController*)newRootViewController {
     
+	[self registerUploadTaskChange:self];
+	
+	
+	//SFIdentityCoordinator retrieve user data
+	
+	[UIApplication sharedApplication].applicationIconBadgeNumber += 1;
+	
 	self.user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 				 @"10390230", @"route",
 				 @"2000-01-01", @"lastSyncDate", 

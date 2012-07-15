@@ -64,6 +64,12 @@
         [self sync];
     }
     
+	
+	
+	// register upload change
+	[[AppDelegate sharedInstance] registerUploadTaskChange:self];
+	
+	
     
     //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Account"];
     //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Event"];
@@ -92,34 +98,8 @@
     
     AppDelegate *app = [AppDelegate sharedInstance];
     app.db = [OVDatabase new];
-    
-    if(!app.db.open) [app.db open];
-    
-	//[app.db executeUpdate:@"drop table Parameter"];
-	
-    FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter"];
-    
-    BOOL valid = result != nil && result.hasAnotherRow;
-    
-    [result close];
-    
-    
-    if (!valid){    
-        NSArray *initScript = [[NSArray alloc] initWithObjects:
-                               @"create table if not exists Parameter(tag text, key text, val text, primary key (tag, key))", 
-                               @"insert or replace into Parameter(tag, key, val) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
-                               nil];
-        
-        [app.db beginTransaction];
-        
-        for (NSString *script in initScript) {
-            [app.db executeUpdate:script];
-        }
-        
-        [app.db commit];
-    }
-    
-    return valid;
+
+    return app.db.open;
 }
 
 -(void) sync{
@@ -159,6 +139,24 @@
 	else{
 		[self.searchDisplayController setActive:NO];
 		[self.searchDisplayController.searchBar setUserInteractionEnabled:NO];
+	}
+}
+
+-(void) updateUploadStatus:(int)tasksLeft{
+	
+	UITableViewCell *cell = (UITableViewCell *)[self.tableView viewWithTag:tagForCellSF];
+	
+	if(tasksLeft == 0){
+		cell.accessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
+	}
+	else{
+		cell.accessoryView = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d", tasksLeft]
+												withStringColor:[UIColor whiteColor] 
+												 withInsetColor:[UIColor redColor] 
+												 withBadgeFrame:YES 
+											withBadgeFrameColor:[UIColor whiteColor] 
+													  withScale:1.0
+													withShining:YES];
 	}
 }
 

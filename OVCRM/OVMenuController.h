@@ -10,8 +10,9 @@
 #import "SFSearchManager.h"
 #import "Appdelegate.h"
 #import "OVWebViewProtocal.h"
+#import "CustomBadge.h"
 
-@interface OVMenuController : UIViewController <OVWebViewProtocal>
+@interface OVMenuController : UIViewController <OVWebViewProtocal, OVUploadProtocal>
 
 
 @property(nonatomic, retain) IBOutlet UITableView *tableView;

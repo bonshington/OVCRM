@@ -20,5 +20,9 @@
 #define tagForTableName     1000
 #define tagForSFAccountId   1001
 #define tagForSFEventId     1002
+#define tagForUploadPk		1003
+#define tagForUploadObject	1004
+#define tagForUploadId		1005
+#define tagForUploadJson	1006
 
 #define SETTING_MENU_SEARCH_LIMIT 25

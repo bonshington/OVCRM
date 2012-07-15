@@ -8,6 +8,7 @@
 
 #import "sObject.h"
 #import "AppDelegate.h"
+#import "SFAccount.h"
 
 @implementation sObject
 
@@ -156,5 +157,24 @@ didLoadResponse:(id)jsonResponse{
 
     [[SFRestAPI sharedInstance] send:request delegate:responder];
 }
+
++(NSString *)SFNameForSqlTable:(NSString *)table{
+	
+	NSDictionary *mapping = [NSDictionary dictionaryWithObjectsAndKeys:
+							 @"", @"", 
+							 nil];
+	
+	return [mapping objectForKey:table];
+}
+
++(NSDictionary *)mappingForSObject:(NSString *)object{
+	
+	if([object isEqualToString:@"Account"]){
+		return [[SFAccount new] mapping];
+	}
+	
+	return  nil;
+}
+
 
 @end

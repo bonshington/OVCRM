@@ -33,24 +33,26 @@
     }
 	else{
 		
-		// Syned
+		// All synced
 		
 		self.processing = nil;
-		[self.tableView selectRowAtIndexPath:nil animated:YES scrollPosition:UITableViewScrollPositionNone];
-		[(OVMenuController *)[AppDelegate sharedInstance].master setActive:YES];
 		
 		// update last sync
-		
-		NSDateFormatter* dateFormatter = [NSDateFormatter new];
-		[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-		
-		NSString *today = [dateFormatter stringFromDate:[NSDate date]];
+		NSString *today = [[NSDate date] format:@"yyyy-MM-dd"];
 
 		[[OVDatabase sharedInstance] executeQuery:@"update Parameter set val = ? where tag = 'CONFIG' key = 'LAST_SYNC' ", today];
 		
 		[[AppDelegate sharedInstance].user setValue:today
 											 forKey:@"lastSyncDate"];
-		[(OVMenuController *)[AppDelegate sharedInstance].master reloadData];
+		
+		
+		// refresh things
+		OVMenuController *menu = (OVMenuController *)[AppDelegate sharedInstance].master;
+		[menu setActive:YES];
+		[menu reloadData];
+		
+		[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+		
 	}
 }
 

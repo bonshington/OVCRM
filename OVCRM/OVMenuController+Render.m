@@ -10,6 +10,7 @@
 #import "RKJSONParserJSONKit.h"
 #import "NSDictionary+SFSchema.h"
 
+
 #import "Constant.h"
 
 @implementation OVMenuController (Render)
@@ -31,19 +32,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.tag = tagForCellPlanVisit;
         
-        
-        UILabel *labelForAccountId = [UILabel new];
-        labelForAccountId.tag = tagForSFAccountId;
-        labelForAccountId.text = [data objectForKey:@"WhatId"];
-        labelForAccountId.hidden = YES;
-        
-        UILabel *labelForEventId = [UILabel new];
-        labelForEventId.tag = tagForSFEventId;
-        labelForEventId.text = [data objectForKey:@"Id"];
-        labelForEventId.hidden = YES;
-        
-        [cell addSubview:labelForAccountId];
-        [cell addSubview:labelForEventId];
+        [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"WhatId"] withTag:tagForSFAccountId]];
+        [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"Id"] withTag:tagForSFEventId]];
     }
     
     return cell;
@@ -57,9 +47,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
-        
         cell.tag = tagForCellCheckedIn;
-        
     }
     
     return cell;
@@ -91,13 +79,24 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         
         cell.textLabel.text = @"Sync";
-        cell.accessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
         cell.tag = tagForCellSF;
         
     }
 	
+	FMResultSet *result = [[OVDatabase sharedInstance] executeQuery:@"select count(*) from Upload where syncTime is null"];
+	[result next];
+	
+	int leftUnsync = [result intForColumnIndex:0];
+	
+	[self updateUploadStatus:leftUnsync];
+	
+	[UIApplication sharedApplication].applicationIconBadgeNumber = leftUnsync;
+	
 	cell.detailTextLabel.text = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
     
+	
+	[result close];
+	
     return cell;
     
 }

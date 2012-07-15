@@ -53,13 +53,28 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         
         switch (indexPath.section) {
-            case OVSYNC_SECTION_UPLOAD:
-                cell.textLabel.text = [[self.upload allKeys] objectAtIndex:indexPath.row];
-                cell.detailTextLabel.text = @"...";
+            case OVSYNC_SECTION_UPLOAD:{
+				NSDictionary *entry = [self.upload objectAtIndex:indexPath.row];
+				
+                cell.textLabel.text = [entry objectForKey:@"sObject"];
+                cell.detailTextLabel.text = [entry objectForKey:@"createTime"];
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 cell.tag = tagForCellSyncUpload;
+				
+				[cell addSubview:[UILabel hiddenLabelForText:[NSString stringWithFormat:@"%d", [entry objectForKey:@"pk"]] 
+													 withTag:tagForUploadPk]];
+				
+				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"sObject"]
+													 withTag:tagForUploadObject]];
+				
+				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"Id"]
+													 withTag:tagForUploadId]];
+				
+				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"json"]
+													 withTag:tagForUploadJson]];
+				
                 break;
-                
+			}
             case OVSYNC_SECTION_DOWNLOAD:
                 cell.textLabel.text = [[self.download allKeys] objectAtIndex:indexPath.row];
                 cell.detailTextLabel.text = @"...";

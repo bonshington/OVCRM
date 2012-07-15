@@ -22,12 +22,13 @@
 		self.checkedAccountId = [result stringForColumnIndex:0];
 		
 		if(self.checkedAccountId != nil){
-			[db registerUpload:@"Checkin" withData:[NSDictionary dictionaryWithObjectsAndKeys:
-													self.checkedAccountId, @"AccountId",
-													self.checkinEventId, @"EventId", 
-													@"my id", @"UserId",
-													@"date time", @"time"
-													nil]];
+			[db sfInsertInto:@"Checkin" 
+					withData:[NSDictionary dictionaryWithObjectsAndKeys:
+							  self.checkedAccountId, @"AccountId",
+							  self.checkinEventId, @"EventId", 
+							  @"my id", @"UserId",
+							  @"date time", @"time",
+							  nil]];
 		}
 	}
 }

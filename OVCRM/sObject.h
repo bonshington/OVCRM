@@ -21,5 +21,8 @@
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder;
 
++(NSString *)SFNameForSqlTable:(NSString *)table;
+
++(NSDictionary *)mappingForSObject:(NSString *)object;
 
 @end

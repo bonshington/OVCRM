@@ -9,6 +9,9 @@
 #import "OVDatabase.h"
 #import "AppDelegate.h"
 
+#import "SFJsonUtils.h"
+
+
 @implementation OVDatabase
 
 -(id) init{
@@ -34,6 +37,32 @@
         
         [app.db open];
 		
+		
+		/* init tables */
+		FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter"];
+		
+		BOOL valid = result != nil && result.hasAnotherRow;
+		
+		[result close];
+		
+		
+		if (!valid){    
+			NSArray *initScript = [[NSArray alloc] initWithObjects:
+								   @"create table if not exists Parameter(tag text, key text, val text, primary key (tag, key))", 
+								   @"insert or replace into Parameter(tag, key, val) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
+								   @"create table if not exists Upload(pk INTEGER PRIMARY KEY AUTOINCREMENT, sObject TEXT, Id TEXT, createTime TEXT, syncTime TEXT, json TEXT)",
+								   nil];
+			
+			[app.db beginTransaction];
+			
+			for (NSString *script in initScript) {
+				[app.db executeUpdate:script];
+			}
+			
+			[app.db commit];
+		}
+		
+		
 		//[app.db executeUpdate:@"drop table Event"];
     }  
     else{
@@ -43,11 +72,31 @@
     return self;
 }
 
--(void) registerUpload:(NSString *)name withData:(NSDictionary *)data{
+-(void) sfInsertInto:(NSString *)table withData:(NSDictionary *)data{
 	
-	// serialize data (json)
+	
+	NSMutableDictionary *transform = [[NSMutableDictionary alloc] initWithDictionary:data];
+	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"id"];
+	[transform removeObjectsForKeys:[NSArray arrayWithObjects:@"Id", @"pk", @"PK", @"Pk", @"id", nil]];
+	
+	// get sfname
+	NSString *object = [sObject SFNameForSqlTable:table];
+	
+	
+	// mapping
+	[[sObject mappingForSObject:object] enumerateKeysAndObjectsUsingBlock:^(NSString *sf, NSString *sql, BOOL *stop){
+		[transform changeKeyFrom:sql to:sf];
+	}];
+	
+	
 	// insert to db
+	NSString *serialized = [SFJsonUtils JSONRepresentation:data];
+	[self executeUpdate:@"insert into Upload(sObject, Id, createTime, json) values(?, ?, date('now'), ?)", object, objectId, serialized];
 	
+	
+	// update badge
+	[[AppDelegate sharedInstance] refreshUploadTask];
+
 }
 
 + (OVDatabase *) sharedInstance{

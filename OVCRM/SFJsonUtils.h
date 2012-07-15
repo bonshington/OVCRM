@@ -1,5 +1,6 @@
 /*
  Copyright (c) 2011, salesforce.com, inc. All rights reserved.
+ Author: Todd Stellanova
  
  Redistribution and use of this software in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -22,50 +23,42 @@
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <Foundation/Foundation.h>
 
 
-#import "SFNativeRestAppDelegate.h"
-#import "FMDatabase.h"
-#import "OVDatabase.h"
-#import "sObject.h"
-#import "Constant.h"
-#import "FMResultSet+Extension.h"
-#import "NSString+Extension.h"
-#import "NSArray+Extension.h"
-#import "NSDictionary+Extension.h"
-#import "NSDictionary+NullHandling.h"
-#import "NSMutableDictionary+Extension.h"
-#import "Constant.h"
-#import "OVUploadProtocal.h"
-#import "UITableView+Extension.h"
-#import "UILabel+Extension.h"
-#import "SFJsonUtils.h"
-#import "NSDate+Extension.h"
-
-@interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal>{
-
-}
-
-@property (nonatomic, retain) NSDictionary *user;
-@property (nonatomic, retain) UIViewController *master;
-@property (nonatomic, retain) UINavigationController *detail;
-@property (nonatomic, retain) OVDatabase *db;
-@property (nonatomic, retain) id<SFRestDelegate> sync;
-@property (nonatomic, retain) NSMutableArray *registeredUploadStatusChange;
-
--(SFIdentityData *) getIdentity;
-
--(void) registerUploadTaskChange:(id<OVUploadProtocal>)control;
--(int) refreshUploadTask;
-
-+(AppDelegate *) sharedInstance;
+/**
+ This class helps decouple framework code from the underlying JSON implementation.
+ */
+@interface SFJsonUtils : NSObject
 
 
+/**
+ * Creates the JSON representation of an object.
+ * @param object The object to JSON-ify
+ * @return a JSON string representation of an Objective-C object
+ */
++ (NSString*)JSONRepresentation:(id)object;
 
+/**
+ * Creates the JSON-as-NSData representation of an object.
+ * @param obj The object to JSON-ify.
+ * @return A JSON string in NSData format, UTF8 encoded.
+ */
++(NSData*)JSONDataRepresentation:(id)obj;
+
+
+/**
+ * Creates an object from a string of JSON data.
+ * @param jsonString A JSON object string.
+ * @return An Objective-C object such as an NSDictionary or NSArray.
+ */
++ (id)objectFromJSONString:(NSString *)jsonString;
+
+/**
+ * Creates an object from a JSON-as-NSData object.
+ * @param jsonData JSON data in an NSData wrapper (UTF8 encoding assumed).
+ * @return An Objective-C object such as an NSDictionary or NSArray.
+ */
++ (id)objectFromJSONData:(NSData *)jsonData;
 
 @end
-
-@interface AppDelegate (SFIdentityCoordinatorDelegate)
-
-@end
-

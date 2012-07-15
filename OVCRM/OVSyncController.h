@@ -26,10 +26,12 @@
 @interface OVSyncController : UITableViewController
 
 @property (nonatomic, retain) NSIndexPath *processing;
-@property (nonatomic, retain) NSDictionary *upload;
+@property (nonatomic, retain) NSArray *upload;
 @property (nonatomic, retain) NSDictionary *download;
 
+
 -(void)sync;
+-(void) upsertTo:(NSString *)table withData:(NSDictionary *)data;
 
 @end
 
@@ -40,5 +42,20 @@
 
 
 @interface OVSyncController (OVSyncProtocal) <OVSyncProtocal>
+
+@end
+
+
+@interface OVSyncController (UploadProcess)<SFRestDelegate>
+
+-(void) upsert:(NSString *)uploadPk;
+
+-(void) upsertInto:(NSString *)sfObject toId:(NSString *)objectId values:(NSDictionary *)values;
+
+@end
+
+
+
+@interface OVSyncController (SFRestDelegate)<SFRestDelegate>
 
 @end

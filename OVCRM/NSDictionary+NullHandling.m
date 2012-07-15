@@ -31,4 +31,19 @@
     return self;
 }
 
+-(id) coalesce:(id)keys, ...{
+	
+	va_list args;
+    va_start(args, keys);
+	
+	for (NSString *key = keys; key != nil; key = va_arg(args, NSString*))
+    {
+        if([self objectForKey:key] != nil)
+			return [self objectForKey:key];
+    }
+	
+	return  nil;
+}
+
+
 @end
