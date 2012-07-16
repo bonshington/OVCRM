@@ -7,6 +7,7 @@
 //
 
 #import "OVMenuController.h"
+#import "CallCard.h"
 
 @implementation OVMenuController (CallVisit)
 
@@ -17,20 +18,29 @@
 	
 	FMResultSet *result = [db executeQuery:@"select Id from Account where Id in (select WhatId from Event where Id = ?)", self.checkinEventId];
 	
-	if(result.hasAnotherRow){
-		[result next];
-		self.checkedAccountId = [result stringForColumnIndex:0];
+	[result next];
+	self.checkedAccountId = [result stringForColumnIndex:0];
 		
-		if(self.checkedAccountId != nil){
-			[db sfInsertInto:@"Checkin" 
-					withData:[NSDictionary dictionaryWithObjectsAndKeys:
-							  self.checkedAccountId, @"AccountId",
-							  self.checkinEventId, @"EventId", 
-							  @"my id", @"UserId",
-							  @"date time", @"time",
-							  nil]];
-		}
+	if(self.checkedAccountId != nil){
+		[db sfInsertInto:@"Checkin" 
+				withData:[NSDictionary dictionaryWithObjectsAndKeys:
+						  self.checkedAccountId, @"AccountId",
+						  self.checkinEventId, @"EventId", 
+						  @"my id", @"UserId",
+						  @"date time", @"time",
+						  @"10101", @"lat",
+						  @"1001", @"lng",
+						  @"10101", @"radius",
+						  nil]];
 	}
+	
+	[self reloadData];
+	
+	CallCard * nextView = [[CallCard alloc]initWithNibName:@"CallCard" bundle:nil];
+    [nextView setPlan_ID:self.checkinEventId];
+    [nextView setAccount_ID:self.checkedAccountId];
+	
+    [[AppDelegate sharedInstance].detail pushViewController:nextView animated:YES];
 }
 
 -(void) checkout{

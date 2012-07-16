@@ -36,6 +36,7 @@ sqlite3_stmt *statement;
     return @"Plan_ID ,Account_ID ,Account_Name ,Date_Plan ,TimePlan_In ,TimePlan_Out ,Visit_Date ,Visit_TimeIn ,Visit_TimeOut ,Latitude ,Longtitude , LastSyncDate , LastSyncTime";
 }
 
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     const char *cQuery = [sqlText UTF8String]; 
@@ -233,5 +234,5 @@ sqlite3_stmt *statement;
     
     return result;
 }
-
+*/
 @end

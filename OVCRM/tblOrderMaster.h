@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
+#import "OVDataseProxy.h"
 
-@interface tblOrderMaster : NSObject
+@interface tblOrderMaster : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *plan_ID;
 @property(nonatomic,strong) NSString *pK;
@@ -21,10 +22,6 @@
 @property(strong , nonatomic) NSMutableArray  *orderMasterList;
 
 -(NSString *)DB_Field;
--(NSMutableArray *)QueryData:(NSString *)sqlText; 
--(bool)OpenConnection;
--(bool)ExecSQL : (NSString *)addText
- parameterArray:(NSArray *) paramArr;
 
 -(NSString *)GetMaxRnNo;
 

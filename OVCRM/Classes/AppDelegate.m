@@ -63,14 +63,6 @@ SFIdentityCoordinator *_coordinator;
     return OAuthRedirectURI;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application{
-	
-	[super applicationDidBecomeActive:application];
-	
-	if(self.master != nil)
-		[self.master reloadData];
-}
-
 
 #pragma mark - Upload Process
 
@@ -125,9 +117,40 @@ SFIdentityCoordinator *_coordinator;
 	self.user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 				 @"10390230", @"route",
 				 @"2000-01-01", @"lastSyncDate", 
+				 @"100.0", @"lat",
+				 @"200.0", @"lng",
+				 @"300.0", @"radius",
 				 nil];
 	
     return [OVLandingController new];
+}
+
+
+#pragma mark - screen handling
+
+- (void)applicationDidBecomeActive:(UIApplication *)application{
+	
+	[super applicationDidBecomeActive:application];
+	
+	if(!self.db.open){
+		[self.db open];
+	}
+	
+	[super applicationDidBecomeActive:application];
+	
+	if(self.master != nil)
+		[self.master reloadData];
+	
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application{
+	
+	if(self.db.open){
+		[self.db closeOpenResultSets];
+		[self.db close];
+	}
+	
+	[super applicationWillResignActive:application];
 }
 
 @end

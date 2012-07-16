@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "OVDataseProxy.h"
 
-@interface tblPlan : NSObject
+@interface tblPlan : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *sale_ID;
 @property(nonatomic,strong) NSString *plan_ID;
@@ -29,9 +30,12 @@
 @property(strong , nonatomic) NSMutableArray  *planList;
 
 -(NSString *)DB_Field;
+
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(bool)OpenConnection;
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr;
+*/
 
 @end

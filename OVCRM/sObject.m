@@ -161,7 +161,7 @@ didLoadResponse:(id)jsonResponse{
 +(NSString *)SFNameForSqlTable:(NSString *)table{
 	
 	NSDictionary *mapping = [NSDictionary dictionaryWithObjectsAndKeys:
-							 @"", @"", 
+							 @"Collection", @"Collection__c", 
 							 nil];
 	
 	return [mapping objectForKey:table];

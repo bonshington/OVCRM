@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
-@interface tblCalcPromotion : NSObject
+#import "OVDataseProxy.h"
+
+@interface tblCalcPromotion : OVDataseProxy <OVDatabaseConsumeProtocal>
+
 //PK, PromotionName, ItemOrder, Quantity, Amount, ItemPromotion
 @property (strong, nonatomic) NSString * pk;
 @property (strong, nonatomic) NSString * promotionName;
@@ -23,8 +26,6 @@
 
 -(NSString *)DB_Field;
 -(NSMutableArray *)QueryPromotionWithProductCodeIn:(NSString *) productCodeString;
--(bool)OpenConnection;
--(bool)ExecSQL : (NSString *)addText
- parameterArray:(NSArray *) paramArr;
+
 
 @end

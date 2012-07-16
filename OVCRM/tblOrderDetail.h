@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
+#import "OVDataseProxy.h"
 
-@interface tblOrderDetail : NSObject
+@interface tblOrderDetail : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *pK;
 @property(nonatomic,strong) NSString *product_ID;
@@ -27,12 +28,9 @@
 @property(strong , nonatomic) NSMutableArray  *orderDetailList;
 
 -(NSString *)DB_Field;
--(NSMutableArray *)QueryData:(NSString *)sqlText; 
+//-(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(NSMutableArray *)QueryData2:(NSString *)sqlText; 
 -(NSMutableArray *)loadDataTakeOrderWithSuggestForAccountID:(NSString *)Account_ID;
--(bool)OpenConnection;
--(bool)ExecSQL : (NSString *)addText
- parameterArray:(NSArray *) paramArr;
 
 -(NSString *)GetMaxRnNo;
 

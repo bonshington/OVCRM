@@ -26,7 +26,7 @@ sqlite3_stmt *statement;
 {
     return @"Plan_ID, RunNo ,SaleTalk , ST_Date , ST_Time ";
 }
-
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     const char *cQuery = [sqlText UTF8String]; 
@@ -156,6 +156,6 @@ sqlite3_stmt *statement;
     
     return result;
 }
-
+*/
 
 @end

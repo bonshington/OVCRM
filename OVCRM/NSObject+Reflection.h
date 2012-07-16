@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "objc/runtime.h"
 
 @interface NSObject (Reflection)
+
+- (NSDictionary *)properties;
 
 @end

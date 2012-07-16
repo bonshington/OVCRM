@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "OVDataseProxy.h"
 
-@interface tblPCBrief : NSObject
+@interface tblPCBrief : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property (nonatomic,strong) NSString *plan_ID;
 @property (nonatomic,assign) NSInteger RunNo;
@@ -20,9 +21,12 @@
 @property(strong , nonatomic) NSMutableArray  *pcBriefList;
 
 -(NSString *)DB_Field;
+
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(bool)OpenConnection;
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr;
-
+*/
+ 
 @end

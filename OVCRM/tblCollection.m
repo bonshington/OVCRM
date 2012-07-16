@@ -28,6 +28,32 @@ sqlite3_stmt *statement;
     return @"Plan_ID, PK, Collect_Date, Collect_Time, Invoice_No, Amount, PayType";
 }
 
+-(NSString *)GetMaxRnNo
+{
+    
+    NSString * tempMax = nil;  
+    NSString * sql = [NSString stringWithFormat:@"Select PK From Collection Where CAST(PK as INTEGER) = (Select MAX(CAST(PK as INTEGER))  From Collection)"];
+    
+    const char *cQuery = [sql UTF8String]; 
+    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Query Error:%@",statement);
+    }       
+    NSInteger *count=0;
+    while (sqlite3_step(statement) == SQLITE_ROW)
+    {
+        const char *PK = (const char *) sqlite3_column_text(statement, 0);
+        if (PK != NULL) 
+        {
+            tempMax = [NSString stringWithUTF8String: PK]; 
+        }  
+        count = count+1;
+    }
+    return tempMax;
+}
+
+/*
+
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     _collectionList = [[NSMutableArray alloc]init];
@@ -105,6 +131,8 @@ sqlite3_stmt *statement;
     return _collectionList;
 }
 
+/*
+ 
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr
 {
@@ -168,29 +196,9 @@ sqlite3_stmt *statement;
     }
     return result;
 }
+ 
+ */
 
--(NSString *)GetMaxRnNo
-{
-    
-    NSString * tempMax = nil;  
-    NSString * sql = [NSString stringWithFormat:@"Select PK From Collection Where CAST(PK as INTEGER) = (Select MAX(CAST(PK as INTEGER))  From Collection)"];
-    
-    const char *cQuery = [sql UTF8String]; 
-    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
-    {
-        NSLog(@"Query Error:%@",statement);
-    }       
-    NSInteger *count=0;
-    while (sqlite3_step(statement) == SQLITE_ROW)
-    {
-        const char *PK = (const char *) sqlite3_column_text(statement, 0);
-        if (PK != NULL) 
-        {
-            tempMax = [NSString stringWithUTF8String: PK]; 
-        }  
-        count = count+1;
-    }
-    return tempMax;
-}
+
 
 @end

@@ -45,6 +45,7 @@ sqlite3_stmt *statement;
     return @"PK,sale_ID,product_Code,product_Name,lastSyncDate,lastSyncTime,cost,weight,packaging,width,packSize,productLong,height,product_Category,brand,shortName,product_Family,target,unitName,isCancel,Active_Flag,Expire_Flag ";
 }
 
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     productList = [[NSMutableArray alloc] init] ;
@@ -312,5 +313,5 @@ sqlite3_stmt *statement;
     
     return result;
 }
-
+*/
 @end

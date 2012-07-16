@@ -119,7 +119,7 @@ titleForHeaderInSection:(NSInteger)section{
     
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     
-    cell.textLabel.text = @"tt";
+    cell.textLabel.text = @"...";
     
     return cell;
 }
@@ -143,10 +143,15 @@ titleForHeaderInSection:(NSInteger)section{
             NSString *accountId = ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text;
             self.checkinEventId = ((UILabel *)[tappedCell viewWithTag:tagForSFEventId]).text;
 			
-            UIBarButtonItem *checkin = [[UIBarButtonItem alloc] initWithTitle:@"Check-in" 
-                                                                        style:UIBarButtonItemStyleDone 
-                                                                       target:self 
-                                                                       action:@selector(checkin)];
+            UIBarButtonItem *checkin = nil;
+			
+			
+			if(self.checkedAccountId == nil){
+				checkin = [[UIBarButtonItem alloc] initWithTitle:@"Check-in"
+														   style:UIBarButtonItemStyleDone 
+														  target:self 
+														  action:@selector(checkin)];
+			}                           
             
             // show account with checkin
 			[self invokeSFObject:@"Account" 
@@ -156,7 +161,7 @@ titleForHeaderInSection:(NSInteger)section{
         }break;
             
         case tagForCellCheckedIn:
-            // show account with checkout
+            // open 7 steps with checkout button
             ;
             
             break;

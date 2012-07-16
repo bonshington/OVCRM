@@ -12,6 +12,7 @@
 #import "FMDatabase.h"
 #import "SFObjectProtocal.h"
 #import "NSString+Extension.h"
+#import "FMResultSet+Extension.h"
 
 @interface OVDatabase : FMDatabase
 

@@ -43,6 +43,100 @@
 		18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048615A56A1F000719DB /* NSString+Extension.m */; };
 		18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */; };
 		18B1048D15A5961D000719DB /* SFVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048C15A5961D000719DB /* SFVisit.m */; };
+		18B5AEE215B3EF3300089400 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5AEE115B3EF3300089400 /* CoreLocation.framework */; };
+		18B5AEE415B3EF3F00089400 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5AEE315B3EF3F00089400 /* MapKit.framework */; };
+		18B5AEE915B3F25900089400 /* CallCard.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAA15B3E5AC00089400 /* CallCard.h */; };
+		18B5AEEA15B3F25900089400 /* CallCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAB15B3E5AC00089400 /* CallCard.m */; };
+		18B5AEEB15B3F25900089400 /* CallCard.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAC15B3E5AC00089400 /* CallCard.xib */; };
+		18B5AEEC15B3F25900089400 /* Merchandise.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAD15B3E5AC00089400 /* Merchandise.h */; };
+		18B5AEED15B3F25900089400 /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAE15B3E5AC00089400 /* Merchandise.m */; };
+		18B5AEEE15B3F25900089400 /* Merchandise.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAF15B3E5AC00089400 /* Merchandise.xib */; };
+		18B5AEEF15B3F25900089400 /* SalesNote.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB015B3E5AC00089400 /* SalesNote.h */; };
+		18B5AEF015B3F25900089400 /* SalesNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB115B3E5AC00089400 /* SalesNote.m */; };
+		18B5AEF115B3F25900089400 /* SalesNote.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB215B3E5AC00089400 /* SalesNote.xib */; };
+		18B5AEF215B3F25900089400 /* InvoiceList.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB315B3E5AC00089400 /* InvoiceList.h */; };
+		18B5AEF315B3F25900089400 /* InvoiceList.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB415B3E5AC00089400 /* InvoiceList.m */; };
+		18B5AEF415B3F25900089400 /* InvoiceList.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB515B3E5AC00089400 /* InvoiceList.xib */; };
+		18B5AEF515B3F25900089400 /* InvoiceDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB615B3E5AC00089400 /* InvoiceDetail.h */; };
+		18B5AEF615B3F25900089400 /* InvoiceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB715B3E5AC00089400 /* InvoiceDetail.m */; };
+		18B5AEF715B3F25900089400 /* InvoiceDetail.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB815B3E5AC00089400 /* InvoiceDetail.xib */; };
+		18B5AEF815B3F25900089400 /* Collection.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEB915B3E5AC00089400 /* Collection.h */; };
+		18B5AEF915B3F25900089400 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEBA15B3E5AC00089400 /* Collection.m */; };
+		18B5AEFA15B3F25900089400 /* Collection.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEBB15B3E5AC00089400 /* Collection.xib */; };
+		18B5AEFB15B3F25900089400 /* TakeOrder.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEBC15B3E5AC00089400 /* TakeOrder.h */; };
+		18B5AEFC15B3F25900089400 /* TakeOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEBD15B3E5AC00089400 /* TakeOrder.m */; };
+		18B5AEFD15B3F25900089400 /* TakeOrder.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEBE15B3E5AC00089400 /* TakeOrder.xib */; };
+		18B5AEFE15B3F25900089400 /* Delivery.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEBF15B3E5AC00089400 /* Delivery.h */; };
+		18B5AEFF15B3F25900089400 /* Delivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC015B3E5AC00089400 /* Delivery.m */; };
+		18B5AF0015B3F25900089400 /* Delivery.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC115B3E5AC00089400 /* Delivery.xib */; };
+		18B5AF0115B3F25900089400 /* DeliverySummary.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC215B3E5AC00089400 /* DeliverySummary.h */; };
+		18B5AF0215B3F25900089400 /* DeliverySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC315B3E5AC00089400 /* DeliverySummary.m */; };
+		18B5AF0315B3F25900089400 /* DeliverySummary.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC415B3E5AC00089400 /* DeliverySummary.xib */; };
+		18B5AF0415B3F25900089400 /* CheckInPage.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC515B3E5AC00089400 /* CheckInPage.h */; };
+		18B5AF0515B3F25900089400 /* CheckInPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC615B3E5AC00089400 /* CheckInPage.m */; };
+		18B5AF0615B3F25900089400 /* CheckInPage.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC715B3E5AC00089400 /* CheckInPage.xib */; };
+		18B5AF0715B3F25900089400 /* PCBrief.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC815B3E5AC00089400 /* PCBrief.h */; };
+		18B5AF0815B3F25900089400 /* PCBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEC915B3E5AC00089400 /* PCBrief.m */; };
+		18B5AF0915B3F25900089400 /* PCBrief.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AECA15B3E5AC00089400 /* PCBrief.xib */; };
+		18B5AF0A15B3F25900089400 /* ProductDataDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AECB15B3E5AC00089400 /* ProductDataDetail.h */; };
+		18B5AF0B15B3F25900089400 /* ProductDataDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AECC15B3E5AC00089400 /* ProductDataDetail.m */; };
+		18B5AF0C15B3F25900089400 /* ProductDataDetail.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AECD15B3E5AC00089400 /* ProductDataDetail.xib */; };
+		18B5AF0D15B3F25900089400 /* MyTableViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AECE15B3E5AC00089400 /* MyTableViewCell.h */; };
+		18B5AF0E15B3F25900089400 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AECF15B3E5AC00089400 /* MyTableViewCell.m */; };
+		18B5AF0F15B3F25900089400 /* MyTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED015B3E5AC00089400 /* MyTableViewCell.xib */; };
+		18B5AF1015B3F25900089400 /* GoodReturnTBViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED115B3E5AC00089400 /* GoodReturnTBViewCell.h */; };
+		18B5AF1115B3F25900089400 /* GoodReturnTBViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED215B3E5AC00089400 /* GoodReturnTBViewCell.m */; };
+		18B5AF1215B3F25900089400 /* GoodReturnTBViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED315B3E5AC00089400 /* GoodReturnTBViewCell.xib */; };
+		18B5AF1315B3F25900089400 /* GoodsReturn.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED415B3E5AC00089400 /* GoodsReturn.h */; };
+		18B5AF1415B3F25900089400 /* GoodsReturn.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED515B3E5AC00089400 /* GoodsReturn.m */; };
+		18B5AF1515B3F25900089400 /* GoodsReturn.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED615B3E5AC00089400 /* GoodsReturn.xib */; };
+		18B5AF1615B3F25900089400 /* SearchProdTBViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED715B3E5AC00089400 /* SearchProdTBViewCell.h */; };
+		18B5AF1715B3F25900089400 /* SearchProdTBViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED815B3E5AC00089400 /* SearchProdTBViewCell.m */; };
+		18B5AF1815B3F25900089400 /* SearchProdTBViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AED915B3E5AC00089400 /* SearchProdTBViewCell.xib */; };
+		18B5AF1915B3F25900089400 /* SearchProduct.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEDA15B3E5AC00089400 /* SearchProduct.h */; };
+		18B5AF1A15B3F25900089400 /* SearchProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEDB15B3E5AC00089400 /* SearchProduct.m */; };
+		18B5AF1B15B3F25900089400 /* SearchProduct.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEDC15B3E5AC00089400 /* SearchProduct.xib */; };
+		18B5AF1C15B3F25900089400 /* ProductInAction.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8315B3E57600089400 /* ProductInAction.h */; };
+		18B5AF1D15B3F25900089400 /* ProductInAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8415B3E57600089400 /* ProductInAction.m */; };
+		18B5AF1E15B3F25900089400 /* tblMerchandize.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8515B3E57600089400 /* tblMerchandize.h */; };
+		18B5AF1F15B3F25900089400 /* tblMerchandize.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8615B3E57600089400 /* tblMerchandize.m */; };
+		18B5AF2015B3F25900089400 /* tblInvoice.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8715B3E57600089400 /* tblInvoice.h */; };
+		18B5AF2115B3F25900089400 /* tblInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8815B3E57600089400 /* tblInvoice.m */; };
+		18B5AF2215B3F25900089400 /* tblCollection.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8915B3E57600089400 /* tblCollection.h */; };
+		18B5AF2315B3F25900089400 /* tblCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8A15B3E57600089400 /* tblCollection.m */; };
+		18B5AF2415B3F25900089400 /* tblOrderMaster.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8B15B3E57600089400 /* tblOrderMaster.h */; };
+		18B5AF2515B3F25900089400 /* tblOrderMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8C15B3E57600089400 /* tblOrderMaster.m */; };
+		18B5AF2615B3F25900089400 /* tblOrderDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8D15B3E57600089400 /* tblOrderDetail.h */; };
+		18B5AF2715B3F25900089400 /* tblOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8E15B3E57600089400 /* tblOrderDetail.m */; };
+		18B5AF2815B3F25900089400 /* tblPromotion.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE8F15B3E57600089400 /* tblPromotion.h */; };
+		18B5AF2915B3F25900089400 /* tblPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9015B3E57600089400 /* tblPromotion.m */; };
+		18B5AF2A15B3F25900089400 /* tblPromotionCriteria.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9115B3E57600089400 /* tblPromotionCriteria.h */; };
+		18B5AF2B15B3F25900089400 /* tblPromotionCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9215B3E57600089400 /* tblPromotionCriteria.m */; };
+		18B5AF2C15B3F25900089400 /* tblPromotionLineItem.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9315B3E57600089400 /* tblPromotionLineItem.h */; };
+		18B5AF2D15B3F25900089400 /* tblPromotionLineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9415B3E57600089400 /* tblPromotionLineItem.m */; };
+		18B5AF2E15B3F25900089400 /* tblCalcPromotion.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9515B3E57600089400 /* tblCalcPromotion.h */; };
+		18B5AF2F15B3F25900089400 /* tblCalcPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9615B3E57600089400 /* tblCalcPromotion.m */; };
+		18B5AF3015B3F25900089400 /* cellTakeOrder.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9715B3E57600089400 /* cellTakeOrder.h */; };
+		18B5AF3115B3F25900089400 /* cellTakeOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9815B3E57600089400 /* cellTakeOrder.m */; };
+		18B5AF3215B3F25900089400 /* cellTakeOrder.xib in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9915B3E57600089400 /* cellTakeOrder.xib */; };
+		18B5AF3315B3F25900089400 /* tblParameter.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9A15B3E59D00089400 /* tblParameter.h */; };
+		18B5AF3415B3F25900089400 /* tblParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9B15B3E59D00089400 /* tblParameter.m */; };
+		18B5AF3515B3F25900089400 /* tblProduct.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9C15B3E59D00089400 /* tblProduct.h */; };
+		18B5AF3615B3F25900089400 /* tblProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9D15B3E59D00089400 /* tblProduct.m */; };
+		18B5AF3715B3F25900089400 /* tblReturnDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9E15B3E59D00089400 /* tblReturnDetail.h */; };
+		18B5AF3815B3F25900089400 /* tblReturnDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AE9F15B3E59D00089400 /* tblReturnDetail.m */; };
+		18B5AF3915B3F25A00089400 /* tblCallcard_Stock.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA015B3E59D00089400 /* tblCallcard_Stock.h */; };
+		18B5AF3A15B3F25A00089400 /* tblCallcard_Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA115B3E59D00089400 /* tblCallcard_Stock.m */; };
+		18B5AF3B15B3F25A00089400 /* tblCallCard.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA215B3E59D00089400 /* tblCallCard.h */; };
+		18B5AF3C15B3F25A00089400 /* tblCallCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA315B3E59D00089400 /* tblCallCard.m */; };
+		18B5AF3D15B3F25A00089400 /* tblPCBrief.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA415B3E59D00089400 /* tblPCBrief.h */; };
+		18B5AF3E15B3F25A00089400 /* tblPCBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA515B3E59D00089400 /* tblPCBrief.m */; };
+		18B5AF3F15B3F25A00089400 /* tblPlan.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA615B3E59D00089400 /* tblPlan.h */; };
+		18B5AF4015B3F25A00089400 /* tblPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA715B3E59D00089400 /* tblPlan.m */; };
+		18B5AF4115B3F25A00089400 /* tblSaleTalk.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA815B3E59D00089400 /* tblSaleTalk.h */; };
+		18B5AF4215B3F25A00089400 /* tblSaleTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEA915B3E59D00089400 /* tblSaleTalk.m */; };
+		18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AF4515B3F75300089400 /* OVDataseProxy.m */; };
+		18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AF4915B405CC00089400 /* NSObject+Reflection.m */; };
 		18C4C6E415B12DE900C2ACB0 /* SFMerchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6E315B12DE900C2ACB0 /* SFMerchandise.m */; };
 		18C4C6E815B1394E00C2ACB0 /* SFGoodsReturn.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6E715B1394E00C2ACB0 /* SFGoodsReturn.m */; };
 		18C4C6EB15B13B3900C2ACB0 /* SFCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6EA15B13B3800C2ACB0 /* SFCollection.m */; };
@@ -168,6 +262,103 @@
 		18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullHandling.m"; sourceTree = "<group>"; };
 		18B1048B15A5961D000719DB /* SFVisit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFVisit.h; sourceTree = "<group>"; };
 		18B1048C15A5961D000719DB /* SFVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFVisit.m; sourceTree = "<group>"; };
+		18B5AE8315B3E57600089400 /* ProductInAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductInAction.h; sourceTree = "<group>"; };
+		18B5AE8415B3E57600089400 /* ProductInAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductInAction.m; sourceTree = "<group>"; };
+		18B5AE8515B3E57600089400 /* tblMerchandize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblMerchandize.h; sourceTree = "<group>"; };
+		18B5AE8615B3E57600089400 /* tblMerchandize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblMerchandize.m; sourceTree = "<group>"; };
+		18B5AE8715B3E57600089400 /* tblInvoice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblInvoice.h; sourceTree = "<group>"; };
+		18B5AE8815B3E57600089400 /* tblInvoice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblInvoice.m; sourceTree = "<group>"; };
+		18B5AE8915B3E57600089400 /* tblCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblCollection.h; sourceTree = "<group>"; };
+		18B5AE8A15B3E57600089400 /* tblCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblCollection.m; sourceTree = "<group>"; };
+		18B5AE8B15B3E57600089400 /* tblOrderMaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblOrderMaster.h; sourceTree = "<group>"; };
+		18B5AE8C15B3E57600089400 /* tblOrderMaster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblOrderMaster.m; sourceTree = "<group>"; };
+		18B5AE8D15B3E57600089400 /* tblOrderDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblOrderDetail.h; sourceTree = "<group>"; };
+		18B5AE8E15B3E57600089400 /* tblOrderDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblOrderDetail.m; sourceTree = "<group>"; };
+		18B5AE8F15B3E57600089400 /* tblPromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblPromotion.h; sourceTree = "<group>"; };
+		18B5AE9015B3E57600089400 /* tblPromotion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblPromotion.m; sourceTree = "<group>"; };
+		18B5AE9115B3E57600089400 /* tblPromotionCriteria.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblPromotionCriteria.h; sourceTree = "<group>"; };
+		18B5AE9215B3E57600089400 /* tblPromotionCriteria.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblPromotionCriteria.m; sourceTree = "<group>"; };
+		18B5AE9315B3E57600089400 /* tblPromotionLineItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblPromotionLineItem.h; sourceTree = "<group>"; };
+		18B5AE9415B3E57600089400 /* tblPromotionLineItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblPromotionLineItem.m; sourceTree = "<group>"; };
+		18B5AE9515B3E57600089400 /* tblCalcPromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblCalcPromotion.h; sourceTree = "<group>"; };
+		18B5AE9615B3E57600089400 /* tblCalcPromotion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblCalcPromotion.m; sourceTree = "<group>"; };
+		18B5AE9715B3E57600089400 /* cellTakeOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cellTakeOrder.h; sourceTree = "<group>"; };
+		18B5AE9815B3E57600089400 /* cellTakeOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cellTakeOrder.m; sourceTree = "<group>"; };
+		18B5AE9915B3E57600089400 /* cellTakeOrder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = cellTakeOrder.xib; sourceTree = "<group>"; };
+		18B5AE9A15B3E59D00089400 /* tblParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblParameter.h; sourceTree = "<group>"; };
+		18B5AE9B15B3E59D00089400 /* tblParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblParameter.m; sourceTree = "<group>"; };
+		18B5AE9C15B3E59D00089400 /* tblProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblProduct.h; sourceTree = "<group>"; };
+		18B5AE9D15B3E59D00089400 /* tblProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblProduct.m; sourceTree = "<group>"; };
+		18B5AE9E15B3E59D00089400 /* tblReturnDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblReturnDetail.h; sourceTree = "<group>"; };
+		18B5AE9F15B3E59D00089400 /* tblReturnDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblReturnDetail.m; sourceTree = "<group>"; };
+		18B5AEA015B3E59D00089400 /* tblCallcard_Stock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblCallcard_Stock.h; sourceTree = "<group>"; };
+		18B5AEA115B3E59D00089400 /* tblCallcard_Stock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblCallcard_Stock.m; sourceTree = "<group>"; };
+		18B5AEA215B3E59D00089400 /* tblCallCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblCallCard.h; sourceTree = "<group>"; };
+		18B5AEA315B3E59D00089400 /* tblCallCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblCallCard.m; sourceTree = "<group>"; };
+		18B5AEA415B3E59D00089400 /* tblPCBrief.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblPCBrief.h; sourceTree = "<group>"; };
+		18B5AEA515B3E59D00089400 /* tblPCBrief.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblPCBrief.m; sourceTree = "<group>"; };
+		18B5AEA615B3E59D00089400 /* tblPlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblPlan.h; sourceTree = "<group>"; };
+		18B5AEA715B3E59D00089400 /* tblPlan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblPlan.m; sourceTree = "<group>"; };
+		18B5AEA815B3E59D00089400 /* tblSaleTalk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblSaleTalk.h; sourceTree = "<group>"; };
+		18B5AEA915B3E59D00089400 /* tblSaleTalk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblSaleTalk.m; sourceTree = "<group>"; };
+		18B5AEAA15B3E5AC00089400 /* CallCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallCard.h; sourceTree = "<group>"; };
+		18B5AEAB15B3E5AC00089400 /* CallCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallCard.m; sourceTree = "<group>"; };
+		18B5AEAC15B3E5AC00089400 /* CallCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CallCard.xib; sourceTree = "<group>"; };
+		18B5AEAD15B3E5AC00089400 /* Merchandise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Merchandise.h; sourceTree = "<group>"; };
+		18B5AEAE15B3E5AC00089400 /* Merchandise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Merchandise.m; sourceTree = "<group>"; };
+		18B5AEAF15B3E5AC00089400 /* Merchandise.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Merchandise.xib; sourceTree = "<group>"; };
+		18B5AEB015B3E5AC00089400 /* SalesNote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesNote.h; sourceTree = "<group>"; };
+		18B5AEB115B3E5AC00089400 /* SalesNote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesNote.m; sourceTree = "<group>"; };
+		18B5AEB215B3E5AC00089400 /* SalesNote.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SalesNote.xib; sourceTree = "<group>"; };
+		18B5AEB315B3E5AC00089400 /* InvoiceList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvoiceList.h; sourceTree = "<group>"; };
+		18B5AEB415B3E5AC00089400 /* InvoiceList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvoiceList.m; sourceTree = "<group>"; };
+		18B5AEB515B3E5AC00089400 /* InvoiceList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceList.xib; sourceTree = "<group>"; };
+		18B5AEB615B3E5AC00089400 /* InvoiceDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvoiceDetail.h; sourceTree = "<group>"; };
+		18B5AEB715B3E5AC00089400 /* InvoiceDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvoiceDetail.m; sourceTree = "<group>"; };
+		18B5AEB815B3E5AC00089400 /* InvoiceDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceDetail.xib; sourceTree = "<group>"; };
+		18B5AEB915B3E5AC00089400 /* Collection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
+		18B5AEBA15B3E5AC00089400 /* Collection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
+		18B5AEBB15B3E5AC00089400 /* Collection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Collection.xib; sourceTree = "<group>"; };
+		18B5AEBC15B3E5AC00089400 /* TakeOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TakeOrder.h; sourceTree = "<group>"; };
+		18B5AEBD15B3E5AC00089400 /* TakeOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TakeOrder.m; sourceTree = "<group>"; };
+		18B5AEBE15B3E5AC00089400 /* TakeOrder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TakeOrder.xib; sourceTree = "<group>"; };
+		18B5AEBF15B3E5AC00089400 /* Delivery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Delivery.h; sourceTree = "<group>"; };
+		18B5AEC015B3E5AC00089400 /* Delivery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Delivery.m; sourceTree = "<group>"; };
+		18B5AEC115B3E5AC00089400 /* Delivery.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Delivery.xib; sourceTree = "<group>"; };
+		18B5AEC215B3E5AC00089400 /* DeliverySummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeliverySummary.h; sourceTree = "<group>"; };
+		18B5AEC315B3E5AC00089400 /* DeliverySummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeliverySummary.m; sourceTree = "<group>"; };
+		18B5AEC415B3E5AC00089400 /* DeliverySummary.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliverySummary.xib; sourceTree = "<group>"; };
+		18B5AEC515B3E5AC00089400 /* CheckInPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInPage.h; sourceTree = "<group>"; };
+		18B5AEC615B3E5AC00089400 /* CheckInPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInPage.m; sourceTree = "<group>"; };
+		18B5AEC715B3E5AC00089400 /* CheckInPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckInPage.xib; sourceTree = "<group>"; };
+		18B5AEC815B3E5AC00089400 /* PCBrief.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCBrief.h; sourceTree = "<group>"; };
+		18B5AEC915B3E5AC00089400 /* PCBrief.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PCBrief.m; sourceTree = "<group>"; };
+		18B5AECA15B3E5AC00089400 /* PCBrief.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PCBrief.xib; sourceTree = "<group>"; };
+		18B5AECB15B3E5AC00089400 /* ProductDataDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDataDetail.h; sourceTree = "<group>"; };
+		18B5AECC15B3E5AC00089400 /* ProductDataDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDataDetail.m; sourceTree = "<group>"; };
+		18B5AECD15B3E5AC00089400 /* ProductDataDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDataDetail.xib; sourceTree = "<group>"; };
+		18B5AECE15B3E5AC00089400 /* MyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		18B5AECF15B3E5AC00089400 /* MyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		18B5AED015B3E5AC00089400 /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
+		18B5AED115B3E5AC00089400 /* GoodReturnTBViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodReturnTBViewCell.h; sourceTree = "<group>"; };
+		18B5AED215B3E5AC00089400 /* GoodReturnTBViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodReturnTBViewCell.m; sourceTree = "<group>"; };
+		18B5AED315B3E5AC00089400 /* GoodReturnTBViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodReturnTBViewCell.xib; sourceTree = "<group>"; };
+		18B5AED415B3E5AC00089400 /* GoodsReturn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsReturn.h; sourceTree = "<group>"; };
+		18B5AED515B3E5AC00089400 /* GoodsReturn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsReturn.m; sourceTree = "<group>"; };
+		18B5AED615B3E5AC00089400 /* GoodsReturn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodsReturn.xib; sourceTree = "<group>"; };
+		18B5AED715B3E5AC00089400 /* SearchProdTBViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchProdTBViewCell.h; sourceTree = "<group>"; };
+		18B5AED815B3E5AC00089400 /* SearchProdTBViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchProdTBViewCell.m; sourceTree = "<group>"; };
+		18B5AED915B3E5AC00089400 /* SearchProdTBViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchProdTBViewCell.xib; sourceTree = "<group>"; };
+		18B5AEDA15B3E5AC00089400 /* SearchProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchProduct.h; sourceTree = "<group>"; };
+		18B5AEDB15B3E5AC00089400 /* SearchProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchProduct.m; sourceTree = "<group>"; };
+		18B5AEDC15B3E5AC00089400 /* SearchProduct.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchProduct.xib; sourceTree = "<group>"; };
+		18B5AEE115B3EF3300089400 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		18B5AEE315B3EF3F00089400 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		18B5AF4415B3F75300089400 /* OVDataseProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVDataseProxy.h; sourceTree = "<group>"; };
+		18B5AF4515B3F75300089400 /* OVDataseProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVDataseProxy.m; sourceTree = "<group>"; };
+		18B5AF4715B3F7D500089400 /* OVDatabaseConsumeProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVDatabaseConsumeProtocal.h; sourceTree = "<group>"; };
+		18B5AF4815B405CC00089400 /* NSObject+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflection.h"; sourceTree = "<group>"; };
+		18B5AF4915B405CC00089400 /* NSObject+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflection.m"; sourceTree = "<group>"; };
 		18C4C6E215B12DE800C2ACB0 /* SFMerchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMerchandise.h; sourceTree = "<group>"; };
 		18C4C6E315B12DE900C2ACB0 /* SFMerchandise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMerchandise.m; sourceTree = "<group>"; };
 		18C4C6E615B1394D00C2ACB0 /* SFGoodsReturn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGoodsReturn.h; sourceTree = "<group>"; };
@@ -346,6 +537,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5AEE415B3EF3F00089400 /* MapKit.framework in Frameworks */,
+				18B5AEE215B3EF3300089400 /* CoreLocation.framework in Frameworks */,
 				18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */,
 				18EE3EAC15A160DF00A08B29 /* SystemConfiguration.framework in Frameworks */,
 				18EE3EAE15A160DF00A08B29 /* Security.framework in Frameworks */,
@@ -436,28 +629,146 @@
 			children = (
 				188C06ED15A69DE00043DBC7 /* NSDictionary+SFSchema.h */,
 				188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */,
-				18B1048515A568B5000719DB /* NSString+Extension.h */,
-				18B1048615A56A1F000719DB /* NSString+Extension.m */,
 				18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */,
 				18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */,
-				18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */,
-				18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */,
 				187F9A7315ABE3420021CE9F /* NSDictionary+Extension.h */,
 				187F9A7415ABE3420021CE9F /* NSDictionary+Extension.m */,
-				187F9A7715ABF11E0021CE9F /* FMResultSet+Extension.h */,
-				187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */,
+				081E57FC15B1D24C0007055E /* NSMutableDictionary+Extension.h */,
+				081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */,
+				18B1048515A568B5000719DB /* NSString+Extension.h */,
+				18B1048615A56A1F000719DB /* NSString+Extension.m */,
+				18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */,
+				18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */,
 				18854B9915AC2E7300E7B4AB /* NSArray+Extension.h */,
 				18854B9A15AC2E7300E7B4AB /* NSArray+Extension.m */,
+				187F9A7715ABF11E0021CE9F /* FMResultSet+Extension.h */,
+				187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */,
 				081E57F315B1C7660007055E /* UITableView+Extension.h */,
 				081E57F415B1C7660007055E /* UITableView+Extension.m */,
 				081E57F615B1C7E50007055E /* UILabel+Extension.h */,
 				081E57F715B1C7E50007055E /* UILabel+Extension.m */,
-				081E57FC15B1D24C0007055E /* NSMutableDictionary+Extension.h */,
-				081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */,
 				081E57FF15B1D7C80007055E /* NSDate+Extension.h */,
 				081E580015B1D7C80007055E /* NSDate+Extension.m */,
+				18B5AF4815B405CC00089400 /* NSObject+Reflection.h */,
+				18B5AF4915B405CC00089400 /* NSObject+Reflection.m */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		18B5AE7F15B3E54600089400 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				18B5AF4715B3F7D500089400 /* OVDatabaseConsumeProtocal.h */,
+				18B5AF4415B3F75300089400 /* OVDataseProxy.h */,
+				18B5AF4515B3F75300089400 /* OVDataseProxy.m */,
+				18B5AE8215B3E56300089400 /* Tong */,
+				18B5AE8115B3E55D00089400 /* Toon */,
+				18B5AEAA15B3E5AC00089400 /* CallCard.h */,
+				18B5AEAB15B3E5AC00089400 /* CallCard.m */,
+				18B5AEAC15B3E5AC00089400 /* CallCard.xib */,
+				18B5AEAD15B3E5AC00089400 /* Merchandise.h */,
+				18B5AEAE15B3E5AC00089400 /* Merchandise.m */,
+				18B5AEAF15B3E5AC00089400 /* Merchandise.xib */,
+				18B5AEB015B3E5AC00089400 /* SalesNote.h */,
+				18B5AEB115B3E5AC00089400 /* SalesNote.m */,
+				18B5AEB215B3E5AC00089400 /* SalesNote.xib */,
+				18B5AEB315B3E5AC00089400 /* InvoiceList.h */,
+				18B5AEB415B3E5AC00089400 /* InvoiceList.m */,
+				18B5AEB515B3E5AC00089400 /* InvoiceList.xib */,
+				18B5AEB615B3E5AC00089400 /* InvoiceDetail.h */,
+				18B5AEB715B3E5AC00089400 /* InvoiceDetail.m */,
+				18B5AEB815B3E5AC00089400 /* InvoiceDetail.xib */,
+				18B5AEB915B3E5AC00089400 /* Collection.h */,
+				18B5AEBA15B3E5AC00089400 /* Collection.m */,
+				18B5AEBB15B3E5AC00089400 /* Collection.xib */,
+				18B5AEBC15B3E5AC00089400 /* TakeOrder.h */,
+				18B5AEBD15B3E5AC00089400 /* TakeOrder.m */,
+				18B5AEBE15B3E5AC00089400 /* TakeOrder.xib */,
+				18B5AEBF15B3E5AC00089400 /* Delivery.h */,
+				18B5AEC015B3E5AC00089400 /* Delivery.m */,
+				18B5AEC115B3E5AC00089400 /* Delivery.xib */,
+				18B5AEC215B3E5AC00089400 /* DeliverySummary.h */,
+				18B5AEC315B3E5AC00089400 /* DeliverySummary.m */,
+				18B5AEC415B3E5AC00089400 /* DeliverySummary.xib */,
+				18B5AEC515B3E5AC00089400 /* CheckInPage.h */,
+				18B5AEC615B3E5AC00089400 /* CheckInPage.m */,
+				18B5AEC715B3E5AC00089400 /* CheckInPage.xib */,
+				18B5AEC815B3E5AC00089400 /* PCBrief.h */,
+				18B5AEC915B3E5AC00089400 /* PCBrief.m */,
+				18B5AECA15B3E5AC00089400 /* PCBrief.xib */,
+				18B5AECB15B3E5AC00089400 /* ProductDataDetail.h */,
+				18B5AECC15B3E5AC00089400 /* ProductDataDetail.m */,
+				18B5AECD15B3E5AC00089400 /* ProductDataDetail.xib */,
+				18B5AECE15B3E5AC00089400 /* MyTableViewCell.h */,
+				18B5AECF15B3E5AC00089400 /* MyTableViewCell.m */,
+				18B5AED015B3E5AC00089400 /* MyTableViewCell.xib */,
+				18B5AED115B3E5AC00089400 /* GoodReturnTBViewCell.h */,
+				18B5AED215B3E5AC00089400 /* GoodReturnTBViewCell.m */,
+				18B5AED315B3E5AC00089400 /* GoodReturnTBViewCell.xib */,
+				18B5AED415B3E5AC00089400 /* GoodsReturn.h */,
+				18B5AED515B3E5AC00089400 /* GoodsReturn.m */,
+				18B5AED615B3E5AC00089400 /* GoodsReturn.xib */,
+				18B5AED715B3E5AC00089400 /* SearchProdTBViewCell.h */,
+				18B5AED815B3E5AC00089400 /* SearchProdTBViewCell.m */,
+				18B5AED915B3E5AC00089400 /* SearchProdTBViewCell.xib */,
+				18B5AEDA15B3E5AC00089400 /* SearchProduct.h */,
+				18B5AEDB15B3E5AC00089400 /* SearchProduct.m */,
+				18B5AEDC15B3E5AC00089400 /* SearchProduct.xib */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		18B5AE8115B3E55D00089400 /* Toon */ = {
+			isa = PBXGroup;
+			children = (
+				18B5AE9A15B3E59D00089400 /* tblParameter.h */,
+				18B5AE9B15B3E59D00089400 /* tblParameter.m */,
+				18B5AE9C15B3E59D00089400 /* tblProduct.h */,
+				18B5AE9D15B3E59D00089400 /* tblProduct.m */,
+				18B5AE9E15B3E59D00089400 /* tblReturnDetail.h */,
+				18B5AE9F15B3E59D00089400 /* tblReturnDetail.m */,
+				18B5AEA015B3E59D00089400 /* tblCallcard_Stock.h */,
+				18B5AEA115B3E59D00089400 /* tblCallcard_Stock.m */,
+				18B5AEA215B3E59D00089400 /* tblCallCard.h */,
+				18B5AEA315B3E59D00089400 /* tblCallCard.m */,
+				18B5AEA415B3E59D00089400 /* tblPCBrief.h */,
+				18B5AEA515B3E59D00089400 /* tblPCBrief.m */,
+				18B5AEA615B3E59D00089400 /* tblPlan.h */,
+				18B5AEA715B3E59D00089400 /* tblPlan.m */,
+				18B5AEA815B3E59D00089400 /* tblSaleTalk.h */,
+				18B5AEA915B3E59D00089400 /* tblSaleTalk.m */,
+			);
+			name = Toon;
+			sourceTree = "<group>";
+		};
+		18B5AE8215B3E56300089400 /* Tong */ = {
+			isa = PBXGroup;
+			children = (
+				18B5AE8315B3E57600089400 /* ProductInAction.h */,
+				18B5AE8415B3E57600089400 /* ProductInAction.m */,
+				18B5AE8515B3E57600089400 /* tblMerchandize.h */,
+				18B5AE8615B3E57600089400 /* tblMerchandize.m */,
+				18B5AE8715B3E57600089400 /* tblInvoice.h */,
+				18B5AE8815B3E57600089400 /* tblInvoice.m */,
+				18B5AE8915B3E57600089400 /* tblCollection.h */,
+				18B5AE8A15B3E57600089400 /* tblCollection.m */,
+				18B5AE8B15B3E57600089400 /* tblOrderMaster.h */,
+				18B5AE8C15B3E57600089400 /* tblOrderMaster.m */,
+				18B5AE8D15B3E57600089400 /* tblOrderDetail.h */,
+				18B5AE8E15B3E57600089400 /* tblOrderDetail.m */,
+				18B5AE8F15B3E57600089400 /* tblPromotion.h */,
+				18B5AE9015B3E57600089400 /* tblPromotion.m */,
+				18B5AE9115B3E57600089400 /* tblPromotionCriteria.h */,
+				18B5AE9215B3E57600089400 /* tblPromotionCriteria.m */,
+				18B5AE9315B3E57600089400 /* tblPromotionLineItem.h */,
+				18B5AE9415B3E57600089400 /* tblPromotionLineItem.m */,
+				18B5AE9515B3E57600089400 /* tblCalcPromotion.h */,
+				18B5AE9615B3E57600089400 /* tblCalcPromotion.m */,
+				18B5AE9715B3E57600089400 /* cellTakeOrder.h */,
+				18B5AE9815B3E57600089400 /* cellTakeOrder.m */,
+				18B5AE9915B3E57600089400 /* cellTakeOrder.xib */,
+			);
+			name = Tong;
 			sourceTree = "<group>";
 		};
 		18EE3E9915A160DF00A08B29 = {
@@ -482,6 +793,8 @@
 			isa = PBXGroup;
 			children = (
 				08FAFCCC15A48020007C52F5 /* FMDatabase */,
+				18B5AEE315B3EF3F00089400 /* MapKit.framework */,
+				18B5AEE115B3EF3300089400 /* CoreLocation.framework */,
 				18EE3EA915A160DF00A08B29 /* CoreData.framework */,
 				18EE3EAB15A160DF00A08B29 /* SystemConfiguration.framework */,
 				18EE3EAD15A160DF00A08B29 /* Security.framework */,
@@ -738,6 +1051,7 @@
 		18EE3F4715A160E100A08B29 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18B5AE7F15B3E54600089400 /* Activity */,
 				188C06F015A6A3F30043DBC7 /* Protocal */,
 				18B1048315A56896000719DB /* Extension */,
 				18EE3F6215A1730B00A08B29 /* View */,
@@ -928,6 +1242,96 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5AEE915B3F25900089400 /* CallCard.h in Sources */,
+				18B5AEEA15B3F25900089400 /* CallCard.m in Sources */,
+				18B5AEEB15B3F25900089400 /* CallCard.xib in Sources */,
+				18B5AEEC15B3F25900089400 /* Merchandise.h in Sources */,
+				18B5AEED15B3F25900089400 /* Merchandise.m in Sources */,
+				18B5AEEE15B3F25900089400 /* Merchandise.xib in Sources */,
+				18B5AEEF15B3F25900089400 /* SalesNote.h in Sources */,
+				18B5AEF015B3F25900089400 /* SalesNote.m in Sources */,
+				18B5AEF115B3F25900089400 /* SalesNote.xib in Sources */,
+				18B5AEF215B3F25900089400 /* InvoiceList.h in Sources */,
+				18B5AEF315B3F25900089400 /* InvoiceList.m in Sources */,
+				18B5AEF415B3F25900089400 /* InvoiceList.xib in Sources */,
+				18B5AEF515B3F25900089400 /* InvoiceDetail.h in Sources */,
+				18B5AEF615B3F25900089400 /* InvoiceDetail.m in Sources */,
+				18B5AEF715B3F25900089400 /* InvoiceDetail.xib in Sources */,
+				18B5AEF815B3F25900089400 /* Collection.h in Sources */,
+				18B5AEF915B3F25900089400 /* Collection.m in Sources */,
+				18B5AEFA15B3F25900089400 /* Collection.xib in Sources */,
+				18B5AEFB15B3F25900089400 /* TakeOrder.h in Sources */,
+				18B5AEFC15B3F25900089400 /* TakeOrder.m in Sources */,
+				18B5AEFD15B3F25900089400 /* TakeOrder.xib in Sources */,
+				18B5AEFE15B3F25900089400 /* Delivery.h in Sources */,
+				18B5AEFF15B3F25900089400 /* Delivery.m in Sources */,
+				18B5AF0015B3F25900089400 /* Delivery.xib in Sources */,
+				18B5AF0115B3F25900089400 /* DeliverySummary.h in Sources */,
+				18B5AF0215B3F25900089400 /* DeliverySummary.m in Sources */,
+				18B5AF0315B3F25900089400 /* DeliverySummary.xib in Sources */,
+				18B5AF0415B3F25900089400 /* CheckInPage.h in Sources */,
+				18B5AF0515B3F25900089400 /* CheckInPage.m in Sources */,
+				18B5AF0615B3F25900089400 /* CheckInPage.xib in Sources */,
+				18B5AF0715B3F25900089400 /* PCBrief.h in Sources */,
+				18B5AF0815B3F25900089400 /* PCBrief.m in Sources */,
+				18B5AF0915B3F25900089400 /* PCBrief.xib in Sources */,
+				18B5AF0A15B3F25900089400 /* ProductDataDetail.h in Sources */,
+				18B5AF0B15B3F25900089400 /* ProductDataDetail.m in Sources */,
+				18B5AF0C15B3F25900089400 /* ProductDataDetail.xib in Sources */,
+				18B5AF0D15B3F25900089400 /* MyTableViewCell.h in Sources */,
+				18B5AF0E15B3F25900089400 /* MyTableViewCell.m in Sources */,
+				18B5AF0F15B3F25900089400 /* MyTableViewCell.xib in Sources */,
+				18B5AF1015B3F25900089400 /* GoodReturnTBViewCell.h in Sources */,
+				18B5AF1115B3F25900089400 /* GoodReturnTBViewCell.m in Sources */,
+				18B5AF1215B3F25900089400 /* GoodReturnTBViewCell.xib in Sources */,
+				18B5AF1315B3F25900089400 /* GoodsReturn.h in Sources */,
+				18B5AF1415B3F25900089400 /* GoodsReturn.m in Sources */,
+				18B5AF1515B3F25900089400 /* GoodsReturn.xib in Sources */,
+				18B5AF1615B3F25900089400 /* SearchProdTBViewCell.h in Sources */,
+				18B5AF1715B3F25900089400 /* SearchProdTBViewCell.m in Sources */,
+				18B5AF1815B3F25900089400 /* SearchProdTBViewCell.xib in Sources */,
+				18B5AF1915B3F25900089400 /* SearchProduct.h in Sources */,
+				18B5AF1A15B3F25900089400 /* SearchProduct.m in Sources */,
+				18B5AF1B15B3F25900089400 /* SearchProduct.xib in Sources */,
+				18B5AF1C15B3F25900089400 /* ProductInAction.h in Sources */,
+				18B5AF1D15B3F25900089400 /* ProductInAction.m in Sources */,
+				18B5AF1E15B3F25900089400 /* tblMerchandize.h in Sources */,
+				18B5AF1F15B3F25900089400 /* tblMerchandize.m in Sources */,
+				18B5AF2015B3F25900089400 /* tblInvoice.h in Sources */,
+				18B5AF2115B3F25900089400 /* tblInvoice.m in Sources */,
+				18B5AF2215B3F25900089400 /* tblCollection.h in Sources */,
+				18B5AF2315B3F25900089400 /* tblCollection.m in Sources */,
+				18B5AF2415B3F25900089400 /* tblOrderMaster.h in Sources */,
+				18B5AF2515B3F25900089400 /* tblOrderMaster.m in Sources */,
+				18B5AF2615B3F25900089400 /* tblOrderDetail.h in Sources */,
+				18B5AF2715B3F25900089400 /* tblOrderDetail.m in Sources */,
+				18B5AF2815B3F25900089400 /* tblPromotion.h in Sources */,
+				18B5AF2915B3F25900089400 /* tblPromotion.m in Sources */,
+				18B5AF2A15B3F25900089400 /* tblPromotionCriteria.h in Sources */,
+				18B5AF2B15B3F25900089400 /* tblPromotionCriteria.m in Sources */,
+				18B5AF2C15B3F25900089400 /* tblPromotionLineItem.h in Sources */,
+				18B5AF2D15B3F25900089400 /* tblPromotionLineItem.m in Sources */,
+				18B5AF2E15B3F25900089400 /* tblCalcPromotion.h in Sources */,
+				18B5AF2F15B3F25900089400 /* tblCalcPromotion.m in Sources */,
+				18B5AF3015B3F25900089400 /* cellTakeOrder.h in Sources */,
+				18B5AF3115B3F25900089400 /* cellTakeOrder.m in Sources */,
+				18B5AF3215B3F25900089400 /* cellTakeOrder.xib in Sources */,
+				18B5AF3315B3F25900089400 /* tblParameter.h in Sources */,
+				18B5AF3415B3F25900089400 /* tblParameter.m in Sources */,
+				18B5AF3515B3F25900089400 /* tblProduct.h in Sources */,
+				18B5AF3615B3F25900089400 /* tblProduct.m in Sources */,
+				18B5AF3715B3F25900089400 /* tblReturnDetail.h in Sources */,
+				18B5AF3815B3F25900089400 /* tblReturnDetail.m in Sources */,
+				18B5AF3915B3F25A00089400 /* tblCallcard_Stock.h in Sources */,
+				18B5AF3A15B3F25A00089400 /* tblCallcard_Stock.m in Sources */,
+				18B5AF3B15B3F25A00089400 /* tblCallCard.h in Sources */,
+				18B5AF3C15B3F25A00089400 /* tblCallCard.m in Sources */,
+				18B5AF3D15B3F25A00089400 /* tblPCBrief.h in Sources */,
+				18B5AF3E15B3F25A00089400 /* tblPCBrief.m in Sources */,
+				18B5AF3F15B3F25A00089400 /* tblPlan.h in Sources */,
+				18B5AF4015B3F25A00089400 /* tblPlan.m in Sources */,
+				18B5AF4115B3F25A00089400 /* tblSaleTalk.h in Sources */,
+				18B5AF4215B3F25A00089400 /* tblSaleTalk.m in Sources */,
 				081E57EB15B1A05E0007055E /* CustomBadge.m in Sources */,
 				0819584915B19F9200CFDFE9 /* CustomBadge.h in Sources */,
 				18EE3EC015A160DF00A08B29 /* main.m in Sources */,
@@ -981,6 +1385,8 @@
 				081E57FB15B1CBE20007055E /* OVSyncController+SFRestDelegate.m in Sources */,
 				081E57FE15B1D24C0007055E /* NSMutableDictionary+Extension.m in Sources */,
 				081E580115B1D7C90007055E /* NSDate+Extension.m in Sources */,
+				18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */,
+				18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

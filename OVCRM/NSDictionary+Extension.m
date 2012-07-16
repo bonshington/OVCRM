@@ -15,4 +15,15 @@
     return [self objectForKey:[[self allKeys] objectAtIndex:index]];
 }
 
+-(id)objectForKeyLike:(NSString *)key{
+	
+	for(NSString *k in [self allKeys]){
+		if([k caseInsensitiveCompare:key] == NSOrderedSame){
+			return [self objectForKey:k];
+		}
+	}
+	
+	return  nil;
+}
+
 @end

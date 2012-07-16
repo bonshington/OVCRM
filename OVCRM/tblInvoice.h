@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
+#import "OVDataseProxy.h"
 
-@interface tblInvoice : NSObject
+@interface tblInvoice : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *pK;
 @property(nonatomic,strong) NSString *account_ID;
@@ -21,10 +22,6 @@
 @property(strong , nonatomic) NSMutableArray  *invoiceList;
 
 -(NSString *)DB_Field;
--(NSMutableArray *)QueryData:(NSString *)sqlText; 
--(bool)OpenConnection;
--(bool)ExecSQL : (NSString *)addText
- parameterArray:(NSArray *) paramArr;
 
 -(NSString *)GetMaxRnNo;
 

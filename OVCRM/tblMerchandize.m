@@ -29,9 +29,35 @@ sqlite3_stmt *statement;
     return @"Plan_ID, PK, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ";
 }
 
+
+-(NSString *)GetMaxRnNo
+{
+    NSString * tempMax = nil;  
+    NSString * sql = [NSString stringWithFormat:@"Select PK From Merchandize Where CAST(PK as INTEGER) = (Select MAX(CAST(PK as INTEGER))  From Merchandize)"];
+    
+    const char *cQuery = [sql UTF8String]; 
+    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Query Error:%@",statement);
+    }       
+    NSInteger *count=0;
+    while (sqlite3_step(statement) == SQLITE_ROW)
+    {
+        const char *PK = (const char *) sqlite3_column_text(statement, 0);
+        if (PK != NULL) 
+        {
+            tempMax = [NSString stringWithUTF8String: PK]; 
+        }  
+        count = count+1;
+    }
+    return tempMax;
+}
+
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     merchandizeList = [[NSMutableArray alloc]init];
+	
     const char *cQuery = [sqlText UTF8String]; 
     NSLog(@"%@",sqlText);
     if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
@@ -114,7 +140,7 @@ sqlite3_stmt *statement;
     
     return merchandizeList;
 }
-
+/*
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr
 {
@@ -181,28 +207,7 @@ sqlite3_stmt *statement;
     
     return result;
 }
+*/
 
--(NSString *)GetMaxRnNo
-{
-    NSString * tempMax = nil;  
-    NSString * sql = [NSString stringWithFormat:@"Select PK From Merchandize Where CAST(PK as INTEGER) = (Select MAX(CAST(PK as INTEGER))  From Merchandize)"];
-    
-    const char *cQuery = [sql UTF8String]; 
-    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
-    {
-        NSLog(@"Query Error:%@",statement);
-    }       
-    NSInteger *count=0;
-    while (sqlite3_step(statement) == SQLITE_ROW)
-    {
-        const char *PK = (const char *) sqlite3_column_text(statement, 0);
-        if (PK != NULL) 
-        {
-            tempMax = [NSString stringWithUTF8String: PK]; 
-        }  
-        count = count+1;
-    }
-    return tempMax;
-}
 
 @end

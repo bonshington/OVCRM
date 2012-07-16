@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "OVDataseProxy.h"
 
-@interface tblParameter : NSObject
+@interface tblParameter : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *tag;
 @property(nonatomic,strong) NSString *key;
@@ -18,9 +19,12 @@
 @property(strong , nonatomic) NSMutableArray  *parameterList;
 
 -(NSString *)DB_Field;
+
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(bool)OpenConnection;
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr;
+*/
 
 @end

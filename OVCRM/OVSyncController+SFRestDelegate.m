@@ -19,7 +19,7 @@ didLoadResponse:(id)jsonResponse{
     
     OVDatabase *db = [OVDatabase sharedInstance];
 	
-	[db executeUpdate:@"update Upload set syncTime = date('now') where pk = ?", [self.tableView labelInSelectdCellWithTag:tagForUploadPk].text];
+	[db executeUpdate:@"update Upload set syncTime = datetime('now', 'localtime') where pk = ?", [self.tableView labelInSelectdCellWithTag:tagForUploadPk].text];
 	
 	[self done];
 }

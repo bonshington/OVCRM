@@ -41,12 +41,22 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView checkinForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSDictionary *data = [self.todayPlan objectAtIndex:indexPath.row];
-    NSString *cellId = [NSString stringWithFormat:@"checkin:%@", [data objectForKey:@"Id"]];
+    NSString *cellId = [NSString stringWithFormat:@"checkin:%@", self.checkedAccountId];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
+		
+		OVDatabase *db = [OVDatabase sharedInstance];
+		
+		NSDictionary *row = [[[db executeQuery:@"select * from Account where Id = ?", self.checkedAccountId] readToEnd] objectAtIndex:0];
+		
+		cell.textLabel.text = [row objectForKey:@"Name"];
+		cell.detailTextLabel.text = [[NSDate date] format:@"HH:mm"];
+		
+		[cell addSubview:[UILabel hiddenLabelForText:self.checkinEventId withTag:tagForSFEventId]];
+		[cell addSubview:[UILabel hiddenLabelForText:self.checkedAccountId withTag:tagForSFAccountId]];
+		
         cell.tag = tagForCellCheckedIn;
     }
     

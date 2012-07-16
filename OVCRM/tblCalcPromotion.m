@@ -93,7 +93,7 @@ sqlite3_stmt *statement;
     
     return _tblcalcPromotion;
 }
-
+/*
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr
 {
@@ -157,5 +157,5 @@ sqlite3_stmt *statement;
     }
     return result;
 }
-
+*/
 @end

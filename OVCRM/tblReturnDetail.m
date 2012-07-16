@@ -30,6 +30,32 @@ sqlite3_stmt *statement;
     return @"PK,Plan_ID,Product_ID,Quantity,Reason,RT_Date,RT_Time";
 }
 
+-(NSString *)GetMaxRnNo
+{
+    
+    NSString * tempMax = nil;  
+    NSString * sql = [NSString stringWithFormat:@"Select PK From ReturnDetail Where CAST(PK as INTEGER) = (Select MAX(CAST(PK as INTEGER))  From ReturnDetail)"];
+    
+    const char *cQuery = [sql UTF8String]; 
+    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Query Error:%@",statement);
+    }       
+    NSInteger *count=0;
+    while (sqlite3_step(statement) == SQLITE_ROW)
+    {
+        const char *pK = (const char *) sqlite3_column_text(statement, 0);
+        if (pK != NULL) 
+        {
+            tempMax = [NSString stringWithUTF8String: pK]; 
+        }  
+        count = count+1;
+    }
+    return tempMax;
+}
+
+/*
+
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     
@@ -183,29 +209,7 @@ sqlite3_stmt *statement;
     
     return result;
 }
+*/
 
--(NSString *)GetMaxRnNo
-{
-    
-    NSString * tempMax = nil;  
-    NSString * sql = [NSString stringWithFormat:@"Select PK From ReturnDetail Where CAST(PK as INTEGER) = (Select MAX(CAST(PK as INTEGER))  From ReturnDetail)"];
-    
-    const char *cQuery = [sql UTF8String]; 
-    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
-    {
-        NSLog(@"Query Error:%@",statement);
-    }       
-    NSInteger *count=0;
-    while (sqlite3_step(statement) == SQLITE_ROW)
-    {
-        const char *pK = (const char *) sqlite3_column_text(statement, 0);
-        if (pK != NULL) 
-        {
-            tempMax = [NSString stringWithUTF8String: pK]; 
-        }  
-        count = count+1;
-    }
-    return tempMax;
-}
 
 @end

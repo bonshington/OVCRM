@@ -39,7 +39,7 @@
 		
 		
 		/* init tables */
-		FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter"];
+		FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter limit 1"];
 		
 		BOOL valid = result != nil && result.hasAnotherRow;
 		
@@ -48,7 +48,7 @@
 		
 		if (!valid){    
 			NSArray *initScript = [[NSArray alloc] initWithObjects:
-								   @"create table if not exists Parameter(tag text, key text, val text, primary key (tag, key))", 
+								   @"create table if not exists Parameter(tag text, key text, label text, primary key (tag, key))", 
 								   @"insert or replace into Parameter(tag, key, val) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
 								   @"create table if not exists Upload(pk INTEGER PRIMARY KEY AUTOINCREMENT, sObject TEXT, Id TEXT, createTime TEXT, syncTime TEXT, json TEXT)",
 								   nil];
@@ -91,7 +91,7 @@
 	
 	// insert to db
 	NSString *serialized = [SFJsonUtils JSONRepresentation:data];
-	[self executeUpdate:@"insert into Upload(sObject, Id, createTime, json) values(?, ?, date('now'), ?)", object, objectId, serialized];
+	[self executeUpdate:@"insert into Upload(sObject, Id, createTime, json) values(?, ?, datetime('now', 'localtime'), ?)", object, objectId, serialized];
 	
 	
 	// update badge

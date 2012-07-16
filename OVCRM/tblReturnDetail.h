@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "OVDataseProxy.h"
 
-@interface tblReturnDetail : NSObject
+@interface tblReturnDetail : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *PK;
 @property(nonatomic,strong) NSString *plan_ID;
@@ -22,11 +23,14 @@
 @property(strong , nonatomic) NSMutableArray  *returnList;
 
 -(NSString *)DB_Field;
+-(NSString *)GetMaxRnNo;
+
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(bool)OpenConnection;
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr;
+*/
 
--(NSString *)GetMaxRnNo;
 
 @end

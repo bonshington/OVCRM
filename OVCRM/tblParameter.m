@@ -19,9 +19,10 @@ sqlite3_stmt *statement;
 
 -(NSString *)DB_Field
 {
-    return @"tag,key,label";
+    return @"tag,key,val";
 }
 
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     
@@ -143,7 +144,7 @@ sqlite3_stmt *statement;
     
     return result;
 }
-
+*/
 
 
 @end

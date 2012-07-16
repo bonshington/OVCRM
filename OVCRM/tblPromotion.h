@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "sqlite3.h"
-@interface tblPromotion : NSObject
+#import "OVDataseProxy.h"
+
+@interface tblPromotion : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *pK;
 @property(nonatomic,strong) NSString *sale_ID;
@@ -25,9 +27,7 @@
 @property(strong , nonatomic) NSMutableArray  *promotionList;
 
 -(NSString *)DB_Field;
--(NSMutableArray *)QueryData:(NSString *)sqlText; 
--(bool)OpenConnection;
--(bool)ExecSQL : (NSString *)addText
- parameterArray:(NSArray *) paramArr;
+//-(NSMutableArray *)QueryData:(NSString *)sqlText; 
+
 
 @end

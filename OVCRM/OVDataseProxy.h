@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OVDatabase.h"
+#import "OVDatabaseConsumeProtocal.h"
+#import "NSDictionary+Extension.h"
 
-@interface OVDataseModel : NSObject
+
+@interface OVDataseProxy : NSObject
+ 
+-(bool)OpenConnection;
+
+-(bool)ExecSQL:(NSString *)addText parameterArray:(NSArray *)paramArr;
+
+-(NSMutableArray *)QueryData:(NSString *)sqlText;
 
 @end

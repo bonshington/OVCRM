@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "OVDataseProxy.h"
 
-@interface tblCallcard_Stock : NSObject
+@interface tblCallcard_Stock : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *callCard_PK;
 @property(nonatomic,assign) NSString *PK;
@@ -20,11 +21,15 @@
 @property(strong , nonatomic) NSMutableArray  *callCardStockList;
 
 -(NSString *)DB_Field;
+-(NSString *)GetMaxRnNo;
+
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(bool)OpenConnection;
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr;
+*/
 
--(NSString *)GetMaxRnNo;
+
 
 @end

@@ -23,6 +23,7 @@ sqlite3_stmt *statement;
     return @" Plan_ID ,PK ,Order_Date ,Order_Time ,Order_Total "; 
 }
 
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     _orderMasterList = [[NSMutableArray alloc]init];
@@ -85,7 +86,7 @@ sqlite3_stmt *statement;
     
     return _orderMasterList;
 }
-
+/*
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr
 {
@@ -173,5 +174,5 @@ sqlite3_stmt *statement;
     }
     return tempMax;
 }
-
+*/
 @end

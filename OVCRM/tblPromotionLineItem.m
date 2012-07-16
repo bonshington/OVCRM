@@ -21,6 +21,7 @@ sqlite3_stmt *statement;
     return @" promotion_PK,pK,sale_ID,product_Code,brand,product_Family "; 
 }
 
+/*
 -(NSMutableArray *)QueryData:(NSString *)sqlText
 {    
     _promotionLineItemList = [[NSMutableArray alloc]init];
@@ -91,6 +92,7 @@ sqlite3_stmt *statement;
     return _promotionLineItemList;
 }
 
+
 -(bool)ExecSQL : (NSString *)addText
  parameterArray:(NSArray *) paramArr
 {
@@ -155,6 +157,6 @@ sqlite3_stmt *statement;
     return result;
 }
 
-
+*/
 
 @end
