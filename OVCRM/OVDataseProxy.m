@@ -23,7 +23,8 @@
 		
 		[properties enumerateKeysAndObjectsUsingBlock:^(NSString *propName, NSString *propType, BOOL *stopParse){
 			
-			[instance setValue:[entry objectForKeyLike:propName] forKey:propName];
+			if([entry objectForKeyLike:propName] != nil)
+				[instance setValue:[entry objectForKeyLike:propName] forKey:propName];
 		}];
 		
 		[result addObject:instance];
