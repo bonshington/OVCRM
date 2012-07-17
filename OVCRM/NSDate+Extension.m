@@ -18,4 +18,12 @@
 	return [dateFormatter stringFromDate:self];
 }
 
+-(NSString *) SFString{
+	
+	NSDateFormatter* timeFormatter = [NSDateFormatter new];
+	[timeFormatter setDateFormat:@"HH:mm:sss"];
+	
+	return [NSString stringWithFormat:@"%@T%@+07:00", [self format:@"yyyy-MM-dd"], [timeFormatter stringFromDate:self]];
+}
+
 @end

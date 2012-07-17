@@ -12,4 +12,6 @@
 
 -(NSString *) format:(NSString *)formatString;
 
+-(NSString *) SFString;
+
 @end

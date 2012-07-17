@@ -6,11 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SFVisit.h"
+#import "SFPlan.h"
 
-#define SFVisit_columns @"test test test 555"
-
-@implementation SFVisit
+@implementation SFPlan
 
 -(NSString *)SFName{ return @"Event";}
 
@@ -72,14 +70,19 @@
 	return [NSDictionary dictionaryWithObjectsAndKeys:
 			@"Plan", @"Event", 
 			
-			@"", @"WhatId",
+			@"PK", @"Id",
 			@"Account_ID", @"WhatId",
-			@"", @"",
-			@"", @"",
-			@"", @"",
-			@"", @"",
-			@"", @"",
-			@"", @"",
+			@"Account_Name", @"What",
+			@"Date_Plan", @"ActivityDateTime",
+			@"TimePlan_In", @"StartDateTime",
+			@"TimePlan_Out", @"EndDateTime",
+			@"Visit_Date", @"StartDateTime",
+			@"Visit_TimeIn", @"Time_in__c",
+			@"Visit_TimeOut", @"Time_Out__c",
+			@"Latitude", @"Latitude__c",
+			@"Longtitude", @"Longtitude__c",
+			//@"LastSyncDate", @"",
+			//@"LastSyncTime", @"",
 			nil];
 }
 
@@ -88,28 +91,31 @@
     self.controller = controller;
     
     [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Event "
+							@"select Id,%@ from Plan "
 							, [[self toSFColumns] componentsJoinedByString:@","]] 
 				  delegate:self];
 }
 
 +(void) loadNewVisit{
     
-    SFVisit *this = [SFVisit new];
+    SFPlan *this = [SFPlan new];
     
     [super loadWithQuery:[NSString stringWithFormat:
-                          @"select Id,%@ from Event "
+                          @"select Id,%@ from Plan "
                           , [[this toSFColumns] componentsJoinedByString:@","]] 
                 delegate:this];
 }
 
-+(FMResultSet *) selectToday{
++(NSArray *) selectToday{
     
     OVDatabase *db = [OVDatabase sharedInstance];
     
     if(!db.open)[db open];
+	
+	NSString *eventTimeColumn = @"Visit_Date";
+    NSString *sql = [NSString stringWithFormat:@"select *, substr(TIME(substr(TimePlan_In, 1, 23), 'localtime'), 1, 5) as time from Plan where 1=1 or %@ = CURRENT_DATE order by DATETIME(%@)", eventTimeColumn, eventTimeColumn, eventTimeColumn];
     
-    return [db executeQuery:@"select *, substr(TIME(substr(StartDateTime, 1, 23)), 1, 5) as time from Event where StartDateTime >= CURRENT_DATE order by DATETIME(StartDateTime)"];
+	return [[db executeQuery:sql] readToEnd];
 }
 
 @end

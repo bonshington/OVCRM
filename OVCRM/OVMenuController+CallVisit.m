@@ -16,21 +16,23 @@
     
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
-	FMResultSet *result = [db executeQuery:@"select Id from Account where Id in (select WhatId from Event where Id = ?)", self.checkinEventId];
+	FMResultSet *result = [db executeQuery:@"select Id from Account where Id in (select Account_Id from Plan where Id = ?)", self.checkinEventId];
 	
 	[result next];
 	self.checkedAccountId = [result stringForColumnIndex:0];
 		
 	if(self.checkedAccountId != nil){
-		[db sfInsertInto:@"Checkin" 
+		
+		NSDictionary *userData = [AppDelegate sharedInstance].user;
+		
+		[db sfInsertInto:@"Event" 
 				withData:[NSDictionary dictionaryWithObjectsAndKeys:
-						  self.checkedAccountId, @"AccountId",
-						  self.checkinEventId, @"EventId", 
-						  @"my id", @"UserId",
-						  @"date time", @"time",
-						  @"10101", @"lat",
-						  @"1001", @"lng",
-						  @"10101", @"radius",
+						  //self.checkedAccountId, @"WhatId",
+						  self.checkinEventId, @"Id", 
+						  [userData objectForKey:@"Id"], @"UserId",
+						  [[NSDate date] SFString], @"Time_in__c",
+						  [userData objectForKey:@"lat"], @"Latitude__c",
+						  [userData objectForKey:@"lng"], @"Longtitude__c",
 						  nil]];
 	}
 	
@@ -45,6 +47,14 @@
 
 -(void) checkout{
     
+	OVDatabase *db = [OVDatabase sharedInstance];
+	
+	[db executeUpdate:@"update Plan set Visit_TimeOut = datetime('now', 'localtime') where Id = ?", self.checkinEventId];
+	[db sfInsertInto:@"Event" 
+			withData:[NSDictionary dictionaryWithObjectsAndKeys:
+					  self.checkinEventId, @"Id", 
+					  [[NSDate date] SFString], @"Time_Out__c",
+					  nil]];
 }
 
 

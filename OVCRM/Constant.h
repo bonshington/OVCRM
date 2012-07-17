@@ -13,6 +13,7 @@
 #define tagForCellCheckedIn 103
 #define tagForCellSF        104
 #define tagForCellAccount	105
+#define tagForCellCheckOut	106
 
 #define tagForCellSyncUpload    190
 #define tagForCellSyncDownload  191

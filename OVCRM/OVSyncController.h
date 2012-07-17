@@ -13,7 +13,7 @@
 
 #import "SFAccount.h"
 #import "SFProduct.h"
-#import "SFVisit.h"
+#import "SFPlan.h"
 #import "SFStock.h"
 #import "SFMerchandise.h"
 #import "SFGoodsReturn.h"

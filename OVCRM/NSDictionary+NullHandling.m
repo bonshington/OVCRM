@@ -31,19 +31,23 @@
     return self;
 }
 
--(id) coalesce:(id)keys, ...{
+-(id) coalesce:(id)keys, ... NS_REQUIRES_NIL_TERMINATION{
 	
 	va_list args;
-    va_start(args, keys);
+	va_start(args, keys);
 	
-	for (NSString *key = keys; key != nil; key = va_arg(args, NSString*))
-    {
-        if([self objectForKey:key] != nil)
-			return [self objectForKey:key];
-    }
+	NSString *k = va_arg(args, NSString*);
 	
-	return  nil;
+	while(k != nil) {
+		
+		if([self objectForKey:k] != nil)
+			return [self objectForKey:k];
+		
+		k = va_arg(args, NSString*);
+	}
+	va_end(args);
+	
+	return nil;
 }
-
 
 @end

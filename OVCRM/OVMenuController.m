@@ -7,7 +7,7 @@
 //
 
 #import "OVMenuController.h"
-#import "SFVisit.h"
+#import "SFPlan.h"
 #import "SFAccount.h"
 #import "SFProduct.h"
 #import "AppDelegate.h"
@@ -48,15 +48,7 @@
     
     
     // init menu
-    FMResultSet *result = [SFVisit selectToday];
-    NSMutableArray *plan = [NSMutableArray new];
-
-    while([result next]){
-    
-        [plan addObject:[result resultDictionary]];
-    }
-
-    self.todayPlan = plan;
+    self.todayPlan = [SFPlan selectToday];
     
     
     // init sync

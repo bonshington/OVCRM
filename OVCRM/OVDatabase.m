@@ -37,6 +37,8 @@
         
         [app.db open];
 		
+		//[app.db executeUpdate:@"drop table Parameter"];
+		
 		
 		/* init tables */
 		FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter limit 1"];
@@ -49,7 +51,7 @@
 		if (!valid){    
 			NSArray *initScript = [[NSArray alloc] initWithObjects:
 								   @"create table if not exists Parameter(tag text, key text, label text, primary key (tag, key))", 
-								   @"insert or replace into Parameter(tag, key, val) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
+								   @"insert or replace into Parameter(tag, key, label) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
 								   @"create table if not exists Upload(pk INTEGER PRIMARY KEY AUTOINCREMENT, sObject TEXT, Id TEXT, createTime TEXT, syncTime TEXT, json TEXT)",
 								   nil];
 			
@@ -62,8 +64,6 @@
 			[app.db commit];
 		}
 		
-		
-		//[app.db executeUpdate:@"drop table Event"];
     }  
     else{
         self = app.db;
@@ -76,7 +76,7 @@
 	
 	
 	NSMutableDictionary *transform = [[NSMutableDictionary alloc] initWithDictionary:data];
-	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID"];
+	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil];
 	[transform removeObjectsForKeys:[NSArray arrayWithObjects:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil]];
 	
 	// get sfname

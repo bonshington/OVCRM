@@ -9,9 +9,9 @@
 
 #import "sObject.h"
 
-@interface SFVisit : sObject
+@interface SFPlan : sObject
 
 +(void) loadNewVisit;
-+(FMResultSet *) selectToday;
++(NSArray *) selectToday;
 
 @end

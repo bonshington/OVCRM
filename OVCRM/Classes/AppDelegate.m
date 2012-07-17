@@ -44,7 +44,7 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
-@synthesize db, master, detail, sync, user, registeredUploadStatusChange;
+@synthesize db, master, detail, sync, user, registeredUploadStatusChange, location, locationManager;
 
 SFIdentityCoordinator *_coordinator;
 
@@ -107,20 +107,23 @@ SFIdentityCoordinator *_coordinator;
 
 - (UIViewController*)newRootViewController {
     
+	/* Setup location system */
+	
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.delegate = self;
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+	self.locationManager.distanceFilter = kCLDistanceFilterNone; 
+	[self.locationManager startUpdatingLocation];
+	
+	self.location = [self.locationManager location];
+	
+	
 	[self registerUploadTaskChange:self];
 	
 	
 	//SFIdentityCoordinator retrieve user data
 	
 	[UIApplication sharedApplication].applicationIconBadgeNumber += 1;
-	
-	self.user = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-				 @"10390230", @"route",
-				 @"2000-01-01", @"lastSyncDate", 
-				 @"100.0", @"lat",
-				 @"200.0", @"lng",
-				 @"300.0", @"radius",
-				 nil];
 	
     return [OVLandingController new];
 }
@@ -136,13 +139,14 @@ SFIdentityCoordinator *_coordinator;
 		[self.db open];
 	}
 	
-	[super applicationDidBecomeActive:application];
+	if([super respondsToSelector:@selector(applicationDidBecomeActive:)])
+		[super applicationDidBecomeActive:application];
 	
 	if(self.master != nil)
 		[self.master reloadData];
 	
 }
-
+/*
 - (void)applicationWillResignActive:(UIApplication *)application{
 	
 	if(self.db.open){
@@ -150,7 +154,27 @@ SFIdentityCoordinator *_coordinator;
 		[self.db close];
 	}
 	
-	[super applicationWillResignActive:application];
+	if([super respondsToSelector:@selector(applicationWillResignActive:)])
+		[super applicationWillResignActive:application];
+}
+*/
+-(NSDictionary *)getUser{
+
+	return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+			@"10390230", @"route",
+			[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"], @"lastSyncDate", 
+			[NSString stringWithFormat:@"%f", self.location.coordinate.latitude], @"lat",
+			[NSString stringWithFormat:@"%f", self.location.coordinate.longitude], @"lng",
+			nil];
+}
+
+#pragma mark - CLLocationManager
+
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+		   fromLocation:(CLLocation *)oldLocation{
+
+	self.location = newLocation;
 }
 
 @end

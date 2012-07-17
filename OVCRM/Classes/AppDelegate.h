@@ -23,7 +23,7 @@
  */
 
 
-
+#import <CoreLocation/CLLocationManager.h>
 #import "SFNativeRestAppDelegate.h"
 #import "FMDatabase.h"
 #import "OVDatabase.h"
@@ -42,16 +42,18 @@
 #import "SFJsonUtils.h"
 #import "NSDate+Extension.h"
 
-@interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal>{
+@interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal, CLLocationManagerDelegate>{
 
 }
 
-@property (nonatomic, retain) NSDictionary *user;
+@property (nonatomic, copy, getter = getUser) NSDictionary *user;
 @property (nonatomic, retain) UIViewController *master;
 @property (nonatomic, retain) UINavigationController *detail;
 @property (nonatomic, retain) OVDatabase *db;
 @property (nonatomic, retain) id<SFRestDelegate> sync;
 @property (nonatomic, retain) NSMutableArray *registeredUploadStatusChange;
+@property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 -(SFIdentityData *) getIdentity;
 
@@ -62,10 +64,6 @@
 
 
 
-
-@end
-
-@interface AppDelegate (SFIdentityCoordinatorDelegate)
 
 @end
 

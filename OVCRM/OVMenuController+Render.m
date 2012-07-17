@@ -27,12 +27,12 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         
-        cell.textLabel.text = [data objectForKey:@"What"];
+        cell.textLabel.text = [data objectForKey:@"Account_Name"];
         cell.detailTextLabel.text = [data objectForKey:@"time"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.tag = tagForCellPlanVisit;
         
-        [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"WhatId"] withTag:tagForSFAccountId]];
+        [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"Account_ID"] withTag:tagForSFAccountId]];
         [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"Id"] withTag:tagForSFEventId]];
     }
     
@@ -41,26 +41,55 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView checkinForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *cellId = [NSString stringWithFormat:@"checkin:%@", self.checkedAccountId];
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    
-    if(cell == nil){
-		
-		OVDatabase *db = [OVDatabase sharedInstance];
-		
-		NSDictionary *row = [[[db executeQuery:@"select * from Account where Id = ?", self.checkedAccountId] readToEnd] objectAtIndex:0];
-		
-		cell.textLabel.text = [row objectForKey:@"Name"];
-		cell.detailTextLabel.text = [[NSDate date] format:@"HH:mm"];
-		
-		[cell addSubview:[UILabel hiddenLabelForText:self.checkinEventId withTag:tagForSFEventId]];
-		[cell addSubview:[UILabel hiddenLabelForText:self.checkedAccountId withTag:tagForSFAccountId]];
-		
-        cell.tag = tagForCellCheckedIn;
-    }
-    
-    return cell;
+	switch (indexPath.row) {
+		case 0:{
+			
+			NSString *cellId = [NSString stringWithFormat:@"checkin:%@", self.checkedAccountId];
+			
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+			
+			if(cell == nil){
+				
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+				
+				NSDictionary *row = [[[[OVDatabase sharedInstance] executeQuery:@"select * from Account where Id = ?", self.checkedAccountId] readToEnd] objectAtIndex:0];
+				
+				cell.textLabel.text = [row objectForKey:@"Name"];
+				cell.detailTextLabel.text = [[NSDate date] format:@"HH:mm"];
+				
+				[cell addSubview:[UILabel hiddenLabelForText:self.checkinEventId withTag:tagForSFEventId]];
+				[cell addSubview:[UILabel hiddenLabelForText:self.checkedAccountId withTag:tagForSFAccountId]];
+				
+				cell.tag = tagForCellCheckedIn;
+			}
+			
+			return cell;
+			
+		}break;
+			
+		case 1:{
+			
+			NSString *cellId = [NSString stringWithFormat:@"checkout:%@", self.checkedAccountId];
+			
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+			
+			if(cell == nil){
+				
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+				
+				cell.textLabel.text = @"Checkout";
+				cell.backgroundColor = [UIColor whiteColor];
+				cell.accessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+				
+				cell.tag = tagForCellCheckOut;
+			}
+			
+			return cell;
+			
+		}break;
+	}
+	
+    return nil;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView menuForRowAtIndexPath:(NSIndexPath *)indexPath{

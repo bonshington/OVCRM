@@ -77,7 +77,7 @@ titleForHeaderInSection:(NSInteger)section{
     }
     else{
         switch(section){
-            case 0: return 0;
+            case 0: return 2;
                 
             case 1: return self.todayPlan.count;
                 
@@ -105,7 +105,7 @@ titleForHeaderInSection:(NSInteger)section{
     }
     else{
         switch(indexPath.section){
-            case 0: return nil;
+            case 0: return [self tableView:tableView checkinForRowAtIndexPath:indexPath];
                 
             case 1: return [self tableView:tableView planForRowAtIndexPath:indexPath];
                 
@@ -160,10 +160,8 @@ titleForHeaderInSection:(NSInteger)section{
             
         }break;
             
-        case tagForCellCheckedIn:
-            // open 7 steps with checkout button
-            ;
-            
+        case tagForCellCheckOut:
+            [self checkout];
             break;
             
         case tagForCellMenu:
@@ -179,7 +177,13 @@ titleForHeaderInSection:(NSInteger)section{
 }
 
 
-
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	
+	if(self.checkedAccountId != nil && indexPath.section == 0 && indexPath.row == 0)
+		return nil;
+	
+	return  indexPath;
+}
 
 
 

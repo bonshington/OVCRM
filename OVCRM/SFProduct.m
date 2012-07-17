@@ -15,10 +15,56 @@
 #pragma mark - SFObjectProtocal
 
 -(NSString *) SFName{
-    return @"Product__c";
+    return @"Product_Database__c";
 }
 
 - (NSDictionary *)schema{
+	
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			@"LOOKUP"	, @"CreatedBy",
+			@"LOOKUP"	, @"LastModifiedBy",
+			@"TEXT"		, @"Name",
+			@"PICKLIST"	, @"Brand__c",
+			@"PICKLIST"	, @"Class__c",
+			@"NUMBER"	, @"Cost__c",
+			@"TEXT"		, @"Description__c",
+			@"TEXT"		, @"Discount_Sequence__c",
+			@"TEXT"		, @"FOC_Code__c",
+			@"NUMBER"	, @"Height__c",
+			@"TEXT"		, @"INT_ActionType__c",
+			@"PICKLIST"	, @"Is_Cancel__c",
+			@"TEXT"		, @"Is_Free__c",
+			@"DATETIME"	, @"Last_Modified__c",
+			@"TEXT"		, @"List_Price__c",
+			@"NUMBER"	, @"Long__c",
+			@"TEXT", @"Main_Product__c",
+			@"NUMBER", @"Maximum_Stock__c",
+			@"TEXT", @"MD_Product_Category_Code__c",
+			@"TEXT", @"MD_Product_Class_Code__c",
+			@"TEXT", @"MD_Product_IsCancel_Code__c",
+			@"TEXT", @"MD_Product_VatStatus_Code__c",
+			@"TEXT", @"MD_Product_Group__c",
+			@"NUMBER", @"Minimum_Stock__c",
+			@"TEXT", @"No_Do__c",
+			@"PICKLIST", @"Packaging__c",
+			@"NUMBER", @"Pack_Size__c",
+			@"TEXT", @"Product_Source__c",
+			@"PICKLIST", @"Product_Category__c",
+			@"TEXT", @"Product_Code__c",
+			@"PICKLIST", @"Product_Family__c",
+			@"PICKLIST", @"Product_Group__c",
+			@"TEXT", @"Short_name__c",
+			@"TEXT", @"Source_System__c",
+			@"NUMBER", @"Target__c",
+			@"TEXT", @"UnitName__c",
+			@"PICKLIST", @"Vat_Status__c",
+			@"NUMBER", @"Weight__c",
+			@"NUMBER", @"Width__c", 
+			nil];
+	
+	/*
+	 Product__c
+	 
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"LOOKUP", @"CreatedBy",
             @"DATETIME", @"CreatedDate", 
@@ -62,6 +108,39 @@
             @"PICKLIST", @"Status__c",
             @"NUMBER", @"Weight__c",
             nil];
+	 */
+}
+
+-(NSDictionary *)mapping{
+	
+	//PK,sale_ID,product_Code,product_Name,lastSyncDate,lastSyncTime,cost,weight,packaging,width,packSize,productLong,height,product_Category,brand,shortName,product_Family,target,unitName,isCancel,Active_Flag,Expire_Flag
+	
+	
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			@"Product", [self SFName], 
+			
+			@"sale_ID", @"",
+			@"product_Code", @"Product_Code__c",
+			@"product_Name", @"Name",
+			//@"lastSyncDate", @"",
+			//@"lastSyncTime", @"",
+			@"cost", @"Sales_Price__c",
+			@"weight", @"Weight__c",
+			@"packaging", @"",
+			@"width", @"",
+			@"packSize", @"Pack_Size__c",
+			@"productLong", @"",
+			@"height", @"",
+			@"product_Category", @"Product_Category__c",
+			@"brand", @"",
+			@"shortName", @"",
+			@"product_Family", @"",
+			@"target", @"",
+			@"unitName", @"",
+			@"isCancel", @"",
+			@"Active_Flag", @"",
+			@"Expire_Flag", @"",
+			nil];
 }
 
 
@@ -75,7 +154,7 @@
     [super.controller updateStatus:@"Requesting data"];
     
     [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Product__c where CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z"
+							@"select Id,%@ from Product where CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z"
 							, [[self toSFColumns] componentsJoinedByString:@","]
                             , lastSyncDate
                             , lastSyncDate] 

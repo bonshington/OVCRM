@@ -42,7 +42,7 @@
 		188C06EF15A69DE00043DBC7 /* NSDictionary+SFSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */; };
 		18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048615A56A1F000719DB /* NSString+Extension.m */; };
 		18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */; };
-		18B1048D15A5961D000719DB /* SFVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048C15A5961D000719DB /* SFVisit.m */; };
+		18B1048D15A5961D000719DB /* SFPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B1048C15A5961D000719DB /* SFPlan.m */; };
 		18B5AEE215B3EF3300089400 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5AEE115B3EF3300089400 /* CoreLocation.framework */; };
 		18B5AEE415B3EF3F00089400 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5AEE315B3EF3F00089400 /* MapKit.framework */; };
 		18B5AEE915B3F25900089400 /* CallCard.h in Sources */ = {isa = PBXBuildFile; fileRef = 18B5AEAA15B3E5AC00089400 /* CallCard.h */; };
@@ -260,8 +260,8 @@
 		18B1048615A56A1F000719DB /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullHandling.h"; sourceTree = "<group>"; };
 		18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullHandling.m"; sourceTree = "<group>"; };
-		18B1048B15A5961D000719DB /* SFVisit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFVisit.h; sourceTree = "<group>"; };
-		18B1048C15A5961D000719DB /* SFVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFVisit.m; sourceTree = "<group>"; };
+		18B1048B15A5961D000719DB /* SFPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SFPlan.h; sourceTree = "<group>"; };
+		18B1048C15A5961D000719DB /* SFPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPlan.m; sourceTree = "<group>"; };
 		18B5AE8315B3E57600089400 /* ProductInAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductInAction.h; sourceTree = "<group>"; };
 		18B5AE8415B3E57600089400 /* ProductInAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductInAction.m; sourceTree = "<group>"; };
 		18B5AE8515B3E57600089400 /* tblMerchandize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblMerchandize.h; sourceTree = "<group>"; };
@@ -1114,8 +1114,8 @@
 				08FAFCDC15A48317007C52F5 /* SFAccount.m */,
 				0887ED8B15ADD9E500D3312B /* SFCallCard.h */,
 				0887ED8C15ADD9E500D3312B /* SFCallCard.m */,
-				18B1048B15A5961D000719DB /* SFVisit.h */,
-				18B1048C15A5961D000719DB /* SFVisit.m */,
+				18B1048B15A5961D000719DB /* SFPlan.h */,
+				18B1048C15A5961D000719DB /* SFPlan.m */,
 				18D52FBD15AAB36600C70E16 /* SFProduct.h */,
 				18D52FBE15AAB36600C70E16 /* SFProduct.m */,
 				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
@@ -1349,7 +1349,7 @@
 				08FAFCE015A48375007C52F5 /* sObject.m in Sources */,
 				18B1048715A56A1F000719DB /* NSString+Extension.m in Sources */,
 				18B1048A15A56E21000719DB /* NSDictionary+NullHandling.m in Sources */,
-				18B1048D15A5961D000719DB /* SFVisit.m in Sources */,
+				18B1048D15A5961D000719DB /* SFPlan.m in Sources */,
 				188C06EF15A69DE00043DBC7 /* NSDictionary+SFSchema.m in Sources */,
 				18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */,
 				18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */,
