@@ -16,8 +16,10 @@
 @synthesize value,volumn,shopType,owner,startDate,endDate;
 @synthesize promotionList = _promotionList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"Promotion"; }
 
 -(NSString *)DB_Field
 {

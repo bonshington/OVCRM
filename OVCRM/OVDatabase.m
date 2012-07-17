@@ -76,8 +76,8 @@
 	
 	
 	NSMutableDictionary *transform = [[NSMutableDictionary alloc] initWithDictionary:data];
-	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"id"];
-	[transform removeObjectsForKeys:[NSArray arrayWithObjects:@"Id", @"pk", @"PK", @"Pk", @"id", nil]];
+	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID"];
+	[transform removeObjectsForKeys:[NSArray arrayWithObjects:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil]];
 	
 	// get sfname
 	NSString *object = [sObject SFNameForSqlTable:table];

@@ -19,13 +19,17 @@
 
 @synthesize  callCardList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"CallCard"; }
 
 -(NSString *)DB_Field
 {
     return @"Plan_ID ,PK ,Account_ID ,CS_Date ,CS_Time ";
 }
+
+/*
 
 -(NSString *)GetMaxRnNo
 {

@@ -28,8 +28,10 @@
 
 @synthesize  planList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"Plan"; }
 
 -(NSString *)DB_Field
 {

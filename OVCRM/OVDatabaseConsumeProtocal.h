@@ -10,6 +10,10 @@
 
 @protocol OVDatabaseConsumeProtocal <NSObject>
 
+@required
+-(NSString *)sqlName;
+-(NSString *)DB_Field;
+
 @optional
 -(NSString *)DB_Field;
 -(NSMutableArray *)QueryData:(NSString *)sqlText;

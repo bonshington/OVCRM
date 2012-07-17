@@ -20,14 +20,17 @@
 @synthesize payType;
 @synthesize collectionList = _collectionList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"Collection"; }
 
 -(NSString *)DB_Field
 {
     return @"Plan_ID, PK, Collect_Date, Collect_Time, Invoice_No, Amount, PayType";
 }
 
+/*
 -(NSString *)GetMaxRnNo
 {
     

@@ -13,8 +13,10 @@
 @synthesize promotion_PK,pK,sale_ID,product_Code,brand,product_Family;
 @synthesize promotionLineItemList = _promotionLineItemList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"PromotionLineItem"; }
 
 -(NSString *)DB_Field
 {

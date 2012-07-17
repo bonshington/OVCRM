@@ -19,15 +19,17 @@
 @synthesize account_ID;
 @synthesize invoiceList = _invoiceList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"Invoice"; }
 
 -(NSString *)DB_Field
 {
     return @"PK, Invoice_No, Inv_DueDate, Inv_Total, Paid, Account_ID";
 }
 
-
+/*
 -(NSString *)GetMaxRnNo
 {
     

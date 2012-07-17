@@ -44,9 +44,40 @@
 
 -(bool)ExecSQL:(NSString *)addText parameterArray:(NSArray *)paramArr{
 	
+	NSArray *phrase = [[addText lowercaseString] componentsSeparatedByString:@") values ("];
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
+	NSString *intoClause = [[[phrase objectAtIndex:0] componentsSeparatedByString:@"("] objectAtIndex:1];
+	
+	// parse to dictionary ////////////////////////
+	
+	NSMutableDictionary *parse = [NSMutableDictionary new];
+	
+	[[intoClause componentsSeparatedByString:@","] enumerateObjectsUsingBlock:^(NSString * col, NSUInteger index, BOOL *stop){
+		
+		col = [col stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
+		
+		[parse setObject:[paramArr objectAtIndex:index] forKey:col];
+	}];
+	
+	[db sfInsertInto:[self sqlName] withData:parse];
+	///////////////////////////////////////////////
+	
 	return [db executeUpdate:addText withArgumentsInArray:paramArr];
+}
+
+
+-(NSString *)GetMaxRnNo{
+	
+	OVDatabase *db = [OVDatabase sharedInstance];
+	
+	if(!db.open)
+		[db open];
+	
+	NSArray *result = [[db executeQuery:[NSString stringWithFormat:@"select pk from %@ order by pk desc limit 1", [self sqlName]]] readToEnd];
+	
+	return [[result objectAtIndex:0] objectForKey:@"pk"];
+	
 }
 
 @end

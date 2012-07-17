@@ -19,6 +19,8 @@
 sqlite3 *database;
 sqlite3_stmt *statement;
 
+-(NSString *)sqlName{ return @"Promotion"; }
+
 -(NSString *)DB_Field
 {
     return @" PK, PromotionName, ItemOrder, Quantity, Amount, ItemPromotion "; 

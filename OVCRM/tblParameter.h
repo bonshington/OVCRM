@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
+//#import <sqlite3.h>
 #import "OVDataseProxy.h"
 
 @interface tblParameter : OVDataseProxy <OVDatabaseConsumeProtocal>

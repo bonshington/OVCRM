@@ -15,8 +15,10 @@
 @synthesize order_Total;
 @synthesize orderMasterList = _orderMasterList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"OrderMaster"; }
 
 -(NSString *)DB_Field
 {

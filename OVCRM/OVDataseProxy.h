@@ -12,12 +12,14 @@
 #import "NSDictionary+Extension.h"
 
 
-@interface OVDataseProxy : NSObject
+@interface OVDataseProxy : NSObject <OVDatabaseConsumeProtocal>
  
 -(bool)OpenConnection;
 
 -(bool)ExecSQL:(NSString *)addText parameterArray:(NSArray *)paramArr;
 
 -(NSMutableArray *)QueryData:(NSString *)sqlText;
+
+-(NSString *)GetMaxRnNo;
 
 @end

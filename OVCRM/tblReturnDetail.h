@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
+//#import <sqlite3.h>
 #import "OVDataseProxy.h"
 
 @interface tblReturnDetail : OVDataseProxy <OVDatabaseConsumeProtocal>
@@ -23,7 +23,7 @@
 @property(strong , nonatomic) NSMutableArray  *returnList;
 
 -(NSString *)DB_Field;
--(NSString *)GetMaxRnNo;
+//-(NSString *)GetMaxRnNo;
 
 /*
 -(NSMutableArray *)QueryData:(NSString *)sqlText; 

@@ -37,8 +37,8 @@
 
 @synthesize  productList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
 
 -(NSString *)DB_Field
 {

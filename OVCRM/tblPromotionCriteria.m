@@ -14,8 +14,10 @@
 @synthesize promotion_PK,pk,sale_ID,quantity,amount,product_Code;
 @synthesize promotionCriteriaList = _promotionCriteriaList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"PromotionCriteria"; }
 
 -(NSString *)DB_Field
 {

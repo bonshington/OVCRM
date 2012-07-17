@@ -19,6 +19,8 @@
 sqlite3 *database;
 sqlite3_stmt *statement;
 
+-(NSString *)sqlName{ return @"OrderDetail"; }
+
 -(NSString *)DB_Field
 {
     return @" PK, Total, TotalDiscount, Discount, DiscountRate, Product_ID, Price, TotalPrice, Quantity, OrderMAster_PK "; 
@@ -251,7 +253,7 @@ sqlite3_stmt *statement;
     }
     return result;
 }
-*/
+
 -(NSString *)GetMaxRnNo
 {
     
@@ -276,7 +278,7 @@ sqlite3_stmt *statement;
     return tempMax;
 }
 
-
+*/
 
 
 

@@ -19,8 +19,10 @@
 
 @synthesize  saleTalkList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"SaleTalk"; }
 
 -(NSString *)DB_Field
 {

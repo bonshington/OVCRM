@@ -19,14 +19,17 @@
 
 @synthesize  callCardStockList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"cllCard_Stock"; }
 
 -(NSString *)DB_Field
 {
     return @"CallCard_PK ,PK ,Product_Name ,OnShelf ,InStock";
 }
 
+/*
 -(NSString *)GetMaxRnNo
 {
     

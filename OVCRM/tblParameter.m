@@ -14,8 +14,10 @@
 @synthesize  tag,key,label;
 @synthesize  parameterList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"Parameter"; }
 
 -(NSString *)DB_Field
 {

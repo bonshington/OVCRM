@@ -24,12 +24,14 @@
 sqlite3 *database;
 sqlite3_stmt *statement;
 
+-(NSString *)sqlName{ return @"Merchandize"; }
+
 -(NSString *)DB_Field
 {
     return @"Plan_ID, PK, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ";
 }
 
-
+/*
 -(NSString *)GetMaxRnNo
 {
     NSString * tempMax = nil;  

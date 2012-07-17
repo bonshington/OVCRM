@@ -65,6 +65,24 @@
 
 }
 
+-(NSDictionary *) mapping{
+	
+	//@"Plan_ID ,Account_ID ,Account_Name ,Date_Plan ,TimePlan_In ,TimePlan_Out ,Visit_Date ,Visit_TimeIn ,Visit_TimeOut ,Latitude ,Longtitude , LastSyncDate , LastSyncTime";
+	
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			@"Plan", @"Event", 
+			
+			@"", @"WhatId",
+			@"Account_ID", @"WhatId",
+			@"", @"",
+			@"", @"",
+			@"", @"",
+			@"", @"",
+			@"", @"",
+			@"", @"",
+			nil];
+}
+
 -(void)sync:(id<OVSyncProtocal>)controller{
     
     self.controller = controller;

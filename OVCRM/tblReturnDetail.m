@@ -22,14 +22,19 @@
 
 @synthesize returnList;
 
-sqlite3 *database;
-sqlite3_stmt *statement;
+//sqlite3 *database;
+//sqlite3_stmt *statement;
+
+-(NSString *)sqlName{ return @"ReturnDetail"; }
 
 -(NSString *)DB_Field
 {
     return @"PK,Plan_ID,Product_ID,Quantity,Reason,RT_Date,RT_Time";
 }
 
+
+/*
+ 
 -(NSString *)GetMaxRnNo
 {
     
