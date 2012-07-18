@@ -10,7 +10,9 @@
 
 @implementation SFPlan
 
--(NSString *)SFName{ return @"Event";}
+-(NSString *)sfName{ return @"Event";}
+-(NSString *)sqlName{ return @"Plan";}
+
 
 -(NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -68,9 +70,7 @@
 	//@"Plan_ID ,Account_ID ,Account_Name ,Date_Plan ,TimePlan_In ,TimePlan_Out ,Visit_Date ,Visit_TimeIn ,Visit_TimeOut ,Latitude ,Longtitude , LastSyncDate , LastSyncTime";
 	
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"Plan", @"Event", 
 			
-			@"PK", @"Id",
 			@"Account_ID", @"WhatId",
 			@"Account_Name", @"What",
 			@"Date_Plan", @"ActivityDateTime",
@@ -86,24 +86,9 @@
 			nil];
 }
 
--(void)sync:(id<OVSyncProtocal>)controller{
+-(void)sync:(id<OVSyncProtocal>)_controller{
     
-    self.controller = controller;
-    
-    [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Plan "
-							, [[self toSFColumns] componentsJoinedByString:@","]] 
-				  delegate:self];
-}
-
-+(void) loadNewVisit{
-    
-    SFPlan *this = [SFPlan new];
-    
-    [super loadWithQuery:[NSString stringWithFormat:
-                          @"select Id,%@ from Plan "
-                          , [[this toSFColumns] componentsJoinedByString:@","]] 
-                delegate:this];
+	[super sync:_controller where:@"StartDateTime >= TODAY"];
 }
 
 +(NSArray *) selectToday{
@@ -113,7 +98,7 @@
     if(!db.open)[db open];
 	
 	NSString *eventTimeColumn = @"Visit_Date";
-    NSString *sql = [NSString stringWithFormat:@"select *, substr(TIME(substr(TimePlan_In, 1, 23), 'localtime'), 1, 5) as time from Plan where 1=1 or %@ = CURRENT_DATE order by DATETIME(%@)", eventTimeColumn, eventTimeColumn, eventTimeColumn];
+    NSString *sql = @"select *, substr(TIME(substr(TimePlan_In, 1, 23), 'localtime'), 1, 5) as time from Plan where 1=1 or date(TimePlan_In) = CURRENT_DATE order by DATETIME(TimePlan_In)";
     
 	return [[db executeQuery:sql] readToEnd];
 }

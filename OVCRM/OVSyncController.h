@@ -18,6 +18,7 @@
 #import "SFMerchandise.h"
 #import "SFGoodsReturn.h"
 #import "SFCollection.h"
+#import "SFCallCard.h"
 
 #define OVSYNC_SECTION_UPLOAD   0
 #define OVSYNC_SECTION_DOWNLOAD 1

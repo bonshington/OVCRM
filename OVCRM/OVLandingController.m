@@ -52,7 +52,9 @@
         // dismiss modal, due to SplitViewController cannot be presented as Modal    
         [self dismissViewControllerAnimated:YES completion:^(void){
             
-            [[AppDelegate sharedInstance].window setRootViewController:[RootViewController new]];
+			[AppDelegate sharedInstance].root = [RootViewController new];
+			
+            [[AppDelegate sharedInstance].window setRootViewController:[AppDelegate sharedInstance].root];
             
         }];
     }

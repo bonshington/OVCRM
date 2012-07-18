@@ -44,7 +44,7 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
-@synthesize db, master, detail, sync, user, registeredUploadStatusChange, location, locationManager;
+@synthesize db, root, master, detail, sync, user, registeredUploadStatusChange, location, locationManager, sqlFormat;
 
 SFIdentityCoordinator *_coordinator;
 
@@ -125,7 +125,7 @@ SFIdentityCoordinator *_coordinator;
 	
 	[UIApplication sharedApplication].applicationIconBadgeNumber += 1;
 	
-    return [OVLandingController new];
+	return [OVLandingController new];
 }
 
 
@@ -133,11 +133,17 @@ SFIdentityCoordinator *_coordinator;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application{
 	
+	// init date Format
+	self.sqlFormat = [NSDateFormatter new];
+    [self.sqlFormat setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+	
 	[super applicationDidBecomeActive:application];
 	
-	if(!self.db.open){
+	if(self.db != nil && !self.db.open){
 		[self.db open];
 	}
+	
+	
 	
 	if([super respondsToSelector:@selector(applicationDidBecomeActive:)])
 		[super applicationDidBecomeActive:application];
@@ -146,6 +152,7 @@ SFIdentityCoordinator *_coordinator;
 		[self.master reloadData];
 	
 }
+
 /*
 - (void)applicationWillResignActive:(UIApplication *)application{
 	
@@ -158,11 +165,13 @@ SFIdentityCoordinator *_coordinator;
 		[super applicationWillResignActive:application];
 }
 */
+
 -(NSDictionary *)getUser{
 
 	return [NSMutableDictionary dictionaryWithObjectsAndKeys:
 			@"10390230", @"route",
-			[[[[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"] readToEnd] objectAtIndex:0] objectForKey:@"label"], @"lastSyncDate", 
+			@"", @"userId",
+			[[[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"] readToEnd] objectAtIndex:0 forKey:@"label"], @"lastSyncDate", 
 			[NSString stringWithFormat:@"%f", self.location.coordinate.latitude], @"lat",
 			[NSString stringWithFormat:@"%f", self.location.coordinate.longitude], @"lng",
 			nil];

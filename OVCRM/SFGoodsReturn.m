@@ -11,7 +11,8 @@
 
 @implementation SFGoodsReturn
 
--(NSString *)SFName{ return @"Goods_Return__c";}
+-(NSString *)sfName{ return @"Goods_Return__c";}
+-(NSString *)sqlName{ return @"ReturnDetail";}
 
 -(NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -38,27 +39,17 @@
 
 -(NSDictionary *)mapping{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"ReturnDetail", @"Goods_Return__c",
 			@"Product_ID", @"Products__c",
 			@"Reason", @"Reason_for_Return__c",
 			@"Quantity", @"Return_Quantity__c",
 			nil];
 }
 
--(void)sync:(id<OVSyncProtocal>)controller{
+-(void)sync:(id<OVSyncProtocal>)_controller{
     
-    self.controller = controller;
-    
-    NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
-    
-    [super.controller updateStatus:@"Requesting data"];
-    
-    [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Goods_Return__c where CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z"
-							, [[self toSFColumns] componentsJoinedByString:@","]
-                            , lastSyncDate
-                            , lastSyncDate] 
-				  delegate:self];
+	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
+	
+	[super sync:_controller where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
 }
 
 @end

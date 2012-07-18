@@ -11,7 +11,8 @@
 
 @implementation SFMerchandise
 
--(NSString *)SFName{ return @"Merchandise__c";}
+-(NSString *)sfName{ return @"Merchandise__c";}
+-(NSString *)sqlName{ return @"Merchandise";}
 
 -(NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -34,8 +35,6 @@
 
 -(NSDictionary *)mapping{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"Merchandise", @"Merchandise__c",
-			@"PK", @"Id",
 			@"Account_ID", @"Account__c",
 			@"MCD_Share", @"Shelf_Share__c",
 			@"MCD_Price", @"On_Shelf_Price__c",
@@ -43,22 +42,12 @@
 			nil];
 }
 
--(void)sync:(id<OVSyncProtocal>)controller{
+-(void)sync:(id<OVSyncProtocal>)_controller{
 
-	//[[OVDatabase sharedInstance] executeUpdate:@"drop table Merchandise"];
-	
-	self.controller = controller;
-	
 	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
-    
-    [super.controller updateStatus:@"Requesting data"];
-    
-    [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Merchandise__c where CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z "
-							, [[self toSFColumns] componentsJoinedByString:@","]
-							, lastSyncDate
-							, lastSyncDate] 
-				  delegate:self];
+	
+	[super sync:_controller where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
+	
 }
 
 @end

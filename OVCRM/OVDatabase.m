@@ -20,30 +20,32 @@
     
     if(app.db == nil){
         
-        NSString *docsDir;
-        NSArray *dirPaths;
-        
         // Get the documents directory
-        dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        docsDir = [dirPaths objectAtIndex:0];
-        
+        NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [dirPaths objectAtIndex:0];
+        NSString *dbFile = [NSString stringWithFormat:@"%@.db", [SFRestAPI sharedInstance].coordinator.credentials.userId];
+		
+		
         // Build the path to the database file
-        NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.db", [SFRestAPI sharedInstance].coordinator.credentials.userId]]];
+        NSString *databasePath = [docDir stringByAppendingPathComponent: dbFile];
         
-		NSLog(databasePath);
+		NSLog(@"DB:> %@%@", docDir, dbFile);
 		
         app.db = [self initWithPath:databasePath];
         app.db.logsErrors = YES;
         
         [app.db open];
 		
-		//[app.db executeUpdate:@"drop table Parameter"];
 		
+		/* inject script */
+		//[app.db executeUpdate:@"drop table CallCard"];
+		//[app.db executeUpdate:@"delete from Upload"];
+		/*****************/
 		
 		/* init tables */
 		FMResultSet *result = [app.db executeQuery:@"select 1 from Parameter limit 1"];
 		
-		BOOL valid = result != nil && result.hasAnotherRow;
+		BOOL valid = result != nil && [result next];
 		
 		[result close];
 		

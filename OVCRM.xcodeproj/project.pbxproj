@@ -33,7 +33,6 @@
 		187F5EB715A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EB615A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m */; };
 		187F5EC315A2CDD300EA0A37 /* OVMenuController+CallVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */; };
 		187F5EC615A2D66400EA0A37 /* OVDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5EC515A2D66400EA0A37 /* OVDatabase.m */; };
-		187F5ED215A2E1EB00EA0A37 /* OVDatabase+SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */; };
 		187F5ED515A2E1FE00EA0A37 /* OVDatabase+FMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */; };
 		187F9A7515ABE3420021CE9F /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F9A7415ABE3420021CE9F /* NSDictionary+Extension.m */; };
 		187F9A7915ABF11E0021CE9F /* FMResultSet+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F9A7815ABF11E0021CE9F /* FMResultSet+Extension.m */; };
@@ -244,7 +243,6 @@
 		187F5EC215A2CDD300EA0A37 /* OVMenuController+CallVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+CallVisit.m"; sourceTree = "<group>"; };
 		187F5EC415A2D66400EA0A37 /* OVDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVDatabase.h; sourceTree = "<group>"; };
 		187F5EC515A2D66400EA0A37 /* OVDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVDatabase.m; sourceTree = "<group>"; };
-		187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVDatabase+SFAccount.m"; sourceTree = "<group>"; };
 		187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVDatabase+FMDB.m"; sourceTree = "<group>"; };
 		187F9A7315ABE3420021CE9F /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
 		187F9A7415ABE3420021CE9F /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
@@ -260,7 +258,7 @@
 		18B1048615A56A1F000719DB /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullHandling.h"; sourceTree = "<group>"; };
 		18B1048915A56E21000719DB /* NSDictionary+NullHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullHandling.m"; sourceTree = "<group>"; };
-		18B1048B15A5961D000719DB /* SFPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SFPlan.h; sourceTree = "<group>"; };
+		18B1048B15A5961D000719DB /* SFPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPlan.h; sourceTree = "<group>"; };
 		18B1048C15A5961D000719DB /* SFPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPlan.m; sourceTree = "<group>"; };
 		18B5AE8315B3E57600089400 /* ProductInAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductInAction.h; sourceTree = "<group>"; };
 		18B5AE8415B3E57600089400 /* ProductInAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductInAction.m; sourceTree = "<group>"; };
@@ -1106,7 +1104,6 @@
 			children = (
 				187F5EC415A2D66400EA0A37 /* OVDatabase.h */,
 				187F5EC515A2D66400EA0A37 /* OVDatabase.m */,
-				187F5ED115A2E1EB00EA0A37 /* OVDatabase+SFAccount.m */,
 				187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */,
 				08FAFCDE15A48375007C52F5 /* sObject.h */,
 				08FAFCDF15A48375007C52F5 /* sObject.m */,
@@ -1343,7 +1340,6 @@
 				187F5EB715A2B08400EA0A37 /* OVMenuController+MenuTableViewhandler.m in Sources */,
 				187F5EC315A2CDD300EA0A37 /* OVMenuController+CallVisit.m in Sources */,
 				187F5EC615A2D66400EA0A37 /* OVDatabase.m in Sources */,
-				187F5ED215A2E1EB00EA0A37 /* OVDatabase+SFAccount.m in Sources */,
 				187F5ED515A2E1FE00EA0A37 /* OVDatabase+FMDB.m in Sources */,
 				08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */,
 				08FAFCE015A48375007C52F5 /* sObject.m in Sources */,

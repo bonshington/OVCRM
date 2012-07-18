@@ -8,11 +8,49 @@
 
 #import "sObject.h"
 #import "AppDelegate.h"
+
 #import "SFAccount.h"
+#import "SFProduct.h"
+#import "SFPlan.h"
+#import "SFStock.h"
+#import "SFMerchandise.h"
+#import "SFGoodsReturn.h"
+#import "SFCollection.h"
+#import "SFCallCard.h"
+
+NSArray *SF_OBJECTS = nil;
+NSDictionary *SF_MAPPING = nil;
 
 @implementation sObject
 
-@synthesize controller;
+@synthesize controller, allObject, allTable;
+
+-(void)sync:(id<OVSyncProtocal>)_controller where:(NSString *)condition{
+	
+	self.controller = _controller;
+    
+	[_controller updateStatus:@"Requesting..."];
+	
+	NSLog(@"SF query for \"%@\" where %@", [self sfName], condition);
+	
+	if(condition == nil){
+		[sObject loadWithQuery:[NSString stringWithFormat:
+								@"select Id,%@ from %@"
+								, [[self toSFColumns] componentsJoinedByString:@","]
+								, [self sfName]]
+					  delegate:self];
+	}
+	else{
+		[sObject loadWithQuery:[NSString stringWithFormat:
+								@"select Id,%@ from %@ where %@"
+								, [[self toSFColumns] componentsJoinedByString:@","]
+								, [self sfName]
+								, condition]
+					  delegate:self];
+
+	}
+	
+}
 
 #pragma mark - SFRestDelegate
 
@@ -21,6 +59,10 @@ didLoadResponse:(id)jsonResponse{
     
     NSLog(@"Got response for: %@", self.class);
     
+	if(jsonResponse == nil || ((NSArray *)jsonResponse).count == 0) 
+		return;
+	
+	
     [self.controller updateStatus:@"Recieved data"];
     
     OVDatabase *db = [OVDatabase sharedInstance];
@@ -42,7 +84,8 @@ didLoadResponse:(id)jsonResponse{
 }
 
 - (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error{
-    [self.controller updateStatus:@"Error !!"];
+	
+    [self.controller updateStatus:error.localizedDescription];
 }
 
 - (void)requestDidCancelLoad:(SFRestRequest *)request{
@@ -146,7 +189,39 @@ didLoadResponse:(id)jsonResponse{
     return result;
 }
 
+-(NSArray *)getAllObject{
+	
+	if(SF_OBJECTS == nil){
+		SF_OBJECTS = [NSArray arrayWithObjects:
+					  [SFAccount new]
+					  ,[SFProduct new]
+					  ,[SFPlan new]
+					  ,[SFStock new]
+					  ,[SFMerchandise new]
+					  ,[SFGoodsReturn new]
+					  ,[SFCollection new]
+					  ,[SFCallCard new]
+					  , nil];
+		
+	}
+	
+	return SF_OBJECTS;
+}
 
+-(NSDictionary *) getAllTable{
+	
+	if(SF_MAPPING == nil){
+		NSMutableDictionary *_mapping = [NSMutableDictionary new];
+	
+		[self.allObject enumerateObjectsUsingBlock:^(sObject *obj, NSUInteger index, BOOL *stop){
+			[_mapping setValue:[obj sqlName] forKey:[obj sfName]];
+		}];
+	
+		SF_MAPPING = [NSDictionary dictionaryWithDictionary:_mapping];
+	}
+		
+	return SF_MAPPING;
+}
 
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder{
@@ -160,20 +235,20 @@ didLoadResponse:(id)jsonResponse{
 
 +(NSString *)SFNameForSqlTable:(NSString *)table{
 	
-	NSDictionary *mapping = [NSDictionary dictionaryWithObjectsAndKeys:
-							 @"Collection", @"Collection__c", 
-							 nil];
-	
-	return [mapping objectForKey:table];
+	return [[sObject new].allTable objectForKey:table];
 }
 
 +(NSDictionary *)mappingForSObject:(NSString *)object{
 	
-	if([object isEqualToString:@"Account"]){
-		return [[SFAccount new] mapping];
+	sObject *this = [self new];
+	
+	for(sObject *obj in this.allObject){
+		if([object isEqualToString:[obj sfName]] || [object isEqualToString:[obj sqlName]]){
+			return [obj mapping];
+		}
 	}
 	
-	return  nil;
+	return nil;
 }
 
 

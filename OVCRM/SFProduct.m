@@ -14,9 +14,8 @@
 
 #pragma mark - SFObjectProtocal
 
--(NSString *) SFName{
-    return @"Product_Database__c";
-}
+-(NSString *) sfName{ return @"Product_Database__c"; }
+-(NSString *) sqlName{ return @"Product"; }
 
 - (NSDictionary *)schema{
 	
@@ -118,11 +117,6 @@
 	
 	
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"Product", [self SFName], 
-			
-			// Q: why sal_id in product?
-			//@"sale_ID"	, @"",
-			
 			
 			@"product_Code", @"Product_Code__c",
 			@"product_Name", @"Name",
@@ -151,20 +145,11 @@
 
 
 
--(void)sync:(id<OVSyncProtocal>)controller{
+-(void)sync:(id<OVSyncProtocal>)_controller{
     
-    self.controller = controller;
-    
-    NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
-    
-    [super.controller updateStatus:@"Requesting data"];
-    
-    [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Product where CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z"
-							, [[self toSFColumns] componentsJoinedByString:@","]
-                            , lastSyncDate
-                            , lastSyncDate] 
-				  delegate:self];
+	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
+	
+	[super sync:_controller where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
 }
 
 @end

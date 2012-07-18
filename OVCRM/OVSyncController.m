@@ -39,6 +39,7 @@
 					 [SFMerchandise new], @"Merchandise",
 					 [SFGoodsReturn new], @"Goods Return",
 					 [SFCollection new], @"Collection",
+					 [SFCallCard new], @"Call Card",
                      nil];
 }
 

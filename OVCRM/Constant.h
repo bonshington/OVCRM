@@ -15,6 +15,8 @@
 #define tagForCellAccount	105
 #define tagForCellCheckOut	106
 
+#define tagForLockStatus	200
+
 #define tagForCellSyncUpload    190
 #define tagForCellSyncDownload  191
 

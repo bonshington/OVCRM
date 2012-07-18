@@ -11,7 +11,6 @@
 
 @interface SFPlan : sObject
 
-+(void) loadNewVisit;
 +(NSArray *) selectToday;
 
 @end

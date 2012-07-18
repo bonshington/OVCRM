@@ -35,7 +35,7 @@
         [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"Account_ID"] withTag:tagForSFAccountId]];
         [cell addSubview:[UILabel hiddenLabelForText:[data objectForKey:@"Id"] withTag:tagForSFEventId]];
     }
-    
+	
     return cell;
 }
 
@@ -62,6 +62,8 @@
 				
 				cell.tag = tagForCellCheckedIn;
 			}
+			
+			[tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
 			
 			return cell;
 			

@@ -132,14 +132,14 @@ titleForHeaderInSection:(NSInteger)section{
     AppDelegate *app = [AppDelegate sharedInstance];
     UITableViewCell *tappedCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    //if !confirm, return
-    
-    
-    [app.detail popToRootViewControllerAnimated:NO];
-    
     switch (tappedCell.tag) {
         case tagForCellPlanVisit:{
             
+			if(self.checkedAccountId != nil)
+				return;
+			
+			[app.detail popToRootViewControllerAnimated:NO];
+			
             NSString *accountId = ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text;
             self.checkinEventId = ((UILabel *)[tappedCell viewWithTag:tagForSFEventId]).text;
 			
@@ -170,6 +170,12 @@ titleForHeaderInSection:(NSInteger)section{
             break;
             
         case tagForCellSF:
+			
+			if(self.checkedAccountId != nil)
+				return;
+			
+			[app.detail popToRootViewControllerAnimated:NO];
+			
             [self setActive:NO];
             [app.detail pushViewController:[[OVSyncController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
             break;
@@ -179,10 +185,12 @@ titleForHeaderInSection:(NSInteger)section{
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	if(self.checkedAccountId != nil && indexPath.section == 0 && indexPath.row == 0)
-		return nil;
-	
-	return  indexPath;
+	if(tableView.selectedCell != nil && [tableView viewWithTag:tagForLockStatus] != nil){
+		return [tableView indexPathForSelectedRow];
+	}
+	else {
+		return indexPath;
+	}
 }
 
 

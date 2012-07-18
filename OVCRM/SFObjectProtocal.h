@@ -12,9 +12,10 @@
 @protocol SFObjectProtocal <NSObject>
 
 @required
--(void)sync:(id<OVSyncProtocal>)controller;
+-(void)sync:(id<OVSyncProtocal>)_controller;
 
--(NSString *) SFName;
+-(NSString *) sfName;
+-(NSString *) sqlName;
 
 -(NSDictionary *)schema;
 

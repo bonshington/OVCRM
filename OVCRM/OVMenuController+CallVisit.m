@@ -27,9 +27,7 @@
 		
 		[db sfInsertInto:@"Event" 
 				withData:[NSDictionary dictionaryWithObjectsAndKeys:
-						  //self.checkedAccountId, @"WhatId",
 						  self.checkinEventId, @"Id", 
-						  [userData objectForKey:@"Id"], @"UserId",
 						  [[NSDate date] SFString], @"Time_in__c",
 						  [userData objectForKey:@"lat"], @"Latitude__c",
 						  [userData objectForKey:@"lng"], @"Longtitude__c",
@@ -42,7 +40,11 @@
     [nextView setPlan_ID:self.checkinEventId];
     [nextView setAccount_ID:self.checkedAccountId];
 	
+	//AppDelegate *app = [AppDelegate sharedInstance];
+	//app.root.viewControllers = [NSArray arrayWithObjects:app.master, nextView, nil];
+	
     [[AppDelegate sharedInstance].detail pushViewController:nextView animated:YES];
+	
 }
 
 -(void) checkout{
@@ -55,6 +57,14 @@
 					  self.checkinEventId, @"Id", 
 					  [[NSDate date] SFString], @"Time_Out__c",
 					  nil]];
+	
+	self.checkedAccountId = nil;
+	
+	[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:YES];
+	
+	// dispay summary?
+	
+	[self reloadData];
 }
 
 

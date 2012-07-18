@@ -8,6 +8,7 @@
 
 #import "NSDictionary+SFSchema.h"
 #import "NSArray+LINQ.h"
+#import "AppDelegate.h"
 
 @implementation NSDictionary (SFSchema)
 
@@ -52,7 +53,20 @@
             [args addObject:[json extractObjectForKey:col withProperty:@"Id"]];
         } 
         else if([type isEqualToString:@"DATETIME"]){
-            [args addObject:value];
+			
+			//NSLog(@"parsing: %@", value);
+			
+			if(((NSString *)value).length > 10){
+			
+				NSString *dt = [[[NSString stringWithFormat:@"%@", value] stringByReplacingOccurrencesOfString:@"T" withString:@" "] substringToIndex:19];
+			
+				NSDate *localTime = [[[AppDelegate sharedInstance].sqlFormat dateFromString:dt] dateByAddingTimeInterval:7 * 60 * 60];
+			
+				[args addObject:[localTime format:@"yyyy-MM-dd HH:mm:ss"]];
+			}
+			else {
+				[args addObject:value];
+			}
         }
         else {
             [args addObject:value];

@@ -39,12 +39,10 @@
 		
 		// update last sync
 		NSString *today = [[NSDate date] format:@"yyyy-MM-dd"];
+		
+		NSLog(@"Sync complete for: %@", today);
 
-		[[OVDatabase sharedInstance] executeQuery:@"update Parameter set val = ? where tag = 'CONFIG' key = 'LAST_SYNC' ", today];
-		
-		[[AppDelegate sharedInstance].user setValue:today
-											 forKey:@"lastSyncDate"];
-		
+		[[OVDatabase sharedInstance] executeUpdate:@"update Parameter set label = ? where tag = 'CONFIG' and key = 'LAST_SYNC'", today];
 		
 		// refresh things
 		OVMenuController *menu = (OVMenuController *)[AppDelegate sharedInstance].master;

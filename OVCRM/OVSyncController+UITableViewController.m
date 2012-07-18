@@ -61,9 +61,6 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 cell.tag = tagForCellSyncUpload;
 				
-				[cell addSubview:[UILabel hiddenLabelForText:[NSString stringWithFormat:@"%d", [entry objectForKey:@"pk"]] 
-													 withTag:tagForUploadPk]];
-				
 				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"sObject"]
 													 withTag:tagForUploadObject]];
 				

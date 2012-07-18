@@ -11,7 +11,9 @@
 
 @implementation SFStock
 
--(NSString *)SFName{ return @"Stock__c";}
+-(NSString *)sfName{ return @"Stock__c";}
+-(NSString *)sqlName{ return @"CallCard_Stock";}
+
 
 -(NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -42,19 +44,15 @@
 			@"InStock", @"In_Stock__c",
 			@"CallCard_PK", @"Call_Card__c",
 			@"Stock", @"Stock__c",
-			@"PK", @"Id",
 			nil];
 }
 
--(void)sync:(id<OVSyncProtocal>)controller{
+-(void)sync:(id<OVSyncProtocal>)_controller{
     
-    self.controller = controller;
+	NSString *myRoute = [[AppDelegate sharedInstance].user objectForKey:@"route"];
+	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
 	
-    [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id, %@ from Stock__c where AccountId__c in (select Id from Account where Route_no__c = '%@')"
-							, [[self toSFColumns] componentsJoinedByString:@","]
-							, [[AppDelegate sharedInstance].user objectForKey:@"route"]] 
-				  delegate:self];
+	[super sync:_controller where:[NSString stringWithFormat:@"AccountId__c in (select Id from Account where Route_no__c = '%@') and CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", myRoute, lastSyncDate, lastSyncDate]];
 	
 }
 

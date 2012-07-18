@@ -18,6 +18,10 @@
 @interface sObject : NSObject<SFRestDelegate, SFObjectProtocal>
 
 @property (nonatomic, retain) id<OVSyncProtocal> controller;
+@property (nonatomic, retain, getter = getAllObject) NSArray *allObject; 
+@property (nonatomic, retain, getter = getAllTable) NSDictionary *allTable; 
+
+-(void)sync:(id<OVSyncProtocal>)_controlller where:(NSString *)condition;
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder;
 

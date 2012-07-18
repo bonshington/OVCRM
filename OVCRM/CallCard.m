@@ -287,7 +287,7 @@
     
     
     NSString *tableField = [_tblcallCard DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from CallCard Where Plan_ID='%@'",tableField ,plan_ID]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select c.* from CallCard c join Plan p on p.Account_ID = c.Account_ID and date(p.Date_Plan) = date(c.CS_Date) where p.Id = '%@'" ,plan_ID]; 
     muTableCallcard = [[NSMutableArray alloc] init];
     muTableCallcard = [_tblcallCard QueryData:searchString];
     
@@ -302,8 +302,8 @@
 //            [muTableStock addObject:product];
 //        }
         tableField = [_tblproduct DB_Field];    
-        NSString * sql = [NSString stringWithFormat:@"Select %@ From Product ",tableField];
-        NSMutableArray * tempTable = [_tblproduct QueryData:sql];
+        //NSString * sql = [NSString stringWithFormat:@"Select %@ From Product ",tableField];
+        NSMutableArray * tempTable = [_tblproduct QueryData:@"select * from Product"];
         int ii = 0;
         for (ii=0; ii<tempTable.count; ii++) {
             ProductInAction * product = [[ProductInAction alloc]init];

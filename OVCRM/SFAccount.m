@@ -13,9 +13,8 @@
 
 #pragma mark - SFObjectProtocal
 
--(NSString *) SFName{
-    return @"Account";
-}
+-(NSString *) sfName{ return @"Account"; }
+-(NSString *) sqlName{ return @"Account"; }
 
 - (NSDictionary *)schema{
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -167,15 +166,13 @@
 			nil];
 }
 
--(void)sync:(id<OVSyncProtocal>)controller{
+-(void)sync:(id<OVSyncProtocal>)_controller{
     
-    self.controller = controller;
-    
-    [sObject loadWithQuery:[NSString stringWithFormat:
-							@"select Id,%@ from Account where Route_no__c = '%@'"
-							, [[self toSFColumns] componentsJoinedByString:@","]
-							, [[AppDelegate sharedInstance].user objectForKey:@"route"]] 
-				  delegate:self];
+	[super sync:_controller where:[NSString stringWithFormat:
+								   @"Route_no__c = '%@'"
+								   , [[AppDelegate sharedInstance].user objectForKey:@"route"]
+								   ]
+	 ];
 }
 
 @end

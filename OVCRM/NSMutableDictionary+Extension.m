@@ -16,7 +16,11 @@
 	
 	[self removeObjectForKey:oldKey];
 	
-	[self setObject:val forKey:newKey];
+	if(val != nil)
+		[self setObject:val forKey:newKey];
+	else 
+		[self setObject:[NSNull null] forKey:newKey];
+	
 }
 
 @end

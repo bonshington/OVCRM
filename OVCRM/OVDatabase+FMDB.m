@@ -18,16 +18,10 @@
 
 -(BOOL) insertOrReplaceTable:(id<SFObjectProtocal>)object withData:(NSArray *)rows{
     
-	NSString *sObject = [NSString stringWithString:[object SFName]];
-	
-	if([object respondsToSelector:@selector(mapping)] && [[object mapping] objectForKey:sObject] != nil)
-		sObject = [[object mapping] objectForKey:sObject];
-	
-	
     NSDictionary *schema = [object schema];
     NSString *script = [NSString stringWithFormat:
                         @"insert or replace into %@ (Id,%@) values(?,%@)"
-                        , sObject
+                        , [object sqlName]
                         , [[object toSqlColumn] componentsJoinedByString:@","]
                         , [[object toSqlArguments] componentsJoinedByString:@","]
                         ];
@@ -47,19 +41,11 @@
 
 -(BOOL) initSqlTableOf:(id<SFObjectProtocal>)object{
 
-    //[self executeUpdate:[NSString stringWithFormat:@"drop table %@", [object SFName]]];
+    //[self executeUpdate:[NSString stringWithFormat:@"drop table %@", [object sqlName]]];
     
-	NSString *tableName = [object SFName];
-	
-	if([object respondsToSelector:@selector(mapping)]){
-		NSDictionary *mapping = [object mapping];
-		tableName = [mapping objectForKey:tableName];
-	}
-	
-	
     NSString *script = [NSString stringWithFormat:
                         @"create table if not exists %@(Id TEXT primary key,%@)"
-                        , tableName
+                        , [object sqlName]
                         , [[object toSqlColumnWithType] componentsJoinedByString:@","]
                         ];
     
