@@ -162,7 +162,7 @@ SFIdentityCoordinator *_coordinator;
 
 	return [NSMutableDictionary dictionaryWithObjectsAndKeys:
 			@"10390230", @"route",
-			[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"], @"lastSyncDate", 
+			[[[[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"] readToEnd] objectAtIndex:0] objectForKey:@"label"], @"lastSyncDate", 
 			[NSString stringWithFormat:@"%f", self.location.coordinate.latitude], @"lat",
 			[NSString stringWithFormat:@"%f", self.location.coordinate.longitude], @"lng",
 			nil];
