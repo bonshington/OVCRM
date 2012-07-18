@@ -13,4 +13,6 @@
 
 -(NSString *)toJson;
 
+-(id) objectAtIndex:(NSUInteger)index forKey:(id)key;
+
 @end

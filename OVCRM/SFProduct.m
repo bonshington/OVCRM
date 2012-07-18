@@ -121,7 +121,7 @@
 			@"Product", [self SFName], 
 			
 			// Q: why sal_id in product?
-			@"sale_ID"	, @"",
+			//@"sale_ID"	, @"",
 			
 			
 			@"product_Code", @"Product_Code__c",

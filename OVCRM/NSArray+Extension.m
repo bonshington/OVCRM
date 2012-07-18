@@ -57,4 +57,8 @@
     return json;
 }
 
+-(id) objectAtIndex:(NSUInteger)index forKey:(id)key{
+	return [[self objectAtIndex:index] objectForKey:key];
+}
+
 @end
