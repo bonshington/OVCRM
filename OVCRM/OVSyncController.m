@@ -40,6 +40,8 @@
 					 [SFGoodsReturn new], @"Goods Return",
 					 [SFCollection new], @"Collection",
 					 [SFCallCard new], @"Call Card",
+					 [SFPriceBook new], @"Price book",
+					 [SFPriceBookDetail new], @"Price book detail",
                      nil];
 }
 
