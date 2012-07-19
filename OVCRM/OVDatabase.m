@@ -38,8 +38,9 @@
 		
 		
 		/* inject script */
-		//[app.db executeUpdate:@"drop table CallCard"];
-		//[app.db executeUpdate:@"delete from Upload"];
+		//[app.db executeUpdate:@"drop table ProductPriceList"];
+		//[app.db executeUpdate:@"drop table ProductPrice"];
+		[app.db executeUpdate:@"delete from Upload"];
 		/*****************/
 		
 		/* init tables */

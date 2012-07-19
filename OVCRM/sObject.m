@@ -41,6 +41,7 @@ NSDictionary *SF_MAPPING = nil;
 					  delegate:self];
 	}
 	else{
+		
 		[sObject loadWithQuery:[NSString stringWithFormat:
 								@"select Id,%@ from %@ where %@"
 								, [[self toSFColumns] componentsJoinedByString:@","]

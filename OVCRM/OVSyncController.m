@@ -32,7 +32,8 @@
 	self.upload = [[[OVDatabase sharedInstance] executeQuery:@"select * from Upload where syncTime is null order by createTime"] readToEnd];
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
-                     [SFAccount new], @"Account", 
+                     
+					 [SFAccount new], @"Account", 
 					 [SFPlan new], @"Plan", 
 					 [SFStock new], @"Stock",
                      [SFProduct new], @"Product", 
@@ -41,6 +42,7 @@
 					 [SFCollection new], @"Collection",
 					 [SFCallCard new], @"Call Card",
 					 [SFPriceBook new], @"Price book",
+					  
 					 [SFPriceBookDetail new], @"Price book detail",
                      nil];
 }
