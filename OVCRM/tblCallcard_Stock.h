@@ -13,7 +13,7 @@
 @interface tblCallcard_Stock : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *callCard_PK;
-@property(nonatomic,assign) NSString *PK;
+@property(nonatomic,assign) NSString *Id;
 @property(nonatomic,strong) NSString *product_Name;
 @property(nonatomic,strong) NSString *onShelf;
 @property(nonatomic,strong) NSString *inStock;

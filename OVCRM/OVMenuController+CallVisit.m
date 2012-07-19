@@ -40,8 +40,10 @@
     [nextView setPlan_ID:self.checkinEventId];
     [nextView setAccount_ID:self.checkedAccountId];
 	
-	//AppDelegate *app = [AppDelegate sharedInstance];
-	//app.root.viewControllers = [NSArray arrayWithObjects:app.master, nextView, nil];
+	[AppDelegate sharedInstance].checkin = [NSDictionary dictionaryWithObjectsAndKeys:
+											self.checkinEventId, @"PlanId",
+											self.checkedAccountId, @"AccountId",
+											nil];
 	
     [[AppDelegate sharedInstance].detail pushViewController:nextView animated:YES];
 	
@@ -62,22 +64,11 @@
 	
 	[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:YES];
 	
+	[AppDelegate sharedInstance].checkin = nil;
+	
 	// dispay summary?
 	
 	[self reloadData];
-}
-
-
--(void) plan{
-    
-}
-
--(void) viewAccountId:(char *) accountId{
-    
-}
-
--(void) pushViewController:(char *)name{
-    
 }
 
 @end

@@ -12,7 +12,7 @@
 @implementation tblCallcard_Stock
 
 @synthesize  callCard_PK;
-@synthesize  PK;
+@synthesize  Id;
 @synthesize  product_Name;
 @synthesize  onShelf;
 @synthesize  inStock;
@@ -26,7 +26,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"CallCard_PK ,PK ,Product_Name ,OnShelf ,InStock";
+    return @"CallCard_PK ,Id ,Product_Name ,OnShelf ,InStock";
 }
 
 /*

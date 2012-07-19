@@ -13,6 +13,8 @@
 
 -(NSMutableArray *)QueryData:(NSString *)sqlText{
 	
+	NSLog(@"OVDataseProxy: %@", sqlText);
+	
 	NSMutableArray *result = [NSMutableArray new];
 	NSArray *select = [[[OVDatabase sharedInstance] executeQuery:sqlText] readToEnd];
 	NSDictionary * properties = [self properties];

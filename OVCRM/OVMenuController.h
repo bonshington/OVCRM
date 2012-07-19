@@ -35,13 +35,8 @@
 
 @interface OVMenuController (CallVisit)
 
-
-
 -(void) checkin;
 -(void) checkout;
--(void) plan;
--(void) viewAccountId:(char *) accountId;
--(void) pushViewController:(char *)name;
 
 @end
 

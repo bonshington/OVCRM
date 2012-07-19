@@ -12,7 +12,7 @@
 @implementation tblCallCard
 
 @synthesize  plan_ID;
-@synthesize  PK;
+@synthesize  Id;
 @synthesize  account_ID;
 @synthesize  cS_Date;
 @synthesize  cS_Time;
@@ -26,7 +26,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"Plan_ID ,PK ,Account_ID ,CS_Date ,CS_Time ";
+    return @"Plan_ID ,Id ,Account_ID ,CS_Date ,CS_Time ";
 }
 
 /*

@@ -13,7 +13,7 @@
 @interface tblCallCard : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *plan_ID;
-@property(nonatomic,strong) NSString *PK;
+@property(nonatomic,strong) NSString *Id;
 @property(nonatomic,strong) NSString *account_ID;
 @property(nonatomic,strong) NSString *cS_Date;
 @property(nonatomic,strong) NSString *cS_Time;

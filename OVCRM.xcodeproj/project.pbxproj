@@ -1081,6 +1081,9 @@
 		18EE3F6015A172F900A08B29 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
+				18D52FE615ABD8F300C70E16 /* SFSearchManager.m */,
+				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
 				18D52FC115AABF7C00C70E16 /* OVSyncController.h */,
 				18D52FC215AABF7C00C70E16 /* OVSyncController.m */,
 				18D52FC715AAC55A00C70E16 /* OVSyncController+UITableViewController.m */,
@@ -1118,9 +1121,6 @@
 				18B1048C15A5961D000719DB /* SFPlan.m */,
 				18D52FBD15AAB36600C70E16 /* SFProduct.h */,
 				18D52FBE15AAB36600C70E16 /* SFProduct.m */,
-				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
-				18D52FE615ABD8F300C70E16 /* SFSearchManager.m */,
-				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
 				1851882F15AE81FA00A4967D /* SFStock.h */,
 				1851883015AE81FA00A4967D /* SFStock.m */,
 				18C4C6E215B12DE800C2ACB0 /* SFMerchandise.h */,
