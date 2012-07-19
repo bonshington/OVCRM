@@ -44,6 +44,8 @@
 
 -(bool)ExecSQL:(NSString *)addText parameterArray:(NSArray *)paramArr{
 	
+	
+	
 	NSArray *phrase = [[addText lowercaseString] componentsSeparatedByString:@") values ("];
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
@@ -58,7 +60,16 @@
 		
 		col = [col stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
 		
-		[parse setObject:[paramArr objectAtIndex:index] forKey:col];
+		id val = [paramArr objectAtIndex:index];
+		
+		if(val == nil && ([[col lowercaseString] isEqualToString:@"id"] || [[col lowercaseString] isEqualToString:@"pk"])){
+			
+			val = [NSString stringWithFormat:@"-%@", [NSString guid]];
+			[parse setObject:[paramArr objectAtIndex:index] forKey:col];
+		}
+		else{
+			[parse setObject:[paramArr objectAtIndex:index] forKey:col];
+		}
 	}];
 	
 	[db sfInsertInto:[self sqlName] withData:parse];

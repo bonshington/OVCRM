@@ -13,4 +13,6 @@
 -(NSString *) stringByReplace:(NSArray *)array withString:(NSString *)withString;
 -(NSString *) htmlEncode;
 
++(NSString *)guid;
+
 @end

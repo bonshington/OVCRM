@@ -153,6 +153,7 @@
 		18D52FE715ABD8F300C70E16 /* SFSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FE615ABD8F300C70E16 /* SFSearchManager.m */; };
 		18D52FED15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */; };
 		18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */; };
+		18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DA515B7F5FC00F83A66 /* SFPriceBookDetail.m */; };
 		18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */; };
 		18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */; };
 		18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EA915A160DF00A08B29 /* CoreData.framework */; };
@@ -386,6 +387,8 @@
 		18D52FE615ABD8F300C70E16 /* SFSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSearchManager.m; sourceTree = "<group>"; };
 		18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFSearchManager+UITableViewHandler.m"; sourceTree = "<group>"; };
 		18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVMenuController.xib; sourceTree = "<group>"; };
+		18D98DA415B7F5FC00F83A66 /* SFPriceBookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPriceBookDetail.h; sourceTree = "<group>"; };
+		18D98DA515B7F5FC00F83A66 /* SFPriceBookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPriceBookDetail.m; sourceTree = "<group>"; };
 		18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+Render.m"; sourceTree = "<group>"; };
 		18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LINQ.h"; sourceTree = "<group>"; };
 		18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LINQ.m"; sourceTree = "<group>"; };
@@ -1138,6 +1141,8 @@
 				18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */,
 				0819583815B18AC300CFDFE9 /* SFUser.h */,
 				0819583915B18AC300CFDFE9 /* SFUser.m */,
+				18D98DA415B7F5FC00F83A66 /* SFPriceBookDetail.h */,
+				18D98DA515B7F5FC00F83A66 /* SFPriceBookDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1383,6 +1388,7 @@
 				081E580115B1D7C90007055E /* NSDate+Extension.m in Sources */,
 				18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */,
 				18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */,
+				18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

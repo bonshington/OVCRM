@@ -78,8 +78,14 @@
 	
 	
 	NSMutableDictionary *transform = [[NSMutableDictionary alloc] initWithDictionary:data];
+	
 	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil];
+	
+	if([objectId hasPrefix:@"-"])
+		objectId = nil;
+	
 	[transform removeObjectsForKeys:[NSArray arrayWithObjects:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil]];
+	
 	
 	// get sfname
 	NSString *object = [sObject SFNameForSqlTable:table];

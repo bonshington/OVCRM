@@ -303,7 +303,7 @@
 //        }
         tableField = [_tblproduct DB_Field];    
         //NSString * sql = [NSString stringWithFormat:@"Select %@ From Product ",tableField];
-        NSMutableArray * tempTable = [_tblproduct QueryData:@"select * from Product"];
+        NSMutableArray * tempTable = [_tblproduct QueryData:@"select * from Product where isCancel <> 'Inactive'"];
         int ii = 0;
         for (ii=0; ii<tempTable.count; ii++) {
             ProductInAction * product = [[ProductInAction alloc]init];
