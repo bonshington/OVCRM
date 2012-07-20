@@ -44,11 +44,7 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
-<<<<<<< HEAD
-@synthesize db, root, master, detail, sync, user, registeredUploadStatusChange, location, locationManager, sqlFormat, checkin;
-=======
 @synthesize db, root, master, detail, sync, user, registeredUploadStatusChange, location, locationManager, sqlFormat, routeId;
->>>>>>> Cut off
 
 SFIdentityCoordinator *_coordinator;
 
