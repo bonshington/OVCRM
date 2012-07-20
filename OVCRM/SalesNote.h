@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UITextView *textSalesTalk;
 @property (strong, nonatomic) IBOutlet UILabel *lblPCBrief;
 @property (strong, nonatomic) IBOutlet UITextView *textPCBrief;
+- (IBAction)touchView:(id)sender;
 -(void) setSalesTalkPage;
 -(void) setPCBriefPage;
 

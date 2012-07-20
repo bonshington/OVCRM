@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SearchProduct.h"
+//#import "SearchProduct.h"
 #import "ProductDataDetail.h"
 #import "cellTakeOrder.h"
 
@@ -25,7 +25,7 @@
     NSString * plan_ID;
 }
 
-@property (assign, nonatomic) BOOL checkedPromotion;
+@property (assign, nonatomic) BOOL * checkedPromotion;
 
 @property (strong, nonatomic) NSArray * arrData0;
 @property (strong, nonatomic) NSArray * arrData1;

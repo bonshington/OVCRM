@@ -15,6 +15,7 @@
 @implementation InvoiceDetail
 
 @synthesize arrData0,arrData1,arrData2,arrData3;
+@synthesize account_ID,plan_ID,invoice_No;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,9 +28,8 @@
 
 - (void)viewDidLoad
 {
-    [self setTitle:@"Ovaltine(CLT)"];
-    UIBarButtonItem * barButtonNext = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(nextToInvoiceList)];
-    [self.navigationItem setRightBarButtonItem:barButtonNext animated:YES];
+    [self setTitle:@"Ovaltine(INVDT)"];
+    
     
     arrData0 = [[NSArray alloc]initWithObjects:@"BPโอวัลตินUHTไฮไนน์225ML.P36(M)",@"โอวัลติน300กรัม(ถุง)(M)"
                 ,@"โอวัลติน3IN1 210 กรัม",@"โอวัลติน3IN1 700G(M)",@"โอวัลติน800กรัมถุง"

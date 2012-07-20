@@ -11,18 +11,24 @@
 
 @class tblInvoice;
 @class tblCollection;
+@class tblParameter;
 
 @interface InvoiceList : UIViewController
-<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate>
+<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     NSString * account_ID;
     NSString * plan_ID;
 }
+
 @property (nonatomic, strong) NSString * account_ID;
 @property (nonatomic, strong) NSString * plan_ID;
 @property (nonatomic, strong) NSMutableArray * muTableData;
+@property (nonatomic, strong) NSMutableArray * arrCollectionData;
+@property (nonatomic, strong) NSMutableArray * arrSelectInvoice;
+@property (nonatomic, strong) NSString *selectInvoice;
 @property (nonatomic, strong) tblInvoice * tblinvoice;
 @property (nonatomic, strong) tblCollection * tblcollection;
+@property (nonatomic, strong) tblParameter * tblParameter;
 @property (strong, nonatomic) IBOutlet UILabel *lbTotalAmount;
 @property (strong, nonatomic) IBOutlet UILabel *lbPayTotal;
 @property (strong, nonatomic) IBOutlet UITableView * tableData;
@@ -47,17 +53,23 @@
 @property (strong, nonatomic) IBOutlet UILabel *part2LabelBranch;
 @property (strong, nonatomic) IBOutlet UIButton *part2BtnBranch;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *part2SegmentPay;
+@property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
 
-
-
-
-
-
+@property (strong, nonatomic) NSMutableArray *arrSearchBank;
+@property (strong, nonatomic) NSMutableArray *arrSearchBranch;
+@property (strong, nonatomic) NSMutableArray *parameterList;
+@property (strong, nonatomic)NSMutableArray *arrPickerList;
+@property (strong, nonatomic) NSString *pickerType;
+@property (strong, nonatomic) NSString *bankValue;
+@property (strong, nonatomic) NSString *branchValue;
+@property (strong, nonatomic) NSMutableDictionary *dicBank;
 
 - (IBAction)touchPayInvoice:(id)sender;
 - (IBAction)enterReceive:(UITextField *)sender;
 
-
+- (IBAction)backgroungTab;
+- (IBAction)ShowBankPicker;
+- (IBAction)ShowBranchPicker;
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender;
 

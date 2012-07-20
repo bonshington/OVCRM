@@ -20,7 +20,7 @@
 @property NSInteger cc_quantity2;
 @property NSInteger cc_quantity3;
 @property NSInteger gr_quantity1;
-@property NSInteger dl_quantity1;
+//@property NSInteger dl_quantity1;
 
 @property (strong, nonatomic) NSDecimalNumber * to_Suggest; // Avgr
 @property (strong, nonatomic) NSDecimalNumber * to_Total;
@@ -33,5 +33,13 @@
 @property (strong, nonatomic) NSDecimalNumber * to_TotalPrice;
 @property (strong, nonatomic) NSDecimalNumber * to_Quantity;
 //@property (strong, nonatomic) NSString * to_DiscountRate;
+
+@property (strong, nonatomic) NSDecimalNumber * dl_quantity1;
+@property (strong, nonatomic) NSDecimalNumber * dl_Total;
+@property (strong, nonatomic) NSDecimalNumber * dl_TotalDiscount;
+@property (strong, nonatomic) NSDecimalNumber * dl_Price;
+@property (strong, nonatomic) NSDecimalNumber * dl_TotalPrice;
+@property (strong, nonatomic) NSDecimalNumber * dl_DiscountRate;
+@property (strong, nonatomic) NSDecimalNumber * dl_Discount;
 
 @end

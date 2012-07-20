@@ -13,12 +13,17 @@
 {
     NSString * account_ID;
     NSString * plan_ID;
+    NSString * invoice_No;    
 }
 
 @property (strong, nonatomic) NSArray * arrData0;
 @property (strong, nonatomic) NSArray * arrData1;
 @property (strong, nonatomic) NSArray * arrData2;
 @property (strong, nonatomic) NSArray * arrData3;
+
+@property (strong, nonatomic) NSString * account_ID;
+@property (strong, nonatomic) NSString * plan_ID;
+@property (strong, nonatomic) NSString * invoice_No;
 
 - (IBAction)buttonBack:(id)sender;
 

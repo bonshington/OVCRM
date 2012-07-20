@@ -39,11 +39,6 @@
 {
     tblsaleTalk = [[tblSaleTalk alloc]init];
     tblpcBrief = [[tblPCBrief alloc]init];
-    
-    [self setTitle:@"Ovaltine(MCD)"];
-    UIBarButtonItem * barButtonNext = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(nextToGoodReturn)];
-    [self.navigationItem setRightBarButtonItem:barButtonNext animated:YES];
-    
     //[super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -64,7 +59,16 @@
 }
 
 
+- (IBAction)touchView:(id)sender {
+    [textSalesTalk resignFirstResponder];
+    [textPCBrief resignFirstResponder];
+}
+
 -(void) setSalesTalkPage{
+    [self setTitle:@"Ovaltine(ST)"];
+    UIBarButtonItem * barButtonNext = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(nextToGoodReturn)];
+    [self.navigationItem setRightBarButtonItem:barButtonNext animated:YES];
+    
     textPCBrief.editable = NO;
     textSalesTalk.editable = YES;
     [lblPCBrief setHidden:YES];
@@ -99,11 +103,11 @@
     NSString * sql;
     NSLog(@"%d",arrSaleTalk.count);
     if (arrSaleTalk.count < 1){
-        paramArray = [[NSArray alloc] initWithObjects:@"0",textSalesTalk.text,strDate,strTime, nil];
+        paramArray = [[NSArray alloc] initWithObjects:plan_ID,textSalesTalk.text,strDate,strTime, nil];
         
         sql = [NSString stringWithFormat:@"Insert Into SaleTalk (Plan_ID,SaleTalk,ST_Date,ST_Time) Values (?,?,?,?)"];
     }else {
-        paramArray = [[NSArray alloc] initWithObjects:textSalesTalk.text, @"0", nil];
+        paramArray = [[NSArray alloc] initWithObjects:textSalesTalk.text, plan_ID, nil];
         sql = [NSString stringWithFormat:@"Update SaleTalk Set SaleTalk = ? Where Plan_ID = ?"];
     }
     [tblsaleTalk ExecSQL:sql parameterArray:paramArray];
@@ -113,7 +117,7 @@
 -(NSMutableArray *)getArrSaleTalk
 {
     NSString *tableField = [tblsaleTalk DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from SaleTalk",tableField]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from SaleTalk Where Plan_ID='%@'",tableField,plan_ID]; 
     NSMutableArray * arrSaleTalk = [[NSMutableArray alloc] init];
     arrSaleTalk = [tblsaleTalk QueryData:searchString];
     return  arrSaleTalk;
@@ -124,12 +128,17 @@
 /////////////////////////////////////////////////////////////////////////////
 
 -(void) setPCBriefPage{
+    [self setTitle:@"Ovaltine(PCB)"];
+    UIBarButtonItem * barButtonNext = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(nextToEnd)];
+    [self.navigationItem setRightBarButtonItem:barButtonNext animated:YES];
+    
     textPCBrief.editable = YES;
     textSalesTalk.editable = NO;
     [lblPCBrief setHidden:NO];
     [textPCBrief setHidden:NO];
     if ([tblpcBrief OpenConnection] == YES)
     {
+        [self loadDataSaleTalk];
         [self loadDataPCBrief];
     }
 }
@@ -158,11 +167,11 @@
     NSMutableArray * arrPCBrief = [self getArrPCBrief];
     NSString * sql;
     if (arrPCBrief.count < 1){
-        paramArray = [[NSArray alloc] initWithObjects:@"0",textPCBrief.text,strDate,strTime, nil];
+        paramArray = [[NSArray alloc] initWithObjects:plan_ID,textPCBrief.text,strDate,strTime, nil];
 
         sql = [NSString stringWithFormat:@"Insert Into PCBrief (Plan_ID,PCBrief,PCB_Date,PCB_Time) Values (?,?,?,?)"];
     }else {
-        paramArray = [[NSArray alloc] initWithObjects:textPCBrief.text, @"0", nil];
+        paramArray = [[NSArray alloc] initWithObjects:textPCBrief.text, plan_ID, nil];
         sql = [NSString stringWithFormat:@"Update PCBrief Set PCBrief = ? Where Plan_ID = ?"];
     }
     [tblpcBrief ExecSQL:sql parameterArray:paramArray];
@@ -171,7 +180,7 @@
 -(NSMutableArray *)getArrPCBrief
 {
     NSString *tableField = [tblpcBrief DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from PCBrief",tableField]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from PCBrief Where Plan_ID='%@'",tableField,plan_ID]; 
     NSMutableArray * arrPCBrief = [[NSMutableArray alloc] init];
     arrPCBrief=[tblpcBrief QueryData:searchString];
     return  arrPCBrief;
@@ -203,11 +212,17 @@
 
 -(void) nextToGoodReturn
 {
-    //[self SaveMerchandise];
+    [self saveDataSaleTalk];
     GoodsReturn * nextView = [[GoodsReturn alloc]initWithNibName:@"GoodsReturn" bundle:nil];
     nextView.account_ID = account_ID;
     nextView.plan_ID = plan_ID;
     [self.navigationController pushViewController:nextView animated:YES];
+}
+
+-(void) nextToEnd
+{
+    [self saveDataPCBrief];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

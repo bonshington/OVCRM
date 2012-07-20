@@ -21,7 +21,8 @@
 @synthesize to_Suggest,to_Discount,to_Quantity;
 @synthesize to_Total,to_Price,to_TotalPrice,to_TotalDiscount;
 @synthesize to_SalePrice,to_RateOrVal,to_CurrecyOrPercent;
-@synthesize dl_quantity1;
+@synthesize dl_quantity1,dl_Discount,dl_DiscountRate;
+@synthesize dl_Price,dl_Total,dl_TotalDiscount,dl_TotalPrice;
 
 
 

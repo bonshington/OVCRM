@@ -158,7 +158,7 @@
         paramArray = [NSArray arrayWithObjects:plan_ID,plan_ID,tempProduct.product_Code ,[NSString stringWithFormat:@"%@", tempProduct.returnAmt],noteTextView.text , nil];                     
         
         //Insert ค่าโดยให้PK เท่ากับPlan_ID ไปก่อน เนื่องจากแผนที่สร้างใหม่ ตอนsync ขึ้นฝั่ง Sale force ไม่ได้มีPKอยู่
-        sql = [NSString stringWithFormat:@"Insert Into ReturnDetail (PK,Plan_ID,Product_ID,Quantity,Reason) Values (?,?,?,?,?)"];
+        sql = [NSString stringWithFormat:@"Insert Into ReturnDetail (ID,Plan_ID,Product_ID,Quantity,Reason) Values (?,?,?,?,?)"];
        if ([_tblProduct ExecSQL:sql parameterArray:paramArray] == NO)
        {
            UIAlertView *alertDialog;

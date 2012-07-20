@@ -12,8 +12,8 @@
 
 @implementation tblOrderDetail
 
-@synthesize pK,discount_Rate,product_ID,orderMaster_PK,suggest;
-@synthesize total,totalDiscount,discount,price,totalPrice,quantity;
+@synthesize pK,discount_Rate,product_ID,product_Name,orderMaster_PK,suggest;
+@synthesize total,totalDiscount,discount,price,totalPrice,quantity,salesPrice;
 @synthesize orderDetailList = _orderDetailList;
 
 sqlite3 *database;
@@ -387,6 +387,95 @@ sqlite3_stmt *statement;
     sqlite3_reset(statement);
     
     return muTableArray;
+}
+
+
+
+-(NSMutableArray *)QueryDataForDeivery:(NSString *)sqlText
+{    
+    _orderDetailList = [[NSMutableArray alloc]init];
+    const char *cQuery = [sqlText UTF8String]; 
+    NSLog(@"%@",sqlText);
+    if (sqlite3_prepare_v2(database, cQuery, -1, &statement, NULL) != SQLITE_OK)
+    {
+        NSLog(@"Query Error:%@",statement);
+    }       
+    
+    NSInteger *count=0;
+    
+    while (sqlite3_step(statement) == SQLITE_ROW)
+    {
+        const char *cPK = (const char *) sqlite3_column_text(statement, 0);
+        NSString *tempPK = nil;      
+        if (cPK != NULL)
+        {
+            tempPK = [NSString stringWithUTF8String: cPK]; 
+        }
+        
+        double tempTotal =  sqlite3_column_double(statement, 1);
+        
+        double tempTotal_Discount =  sqlite3_column_double(statement, 2);
+        
+        double tempDiscount =  sqlite3_column_double(statement, 3);
+        
+        const char *cDiscount_Rate = (const char *) sqlite3_column_text(statement, 4);
+        NSString *tempDiscount_Rate = nil;      
+        if (cPK != NULL)
+        {
+            tempDiscount_Rate = [NSString stringWithUTF8String: cDiscount_Rate]; 
+        }
+        
+        const char *cProduct_ID = (const char *) sqlite3_column_text(statement, 5);
+        NSString *tempProduct_ID = nil;      
+        if (cProduct_ID != NULL)
+        {
+            tempProduct_ID = [NSString stringWithUTF8String: cProduct_ID]; 
+        }
+        
+        double tempPrice =  sqlite3_column_double(statement, 6);
+        double tempTotalPrice =  sqlite3_column_double(statement, 7);
+        
+        int tempQuantity = sqlite3_column_int(statement, 8);
+        
+        const char *cOrderMaster_PK = (const char *) sqlite3_column_text(statement, 9);
+        NSString *tempOrderMaster_PK = nil;      
+        if (cOrderMaster_PK != NULL)
+        {
+            tempOrderMaster_PK = [NSString stringWithUTF8String: cOrderMaster_PK]; 
+        }
+        
+        const char *cProductName = (const char *) sqlite3_column_text(statement, 10);
+        NSString *tempProductName = nil;      
+        if (cProductName != NULL)
+        {
+            tempProductName = [NSString stringWithUTF8String: cProductName]; 
+        }
+        
+        double tempSalesPrice =  sqlite3_column_double(statement, 11);
+        
+        count = count+1;
+        
+        tblOrderDetail *myOrderDetail = [[tblOrderDetail alloc]init];               
+        
+        myOrderDetail.pK = tempPK;
+        myOrderDetail.total = [[NSDecimalNumber alloc]initWithDouble:tempTotal];
+        myOrderDetail.totalDiscount = [[NSDecimalNumber alloc]initWithDouble:tempDiscount];
+        myOrderDetail.discount = [[NSDecimalNumber alloc]initWithDouble:tempDiscount];
+        myOrderDetail.discount_Rate = tempDiscount_Rate;
+        myOrderDetail.totalDiscount = [[NSDecimalNumber alloc]initWithDouble:tempTotal_Discount];
+        myOrderDetail.product_ID = tempProduct_ID;
+        myOrderDetail.price = [[NSDecimalNumber alloc]initWithDouble:tempPrice];
+        myOrderDetail.totalPrice = [[NSDecimalNumber alloc]initWithDouble:tempTotalPrice];
+        myOrderDetail.quantity = [[NSDecimalNumber alloc]initWithDouble:tempQuantity];
+        myOrderDetail.product_Name = tempProductName;
+        myOrderDetail.salesPrice = [[NSDecimalNumber alloc]initWithDouble:tempSalesPrice];
+        
+        [_orderDetailList addObject:myOrderDetail];
+    }    
+    
+    sqlite3_reset(statement);
+    
+    return _orderDetailList;
 }
 
 

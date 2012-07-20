@@ -36,4 +36,6 @@
 @property (strong, nonatomic) IBOutlet SearchProduct * searchProduct;
 @property (strong, nonatomic) IBOutlet ProductDataDetail * productDataDetail;
 
+-(IBAction)backgroungTab;
+
 @end

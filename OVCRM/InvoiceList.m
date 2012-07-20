@@ -11,6 +11,7 @@
 #import "tblInvoice.h"
 #import "tblCollection.h"
 #import "TakeOrder.h"
+#import "tblParameter.h"
 
 @interface InvoiceList ()
 
@@ -38,11 +39,21 @@
 @synthesize tableData;
 @synthesize tblinvoice = _tblinvoice;
 @synthesize tblcollection = _tblcollection;
+@synthesize tblParameter = _tblParameter;
 @synthesize lbTotalAmount;
 @synthesize lbPayTotal;
 @synthesize invoiceDetail = _invoiceDetail;
 @synthesize muTableData;
 @synthesize payType;
+@synthesize myPicker;
+@synthesize pickerType;
+@synthesize bankValue,branchValue;
+@synthesize dicBank;
+@synthesize arrCollectionData;
+@synthesize selectInvoice;
+
+@synthesize arrSearchBank,arrSearchBranch,arrPickerList,arrSelectInvoice;
+@synthesize parameterList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,13 +73,18 @@
     payType = [[NSString alloc]initWithFormat:@"Cash"];
     _tblinvoice = [[tblInvoice alloc]init];
     _tblcollection = [[tblCollection alloc]init];
+    _tblParameter = [[tblParameter alloc] init];
     muTableData = [[NSMutableArray alloc]init];
     [_tblinvoice OpenConnection];
     [_tblcollection OpenConnection];
     part2TxtReceive.text = [[NSString alloc]initWithFormat:@"0"];
-    [self loadDataProduct];
-    
     [self setPart2Hidden:YES];
+    [self LoadBankData];
+    
+    [self loadCollectionData]; //ดึงค่าจากตาราง Collectionของแผนนี้ที่เคยSaveเอาไว้
+    [self loadDataProduct];                
+    
+     self.myPicker.hidden = YES;
     //[super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -99,6 +115,81 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (IBAction)ShowBankPicker
+{
+    pickerType = @"BA";
+    arrPickerList = arrSearchBank;
+    [myPicker reloadAllComponents];
+    self.myPicker.hidden = NO;
+}
+
+- (IBAction)ShowBranchPicker
+{
+    pickerType = @"BR";
+    [self LoadBranchData:bankValue];      
+    self.myPicker.hidden = NO;
+}
+
+-(void) LoadBankData
+{
+    tblParameter *myParameter = [[tblParameter alloc] init];
+    dicBank = [NSMutableDictionary dictionary];
+    
+    if ([myParameter OpenConnection] == YES) 
+    {
+        NSString *tableField = [myParameter DB_Field] ; 
+        NSString *cond = [[NSString alloc] initWithFormat:@"select %@ from Parameter where Tag='Bank' order by Tag asc,Label asc",tableField];
+        
+        arrSearchBank = [[NSMutableArray alloc] init];
+        
+        parameterList = [myParameter QueryData:cond];               
+        
+        if(parameterList.count > 0)
+        {
+            for (int i=0;i<=parameterList.count-1;i++)
+            {
+                myParameter = [parameterList objectAtIndex:i]  ;
+                
+                [arrSearchBank addObject: myParameter.label];                 
+                
+                [dicBank setObject:myParameter.key forKey:myParameter.label]; 
+            }             
+        }        
+       [self.part2BtnBranch setTitle:@"(สาขา...)" forState:UIControlStateNormal]; //After Select new Bank will Reset branch again
+    }   
+}
+
+-(void)LoadBranchData :(NSString *)sBankID
+{
+    tblParameter *myParameter = [[tblParameter alloc] init];
+    
+    if ([myParameter OpenConnection] == YES) 
+    {
+        NSString *tableField = [myParameter DB_Field] ; 
+        NSString *cond = [[NSString alloc] initWithFormat:@"select %@ from Parameter where Tag='Branch' and BelongTo='%@' order by Tag asc,Label asc",tableField,sBankID];        
+        
+        arrSearchBranch = [[NSMutableArray alloc] init];        
+        parameterList = [myParameter QueryData:cond];               
+        
+        if(parameterList.count > 0){
+            for (int i=0;i<=parameterList.count-1;i++)
+            {
+                myParameter = [parameterList objectAtIndex:i]  ;
+                
+                [arrSearchBranch addObject: myParameter.label];                
+            }         
+        }
+       
+        arrPickerList = arrSearchBranch;
+        [myPicker reloadAllComponents]; 
+    }  
+}
+
+-(IBAction)backgroungTab
+{
+    self.myPicker.hidden = YES;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
@@ -116,6 +207,7 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *tmpInvoiceNo = [[NSString alloc] init];
     tblInvoice * invoice = [muTableData objectAtIndex:indexPath.row];
     NSInteger tableWidth = tableView.frame.size.width;
     static NSString * iden = @"AAA";
@@ -169,12 +261,22 @@
          //           action:@selector(touchSwitch:) 
          // forControlEvents:UIControlEventValueChanged];
         
+        //********* แสดงค่าเก่าจากdatabase, table collection **********
+        tmpInvoiceNo = [NSString stringWithFormat: @"/%@/" , invoice.invoice_No];
+        if ([self.selectInvoice rangeOfString:tmpInvoiceNo].location != NSNotFound)
+        {
+            [switchTable setOn:YES];
+            NSString *inv_Total = invoice.inv_Total;
+            [self CalTotalInvoice:inv_Total rowIndexSelect:indexPath.row];
+        }      
+        //***********************************************************
+        
         UIView * myView = [[UIView alloc]initWithFrame:CGRectMake(0,0,tableWidth,21)];
         myView.backgroundColor = [UIColor clearColor];
         [myView addSubview:productNameLabel];
         [myView addSubview:tableLabel1];
         [myView addSubview:tableLabel2];
-        [myView addSubview:btnInfo];  // ปุ่ม info 
+//        [myView addSubview:btnInfo];  // ปุ่ม info 
         [myView addSubview:switchTable];   
 
         cell.accessoryView = myView;
@@ -317,6 +419,17 @@
     }
 }
 
+-(void) CalTotalInvoice:(NSString *)invoiceAmt rowIndexSelect:(NSInteger) rowIndex
+{
+    tblInvoice * invoice = [muTableData objectAtIndex:rowIndex];
+    invoice.paid = [NSString stringWithFormat:@"Y"]; 
+    double payAmount = [lbPayTotal.text doubleValue];
+    payAmount = payAmount + [invoice.inv_Total doubleValue];
+    lbPayTotal.text = [NSString stringWithFormat:@"%.2f",payAmount];
+    part2lbMoney.text = [NSString stringWithFormat:@"%.2f",payAmount];
+}
+
+
 -(NSInteger) getRowIndex:(UIView *)view
 {
     UITableViewCell * cellOfText = (UITableViewCell *)view.superview.superview;
@@ -324,6 +437,70 @@
     NSInteger rowIndex = [[tbv indexPathForCell:cellOfText] row];
     return rowIndex;
 }
+
+-(void) loadCollectionData
+{
+
+    NSString *tableField = [_tblcollection DB_Field] ;    
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Collection Where Plan_ID='%@'",tableField ,plan_ID]; 
+    
+    arrCollectionData = [_tblcollection QueryData:searchString];
+    if ([arrCollectionData count] > 0)
+    {
+        selectInvoice = @"";
+        for (int i=0;i<[arrCollectionData count];i++)
+        {
+            //เก็บค่าไว้ว่า Invoice ไหนที่เลือกชำระเงินไว้บ้าง อยู่ในFormat /IV001//IV002//IV003/
+            selectInvoice = [NSString stringWithFormat:@"%@/%@/",selectInvoice, [(tblCollection *)[arrCollectionData objectAtIndex:i] invoice_No]];        
+        }
+        
+        //แสดงรายละเอียดการชำระเงิน ซึ่งสามารถดึงจากrecordแรกได้เลย เนื่องจากเก็บค่าเหมือนกันหมด
+        NSString *myPayType = [(tblCollection *)[arrCollectionData objectAtIndex:0] payType];  
+        part2TxtReceive.text = [(tblCollection *)[arrCollectionData objectAtIndex:0] totalPay];
+        
+        if ([myPayType isEqualToString:@"Cash"])
+        {
+            part2SegmentPay.selectedSegmentIndex = 0;
+        }
+        else if ([myPayType isEqualToString:@"Cheque"])
+        {
+            part2SegmentPay.selectedSegmentIndex = 1;        
+            part2TxtCheckNo.text = [(tblCollection *)[arrCollectionData objectAtIndex:0] chequeNo];
+
+        }
+        else if ([myPayType isEqualToString:@"Bank Transfer"])
+        {
+            part2SegmentPay.selectedSegmentIndex = 2;
+            part2TxtTransfNo.text = [(tblCollection *)[arrCollectionData objectAtIndex:0] chequeNo]; //เลขที่โอน
+            [part2BtnBank setTitle:[(tblCollection *)[arrCollectionData objectAtIndex:0] bank] forState:UIControlStateNormal]; //ธนาคาร
+            [self CheckBankCode:[(tblCollection *)[arrCollectionData objectAtIndex:0] bank]];
+            
+            [part2BtnBranch setTitle:[(tblCollection *)[arrCollectionData objectAtIndex:0] branch] forState:UIControlStateNormal]; //สาขา
+        }
+        NSInteger segIndex = part2SegmentPay.selectedSegmentIndex;
+        payType = [part2SegmentPay titleForSegmentAtIndex:segIndex];
+        
+        [self setPart2Hidden:NO];   
+    }       
+}
+
+-(void)CheckBankCode : (NSString *)bankName
+{
+    NSMutableArray *muParameter = [[NSMutableArray alloc] init];
+    NSString *tableField = [_tblParameter DB_Field] ;
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Parameter Where Tag='Bank' AND Label='%@'",tableField ,bankName]; 
+    muParameter = [_tblParameter QueryData:searchString];
+    if ([muParameter count] > 0)
+    {
+        bankValue =  [(tblParameter *)[muParameter objectAtIndex:0] key];
+    }
+    else 
+    {
+        bankValue = @"";
+    }
+    muParameter = nil;
+}
+
 
 -(void) loadDataProduct
 {
@@ -422,7 +599,7 @@
 }
 
 -(void) saveCollect{
-        [self updateInvoicePaid];
+        //[self updateInvoicePaid];
         [self InsertCollect];
 }
 
@@ -441,18 +618,31 @@
     }
 }
 
--(void) InsertCollect{
+-(void) InsertCollect
+{
+    NSString * sql ;
+    NSArray *paramDeleteArray ;
+    
+    //*************** Delete old collection of this Plan *****************
+    sql = [NSString stringWithFormat:@"Delete From Collection Where Plan_ID=?"];
+    paramDeleteArray = [NSArray arrayWithObjects:plan_ID,nil];
+    [_tblcollection ExecSQL:sql parameterArray:paramDeleteArray];
+    
+    //********************************************************************
+    
     NSDate *now = [NSDate date];
     NSString *strDate = [self dateToString:now];
     NSString *strTime = [self timeToString:now];
-    NSString * sql ;
+    
     NSArray *paramArray ;
     
     NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblcollection GetMaxRnNo] intValue]] ;
     
     NSInteger ii = 0 ;
     double balance = [part2TxtReceive.text doubleValue];
+    NSString *TotalPay = [part2TxtReceive text];
     double pay = 0.0;
+            
     for (ii=0; ii<muTableData.count; ii++) {
         newPK = [NSString stringWithFormat:@"%i",[newPK intValue]+1];
         tblInvoice * invoice = [muTableData objectAtIndex:ii];
@@ -481,12 +671,48 @@
                 branch = part2BtnBranch.titleLabel.text;
             }
             
-            paramArray = [NSArray arrayWithObjects:plan_ID,newPK,strDate,strTime,invoice.invoice_No,myPay,payType,branch,bank,chequeNo,nil];
-            sql = [NSString stringWithFormat:@"Insert Into Collection (Plan_ID, PK, Collect_Date, Collect_Time, Invoice_No, Amount, PayType, Branch, Bank, ChequeNo) Values (?,?,?,?,?,?,?,?,?,?)"];
+//            paramArray = [NSArray arrayWithObjects:plan_ID,newPK,strDate,strTime,invoice.invoice_No,myPay,payType,branch,bank,chequeNo,TotalPay,nil];
+            //Edit by Toon , ให้PK เก็บค่าเท่ากับ Plan_ID ไปก่อน เนื่องจากเป็นค่าที่รับจากฝั่ง Saleforce
+            paramArray = [NSArray arrayWithObjects:plan_ID,plan_ID,strDate,strTime,invoice.invoice_No,myPay,payType,branch,bank,chequeNo,TotalPay,nil];
+            sql = [NSString stringWithFormat:@"Insert Into Collection (Plan_ID, ID, Collect_Date, Collect_Time, Invoice_No, Amount, PayType, Branch, Bank, ChequeNo, TotalPay) Values (?,?,?,?,?,?,?,?,?,?,?)"];
             [_tblcollection ExecSQL:sql parameterArray:paramArray];
         }
     }
 }
 
+#pragma mark -
+#pragma mark picker methods
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;    
+}
+
+-(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [arrPickerList  count];
+}
+
+-(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [arrPickerList objectAtIndex:row];    
+}
+
+-(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString *selectItem  = [arrPickerList objectAtIndex:[pickerView selectedRowInComponent:0]];
+    
+    if ([self.pickerType  isEqualToString:@"BA"]) //Bank
+    {      
+        [self.part2BtnBank setTitle:selectItem forState:UIControlStateNormal];       
+        self.bankValue = [dicBank objectForKey:selectItem];
+        [self.part2BtnBranch setTitle:@"(สาขา...)" forState:UIControlStateNormal]; //Reset value of Branch again
+    }
+    else //Branch
+    {               
+        [self.part2BtnBranch setTitle:selectItem forState:UIControlStateNormal];
+        self.branchValue = selectItem; 
+    }   
+    self.myPicker.hidden = YES;
+}
 
 @end

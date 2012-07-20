@@ -53,7 +53,9 @@
 {
     if (productID != nil)
     {
+        //ค่าที่ส่งมา อาจจะเป็น ProductCode หรือ ProductName ก็ได้
         self.lblProductCode.text = productID;
+        self.lblProductName.text = productID;
         [self LoadProductDetail];
     }
 }
@@ -65,7 +67,9 @@
     if ([myProduct OpenConnection] == YES) 
     {
         NSString *tableField = [myProduct DB_Field] ;               
-        NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Product where product_code=%@",tableField,productID]; 
+        NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Product where product_code='%@' or Product_Name='%@'",tableField,productID,productID]; 
+        
+        NSLog(@"***=%@",searchString);
         
         productList=[myProduct QueryData:searchString];               
         
@@ -74,6 +78,7 @@
 //            {
                // myProduct = [productList objectAtIndex:i]  ;
                 myProduct = [productList objectAtIndex:0]  ;
+                self.lblProductCode.text = myProduct.product_Code;
                 self.lblProductName.text = myProduct.product_Name;
                 self.lblProductCategory.text = myProduct.productCategory;
                 self.lblBrand.text = myProduct.brand;

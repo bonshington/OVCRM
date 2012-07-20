@@ -19,7 +19,10 @@
 @property(nonatomic,strong) NSString *invoice_No;
 @property(nonatomic,strong) NSString *amount;
 @property(nonatomic,strong) NSString *payType;
-
+@property(nonatomic,strong) NSString *bank;
+@property(nonatomic,strong) NSString *branch;
+@property(nonatomic,strong) NSString *chequeNo;
+@property(nonatomic,strong) NSString *totalPay;
 
 @property(strong , nonatomic) NSMutableArray  *collectionList;
 

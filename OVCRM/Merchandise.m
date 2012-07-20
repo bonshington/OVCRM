@@ -27,6 +27,7 @@
 @synthesize tblmerchandize = _tblmerchandize;
 @synthesize tblproduct = _tblproduct;
 @synthesize selectedProduct;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,17 +49,18 @@
     [_tblmerchandize OpenConnection];
     [_tblproduct OpenConnection];
     
-    arrData1 = [[NSArray alloc]initWithObjects:@"BPโอวัลตินUHTไฮไนน์225ML.P36(M)",@"โอวัลติน300กรัม(ถุง)(M)"
-                ,@"โอวัลติน3IN1 210 กรัม",@"โอวัลติน3IN1 700G(M)",@"โอวัลติน800กรัมถุง"
-                ,@"โอวัลตินUHTรสชอคไขมันต่ำ180มลP4(M)",@"โอวัลตินคลาสิค 150 กรัมถุง(M)"
-                ,@"โอวัลตินชอยส์525กรัมถุง",@"โอวัลตินซอยย์สูตรผสมงาดำ490 กรัมแพ็ค14"
-                ,@"โอวัลตินยูเอชทีสมาร์ท125มล.แพค4รสชอคโกแลต",@"โอวัลตินยูเอชทีไฮไนน์180มล.M"
-                ,@"โอวัลตินยูเอชทีไฮไนน์225มลแพค6(M)",@"โอวัลตินเย็น3IN1ครั้นซ์ชี่630Gถุง"
-                ,@"โอวัลตินเย็นครั้นซ์ชี่175กรัม ถุง(M)", nil ];
-    
-    arrData2 = [[NSArray alloc]initWithObjects:@"423.00",@"55.50",@"42.50",@"118.00",@"118.00",@"43.50",@"30.00",@"98.00",@"98.00",@"32.00",@"43.50",@"71.50",@"114.00",@"38.50", nil ];
-    
-    arrData3 = [[NSArray alloc]initWithObjects:@"100434182",@"100498051",@"100425481",@"100425108",@"100493479",@"100457578",@"100426619",@"100438515",@"100517093",@"100591916",@"100544444",@"100573942",@"100546553",@"100540341",@"100670740",@"100673714",@"100630613",@"100613035",@"100620515",@"100659488",@"100636211",@"100674679",@"100678777",@"100691215",@"100647033",@"100660592",@"100628551", nil ];
+//    arrData1 = [[NSArray alloc]initWithObjects:@"BPโอวัลตินUHTไฮไนน์225ML.P36(M)",@"โอวัลติน300กรัม(ถุง)(M)"
+//                ,@"โอวัลติน3IN1 210 กรัม",@"โอวัลติน3IN1 700G(M)",@"โอวัลติน800กรัมถุง"
+//                ,@"โอวัลตินUHTรสชอคไขมันต่ำ180มลP4(M)",@"โอวัลตินคลาสิค 150 กรัมถุง(M)"
+//                ,@"โอวัลตินชอยส์525กรัมถุง",@"โอวัลตินซอยย์สูตรผสมงาดำ490 กรัมแพ็ค14"
+//                ,@"โอวัลตินยูเอชทีสมาร์ท125มล.แพค4รสชอคโกแลต",@"โอวัลตินยูเอชทีไฮไนน์180มล.M"
+//                ,@"โอวัลตินยูเอชทีไฮไนน์225มลแพค6(M)",@"โอวัลตินเย็น3IN1ครั้นซ์ชี่630Gถุง"
+//                ,@"โอวัลตินเย็นครั้นซ์ชี่175กรัม ถุง(M)", nil ];
+//    
+//    arrData2 = [[NSArray alloc]initWithObjects:@"423.00",@"55.50",@"42.50",@"118.00",@"118.00",@"43.50",@"30.00",@"98.00",@"98.00",@"32.00",@"43.50",@"71.50",@"114.00",@"38.50", nil ];
+//    
+//    arrData3 = [[NSArray alloc]initWithObjects:@"100434182",@"100498051",@"100425481",@"100425108",@"100493479",@"100457578",@"100426619",@"100438515",@"100517093",@"100591916",@"100544444",@"100573942",@"100546553",@"100540341",@"100670740",@"100673714",@"100630613",@"100613035",@"100620515",@"100659488",@"100636211",@"100674679",@"100678777",@"100691215",@"100647033",@"100660592",@"100628551", nil ];
+
     
     [self setMerchandizePageWithPlan:plan_ID Account:account_ID];
 //    [super viewDidLoad];
@@ -73,6 +75,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(IBAction)backgroungTab
+{    
+    
+    [self.view endEditing:YES];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
@@ -82,6 +91,11 @@
 {
     return muTableData.count;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductInAction * product = [muTableData objectAtIndex:indexPath.row];
@@ -111,7 +125,8 @@
     textField2.borderStyle = UITextBorderStyleRoundedRect;
     textField2.textAlignment = UITextAlignmentRight;
     [textField2 setKeyboardType:UIKeyboardTypePhonePad];
-    [textField2 addTarget:self action:@selector(inputNumber1:) forControlEvents:UIControlEventEditingDidEnd];
+    [textField2 addTarget:self action:@selector(inputNumber1:) forControlEvents:UIControlEventEditingChanged];
+    [textField2 addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
     
     UITextField *textField3 = [[UITextField alloc] initWithFrame:CGRectMake(tableWidth*4/5-25, 0, 75, 21)];
     textField3.placeholder = @"0";
@@ -124,7 +139,8 @@
     textField3.borderStyle = UITextBorderStyleRoundedRect;
     textField3.textAlignment = UITextAlignmentRight;
     [textField3 setKeyboardType:UIKeyboardTypeNumberPad];
-    [textField3 addTarget:self action:@selector(inputNumber2:) forControlEvents:UIControlEventEditingDidEnd];
+    [textField3 addTarget:self action:@selector(inputNumber2:) forControlEvents:UIControlEventEditingChanged];
+    [textField3 addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents:UIControlEventEditingDidEndOnExit];
     
     UILabel * productNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25,0,300,20)];
     productNameLabel.text = [arrData1 objectAtIndex:indexPath.row];
@@ -184,7 +200,11 @@
 
 -(void) touchInfo:(UIButton *)btnInfo
 {
-    [self lookProductInfo];
+    NSInteger rowIndex = [self getRowIndex:btnInfo];    
+    NSString *pCode =  [(ProductInAction *)[muTableData objectAtIndex:rowIndex]  pd_Name];
+    
+    [self lookProductInfo:pCode ];    
+    
 //    NSInteger rowIndex = [self getRowIndex:btnInfo];
 //    [self.view.superview addSubview:_productDataDetail.view];
 //    [_productDataDetail setProductDetail:[arrData1 objectAtIndex:rowIndex]];
@@ -192,7 +212,7 @@
 
 -(void) inputNumber1:(UITextField *)textField
 {
-    [self checkTextField:textField];
+//    [self checkTextField:textField];
     NSInteger rowIndex = [self getRowIndex:textField];
     ProductInAction * product = [muTableData objectAtIndex:rowIndex];
     [product setMcd_Price:textField.text];
@@ -200,7 +220,7 @@
 
 -(void) inputNumber2:(UITextField *)textField
 {
-    [self checkTextField:textField];
+//    [self checkTextField:textField];
     NSInteger rowIndex = [self getRowIndex:textField];
     ProductInAction * product = [muTableData objectAtIndex:rowIndex];
     [product setMcd_Share:textField.text];    
@@ -292,7 +312,7 @@
         ProductInAction * product = [muTableData objectAtIndex:ii];
         paramArray = [NSArray arrayWithObjects:plan_ID,newPK,account_ID,product.pd_Name,product.mcd_Price,product.mcd_Share,strDate,strTime,nil];
         
-        sql = [NSString stringWithFormat:@"Insert Into Merchandize (Plan_ID, PK, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ) Values (?,?,?,?,?,?,?,?)"];
+        sql = [NSString stringWithFormat:@"Insert Into Merchandize (Plan_ID, ID, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ) Values (?,?,?,?,?,?,?,?)"];
         [_tblmerchandize ExecSQL:sql parameterArray:paramArray];
     }
 }
@@ -333,18 +353,34 @@
 
 -(void) nextToSalesTalk
 {
+//    [self SaveMerchandise];
+//    SalesNote * nextView = [[SalesNote alloc]initWithNibName:@"SalesNote" bundle:nil];
+//    nextView.account_ID = account_ID;
+//    nextView.plan_ID = plan_ID;
+//    [self.navigationController pushViewController:nextView animated:YES];
+    
     [self SaveMerchandise];
     SalesNote * nextView = [[SalesNote alloc]initWithNibName:@"SalesNote" bundle:nil];
     nextView.account_ID = account_ID;
     nextView.plan_ID = plan_ID;
     [self.navigationController pushViewController:nextView animated:YES];
+    [nextView setSalesTalkPage];
 }
 
--(void) lookProductInfo
+-(void) lookProductInfo:(NSString *) pCode
 {
 //    [self SaveMerchandise];
-    ProductDataDetail * nextView = [[ProductDataDetail alloc]initWithNibName:@"ProductDataDetail" bundle:nil];
-    [self.navigationController pushViewController:nextView animated:YES];
+//    ProductDataDetail * nextView = [[ProductDataDetail alloc]initWithNibName:@"ProductDataDetail" bundle:nil];
+//    [self.navigationController pushViewController:nextView animated:YES];
+    
+    
+    if (!self.productDataDetail) 
+    {
+        self.productDataDetail = [[ProductDataDetail alloc] initWithNibName:@"ProductDataDetail" bundle:nil];
+    }
+    
+    [self.productDataDetail ShowProductID:pCode ];
+    [[self navigationController] pushViewController:self.productDataDetail  animated:YES] ;
 }
 
 

@@ -14,6 +14,7 @@
 
 @property(nonatomic,strong) NSString *pK;
 @property(nonatomic,strong) NSString *product_ID;
+@property(nonatomic,strong) NSString *product_Name;
 @property(nonatomic,strong) NSString *discount_Rate;
 @property(nonatomic,strong) NSString *orderMaster_PK;
 
@@ -24,6 +25,8 @@
 @property (nonatomic,strong) NSDecimalNumber * price;
 @property (nonatomic,strong) NSDecimalNumber * totalPrice;
 @property (nonatomic,strong) NSDecimalNumber * quantity;
+@property (nonatomic,strong) NSDecimalNumber * salesPrice;
+
 
 @property(strong , nonatomic) NSMutableArray  *orderDetailList;
 
@@ -31,6 +34,7 @@
 //-(NSMutableArray *)QueryData:(NSString *)sqlText; 
 -(NSMutableArray *)QueryData2:(NSString *)sqlText; 
 -(NSMutableArray *)loadDataTakeOrderWithSuggestForAccountID:(NSString *)Account_ID;
+-(NSMutableArray *)QueryDataForDeivery:(NSString *)sqlText;
 
 -(NSString *)GetMaxRnNo;
 

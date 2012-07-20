@@ -107,6 +107,7 @@
 {
     return muTableDetail.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductInAction * product = [muTableDetail objectAtIndex:indexPath.row];
@@ -225,39 +226,47 @@
 -(void) loadDataProduct
 {
     NSString *tableField = [_tblorderMaster DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from OrderMaster Where Plan_ID=%@",tableField ,plan_ID]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from OrderMaster Where Plan_ID='%@'",tableField ,plan_ID]; 
     muTableMaster = [[NSMutableArray alloc] init];
     muTableMaster = [_tblorderMaster QueryData:searchString];
-    NSString * plugSqlSuggest = [NSString stringWithFormat:@" (Select Quantity / count(Quantity)  as G From Plan P Inner join OrderMaster OM On P.Plan_ID = OM.Plan_ID Inner join OrderDetail OD On OM.PK = OD.OrderMaster_PK Where P.Account_ID = 12 AND OD.Product_ID = OrderDetail.Product_ID Group by Quantity) as Suggest "];
+    NSString * plugSqlSuggest = [NSString stringWithFormat:@" (Select Quantity / count(Quantity)  as G From Plan P Inner join OrderMaster OM On P.Plan_ID = OM.Plan_ID Inner join OrderDetail OD On OM.ID = OD.OrderMaster_PK Where P.Account_ID = '%@' AND P.Plan_ID<>'%@' AND OD.Product_ID = OrderDetail.Product_ID Group by Quantity) as Suggest ",account_ID,plan_ID];
     
-    if (muTableMaster.count < 1) {
-        tableField = [_tblproduct DB_Field];
-        NSMutableArray * tempTable = [_tblorderDetail loadDataTakeOrderWithSuggestForAccountID:account_ID];
-        int ii = 0;
-        for (ii=0; ii<tempTable.count; ii++) {
-            ProductInAction * product = [[ProductInAction alloc]init];
-            product = [tempTable objectAtIndex:ii];
-            [self calcProductTakeOrder:product];
-            [muTableDetail addObject:product];
-        }
-    }else {
-        tableField = [_tblorderDetail DB_Field];    
+
+    tableField = [_tblproduct DB_Field];
+    NSMutableArray * tempTable = [_tblorderDetail loadDataTakeOrderWithSuggestForAccountID:account_ID];
+    int ii = 0;
+    for (ii=0; ii<tempTable.count; ii++) {
+        ProductInAction * product = [[ProductInAction alloc]init];
+        product = [tempTable objectAtIndex:ii];
+        [self calcProductTakeOrder:product];
+        [muTableDetail addObject:product];
+    }
+    if (muTableMaster.count >= 1) {
+        tableField = [_tblorderDetail DB_Field];
         tblOrderMaster * orderPK = [muTableMaster objectAtIndex:0];
-        
-        NSString * sql = [NSString stringWithFormat:@"Select %@ , %@ From Orderdetail Where OrderMaster_PK=%@",tableField ,plugSqlSuggest ,orderPK.pK];
-        NSLog(@"%@",sql);
-        NSMutableArray * tempTable = [_tblorderDetail QueryData2:sql];
-        int ii = 0;
-        for (ii=0; ii<tempTable.count; ii++) {
-            ProductInAction * product = [[ProductInAction alloc]init];
-            tblOrderDetail * order =[[tblOrderDetail alloc]init];
-            order = [tempTable objectAtIndex:ii];
-            product.pd_ID = order.product_ID;
-            product.pd_Price = order.price;
-            product.to_Suggest = [self calcSuggestOfProductID:order.product_ID];
-            [muTableDetail addObject:product];
+        NSString * sql = [NSString stringWithFormat:@"Select %@ , %@ , (Select Product_Name From Product P Where  P.Product_Code = Product_ID) as Product_Name From Orderdetail Where OrderMaster_PK='%@' AND Price > 0.0001",tableField ,plugSqlSuggest ,orderPK.pK];
+
+        NSMutableArray * tempTable2 = [_tblorderDetail QueryData2:sql]; 
+        int jj=0;
+        for (ii=0; ii<muTableDetail.count; ii++) {
+            ProductInAction * product = [muTableDetail objectAtIndex:ii];
+            for (jj=0; jj<tempTable2.count; jj++) {
+                tblOrderDetail * order = [tempTable2 objectAtIndex:jj];
+                if ([product.pd_ID isEqualToString:order.product_ID]) {
+                    product.to_Quantity = order.quantity;
+                    break;
+                }
+            }
+            [self calcProductTakeOrder:product];
         }
     }
+    
+    double sum = 0;
+    for (ii=0; ii<muTableDetail.count; ii++) {
+        ProductInAction * product = [muTableDetail objectAtIndex:ii];
+        sum = sum + [product.to_TotalPrice doubleValue];
+    }
+    lbOrderTotal.text = [NSString stringWithFormat:@"%.2f",sum];
 }
 
 -(NSDecimalNumber *) calcSuggestOfProductID:(NSString *) product_ID{
@@ -295,7 +304,7 @@
     if (tmp.count >2) {
         textField.text = [NSString stringWithFormat:@"%@,%@",[tmp objectAtIndex:0],[tmp objectAtIndex:1]];
     }
-    textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue] ];
+    textField.text = [NSString stringWithFormat:@"%i", [textField.text intValue]];
     return textField;
 }
 
@@ -303,20 +312,20 @@
 {
     [self calculatePromotion];
     [tableViewData reloadData];
-    [self SaveTakeOrder];
+    NSString * orderID = [self SaveTakeOrder];
     Delivery * nextView = [[Delivery alloc]initWithNibName:@"Delivery" bundle:nil];
     nextView.account_ID = account_ID;
     nextView.plan_ID = plan_ID;
+    nextView.orderMaster_ID = orderID;
     [self.navigationController pushViewController:nextView animated:YES];
 }
 
-
--(void) SaveTakeOrder
+-(NSString *) SaveTakeOrder
 {
     NSString * orderID = [NSString stringWithFormat:@"%@",[self SaveOrderMaster]];
     [self SaveOrderDetailWithPK:orderID];
+    return orderID;
 }
-
 
 -(NSString *) SaveOrderMaster
 {
@@ -331,7 +340,7 @@
     [_tblorderMaster ExecSQL:sql parameterArray:paramArray];
     NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblorderMaster GetMaxRnNo] intValue] +1];
     paramArray = [NSArray arrayWithObjects:plan_ID,newPK,strDate,strTime,lbOrderTotal.text, nil];
-    sql = [NSString stringWithFormat:@"Insert Into OrderMaster (Plan_ID,PK,Order_Date,Order_Time,Order_Total) Values (?,?,?,?,?)"];
+    sql = [NSString stringWithFormat:@"Insert Into OrderMaster (Plan_ID,ID,Order_Date,Order_Time,Order_Total) Values (?,?,?,?,?)"];
     [_tblorderMaster ExecSQL:sql parameterArray:paramArray];
     return newPK;
 }
@@ -351,17 +360,23 @@
         newPK = [NSString stringWithFormat:@"%i",[newPK intValue]+1];
         ProductInAction * product = [muTableDetail objectAtIndex:ii];
         
-        NSString * to_Total = [NSString stringWithFormat:@"%.2f",[[NSDecimalNumber alloc]initWithDouble:[product.to_Total doubleValue]]];
-        NSString * to_TotalDiscount = [NSString stringWithFormat:@"%.2f",[[NSDecimalNumber alloc]initWithDouble:[product.to_TotalDiscount doubleValue]]];
-        NSString * to_Discount = [NSString stringWithFormat:@"%.2f",[[NSDecimalNumber alloc]initWithDouble:[product.to_Discount doubleValue]]];
-        NSString * to_RateOrVal = [NSString stringWithFormat:@".%2f",[[NSDecimalNumber alloc]initWithDouble:[product.to_RateOrVal doubleValue]]];
-        NSString * to_TotalPrice = [NSString stringWithFormat:@"%.2f",[[NSDecimalNumber alloc]initWithDouble:[product.to_TotalPrice doubleValue]]];
-        NSString * to_Price = [NSString stringWithFormat:@"%.2f",[[NSDecimalNumber alloc]initWithDouble:[product.to_Price doubleValue]]];
-        NSString * to_Quantity = [NSString stringWithFormat:@"%.2f",[[NSDecimalNumber alloc]initWithInt:[product.to_Quantity doubleValue]]];
+        double total = [product.to_Total doubleValue];
+        NSString * to_Total = [NSString stringWithFormat:@"%.2f",total];
+        double TotalDiscount = [product.to_TotalDiscount doubleValue];
+        NSString * to_TotalDiscount = [NSString stringWithFormat:@"%.2f",TotalDiscount];
+        double Discount = [product.to_Discount doubleValue];
+        NSString * to_Discount = [NSString stringWithFormat:@"%.2f",Discount];
+        double RateOrVal = [product.to_RateOrVal doubleValue];
+        NSString * to_RateOrVal = [NSString stringWithFormat:@"%.2f",RateOrVal];        
+        double TotalPrice = [product.to_TotalPrice doubleValue];        
+        NSString * to_TotalPrice = [NSString stringWithFormat:@"%.2f",TotalPrice];
+        double Price = [product.to_Price doubleValue];
+        NSString * to_Price = [NSString stringWithFormat:@"%.2f",Price];
+        double Quantity = [product.to_Quantity doubleValue];
+        NSString * to_Quantity = [NSString stringWithFormat:@"%.2f",Quantity];
         
-        
-        paramArray = [NSArray arrayWithObjects:newPK,to_Total,to_TotalDiscount,to_Discount,to_RateOrVal,product.pd_ID,to_TotalPrice,to_Price,to_Quantity,orderMasterPK, nil];
-        sql = [NSString stringWithFormat:@"Insert Into OrderDetail (PK ,Total ,TotalDiscount ,Discount ,DiscountRate ,Product_ID ,Price ,TotalPrice , Quantity ,OrderMaster_PK ) Values (?,?,?,?,?,?,?,?,?,?)"];
+        paramArray = [NSArray arrayWithObjects:newPK,to_Total,to_TotalDiscount,to_Discount,to_RateOrVal,product.pd_ID,to_Price,to_TotalPrice,to_Quantity,orderMasterPK, nil];
+        sql = [NSString stringWithFormat:@"Insert Into OrderDetail (ID ,Total ,TotalDiscount ,Discount ,DiscountRate ,Product_ID ,Price ,TotalPrice , Quantity ,OrderMaster_PK ) Values (?,?,?,?,?,?,?,?,?,?)"];
         [_tblorderMaster ExecSQL:sql parameterArray:paramArray];
     }
 }
@@ -460,7 +475,8 @@
         [self calculatePromotion];
     }else {
         checkedPromotion = NO;
-        [btnTest.titleLabel setText:@"DisPromotion"];
+        [btnTest setTitle:@"Promotion" forState:UIControlStateNormal];
+         //.titleLabel setText:@"DisPromotion"];
         [self removeItemFree];
         [tableViewData setAlpha:1.0];
         [tableViewData setUserInteractionEnabled:YES];
@@ -551,7 +567,8 @@
 -(void) calculatePromotion{
     if (checkedPromotion == NO) {
         [self setCheckedPromotion:YES];
-        [btnTest.titleLabel setText:@"Promotion"];
+        [btnTest setTitle:@"Take Order" forState:UIControlStateNormal];
+        //.titleLabel setText:@"Promotion"];
         [tableViewData setAlpha:0.7];
         [self calcPromotion];
         [tableViewData setUserInteractionEnabled:NO];

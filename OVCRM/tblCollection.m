@@ -18,6 +18,10 @@
 @synthesize invoice_No;
 @synthesize amount;
 @synthesize payType;
+@synthesize bank;
+@synthesize branch;
+@synthesize chequeNo;
+@synthesize totalPay;
 @synthesize collectionList = _collectionList;
 
 //sqlite3 *database;
