@@ -168,11 +168,13 @@
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	[super sync:_controller where:[NSString stringWithFormat:
+	[super sync:_controller where:nil];
+	
+	/*[NSString stringWithFormat:
 								   @"Route_no__c = '%@'"
 								   , [[AppDelegate sharedInstance].user objectForKey:@"route"]
 								   ]
-	 ];
+	 ];*/
 }
 
 @end

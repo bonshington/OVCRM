@@ -154,6 +154,10 @@
 		18D52FED15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */; };
 		18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */; };
 		18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DA515B7F5FC00F83A66 /* SFPriceBookDetail.m */; };
+		18D98DD915B9396500F83A66 /* tblDelivery.h in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD415B938D700F83A66 /* tblDelivery.h */; };
+		18D98DDA15B9396500F83A66 /* tblDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD515B938D700F83A66 /* tblDelivery.m */; };
+		18D98DDB15B9396500F83A66 /* tblDeliveryDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */; };
+		18D98DDC15B9396500F83A66 /* tblDeliveryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */; };
 		18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */; };
 		18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */; };
 		18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EA915A160DF00A08B29 /* CoreData.framework */; };
@@ -391,6 +395,10 @@
 		18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVMenuController.xib; sourceTree = "<group>"; };
 		18D98DA415B7F5FC00F83A66 /* SFPriceBookDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFPriceBookDetail.h; sourceTree = "<group>"; };
 		18D98DA515B7F5FC00F83A66 /* SFPriceBookDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPriceBookDetail.m; sourceTree = "<group>"; };
+		18D98DD415B938D700F83A66 /* tblDelivery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblDelivery.h; sourceTree = "<group>"; };
+		18D98DD515B938D700F83A66 /* tblDelivery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblDelivery.m; sourceTree = "<group>"; };
+		18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblDeliveryDetail.h; sourceTree = "<group>"; };
+		18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblDeliveryDetail.m; sourceTree = "<group>"; };
 		18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+Render.m"; sourceTree = "<group>"; };
 		18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LINQ.h"; sourceTree = "<group>"; };
 		18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LINQ.m"; sourceTree = "<group>"; };
@@ -751,6 +759,10 @@
 		18B5AE8215B3E56300089400 /* Tong */ = {
 			isa = PBXGroup;
 			children = (
+				18D98DD415B938D700F83A66 /* tblDelivery.h */,
+				18D98DD515B938D700F83A66 /* tblDelivery.m */,
+				18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */,
+				18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */,
 				18B5AE8315B3E57600089400 /* ProductInAction.h */,
 				18B5AE8415B3E57600089400 /* ProductInAction.m */,
 				18B5AE8515B3E57600089400 /* tblMerchandize.h */,
@@ -1254,6 +1266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D98DD915B9396500F83A66 /* tblDelivery.h in Sources */,
+				18D98DDA15B9396500F83A66 /* tblDelivery.m in Sources */,
+				18D98DDB15B9396500F83A66 /* tblDeliveryDetail.h in Sources */,
+				18D98DDC15B9396500F83A66 /* tblDeliveryDetail.m in Sources */,
 				18B5AEE915B3F25900089400 /* CallCard.h in Sources */,
 				18B5AEEA15B3F25900089400 /* CallCard.m in Sources */,
 				18B5AEEB15B3F25900089400 /* CallCard.xib in Sources */,
