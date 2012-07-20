@@ -116,7 +116,7 @@
     
     UITextField *textField2 = [[UITextField alloc] initWithFrame:CGRectMake(tableWidth*1/5+15, 0, 60, 21)];
     textField2.placeholder = @"0";
-    if (product.mcd_Price.length < 1) {
+    if ([product.mcd_Price intValue] < 1) {
         textField2.text = @"";
     }else { 
         textField2.text = [NSString stringWithFormat:@"%@", product.mcd_Price];
@@ -250,19 +250,11 @@
 {
     NSMutableArray * tempTable = [[NSMutableArray alloc]init];
     NSString *tableField = [_tblmerchandize DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Merchandize Where Plan_ID='%@'",tableField ,plan_ID]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Merchandise Where account_ID='%@'",tableField ,account_ID]; 
+    NSLog(@"%@",searchString);
     tempTable = [_tblmerchandize QueryData:searchString];
     
     if (tempTable.count < 1) {
-//        int ii = 0;
-//        for (ii=0; ii<arrData1.count; ii++) {
-//            ProductInAction * product = [[ProductInAction alloc]init];
-//            product.pd_ID = [arrData3 objectAtIndex:ii];
-//            product.pd_Name = [arrData1 objectAtIndex:ii];
-//            product.mcd_Price = [NSString stringWithFormat:@""];
-//            product.mcd_Share = [NSString stringWithFormat:@""];
-//            [muTableData addObject:product];
-//        }
         tableField = [_tblproduct DB_Field];    
         NSString * sql = [NSString stringWithFormat:@"Select %@ From Product ",tableField];
         NSMutableArray * tempTable = [_tblproduct QueryData:sql];
@@ -271,6 +263,7 @@
             ProductInAction * product = [[ProductInAction alloc]init];
             tblProduct * stock =[[tblProduct alloc]init];
             stock = [tempTable objectAtIndex:ii];
+            product.mcd_ID = [NSString stringWithFormat:@""];
             product.pd_Name = stock.product_Name;
             product.mcd_Price = [NSString stringWithFormat:@"0"];
             product.mcd_Share = [NSString stringWithFormat:@"0"];
@@ -279,13 +272,14 @@
     }else {
         int ii = 0;
         for (ii=0; ii<tempTable.count; ii++) {
-            ProductInAction * product = [[ProductInAction alloc]init];
-            tblMerchandize * stock =[[tblMerchandize alloc]init];
-            stock = [tempTable objectAtIndex:ii];
-            product.pd_Name = stock.product_Name;
-            product.mcd_Price = stock.mcd_Price;
-            product.mcd_Share = stock.mCD_Share;
-            [muTableData addObject:product];
+            ProductInAction * productX = [[ProductInAction alloc]init];
+            tblMerchandize * stockX =[[tblMerchandize alloc]init];
+            stockX = [tempTable objectAtIndex:ii];
+            productX.mcd_ID = stockX.iD;
+            productX.pd_Name = stockX.name;
+            productX.mcd_Price = [NSString stringWithFormat:@"%@",stockX.mcd_Price];
+            productX.mcd_Share = [NSString stringWithFormat:@"%@",stockX.mcd_Share];
+            [muTableData addObject:productX];
         }
     }
     
@@ -299,10 +293,10 @@
     NSString *strTime = [self timeToString:now];
     
     NSArray *paramArray ;
-    paramArray = [NSArray arrayWithObjects:plan_ID, nil];
+    paramArray = [NSArray arrayWithObjects:account_ID, nil];
     
-    NSString * sql = [NSString stringWithFormat:@"Delete From Merchandize Where Plan_ID = ?"];
-    [_tblmerchandize ExecSQL:sql parameterArray:paramArray];
+    NSString * sql = [NSString stringWithFormat:@"Delete From Merchandise Where Account_ID = ?"];
+//    [_tblmerchandize ExecSQL:sql parameterArray:paramArray];
     
     NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblmerchandize GetMaxRnNo] intValue]] ;//] +1];
     
@@ -310,9 +304,9 @@
     for (ii=0; ii<muTableData.count; ii++) {
         newPK = [NSString stringWithFormat:@"%i",[newPK intValue]+1];
         ProductInAction * product = [muTableData objectAtIndex:ii];
-        paramArray = [NSArray arrayWithObjects:plan_ID,newPK,account_ID,product.pd_Name,product.mcd_Price,product.mcd_Share,strDate,strTime,nil];
+        paramArray = [NSArray arrayWithObjects:product.mcd_ID,account_ID,product.pd_Name,product.mcd_Price,product.mcd_Share,strDate,nil];
         
-        sql = [NSString stringWithFormat:@"Insert Into Merchandize (Plan_ID, ID, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ) Values (?,?,?,?,?,?,?,?)"];
+        sql = [NSString stringWithFormat:@"Insert or replace Into Merchandise (ID, Account_ID, Name, MCD_Price, MCD_Share, Date__c) Values (?,?,?,?,?,?)"];
         [_tblmerchandize ExecSQL:sql parameterArray:paramArray];
     }
 }

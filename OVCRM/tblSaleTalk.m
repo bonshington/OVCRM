@@ -12,10 +12,10 @@
 @implementation tblSaleTalk
 
 @synthesize  plan_ID;
-@synthesize  RunNo;
-@synthesize  SaleTalk;
-@synthesize  ST_Date;
-@synthesize  ST_Time;
+@synthesize  Id;
+@synthesize  saleTalk;
+@synthesize  sT_Date;
+@synthesize  sT_Time;
 
 @synthesize  saleTalkList;
 
@@ -26,7 +26,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"Plan_ID, RunNo ,SaleTalk , ST_Date , ST_Time ";
+    return @" plan_ID, Id ,saleTalk ";//, sT_Date , sT_Time 
 }
 /*
 -(NSMutableArray *)QueryData:(NSString *)sqlText

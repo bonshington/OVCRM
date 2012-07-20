@@ -15,8 +15,8 @@
 @implementation ProductInAction
 
 @synthesize pd_ID,pd_Name,pd_Price;
-@synthesize cc_Quantity1,cc_quantity2,cc_quantity3;
-@synthesize mcd_Price,mcd_Share;
+@synthesize cc_ID,cc_Quantity1,cc_quantity2,cc_quantity3;
+@synthesize mcd_ID,mcd_Price,mcd_Share;
 @synthesize gr_quantity1;
 @synthesize to_Suggest,to_Discount,to_Quantity;
 @synthesize to_Total,to_Price,to_TotalPrice,to_TotalDiscount;

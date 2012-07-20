@@ -26,7 +26,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"PK, Invoice_No, Inv_DueDate, Inv_Total, Paid, Account_ID";
+    return @"ID, Invoice_No, Inv_DueDate, Inv_Total, Paid, Account_ID";
 }
 
 /*

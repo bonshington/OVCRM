@@ -21,7 +21,7 @@
 
 -(NSString *)DB_Field
 {
-    return @" Promotion_PK,PK,Sale_ID,Quantity,Amount,Product_Code "; 
+    return @" Promotion_PK,ID,Sale_ID,Quantity,Amount,Product_Code "; 
 }
 
 /*

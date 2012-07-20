@@ -288,6 +288,7 @@
     
     NSString *tableField = [_tblcallCard DB_Field] ;
     NSString *searchString = [[NSString alloc] initWithFormat:@"select c.* from CallCard c join Plan p on p.Account_ID = c.Account_ID and date(p.Date_Plan) = date(c.CS_Date) where p.Id = '%@' limit 1" ,plan_ID]; 
+    NSLog(@"%@",searchString);
     muTableCallcard = [[NSMutableArray alloc] init];
     muTableCallcard = [_tblcallCard QueryData:searchString];
     
@@ -304,12 +305,14 @@
         tableField = [_tblproduct DB_Field];    
         //NSString * sql = [NSString stringWithFormat:@"Select %@ From Product ",tableField];
         NSMutableArray * tempTable = [_tblproduct QueryData:@"select * from Product where Main_Product__c = '1' and isCancel <> 'Inactive'"];
+        NSLog(@"%@",searchString);
         int ii = 0;
         for (ii=0; ii<tempTable.count; ii++) {
             ProductInAction * product = [[ProductInAction alloc]init];
             tblCallcard_Stock * stock =[[tblCallcard_Stock alloc]init];
             stock = [tempTable objectAtIndex:ii];
             product.pd_Name = stock.product_Name;
+            product.cc_ID = [NSString stringWithFormat:@""];
             product.cc_Quantity1 = 0;//[stock.onShelf integerValue];
             product.cc_quantity3 = 0;//[stock.inStock integerValue];
             [muTableStock addObject:product];
@@ -319,6 +322,7 @@
         tableField = [_tblcallcard_Stock DB_Field];    
         tblCallCard * callcardPK = [muTableCallcard objectAtIndex:0];
         NSString * sql = [NSString stringWithFormat:@"Select %@ From CallCard_Stock Where CallCard_PK='%@'",tableField,callcardPK.Id];
+        NSLog(@"%@",searchString);
         NSMutableArray * tempTableX = [[NSMutableArray alloc]init];
         tempTableX = [_tblcallcard_Stock QueryData:sql];
         int ii = 0;
@@ -327,6 +331,7 @@
             tblCallcard_Stock * stockX =[[tblCallcard_Stock alloc]init];
             stockX = [tempTableX objectAtIndex:ii];
             productX.pd_Name = stockX.product_Name;
+            productX.cc_ID = stockX.Id;
             productX.cc_Quantity1 = [stockX.onShelf integerValue];
             productX.cc_quantity3 = [stockX.inStock integerValue];
             [muTableStock addObject:productX];
@@ -341,16 +346,22 @@
     NSString *strDate = [self dateToString:now];
     NSString *strTime = [self timeToString:now];
     
+    NSString * callcard_ID = [[NSString alloc]initWithFormat:@""];
+    if (muTableCallcard.count>0) {
+        _tblcallCard = [muTableCallcard objectAtIndex:0];
+        callcard_ID = [NSString stringWithFormat:@"%@",_tblcallCard.Id];
+    }
+    _tblcallCard = [muTableCallcard objectAtIndex:0];
     NSArray *paramArray ;
     paramArray = [NSArray arrayWithObjects:plan_ID, nil];
     
     NSString * sql = [NSString stringWithFormat:@"Delete From CallCard Where Plan_ID = ?"];
 //    [_tblcallCard ExecSQL:sql parameterArray:paramArray];
-    NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblcallCard GetMaxRnNo] intValue] +1];
-    paramArray = [NSArray arrayWithObjects:plan_ID,newPK,account_ID,strDate,strTime, nil];
-    sql = [NSString stringWithFormat:@"Insert Into CallCard (Plan_ID,PK,Account_ID,CS_Date,CS_Time) Values (?,?,?,?,?)"];
+//    NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblcallCard GetMaxRnNo] intValue] +1];
+    paramArray = [NSArray arrayWithObjects:plan_ID,callcard_ID,account_ID,strDate,strTime, nil];
+    sql = [NSString stringWithFormat:@"Insert or replace Into CallCard (Plan_ID,ID,Account_ID,CS_Date,CS_Time) Values (?,?,?,?,?)"];
     [_tblcallCard ExecSQL:sql parameterArray:paramArray];
-    return newPK;
+    return callcard_ID;
 }
 
 -(void) SaveCallCardStockOfCallCardPK:(NSString *)callCardPK
@@ -367,11 +378,14 @@
     for (ii=0; ii<muTableStock.count; ii++) {
         newPK = [NSString stringWithFormat:@"%i",[newPK intValue]+1];
         ProductInAction * product = [muTableStock objectAtIndex:ii];
+        
+        NSString *stockID = [NSString stringWithFormat:@"%@",product.cc_ID];
         NSString *q1 = [NSString stringWithFormat:@"%i",product.cc_Quantity1];
         NSString *q2 = [NSString stringWithFormat:@"%i",(product.cc_quantity2+product.cc_quantity3)];
-        paramArray = [NSArray arrayWithObjects:callCardPK,newPK,product.pd_Name,q1,q2, nil];
+        paramArray = [NSArray arrayWithObjects:callCardPK,stockID,product.pd_Name,q1,q2, nil];
     
-        sql = [NSString stringWithFormat:@"Insert Into CallCard_Stock (CallCard_PK,PK,Product_Name,OnShelf,InStock) Values (?,?,?,?,?)"];
+        sql = [NSString stringWithFormat:@"Insert or replace Into CallCard_Stock (CallCard_PK,ID,Product_Name,OnShelf,InStock) Values (?,?,?,?,?)"];
+        NSLog(@"%@",stockID);
         [_tblcallCard ExecSQL:sql parameterArray:paramArray];
     }
 }

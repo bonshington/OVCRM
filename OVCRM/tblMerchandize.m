@@ -12,13 +12,13 @@
 @implementation tblMerchandize
 
 @synthesize plan_ID;
-@synthesize pK;
+@synthesize iD;
 @synthesize account_ID;
-@synthesize product_Name;
+@synthesize name;
 @synthesize mcd_Price;
-@synthesize mCD_Share;
-@synthesize mCD_Date;
-@synthesize mCD_Time;
+@synthesize mcd_Share;
+@synthesize date__c;
+@synthesize mcd_Time;
 @synthesize merchandizeList;
 
 sqlite3 *database;
@@ -28,7 +28,8 @@ sqlite3_stmt *statement;
 
 -(NSString *)DB_Field
 {
-    return @"Plan_ID, PK, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ";
+    return @"iD, account_ID, name, mcd_Price, mcd_Share, date__c ";
+    //@"Plan_ID, ID, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ";
 }
 
 /*

@@ -31,7 +31,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"Plan_ID, PK, Collect_Date, Collect_Time, Invoice_No, Amount, PayType";
+    return @"Plan_ID, ID, Collect_Date, Collect_Time, Invoice_No, Amount, PayType";
 }
 
 /*

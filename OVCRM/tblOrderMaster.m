@@ -22,7 +22,7 @@
 
 -(NSString *)DB_Field
 {
-    return @" Plan_ID ,PK ,Order_Date ,Order_Time ,Order_Total "; 
+    return @" Plan_ID ,ID ,Order_Date ,Order_Time ,Order_Total "; 
 }
 
 /*

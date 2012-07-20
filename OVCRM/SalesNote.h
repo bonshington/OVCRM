@@ -22,6 +22,8 @@
 @property (strong, nonatomic) NSString * plan_ID;
 @property (strong, nonatomic) NSString * account_ID;
 
+@property (strong, nonatomic) NSString * st_Id;
+@property (strong, nonatomic) NSString * pcb_Id;
 @property (strong, nonatomic) tblSaleTalk * tblsaleTalk;
 @property (strong, nonatomic) tblPCBrief * tblpcBrief;
 

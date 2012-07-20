@@ -13,10 +13,10 @@
 @interface tblSaleTalk : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property (nonatomic,strong) NSString *plan_ID;
-@property (nonatomic,assign) NSInteger RunNo;
-@property (nonatomic,strong) NSString *SaleTalk;
-@property (nonatomic,strong) NSString *ST_Date;
-@property (nonatomic,strong) NSString *ST_Time;
+@property (nonatomic,assign) NSString *Id;
+@property (nonatomic,strong) NSString *saleTalk;
+@property (nonatomic,strong) NSString *sT_Date;
+@property (nonatomic,strong) NSString *sT_Time;
 
 @property(strong , nonatomic) NSMutableArray  *saleTalkList;
 

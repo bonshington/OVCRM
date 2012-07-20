@@ -17,6 +17,7 @@
 
 @implementation SalesNote
 
+@synthesize st_Id,pcb_Id;
 @synthesize plan_ID;
 @synthesize account_ID;
 @synthesize tblsaleTalk;
@@ -39,6 +40,9 @@
 {
     tblsaleTalk = [[tblSaleTalk alloc]init];
     tblpcBrief = [[tblPCBrief alloc]init];
+    
+    st_Id = [[NSString alloc]init];
+    pcb_Id = [[NSString alloc]init];
     //[super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -87,7 +91,8 @@
     NSMutableArray * arrSaleTalk = [self getArrSaleTalk];
     if (arrSaleTalk.count != 0)
     {
-        textSalesTalk.text = [[arrSaleTalk objectAtIndex:arrSaleTalk.count-1] SaleTalk];
+        textSalesTalk.text = [[arrSaleTalk objectAtIndex:arrSaleTalk.count-1] saleTalk];
+        st_Id = [[arrSaleTalk objectAtIndex:arrSaleTalk.count-1] Id];
     }
 }
 
@@ -98,18 +103,21 @@
     NSString *strDate = [self dateToString:now];
     NSString *strTime = [self timeToString:now];
     
+    
     NSArray *paramArray ;    
     NSMutableArray * arrSaleTalk = [self getArrSaleTalk];
     NSString * sql;
     NSLog(@"%d",arrSaleTalk.count);
-    if (arrSaleTalk.count < 1){
-        paramArray = [[NSArray alloc] initWithObjects:plan_ID,textSalesTalk.text,strDate,strTime, nil];
-        
-        sql = [NSString stringWithFormat:@"Insert Into SaleTalk (Plan_ID,SaleTalk,ST_Date,ST_Time) Values (?,?,?,?)"];
-    }else {
-        paramArray = [[NSArray alloc] initWithObjects:textSalesTalk.text, plan_ID, nil];
-        sql = [NSString stringWithFormat:@"Update SaleTalk Set SaleTalk = ? Where Plan_ID = ?"];
-    }
+    paramArray = [[NSArray alloc] initWithObjects:st_Id,plan_ID,textSalesTalk.text, nil];
+    sql = [NSString stringWithFormat:@"Insert or replace Into SaleTalk (Id,plan_ID,saleTalk) Values (?,?,?)"];
+//    if (arrSaleTalk.count < 1){
+//        paramArray = [[NSArray alloc] initWithObjects:plan_ID,textSalesTalk.text,strDate,strTime, nil];
+//        
+//        sql = [NSString stringWithFormat:@"Insert or replace Into SaleTalk (plan_ID,saleTalk,Id) Values (?,?,?)"];
+//    }else {
+//        paramArray = [[NSArray alloc] initWithObjects:textSalesTalk.text, plan_ID, nil];
+//        sql = [NSString stringWithFormat:@"Update SaleTalk Set SaleTalk = ? Where Plan_ID = ?"];
+//    }
     [tblsaleTalk ExecSQL:sql parameterArray:paramArray];
 }
 
@@ -117,7 +125,8 @@
 -(NSMutableArray *)getArrSaleTalk
 {
     NSString *tableField = [tblsaleTalk DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from SaleTalk Where Plan_ID='%@'",tableField,plan_ID]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from SaleTalk Where plan_ID='%@'",tableField,plan_ID]; 
+    NSLog(@"%@",searchString);
     NSMutableArray * arrSaleTalk = [[NSMutableArray alloc] init];
     arrSaleTalk = [tblsaleTalk QueryData:searchString];
     return  arrSaleTalk;
@@ -152,7 +161,8 @@
     NSMutableArray * arrPCBrief = [self getArrPCBrief];
     if (arrPCBrief.count != 0)
     {
-        textPCBrief.text = [[arrPCBrief objectAtIndex:arrPCBrief.count-1] SaleTalk];
+        textPCBrief.text = [[arrPCBrief objectAtIndex:arrPCBrief.count-1] saleTalk];
+        pcb_Id = [[arrPCBrief objectAtIndex:arrPCBrief.count-1] Id];
     }
 }
 
@@ -164,16 +174,19 @@
     NSString *strTime = [self timeToString:now];
     
     NSArray *paramArray ;//= [[NSArray alloc] initWithObjects:@"0",textPCBrief.text,strDate,strTime, nil];
-    NSMutableArray * arrPCBrief = [self getArrPCBrief];
+//    NSMutableArray * arrPCBrief = [self getArrPCBrief];
     NSString * sql;
-    if (arrPCBrief.count < 1){
-        paramArray = [[NSArray alloc] initWithObjects:plan_ID,textPCBrief.text,strDate,strTime, nil];
-
-        sql = [NSString stringWithFormat:@"Insert Into PCBrief (Plan_ID,PCBrief,PCB_Date,PCB_Time) Values (?,?,?,?)"];
-    }else {
-        paramArray = [[NSArray alloc] initWithObjects:textPCBrief.text, plan_ID, nil];
-        sql = [NSString stringWithFormat:@"Update PCBrief Set PCBrief = ? Where Plan_ID = ?"];
-    }
+    paramArray = [[NSArray alloc] initWithObjects:pcb_Id,plan_ID,textPCBrief.text, nil];
+    sql = [NSString stringWithFormat:@"Insert or Update Into PCBrief (Id,plan_ID,pcBrief) Values (?,?,?)"];//PCB_Date,PCB_Time
+//    
+//    if (arrPCBrief.count < 1){
+//        paramArray = [[NSArray alloc] initWithObjects:plan_ID,textPCBrief.text, nil];
+//
+//        sql = [NSString stringWithFormat:@"Insert or Update Into PCBrief (plan_ID,pcBrief,Id) Values (?,?,?)"];//PCB_Date,PCB_Time
+//    }else {
+//        paramArray = [[NSArray alloc] initWithObjects:textPCBrief.text, plan_ID, nil];
+//        sql = [NSString stringWithFormat:@"Update PCBrief Set PCBrief = ? Where Plan_ID = ?"];
+//    }
     [tblpcBrief ExecSQL:sql parameterArray:paramArray];
 }
 

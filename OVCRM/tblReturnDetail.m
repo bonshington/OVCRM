@@ -29,7 +29,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"PK,Plan_ID,Product_ID,Quantity,Reason,RT_Date,RT_Time";
+    return @"ID,Plan_ID,Product_ID,Quantity,Reason,RT_Date,RT_Time";
 }
 
 

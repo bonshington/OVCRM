@@ -13,12 +13,18 @@
 @property (strong, nonatomic) NSString * pd_ID;
 @property (strong, nonatomic) NSString * pd_Name;
 @property (strong,nonatomic) NSDecimalNumber * pd_Price;
+
+
+@property (strong, nonatomic) NSString * mcd_ID;
 @property (strong, nonatomic) NSString * mcd_Price;
 @property (strong, nonatomic) NSString * mcd_Share;
 
+@property (strong, nonatomic) NSString * cc_ID;
 @property NSInteger cc_Quantity1;
 @property NSInteger cc_quantity2;
 @property NSInteger cc_quantity3;
+
+
 @property NSInteger gr_quantity1;
 //@property NSInteger dl_quantity1;
 

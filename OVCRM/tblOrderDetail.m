@@ -23,7 +23,7 @@ sqlite3_stmt *statement;
 
 -(NSString *)DB_Field
 {
-    return @" PK, Total, TotalDiscount, Discount, DiscountRate, Product_ID, Price, TotalPrice, Quantity, OrderMAster_PK "; 
+    return @" ID, Total, TotalDiscount, Discount, DiscountRate, Product_ID, Price, TotalPrice, Quantity, OrderMAster_PK "; 
 }
 
 -(NSMutableArray *)QueryData2:(NSString *)sqlText

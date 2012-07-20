@@ -23,7 +23,7 @@
 
 -(NSString *)DB_Field
 {
-    return @" PK,Sale_ID,PromotionName,QuantityType,SaleMan,Value,Volumn,ShopType,Owner,StartDate,EndDate "; 
+    return @" ID,Sale_ID,PromotionName,QuantityType,SaleMan,Value,Volumn,ShopType,Owner,StartDate,EndDate "; 
 }
 
 /*

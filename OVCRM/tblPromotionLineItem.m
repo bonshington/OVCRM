@@ -20,7 +20,7 @@
 
 -(NSString *)DB_Field
 {
-    return @" promotion_PK,pK,sale_ID,product_Code,brand,product_Family "; 
+    return @" promotion_PK,ID,sale_ID,product_Code,brand,product_Family "; 
 }
 
 /*

@@ -13,8 +13,8 @@
 @interface tblPCBrief : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property (nonatomic,strong) NSString *plan_ID;
-@property (nonatomic,assign) NSInteger RunNo;
-@property (nonatomic,strong) NSString *SaleTalk;
+@property (nonatomic,assign) NSString *Id;
+@property (nonatomic,strong) NSString *saleTalk;
 @property (nonatomic,strong) NSString *PCB_Date;
 @property (nonatomic,strong) NSString *PCB_Time;
 

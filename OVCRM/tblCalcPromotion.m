@@ -23,7 +23,7 @@ sqlite3_stmt *statement;
 
 -(NSString *)DB_Field
 {
-    return @" PK, PromotionName, ItemOrder, Quantity, Amount, ItemPromotion "; 
+    return @" ID, PromotionName, ItemOrder, Quantity, Amount, ItemPromotion "; 
 }
 
 -(NSMutableArray *)QueryPromotionWithProductCodeIn:(NSString *) productCodeString

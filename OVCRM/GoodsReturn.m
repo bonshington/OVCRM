@@ -148,7 +148,7 @@
     NSArray *paramArray ;
     
     NSString * sql = [NSString stringWithFormat:@"Delete From ReturnDetail Where Plan_ID = '%@'",plan_ID];
-    [_tblProduct ExecSQL:sql parameterArray:nil];    
+//    [_tblProduct ExecSQL:sql parameterArray:nil];    
     
     NSInteger ii = 0 ;
     for (ii=0; ii< arrReturnData.count; ii++) {
@@ -158,7 +158,7 @@
         paramArray = [NSArray arrayWithObjects:plan_ID,plan_ID,tempProduct.product_Code ,[NSString stringWithFormat:@"%@", tempProduct.returnAmt],noteTextView.text , nil];                     
         
         //Insert ค่าโดยให้PK เท่ากับPlan_ID ไปก่อน เนื่องจากแผนที่สร้างใหม่ ตอนsync ขึ้นฝั่ง Sale force ไม่ได้มีPKอยู่
-        sql = [NSString stringWithFormat:@"Insert Into ReturnDetail (ID,Plan_ID,Product_ID,Quantity,Reason) Values (?,?,?,?,?)"];
+        sql = [NSString stringWithFormat:@"Insert or replace Into ReturnDetail (ID,Plan_ID,Product_ID,Quantity,Reason) Values (?,?,?,?,?)"];
        if ([_tblProduct ExecSQL:sql parameterArray:paramArray] == NO)
        {
            UIAlertView *alertDialog;

@@ -82,7 +82,7 @@
     NSMutableArray * arrSaleTalk = [self getArrSaleTalk];
     if (arrSaleTalk.count != 0)
     {
-        textSalesTalk.text = [[arrSaleTalk objectAtIndex:arrSaleTalk.count-1] SaleTalk];
+        textSalesTalk.text = [[arrSaleTalk objectAtIndex:arrSaleTalk.count-1] saleTalk];
     }
 }
 
@@ -142,7 +142,7 @@
     NSMutableArray * arrPCBrief = [self getArrPCBrief];
     if (arrPCBrief.count != 0)
     {
-        textPCBrief.text = [[arrPCBrief objectAtIndex:arrPCBrief.count-1] SaleTalk];
+        textPCBrief.text = [[arrPCBrief objectAtIndex:arrPCBrief.count-1] saleTalk];
     }
 }
 

@@ -12,8 +12,8 @@
 @implementation tblPCBrief
 
 @synthesize  plan_ID;
-@synthesize  RunNo;
-@synthesize  SaleTalk;
+@synthesize  Id;
+@synthesize  saleTalk;
 @synthesize  PCB_Date;
 @synthesize  PCB_Time;
 
@@ -26,7 +26,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"Plan_ID, RunNo ,PCBrief , PCB_Date , PCB_Time";
+    return @"plan_ID, Id ,pcBrief ";//, pcb_Date , pcb_Time
 }
 
 

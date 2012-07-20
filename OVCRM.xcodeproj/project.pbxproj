@@ -192,6 +192,8 @@
 		18EE3F6D15A173F400A08B29 /* OVDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F6B15A173F400A08B29 /* OVDetailController.m */; };
 		18EE3F7215A1741500A08B29 /* OVLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F7015A1741500A08B29 /* OVLandingController.m */; };
 		18EE3F7315A1741500A08B29 /* OVLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F7115A1741500A08B29 /* OVLandingController.xib */; };
+		6367B62715B90C630066991A /* tblDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367B62415B90C600066991A /* tblDelivery.m */; };
+		6367B62815B90C630066991A /* tblDeliveryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367B62615B90C620066991A /* tblDeliveryDetail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -531,6 +533,10 @@
 		18EE3F7015A1741500A08B29 /* OVLandingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVLandingController.m; sourceTree = "<group>"; };
 		18EE3F7115A1741500A08B29 /* OVLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVLandingController.xib; sourceTree = "<group>"; };
 		18F5685115B005EA003F6DD7 /* OVWebViewProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVWebViewProtocal.h; sourceTree = "<group>"; };
+		6367B62315B90C5F0066991A /* tblDelivery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tblDelivery.h; sourceTree = "<group>"; };
+		6367B62415B90C600066991A /* tblDelivery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tblDelivery.m; sourceTree = "<group>"; };
+		6367B62515B90C610066991A /* tblDeliveryDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tblDeliveryDetail.h; sourceTree = "<group>"; };
+		6367B62615B90C620066991A /* tblDeliveryDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tblDeliveryDetail.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -757,6 +763,10 @@
 				18B5AE8C15B3E57600089400 /* tblOrderMaster.m */,
 				18B5AE8D15B3E57600089400 /* tblOrderDetail.h */,
 				18B5AE8E15B3E57600089400 /* tblOrderDetail.m */,
+				6367B62315B90C5F0066991A /* tblDelivery.h */,
+				6367B62415B90C600066991A /* tblDelivery.m */,
+				6367B62515B90C610066991A /* tblDeliveryDetail.h */,
+				6367B62615B90C620066991A /* tblDeliveryDetail.m */,
 				18B5AE8F15B3E57600089400 /* tblPromotion.h */,
 				18B5AE9015B3E57600089400 /* tblPromotion.m */,
 				18B5AE9115B3E57600089400 /* tblPromotionCriteria.h */,
@@ -1389,6 +1399,8 @@
 				18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */,
 				18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */,
 				18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */,
+				6367B62715B90C630066991A /* tblDelivery.m in Sources */,
+				6367B62815B90C630066991A /* tblDeliveryDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

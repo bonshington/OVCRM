@@ -12,16 +12,18 @@
 @interface tblMerchandize : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *plan_ID;
-@property(nonatomic,strong) NSString *pK;
+@property(nonatomic,strong) NSString *iD;
 @property(nonatomic,strong) NSString *account_ID;
-@property(nonatomic,strong) NSString *product_Name;
+@property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) NSString *mcd_Price;
-@property(nonatomic,strong) NSString *mCD_Share;
-@property(nonatomic,strong) NSString *mCD_Date;
-@property(nonatomic,strong) NSString *mCD_Time;
+@property(nonatomic,strong) NSString *mcd_Share;
+@property(nonatomic,strong) NSString *date__c;
+@property(nonatomic,strong) NSString *mcd_Time;
 
 @property(strong , nonatomic) NSMutableArray  *merchandizeList;
 
 -(NSString *)GetMaxRnNo;
 
 @end
+
+
