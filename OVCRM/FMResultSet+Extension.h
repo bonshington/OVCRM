@@ -12,5 +12,6 @@
 @interface FMResultSet (Extension)
 
 -(NSArray *) readToEnd;
+-(NSDictionary *) readToEndById;
 
 @end

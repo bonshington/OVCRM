@@ -7,6 +7,7 @@
 //
 
 #import "OVMenuController.h"
+#import "OVStepsController.h"
 #import "CallCard.h"
 
 @implementation OVMenuController (CallVisit)
@@ -25,7 +26,7 @@
 		
 		NSDictionary *userData = [AppDelegate sharedInstance].user;
 		
-		[db sfInsertInto:@"Event" 
+		[db sfInsertInto:@"Plan" 
 				withData:[NSDictionary dictionaryWithObjectsAndKeys:
 						  self.checkinEventId, @"Id", 
 						  [[NSDate date] SFString], @"Time_in__c",
@@ -36,9 +37,6 @@
 	
 	[self reloadData];
 	
-	CallCard * nextView = [[CallCard alloc]initWithNibName:@"CallCard" bundle:nil];
-    [nextView setPlan_ID:self.checkinEventId];
-    [nextView setAccount_ID:self.checkedAccountId];
 	
 	[AppDelegate sharedInstance].checkin = [NSDictionary dictionaryWithObjectsAndKeys:
 											self.checkinEventId, @"PlanId",
@@ -46,8 +44,16 @@
 											nil];
 	
 	
-	[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:NO];
-    [[AppDelegate sharedInstance].detail pushViewController:nextView animated:YES];
+	//[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:NO];
+	
+	
+	OVStepsController *controller = [[OVStepsController alloc] initWithPlanId:self.checkinEventId 
+																	accountId:self.checkedAccountId];
+	
+	[[AppDelegate sharedInstance].root presentModalViewController:controller animated:NO];
+	
+	
+    
 	
 }
 

@@ -39,9 +39,7 @@
 		
 		/* inject script */
 		//[app.db executeUpdate:@"drop table ProductPriceList"];
-		
-		
-		
+		[app.db executeUpdate:@"delete from Upload"];
 		/*****************/
 		
 		/* init tables */

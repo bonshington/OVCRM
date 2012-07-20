@@ -26,7 +26,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"Plan_ID ,Id ,Account_ID ,CS_Date ,CS_Time ";
+    return @"plan_ID ,Id ,Account_ID ,CS_Date ,CS_Time ";
 }
 
 /*

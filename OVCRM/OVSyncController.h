@@ -24,6 +24,7 @@
 #import "SFUser.h"
 #import "SFPCBrief.h"
 #import "SFSalesTalk.h"
+#import "SFMDProductCat.h"
 
 #define OVSYNC_SECTION_MY_DATA	0
 #define OVSYNC_SECTION_UPLOAD	1

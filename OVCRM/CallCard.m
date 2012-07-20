@@ -347,11 +347,13 @@
     NSString *strTime = [self timeToString:now];
     
     NSString * callcard_ID = [[NSString alloc]initWithFormat:@""];
+	
     if (muTableCallcard.count>0) {
         _tblcallCard = [muTableCallcard objectAtIndex:0];
         callcard_ID = [NSString stringWithFormat:@"%@",_tblcallCard.Id];
     }
-    _tblcallCard = [muTableCallcard objectAtIndex:0];
+	
+//    _tblcallCard = [muTableCallcard objectAtIndex:0];
     NSArray *paramArray ;
     paramArray = [NSArray arrayWithObjects:plan_ID, nil];
     
@@ -359,7 +361,7 @@
 //    [_tblcallCard ExecSQL:sql parameterArray:paramArray];
 //    NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblcallCard GetMaxRnNo] intValue] +1];
     paramArray = [NSArray arrayWithObjects:plan_ID,callcard_ID,account_ID,strDate,strTime, nil];
-    sql = [NSString stringWithFormat:@"Insert or replace Into CallCard (Plan_ID,ID,Account_ID,CS_Date,CS_Time) Values (?,?,?,?,?)"];
+    sql = [NSString stringWithFormat:@"Insert or replace Into CallCard (Plan_ID,Id,Account_ID,CS_Date,CS_Time) Values (?,?,?,?,?)"];
     [_tblcallCard ExecSQL:sql parameterArray:paramArray];
     return callcard_ID;
 }

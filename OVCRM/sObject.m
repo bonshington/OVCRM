@@ -53,6 +53,14 @@ NSDictionary *SF_MAPPING = nil;
 	
 }
 
+-(void)syncRecent:(id<OVSyncProtocal>)_controlller{
+	
+	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
+	
+	[self sync:_controlller 
+		 where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
+}
+
 #pragma mark - SFRestDelegate
 
 - (void)request:(SFRestRequest *)request 

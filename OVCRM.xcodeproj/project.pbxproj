@@ -144,6 +144,8 @@
 		18C4C6F415B13DB700C2ACB0 /* SFPriceBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F315B13DB500C2ACB0 /* SFPriceBook.m */; };
 		18C4C6F715B13DDA00C2ACB0 /* SFPCBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */; };
 		18C4C6FA15B13DED00C2ACB0 /* SFSalesTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */; };
+		18CB17D615B979EA009349FC /* OVStepsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB17D415B979EA009349FC /* OVStepsController.m */; };
+		18CB17D715B979EA009349FC /* OVStepsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB17D515B979EA009349FC /* OVStepsController.xib */; };
 		18D52FBF15AAB36600C70E16 /* SFProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FBE15AAB36600C70E16 /* SFProduct.m */; };
 		18D52FC415AABF7D00C70E16 /* OVSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FC215AABF7C00C70E16 /* OVSyncController.m */; };
 		18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FC315AABF7C00C70E16 /* OVSyncController.xib */; };
@@ -158,6 +160,10 @@
 		18D98DDA15B9396500F83A66 /* tblDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD515B938D700F83A66 /* tblDelivery.m */; };
 		18D98DDB15B9396500F83A66 /* tblDeliveryDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */; };
 		18D98DDC15B9396500F83A66 /* tblDeliveryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */; };
+		18D98DE515B94E4300F83A66 /* OVCallCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DE315B94E4300F83A66 /* OVCallCardController.m */; };
+		18D98DE915B94EDE00F83A66 /* OVCallCardController+UITableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */; };
+		18D98DEC15B9564700F83A66 /* SFMDProductCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DEB15B9564500F83A66 /* SFMDProductCat.m */; };
+		18D98DEE15B9612E00F83A66 /* OVCallCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D98DED15B9612D00F83A66 /* OVCallCardController.xib */; };
 		18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */; };
 		18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */; };
 		18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EA915A160DF00A08B29 /* CoreData.framework */; };
@@ -196,8 +202,6 @@
 		18EE3F6D15A173F400A08B29 /* OVDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F6B15A173F400A08B29 /* OVDetailController.m */; };
 		18EE3F7215A1741500A08B29 /* OVLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F7015A1741500A08B29 /* OVLandingController.m */; };
 		18EE3F7315A1741500A08B29 /* OVLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F7115A1741500A08B29 /* OVLandingController.xib */; };
-		6367B62715B90C630066991A /* tblDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367B62415B90C600066991A /* tblDelivery.m */; };
-		6367B62815B90C630066991A /* tblDeliveryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367B62615B90C620066991A /* tblDeliveryDetail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -380,6 +384,9 @@
 		18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPCBrief.m; sourceTree = "<group>"; };
 		18C4C6F815B13DEB00C2ACB0 /* SFSalesTalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSalesTalk.h; sourceTree = "<group>"; };
 		18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSalesTalk.m; sourceTree = "<group>"; };
+		18CB17D315B979EA009349FC /* OVStepsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVStepsController.h; sourceTree = "<group>"; };
+		18CB17D415B979EA009349FC /* OVStepsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVStepsController.m; sourceTree = "<group>"; };
+		18CB17D515B979EA009349FC /* OVStepsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVStepsController.xib; sourceTree = "<group>"; };
 		18D52FBD15AAB36600C70E16 /* SFProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFProduct.h; sourceTree = "<group>"; };
 		18D52FBE15AAB36600C70E16 /* SFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFProduct.m; sourceTree = "<group>"; };
 		18D52FC115AABF7C00C70E16 /* OVSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVSyncController.h; sourceTree = "<group>"; };
@@ -399,6 +406,12 @@
 		18D98DD515B938D700F83A66 /* tblDelivery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblDelivery.m; sourceTree = "<group>"; };
 		18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblDeliveryDetail.h; sourceTree = "<group>"; };
 		18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblDeliveryDetail.m; sourceTree = "<group>"; };
+		18D98DE215B94E4300F83A66 /* OVCallCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVCallCardController.h; sourceTree = "<group>"; };
+		18D98DE315B94E4300F83A66 /* OVCallCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVCallCardController.m; sourceTree = "<group>"; };
+		18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVCallCardController+UITableViewHandler.m"; sourceTree = "<group>"; };
+		18D98DEA15B9564400F83A66 /* SFMDProductCat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMDProductCat.h; sourceTree = "<group>"; };
+		18D98DEB15B9564500F83A66 /* SFMDProductCat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMDProductCat.m; sourceTree = "<group>"; };
+		18D98DED15B9612D00F83A66 /* OVCallCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVCallCardController.xib; sourceTree = "<group>"; };
 		18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+Render.m"; sourceTree = "<group>"; };
 		18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LINQ.h"; sourceTree = "<group>"; };
 		18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LINQ.m"; sourceTree = "<group>"; };
@@ -1123,6 +1136,11 @@
 				08FC15B515A95984005847AC /* OVWebViewController.h */,
 				08FC15B615A95984005847AC /* OVWebViewController.m */,
 				08FC15BE15A95B74005847AC /* OVWebViewController+UIWebViewDeleagte.m */,
+				18D98DE215B94E4300F83A66 /* OVCallCardController.h */,
+				18D98DE315B94E4300F83A66 /* OVCallCardController.m */,
+				18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */,
+				18CB17D315B979EA009349FC /* OVStepsController.h */,
+				18CB17D415B979EA009349FC /* OVStepsController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1165,6 +1183,8 @@
 				18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */,
 				0819583815B18AC300CFDFE9 /* SFUser.h */,
 				0819583915B18AC300CFDFE9 /* SFUser.m */,
+				18D98DEA15B9564400F83A66 /* SFMDProductCat.h */,
+				18D98DEB15B9564500F83A66 /* SFMDProductCat.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1172,11 +1192,13 @@
 		18EE3F6215A1730B00A08B29 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18D98DED15B9612D00F83A66 /* OVCallCardController.xib */,
 				18D52FC315AABF7C00C70E16 /* OVSyncController.xib */,
 				18EE3F7115A1741500A08B29 /* OVLandingController.xib */,
 				18EE3F6315A1736800A08B29 /* RootViewController.xib */,
 				08FC15B715A95984005847AC /* OVWebViewController.xib */,
 				18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */,
+				18CB17D515B979EA009349FC /* OVStepsController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1256,6 +1278,8 @@
 				08FC15E215A96A71005847AC /* jquery.mobile.css in Resources */,
 				18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */,
 				18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */,
+				18D98DEE15B9612E00F83A66 /* OVCallCardController.xib in Resources */,
+				18CB17D715B979EA009349FC /* OVStepsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,8 +1439,10 @@
 				18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */,
 				18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */,
 				18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */,
-				6367B62715B90C630066991A /* tblDelivery.m in Sources */,
-				6367B62815B90C630066991A /* tblDeliveryDetail.m in Sources */,
+				18D98DE515B94E4300F83A66 /* OVCallCardController.m in Sources */,
+				18D98DE915B94EDE00F83A66 /* OVCallCardController+UITableViewHandler.m in Sources */,
+				18D98DEC15B9564700F83A66 /* SFMDProductCat.m in Sources */,
+				18CB17D615B979EA009349FC /* OVStepsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,7 +47,7 @@
 					 [SFPriceBookDetail new], @"Price book detail",
 					 [SFPCBrief new], @"PC Brief",
 					 [SFSalesTalk new], @"Sales Talk",
-					 
+					 [SFMDProductCat new], @"Product Master Data",
                      nil];
 }
 

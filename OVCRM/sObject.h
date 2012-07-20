@@ -22,6 +22,7 @@
 @property (nonatomic, retain, getter = getAllTable) NSDictionary *allTable; 
 
 -(void)sync:(id<OVSyncProtocal>)_controlller where:(NSString *)condition;
+-(void)syncRecent:(id<OVSyncProtocal>)_controlller;
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder;
 

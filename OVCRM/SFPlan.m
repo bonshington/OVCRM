@@ -89,9 +89,7 @@
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	NSString *uid = [[AppDelegate sharedInstance].user objectForKey:@"userId"];
-	
-	[super sync:_controller where:nil];//[NSString stringWithFormat:@"WhatId = '%@' and StartDateTime >= TODAY", uid]];
+	[super syncRecent:_controller];
 }
 
 +(NSArray *) selectToday{
