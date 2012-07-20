@@ -55,8 +55,12 @@
 @property (nonatomic, retain) NSMutableArray *registeredUploadStatusChange;
 @property (nonatomic, retain) CLLocation *location;
 @property (nonatomic, retain) CLLocationManager *locationManager;
+<<<<<<< HEAD
 @property (nonatomic, retain) NSDictionary *checkin;
 
+=======
+@property (nonatomic, retain) NSString *routeId;
+>>>>>>> Cut off
 @property (nonatomic, retain) NSDateFormatter *sqlFormat;
 
 -(SFIdentityData *) getIdentity;

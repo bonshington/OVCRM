@@ -46,32 +46,16 @@
     [self.tableView addSubview:self.resultView];
     
     
-    
-    // init menu
-    self.todayPlan = [SFPlan selectToday];
-    
-    
     // init sync
     if(![self verifyDatabase]){
         [self sync];
     }
     
-	
-	
+
 	// register upload change
 	[[AppDelegate sharedInstance] registerUploadTaskChange:self];
 	
-	
-    
-    //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Account"];
-    //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Event"];
-    //BOOL ok = [[AppDelegate sharedInstance].db initSqlTableOf:[SFVisit new]];
-    
-    
-    //[SFAccount loadAccountsWithRoute:@"10390230"];
-    //[SFVisit loadNewVisit];
-	
-	//[[SFProduct new] sync:nil];
+	[self loadData];
 }
 
 - (void)viewDidUnload
@@ -115,8 +99,29 @@
 
 }
 
+-(void) loadData{
+
+	// init menu
+    self.todayPlan = [SFPlan selectToday];
+	
+	
+    //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Account"];
+    //BOOL dropped = [[AppDelegate sharedInstance].db executeUpdate:@"drop table Event"];
+    //BOOL ok = [[AppDelegate sharedInstance].db initSqlTableOf:[SFVisit new]];
+    
+    
+    //[SFAccount loadAccountsWithRoute:@"10390230"];
+    //[SFVisit loadNewVisit];
+	
+	//[[SFProduct new] sync:nil];
+
+}
+
 - (void) reloadData{
-	[self.tableView reloadData];
+	
+	[self loadData];
+	
+	[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 -(void) setActive:(BOOL)isActive{

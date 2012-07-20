@@ -15,12 +15,15 @@
 #pragma mark - Section
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 
     switch (section) {
+			
+		case OVSYNC_SECTION_MY_DATA: return @"My Information";
+			
         case OVSYNC_SECTION_UPLOAD: return @"Upload";
         
         case OVSYNC_SECTION_DOWNLOAD: return @"Download";
@@ -34,6 +37,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     switch (section) {
+			
+		case OVSYNC_SECTION_MY_DATA: return 1;
+			
         case OVSYNC_SECTION_UPLOAD: return [self.upload count];
             
         case OVSYNC_SECTION_DOWNLOAD: return [self.download count];
@@ -53,6 +59,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         
         switch (indexPath.section) {
+				
+			case OVSYNC_SECTION_MY_DATA:
+				cell.textLabel.text = @"My Information";
+                cell.detailTextLabel.text = @"...";
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.tag = tagForCellSyncMyData;
+                break;
+				
             case OVSYNC_SECTION_UPLOAD:{
 				NSDictionary *entry = [self.upload objectAtIndex:indexPath.row];
 				
@@ -79,8 +93,6 @@
                 cell.tag = tagForCellSyncDownload;
                 break;
         }
-        
-        
         
     }
     

@@ -7,6 +7,7 @@
 //
 
 #import "SFPlan.h"
+#import "AppDelegate.h"
 
 @implementation SFPlan
 
@@ -88,7 +89,9 @@
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	[super sync:_controller where:@"StartDateTime >= TODAY"];
+	NSString *uid = [[AppDelegate sharedInstance].user objectForKey:@"userId"];
+	
+	[super sync:_controller where:[NSString stringWithFormat:@"WhatId = '%@' and StartDateTime >= TODAY", uid]];
 }
 
 +(NSArray *) selectToday{
@@ -97,7 +100,6 @@
     
     if(!db.open)[db open];
 	
-	NSString *eventTimeColumn = @"Visit_Date";
     NSString *sql = @"select *, substr(TIME(substr(TimePlan_In, 1, 23), 'localtime'), 1, 5) as time from Plan where 1=1 or date(TimePlan_In) = CURRENT_DATE order by DATETIME(TimePlan_In)";
     
 	return [[db executeQuery:sql] readToEnd];

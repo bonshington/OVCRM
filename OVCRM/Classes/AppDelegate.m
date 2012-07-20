@@ -44,7 +44,11 @@ static NSString *const OAuthRedirectURI = @"testsfdc:///mobilesdk/detect/oauth/d
 
 @implementation AppDelegate
 
+<<<<<<< HEAD
 @synthesize db, root, master, detail, sync, user, registeredUploadStatusChange, location, locationManager, sqlFormat, checkin;
+=======
+@synthesize db, root, master, detail, sync, user, registeredUploadStatusChange, location, locationManager, sqlFormat, routeId;
+>>>>>>> Cut off
 
 SFIdentityCoordinator *_coordinator;
 
@@ -168,10 +172,27 @@ SFIdentityCoordinator *_coordinator;
 
 -(NSDictionary *)getUser{
 
+	NSString *uid = [SFRestAPI sharedInstance].coordinator.credentials.userId;
+	
+	if(self.routeId == nil)
+		self.routeId = @"";
+	
+	if(self.routeId.length == 0){
+		
+		NSArray *result = [[[OVDatabase sharedInstance] executeQuery:@"select * from User limit 1"] readToEnd];
+		
+		if(result != nil && result.count > 0){
+			self.routeId = [NSString stringWithString:[result objectAtIndex:0 forKey:@"Route_No__c"]];
+			
+		}
+	}
+	
+	NSString *lastSyncDate = [[[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"] readToEnd] objectAtIndex:0 forKey:@"label"];
+	
 	return [NSMutableDictionary dictionaryWithObjectsAndKeys:
-			@"10390230", @"route",
-			@"", @"userId",
-			[[[self.db executeQuery:@"select label from Parameter where tag = 'CONFIG' and key = 'LAST_SYNC'"] readToEnd] objectAtIndex:0 forKey:@"label"], @"lastSyncDate", 
+			self.routeId, @"route",
+			uid, @"userId",
+			lastSyncDate, @"lastSyncDate", 
 			[NSString stringWithFormat:@"%f", self.location.coordinate.latitude], @"lat",
 			[NSString stringWithFormat:@"%f", self.location.coordinate.longitude], @"lng",
 			nil];

@@ -24,8 +24,16 @@
                                          inSection:self.processing.section];
     
     if([self.tableView cellForRowAtIndexPath:self.processing] == nil){
+		
+		// increment to next visible cell
         self.processing = [NSIndexPath indexPathForRow:0
                                              inSection:self.processing.section + 1];
+		
+		// if no upload then pass
+		if(self.processing.section == OVSYNC_SECTION_UPLOAD && self.upload.count == 0){
+			self.processing = [NSIndexPath indexPathForRow:0
+												 inSection:self.processing.section + 1];
+		}
     }
     
     if([self.tableView cellForRowAtIndexPath:self.processing] != nil){

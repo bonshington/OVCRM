@@ -33,6 +33,8 @@
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
                      
+					 //[SFUser new], @"My Information", // must not be here
+					 
 					 [SFAccount new], @"Account", 
 					 [SFPlan new], @"Plan", 
 					 [SFStock new], @"Stock",
@@ -42,8 +44,10 @@
 					 [SFCollection new], @"Collection",
 					 [SFCallCard new], @"Call Card",
 					 [SFPriceBook new], @"Price book",
-					  
 					 [SFPriceBookDetail new], @"Price book detail",
+					 [SFPCBrief new], @"PC Brief",
+					 [SFSalesTalk new], @"Sales Talk",
+					 
                      nil];
 }
 
@@ -62,12 +66,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-	if(self.upload.count == 0){
-		self.processing = [NSIndexPath indexPathForRow:0 inSection:1];
-	}
-	else {
-		self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
-	}
+	self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [self sync];
 }
@@ -80,6 +79,11 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.processing];
     
     switch (self.processing.section) {
+			
+		case OVSYNC_SECTION_MY_DATA:
+			[[SFUser new] sync:self];
+			break;
+			
         case OVSYNC_SECTION_UPLOAD:
             [self upsert:((UILabel *)[cell viewWithTag:tagForUploadPk]).text];
             break;

@@ -45,6 +45,8 @@
 											self.checkedAccountId, @"AccountId",
 											nil];
 	
+	
+	[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:NO];
     [[AppDelegate sharedInstance].detail pushViewController:nextView animated:YES];
 	
 }

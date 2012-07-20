@@ -27,6 +27,8 @@
 -(BOOL) verifyDatabase;
 -(void) sync;
 
+-(void) loadData;
+
 - (void) invokeSFObject:(NSString *)sObject 
 		   withMustache:(NSDictionary *)data 
 	 withRightBarButton:(UIBarButtonItem *)button;

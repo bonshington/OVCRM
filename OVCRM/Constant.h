@@ -19,6 +19,7 @@
 
 #define tagForCellSyncUpload    190
 #define tagForCellSyncDownload  191
+#define tagForCellSyncMyData	192
 
 #define tagForTableName     1000
 #define tagForSFAccountId   1001
