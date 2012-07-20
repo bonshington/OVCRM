@@ -345,7 +345,7 @@
     paramArray = [NSArray arrayWithObjects:plan_ID, nil];
     
     NSString * sql = [NSString stringWithFormat:@"Delete From CallCard Where Plan_ID = ?"];
-    [_tblcallCard ExecSQL:sql parameterArray:paramArray];
+//    [_tblcallCard ExecSQL:sql parameterArray:paramArray];
     NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblcallCard GetMaxRnNo] intValue] +1];
     paramArray = [NSArray arrayWithObjects:plan_ID,newPK,account_ID,strDate,strTime, nil];
     sql = [NSString stringWithFormat:@"Insert Into CallCard (Plan_ID,PK,Account_ID,CS_Date,CS_Time) Values (?,?,?,?,?)"];
@@ -359,7 +359,7 @@
     paramArray = [NSArray arrayWithObjects:callCardPK, nil];
     
     NSString * sql = [NSString stringWithFormat:@"Delete From CallCard_Stock Where Callcard_PK = ?"];
-    [_tblcallCard ExecSQL:sql parameterArray:paramArray];
+//    [_tblcallCard ExecSQL:sql parameterArray:paramArray];
     
     NSString * newPK = [NSString stringWithFormat:@"%i",[[_tblcallcard_Stock GetMaxRnNo] intValue]] ;//] +1];
     
