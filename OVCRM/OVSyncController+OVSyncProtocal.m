@@ -49,7 +49,6 @@
 	else{
 		
 		// All synced
-		
 		self.processing = nil;
 		
 		// update last sync

@@ -10,6 +10,6 @@
 
 @interface SFProduct : sObject
 
-
++(NSArray *) availableProduct;
 
 @end

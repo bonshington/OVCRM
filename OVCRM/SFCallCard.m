@@ -12,7 +12,7 @@
 @implementation SFCallCard
 
 -(NSString *) sfName{ return @"Call_Card__c"; }
--(NSString *) sqlName{ return @"CallCard"; }
+-(NSString *) sqlName{ return @"Call_Card__c"; }
 
 -(NSDictionary *)schema{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -36,10 +36,11 @@
 
 -(NSDictionary *)mapping{
 	
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"Account_ID", @"Account__c", 
-			@"CS_Date", @"Checking_Date__c",
-			nil];
+	return [NSDictionary new];
+			
+			//@"Account_ID", @"Account__c", 
+			//@"CS_Date", @"Checking_Date__c",
+
 }
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
@@ -65,7 +66,7 @@
 	if(!db.open)
 		[db open];
 	
-	return [[db executeQuery:@"select * from CallCard order by date(CS_Date) desc limit ?", lookback] readToEnd];
+	return [[db executeQuery:@"select * from CallCard order by date(Checking_Date__c) desc limit ?", lookback] readToEnd];
 }
 
 @end

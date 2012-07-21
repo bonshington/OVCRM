@@ -81,7 +81,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-	self.processing = [NSIndexPath indexPathForRow:0 inSection:2];
+	self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [self sync];
 }
@@ -91,7 +91,7 @@
     
     [self.tableView selectRowAtIndexPath:self.processing animated:YES scrollPosition:UITableViewScrollPositionNone];
     
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.processing];
+    //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.processing];
     
     switch (self.processing.section) {
 			
@@ -100,7 +100,10 @@
 			break;
 			
         case OVSYNC_SECTION_UPLOAD:
-            [self upsert:[self.upload objectAtIndex:uploading forKey:@"pk"]];
+			if(self.upload == nil || self.upload.count == uploading)
+				[self done];
+			else
+				[self upsert:[self.upload objectAtIndex:uploading forKey:@"pk"]];
             break;
             
         case OVSYNC_SECTION_DOWNLOAD:

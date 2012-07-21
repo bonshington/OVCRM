@@ -37,6 +37,8 @@
 			@"TEXT", @"PC_Brief__c",
 			@"TEXT", @"Pricing_Information__c",
 			@"TEXT", @"Source_System__c",
+			
+			@"TEXT", @"",
 			nil];	
 }
 

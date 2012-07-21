@@ -76,7 +76,7 @@ SFIdentityCoordinator *_coordinator;
 
 -(int) refreshUploadTask{
 	
-	FMResultSet *result = [self.db executeQuery:@"select count(*) from Upload where syncTime is null"];
+	FMResultSet *result = [self.db executeQuery:@"select count(*) from Upload where syncTime is null and sObject = 'Event' group by Id"];
 	
 	[result next];
 	

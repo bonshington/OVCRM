@@ -18,12 +18,11 @@
     
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
-	FMResultSet *result = [db executeQuery:@"select Id from Account where Id in (select Account_Id from Plan where Id = ?)", self.checkinEventId];
+	NSArray *result = [[db executeQuery:@"select * from Account where Id in (select Account_Id from Plan where Id = ?)", self.checkinEventId] readToEnd];
 	
-	[result next];
-	self.checkedAccountId = [result stringForColumnIndex:0];
+	if(result != nil && result.count > 0){
 		
-	if(self.checkedAccountId != nil){
+		self.checkedAccountId = [result objectAtIndex:0 forKey:@"Id"];
 		
 		NSDictionary *userData = [AppDelegate sharedInstance].user;
 		
@@ -41,7 +40,9 @@
 	
 	[AppDelegate sharedInstance].checkin = [NSDictionary dictionaryWithObjectsAndKeys:
 											self.checkinEventId, @"PlanId",
+											[[[db executeQuery:@"select * from Plan where Id = ?", self.checkinEventId] readToEnd]  objectAtIndex:0], @"PlanData",
 											self.checkedAccountId, @"AccountId",
+											result, @"AccountData",
 											nil];
 	
 	

@@ -12,6 +12,11 @@
 
 -(void) upsert:(NSString *)uploadPk{
 	
+	if(self.upload == nil || self.upload.count == uploading){
+		[self done];
+	}
+	
+	
 	[self updateStatus:@"Preparing"];
 	
 	NSDictionary *data = [self.upload objectAtIndex:uploading];

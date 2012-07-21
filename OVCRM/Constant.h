@@ -28,5 +28,13 @@
 #define tagForUploadObject	1004
 #define tagForUploadId		1005
 #define tagForUploadJson	1006
+	
+#define tagForOnShelf		1007
+#define tagForInStock		1008
+#define tagForOnShelfPrice	1009
+#define tagForFacing		1010
+
+#define tagForInv			2000
+#define tagForOrder			2100
 
 #define SETTING_MENU_SEARCH_LIMIT 25

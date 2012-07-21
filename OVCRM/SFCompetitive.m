@@ -33,6 +33,7 @@
 			@"TEXT", @"iFab_Information__c",
 			@"TEXT", @"Promotion_Information__c",
 			@"TEXT", @"Company_Information__c",
+
 			nil];
 }
 

@@ -103,4 +103,14 @@
 	[super syncRecent:_controller];
 }
 
++(NSArray *) availableProduct{
+	return [[[OVDatabase sharedInstance] executeQuery:
+			 @"select p.Id, p.product_Category, p.product_Code, p.packSize \
+			 from	Product p \
+			 join	MD_Product_Category__c md \
+			 on	md.Code__c = p.MD_Product_Category_Code__c \
+			 where	p.Main_Product__c = '1' and p.isCancel <> 'Inactive' \
+			 order by md.Runing_Number__c"] readToEnd];
+}
+
 @end

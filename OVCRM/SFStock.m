@@ -12,7 +12,7 @@
 @implementation SFStock
 
 -(NSString *)sfName{ return @"Stock__c";}
--(NSString *)sqlName{ return @"CallCard_Stock";}
+-(NSString *)sqlName{ return @"Stock__c";}
 
 
 -(NSDictionary *)schema{
@@ -39,13 +39,13 @@
 }
 
 -(NSDictionary *)mapping{
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"Product_Name", @"Name",
-			@"OnShelf", @"Quantity_Remain__c",
-			@"InStock", @"In_Stock__c",
-			@"CallCard_PK", @"Call_Card__c",
-			@"Stock", @"Stock__c",
-			nil];
+	return [NSDictionary new];
+			//@"Product_Name", @"Name",
+			//@"OnShelf", @"Quantity_Remain__c",
+			//@"InStock", @"In_Stock__c",
+			//@"CallCard_PK", @"Call_Card__c",
+			//@"Stock", @"Stock__c",
+			//nil];
 }
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
