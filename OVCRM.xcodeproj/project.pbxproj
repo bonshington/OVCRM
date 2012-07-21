@@ -20,6 +20,8 @@
 		08CBC31215B99D8D00E7472E /* UITextField+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31115B99D8D00E7472E /* UITextField+Extension.m */; };
 		08CBC31615B9A20D00E7472E /* OVCallCardController+UISearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */; };
 		08CBC31915B9BA1F00E7472E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31815B9BA1F00E7472E /* UIView+Extension.m */; };
+		08CBC31C15BA83E600E7472E /* SFTradeProg.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31B15BA83E500E7472E /* SFTradeProg.m */; };
+		08CBC31F15BA83F600E7472E /* SFCompetitive.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31E15BA83F500E7472E /* SFCompetitive.m */; };
 		08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDC15A48317007C52F5 /* SFAccount.m */; };
 		08FAFCE015A48375007C52F5 /* sObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDF15A48375007C52F5 /* sObject.m */; };
 		08FC15B815A95984005847AC /* OVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FC15B615A95984005847AC /* OVWebViewController.m */; };
@@ -236,6 +238,10 @@
 		08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVCallCardController+UISearchBarDelegate.m"; sourceTree = "<group>"; };
 		08CBC31715B9BA1F00E7472E /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		08CBC31815B9BA1F00E7472E /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		08CBC31A15BA83E400E7472E /* SFTradeProg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTradeProg.h; sourceTree = "<group>"; };
+		08CBC31B15BA83E500E7472E /* SFTradeProg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTradeProg.m; sourceTree = "<group>"; };
+		08CBC31D15BA83F400E7472E /* SFCompetitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCompetitive.h; sourceTree = "<group>"; };
+		08CBC31E15BA83F500E7472E /* SFCompetitive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCompetitive.m; sourceTree = "<group>"; };
 		08FAFCCD15A48032007C52F5 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		08FAFCCE15A48032007C52F5 /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		08FAFCCF15A48032007C52F5 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1209,6 +1215,10 @@
 				0819583915B18AC300CFDFE9 /* SFUser.m */,
 				18D98DEA15B9564400F83A66 /* SFMDProductCat.h */,
 				18D98DEB15B9564500F83A66 /* SFMDProductCat.m */,
+				08CBC31A15BA83E400E7472E /* SFTradeProg.h */,
+				08CBC31B15BA83E500E7472E /* SFTradeProg.m */,
+				08CBC31D15BA83F400E7472E /* SFCompetitive.h */,
+				08CBC31E15BA83F500E7472E /* SFCompetitive.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1475,9 +1485,14 @@
 				08CBC31215B99D8D00E7472E /* UITextField+Extension.m in Sources */,
 				08CBC31615B9A20D00E7472E /* OVCallCardController+UISearchBarDelegate.m in Sources */,
 				08CBC31915B9BA1F00E7472E /* UIView+Extension.m in Sources */,
+<<<<<<< HEAD
 =======
 				6367B65615B956A80066991A /* viewDatePicker.m in Sources */,
 >>>>>>> Tong 2012-07-21
+=======
+				08CBC31C15BA83E600E7472E /* SFTradeProg.m in Sources */,
+				08CBC31F15BA83F600E7472E /* SFCompetitive.m in Sources */,
+>>>>>>> fix
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

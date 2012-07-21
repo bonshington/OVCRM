@@ -80,7 +80,7 @@
                 break;
 			}
             case OVSYNC_SECTION_DOWNLOAD:
-                cell.textLabel.text = [[self.download allKeys] objectAtIndex:indexPath.row];
+                cell.textLabel.text = [self.download keyAtIndex:indexPath.row];
                 cell.detailTextLabel.text = @"...";
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 cell.tag = tagForCellSyncDownload;
@@ -92,11 +92,6 @@
     return cell;
 }
 
-#pragma mark - Selection
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.tableView selectRowAtIndexPath:self.processing animated:NO scrollPosition:UITableViewScrollPositionNone];
-	
-}
 
 @end

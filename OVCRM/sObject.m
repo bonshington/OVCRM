@@ -38,7 +38,7 @@ NSDictionary *SF_MAPPING = nil;
     
 	[_controller updateStatus:@"Requesting..."];
 	
-	NSLog(@"SF query for \"%@\" where %@", [self sfName], condition);
+	NSLog(@"SF query for: \"%@\" where %@", [self sfName], condition);
 	
 	if(condition == nil){
 		[sObject loadWithQuery:[NSString stringWithFormat:
@@ -65,7 +65,7 @@ NSDictionary *SF_MAPPING = nil;
 	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
 	
 	[self sync:_controlller 
-		 where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
+		 where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z or LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
 }
 
 #pragma mark - SFRestDelegate

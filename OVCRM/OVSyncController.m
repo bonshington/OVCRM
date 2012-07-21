@@ -46,19 +46,22 @@
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
                      
-					 [SFAccount new], @"Account", 
-					 [SFPlan new], @"Plan", 
-					 [SFStock new], @"Stock",
-                     [SFProduct new], @"Product", 
+					 [SFAccount new]	, @"Account", 
+					 [SFPlan new]		, @"Plan", 
+					 [SFStock new]		, @"Stock",
+                     [SFProduct new]	, @"Product", 
 					 [SFMerchandise new], @"Merchandise",
 					 [SFGoodsReturn new], @"Goods Return",
-					 [SFCollection new], @"Collection",
-					 [SFCallCard new], @"Call Card",
-					 [SFPriceBook new], @"Price book",
+					 [SFCollection new]	, @"Collection",
+					 [SFCallCard new]	, @"Call Card",
+					 [SFPriceBook new]	, @"Price book",
 					 [SFPriceBookDetail new], @"Price book detail",
-					 [SFPCBrief new], @"PC Brief",
-					 [SFSalesTalk new], @"Sales Talk",
+					 [SFPCBrief new]	, @"PC Brief",
+					 [SFSalesTalk new]	, @"Sales Talk",
 					 [SFMDProductCat new], @"Product Master Data",
+					 
+					 [SFCompetitive new], @"Competitive Activities",
+					 [SFTradeProg new]	, @"Trade Program Execution",
 					 
                      nil];
 }
@@ -78,7 +81,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-	self.processing = [NSIndexPath indexPathForRow:0 inSection:1];
+	self.processing = [NSIndexPath indexPathForRow:0 inSection:2];
     
     [self sync];
 }
@@ -101,7 +104,7 @@
             break;
             
         case OVSYNC_SECTION_DOWNLOAD:
-            [(id<SFObjectProtocal>)[self.download objectForKey:cell.textLabel.text] sync:self];
+            [(id<SFObjectProtocal>)[self.download objectAtIndex:self.processing.row] sync:self];
             break;
     }
     

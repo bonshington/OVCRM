@@ -11,8 +11,8 @@
 @implementation NSDictionary (Extension)
 
 -(id)objectAtIndex:(NSInteger)index{
-    
-    return [self objectForKey:[[self allKeys] objectAtIndex:index]];
+	
+	return [self objectForKey:[[self allKeys] objectAtIndex:index]];
 }
 
 -(id)objectForKeyLike:(NSString *)key{
@@ -24,6 +24,10 @@
 	}
 	
 	return  nil;
+}
+
+-(id) keyAtIndex:(NSInteger)index{
+	return [[self allKeys] objectAtIndex:index];
 }
 
 @end

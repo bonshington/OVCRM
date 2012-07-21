@@ -25,6 +25,8 @@
 #import "SFPCBrief.h"
 #import "SFSalesTalk.h"
 #import "SFMDProductCat.h"
+#import "SFCompetitive.h"
+#import "SFTradeProg.h"
 
 #define OVSYNC_SECTION_MY_DATA	0
 #define OVSYNC_SECTION_UPLOAD	1

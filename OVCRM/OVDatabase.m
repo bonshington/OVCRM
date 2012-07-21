@@ -40,7 +40,8 @@
 		/* inject script */
 		//[app.db executeUpdate:@"drop table ProductPriceList"];
 		//[app.db executeUpdate:@"delete from Upload"];
-		//[app.db executeUpdate:@"update Parameter set label = '2000-01-01' where tag = 'CONFIG' and key = 'LAST_SYNC'"];
+		//[app.db executeUpdate:@"alter table Upload add column planId text"];
+		//[app.db executeUpdate:@"update Upload set planId = '00UO0000001gierMAA'"];
 		/*****************/
 		
 		/* init tables */

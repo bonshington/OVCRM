@@ -12,5 +12,6 @@
 
 -(id)objectAtIndex:(NSInteger)index;
 -(id)objectForKeyLike:(NSString *)key;
+-(id) keyAtIndex:(NSInteger)index;
 
 @end

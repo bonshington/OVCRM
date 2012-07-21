@@ -86,6 +86,10 @@
 }
 
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+	return (toInterfaceOrientation == UIDeviceOrientationLandscapeRight) || (toInterfaceOrientation == UIDeviceOrientationLandscapeLeft);
+}
+
 /*
 #pragma mark - Table view data source
 

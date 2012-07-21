@@ -80,6 +80,8 @@
 			
 			[loadingCallcard setObject:[resumeCallcard objectAtIndex:0 forKey:@"Id"] forKey:@"id"];
 			
+			self.callcard = loadingCallcard;
+			
 			[db executeUpdate:@"delete from Upload where pk = ?", [resumeCallcard valueForKey:@"pk"]];
 		}
 		else{
@@ -99,7 +101,7 @@
 	
 	
 	// load callcard data
-	self.callcard_data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"Select * From CallCard_Stock where CallCard_PK = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"Products__c"]];
+	self.callcard_data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"Select * From CallCard_Stock where CallCard_PK = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"prod_db_id__c"]];
 	
 	if(self.callcard_data == nil || self.callcard_data.count == 0){
 		
@@ -108,7 +110,16 @@
 		
 		if(resumeCallcardData != nil && resumeCallcardData.count > 0){
 			
+			[resumeCallcardData enumerateObjectsUsingBlock:^(NSDictionary *row, NSUInteger index, BOOL *stop){
+				
+				NSMutableDictionary *json = [NSMutableDictionary dictionaryWithDictionary:[SFJsonUtils objectFromJSONString:[row objectForKey:@"json"]]];
+				
+				[json setObject:[row objectForKey:@"Id"] forKey:@"Id"];
+				
+				[self.callcard_data setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
+			}];
 			
+			[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Stock__c'"];
 		}
 	}
 	
