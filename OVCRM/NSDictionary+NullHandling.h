@@ -12,6 +12,6 @@
 
 -(id) emptyIfNull:(id)key;
 -(id) replaceNilValueWithEmpty;
--(id) coalesce:(NSString *)keys, ...;
+-(id) coalesce:(id)keys, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end

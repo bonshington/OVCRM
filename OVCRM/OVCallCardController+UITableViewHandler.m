@@ -8,7 +8,8 @@
 
 #import "OVCallCardController.h"
 
-#define CC_TAG_PRODUCT	10
+
+
 
 @implementation OVCallCardController (UITableViewHandler)
 
@@ -18,12 +19,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	
-	return self.product.count;
+	return self.filtered.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	NSDictionary *prod = [self.product objectAtIndex:indexPath.row];
+	NSDictionary *prod = [self.filtered objectAtIndex:indexPath.row];
 	
 	NSString *prodId = [prod objectForKey:@"Id"];
 	
@@ -31,21 +32,49 @@
 	
 	if(cell == nil){
 		
+		NSDictionary *_data = [self.callcard_data objectForKey:prodId];
+		NSDictionary *_history = [self.history objectForKey:prodId];
+		
+		NSString *_onshelf = nil;
+		NSString *_instock = nil;
+		
+		
+		if(_data != nil && [_data objectForKey:@"OnShelf"] != nil)
+			_onshelf = [_data objectForKey:@"OnShelf"];
+		
+		if(_data != nil && [_data objectForKey:@"InStock"])
+			_instock = [_data objectForKey:@"InStock"];
+		
+		
+		
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:prodId];
 		
-		CGFloat width = [cell viewWithTag:CC_TAG_PRODUCT].frame.size.width;
-		
-		cell.textLabel.frame = CGRectMake(cell.textLabel.frame.origin.x, 
-										  cell.textLabel.frame.origin.y, 
-										  width, 
-										  cell.textLabel.frame.size.height);
 		cell.textLabel.text = [prod objectForKey:@"product_Category"];
-		
-		cell.detailTextLabel.frame = CGRectMake(cell.detailTextLabel.frame.origin.x, 
-												cell.detailTextLabel.frame.origin.y, 
-												width, 
-												cell.detailTextLabel.frame.size.height);
 		cell.detailTextLabel.text = [prod objectForKey:@"product_Code"];
+		
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
+		[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_ON_SHELF, 7, 80, 30) 
+												tag:CC_TAG_ON_SHELF 
+											   text:_onshelf 
+										  respondTo:self 
+										   selector:@selector(save:)]];
+		
+		[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_IN_STORE, 7, 80, 30) 
+												tag:CC_TAG_IN_STOCK 
+											   text:_instock 
+										  respondTo:self 
+										   selector:@selector(save:)]];
+		
+		if(_history != nil){
+			
+			for(int i = 0; i < 4; i++){
+				[UILabel labelWithRect:CGRectMake(CC_UI_OFFSET_INV + (i*CC_UI_SPACE_INV), 7, 100, 30) 
+								   tag:CC_TAG_INV + i 
+								  text:[_history objectForKey:[NSString stringWithFormat:@"inv%d", i]]];
+			}
+					
+		}
 	}
 	
 	return cell;

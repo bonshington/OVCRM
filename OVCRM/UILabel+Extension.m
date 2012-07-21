@@ -21,4 +21,20 @@
 	return label;
 }
 
++(UILabel *) labelWithRect:(CGRect)rect 
+					   tag:(int)tag 
+					  text:(NSString *)text{
+	
+	if(text == nil || text.length == 0)
+		return nil;
+	
+	UILabel *ui = [[UILabel alloc] initWithFrame:rect];
+	
+	ui.tag = tag;
+	ui.text = text;
+	
+	return ui;
+	
+}
+
 @end

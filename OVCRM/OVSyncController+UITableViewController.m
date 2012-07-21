@@ -40,7 +40,7 @@
 			
 		case OVSYNC_SECTION_MY_DATA: return 1;
 			
-        case OVSYNC_SECTION_UPLOAD: return [self.upload count];
+        case OVSYNC_SECTION_UPLOAD: return 1;
             
         case OVSYNC_SECTION_DOWNLOAD: return [self.download count];
     }
@@ -68,22 +68,15 @@
                 break;
 				
             case OVSYNC_SECTION_UPLOAD:{
-				NSDictionary *entry = [self.upload objectAtIndex:indexPath.row];
 				
-                cell.textLabel.text = [entry objectForKey:@"sObject"];
-                cell.detailTextLabel.text = [entry objectForKey:@"createTime"];
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.tag = tagForCellSyncUpload;
+				cell.tag = tagForCellSyncUpload;
 				
-				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"sObject"]
-													 withTag:tagForUploadObject]];
+				self.progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
 				
-				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"Id"]
-													 withTag:tagForUploadId]];
+				self.progress.frame = CGRectMake(150, 17, 500, 10);
+				self.progress.progress = 0;
 				
-				[cell addSubview:[UILabel hiddenLabelForText:[entry objectForKey:@"json"]
-													 withTag:tagForUploadJson]];
-				
+				[cell addSubview:self.progress];
                 break;
 			}
             case OVSYNC_SECTION_DOWNLOAD:
@@ -103,6 +96,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView selectRowAtIndexPath:self.processing animated:NO scrollPosition:UITableViewScrollPositionNone];
+	
 }
 
 @end

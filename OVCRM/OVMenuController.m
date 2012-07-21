@@ -126,7 +126,7 @@
 
 -(void) setActive:(BOOL)isActive{
 	
-	self.tableView.allowsSelection = isActive;
+	self.tableView.userInteractionEnabled = isActive;
 	
 	if(isActive){
 	

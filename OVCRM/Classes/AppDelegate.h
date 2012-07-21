@@ -41,6 +41,8 @@
 #import "UILabel+Extension.h"
 #import "SFJsonUtils.h"
 #import "NSDate+Extension.h"
+#import "UITextField+Extension.h"
+#import "UIView+Extension.h"
 
 @interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal, CLLocationManagerDelegate>{
 

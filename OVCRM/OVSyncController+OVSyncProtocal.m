@@ -18,8 +18,15 @@
 -(void)done{
     
     UITableViewCell *done = [self.tableView cellForRowAtIndexPath:self.processing];
-    done.accessoryType = UITableViewCellAccessoryCheckmark;
-    
+	
+	if(done.tag == tagForCellSyncUpload){
+		self.progress.progress = 1.0;
+		done.detailTextLabel.text = @"Completed";
+	}
+	else{
+		done.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+	
     self.processing = [NSIndexPath indexPathForRow:(self.processing.row + 1) 
                                          inSection:self.processing.section];
     
@@ -29,14 +36,14 @@
         self.processing = [NSIndexPath indexPathForRow:0
                                              inSection:self.processing.section + 1];
 		
-		// if no upload then pass
-		if(self.processing.section == OVSYNC_SECTION_UPLOAD && self.upload.count == 0){
-			self.processing = [NSIndexPath indexPathForRow:0
-												 inSection:self.processing.section + 1];
-		}
     }
     
     if([self.tableView cellForRowAtIndexPath:self.processing] != nil){
+		
+		[self.tableView scrollToRowAtIndexPath:self.processing 
+							  atScrollPosition:UITableViewScrollPositionMiddle 
+									  animated:YES];
+		
         [self sync];
     }
 	else{
@@ -59,7 +66,22 @@
 		
 		[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		
+		
+		[self.navigationController popViewControllerAnimated:YES];
 	}
+}
+
+-(void) error:(NSString *)msg{
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Occurred" 
+													message:[NSString stringWithFormat:@"Please try to sync again later. %@", msg ]
+												   delegate:self
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	
+	[alert show];
+	
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

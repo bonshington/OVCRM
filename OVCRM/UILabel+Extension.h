@@ -11,5 +11,6 @@
 @interface UILabel (Extension)
 
 +(id) hiddenLabelForText:(NSString *)text withTag:(int)tag;
++(UILabel *) labelWithRect:(CGRect)rect tag:(int)tag text:(NSString *)text;
 
 @end

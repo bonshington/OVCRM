@@ -36,7 +36,7 @@
 	va_list args;
 	va_start(args, keys);
 	
-	NSString *k = va_arg(args, NSString*);
+	NSString *k = keys;
 	
 	while(k != nil) {
 		

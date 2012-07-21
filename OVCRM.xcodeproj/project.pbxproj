@@ -17,6 +17,9 @@
 		081E57FE15B1D24C0007055E /* NSMutableDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */; };
 		081E580115B1D7C90007055E /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E580015B1D7C80007055E /* NSDate+Extension.m */; };
 		0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0887ED8C15ADD9E500D3312B /* SFCallCard.m */; };
+		08CBC31215B99D8D00E7472E /* UITextField+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31115B99D8D00E7472E /* UITextField+Extension.m */; };
+		08CBC31615B9A20D00E7472E /* OVCallCardController+UISearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */; };
+		08CBC31915B9BA1F00E7472E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31815B9BA1F00E7472E /* UIView+Extension.m */; };
 		08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDC15A48317007C52F5 /* SFAccount.m */; };
 		08FAFCE015A48375007C52F5 /* sObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDF15A48375007C52F5 /* sObject.m */; };
 		08FC15B815A95984005847AC /* OVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FC15B615A95984005847AC /* OVWebViewController.m */; };
@@ -223,6 +226,11 @@
 		081E580015B1D7C80007055E /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		0887ED8B15ADD9E500D3312B /* SFCallCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCallCard.h; sourceTree = "<group>"; };
 		0887ED8C15ADD9E500D3312B /* SFCallCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCallCard.m; sourceTree = "<group>"; };
+		08CBC31015B99D8D00E7472E /* UITextField+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Extension.h"; sourceTree = "<group>"; };
+		08CBC31115B99D8D00E7472E /* UITextField+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Extension.m"; sourceTree = "<group>"; };
+		08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVCallCardController+UISearchBarDelegate.m"; sourceTree = "<group>"; };
+		08CBC31715B9BA1F00E7472E /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		08CBC31815B9BA1F00E7472E /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		08FAFCCD15A48032007C52F5 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		08FAFCCE15A48032007C52F5 /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		08FAFCCF15A48032007C52F5 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -679,6 +687,10 @@
 				081E580015B1D7C80007055E /* NSDate+Extension.m */,
 				18B5AF4815B405CC00089400 /* NSObject+Reflection.h */,
 				18B5AF4915B405CC00089400 /* NSObject+Reflection.m */,
+				08CBC31015B99D8D00E7472E /* UITextField+Extension.h */,
+				08CBC31115B99D8D00E7472E /* UITextField+Extension.m */,
+				08CBC31715B9BA1F00E7472E /* UIView+Extension.h */,
+				08CBC31815B9BA1F00E7472E /* UIView+Extension.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -1139,6 +1151,7 @@
 				18D98DE215B94E4300F83A66 /* OVCallCardController.h */,
 				18D98DE315B94E4300F83A66 /* OVCallCardController.m */,
 				18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */,
+				08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */,
 				18CB17D315B979EA009349FC /* OVStepsController.h */,
 				18CB17D415B979EA009349FC /* OVStepsController.m */,
 			);
@@ -1443,6 +1456,9 @@
 				18D98DE915B94EDE00F83A66 /* OVCallCardController+UITableViewHandler.m in Sources */,
 				18D98DEC15B9564700F83A66 /* SFMDProductCat.m in Sources */,
 				18CB17D615B979EA009349FC /* OVStepsController.m in Sources */,
+				08CBC31215B99D8D00E7472E /* UITextField+Extension.m in Sources */,
+				08CBC31615B9A20D00E7472E /* OVCallCardController+UISearchBarDelegate.m in Sources */,
+				08CBC31915B9BA1F00E7472E /* UIView+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

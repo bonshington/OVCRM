@@ -21,7 +21,7 @@
 -(NSString *) SFString{
 	
 	NSDateFormatter* timeFormatter = [NSDateFormatter new];
-	[timeFormatter setDateFormat:@"HH:mm:sss"];
+	[timeFormatter setDateFormat:@"HH:mm:ss"];
 	
 	return [NSString stringWithFormat:@"%@T%@+07:00", [self format:@"yyyy-MM-dd"], [timeFormatter stringFromDate:self]];
 }

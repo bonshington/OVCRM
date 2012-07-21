@@ -39,7 +39,8 @@
 		
 		/* inject script */
 		//[app.db executeUpdate:@"drop table ProductPriceList"];
-		[app.db executeUpdate:@"delete from Upload"];
+		//[app.db executeUpdate:@"delete from Upload"];
+		//[app.db executeUpdate:@"delete from ProductPriceList"];
 		/*****************/
 		
 		/* init tables */
@@ -81,9 +82,6 @@
 	
 	NSString *objectId = [transform coalesce:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil];
 	
-	if([objectId hasPrefix:@"-"])
-		objectId = nil;
-	
 	[transform removeObjectsForKeys:[NSArray arrayWithObjects:@"Id", @"pk", @"PK", @"Pk", @"pK", @"id", @"ID", nil]];
 	
 	
@@ -92,13 +90,20 @@
 	
 	
 	// mapping
-	[[sObject mappingForSObject:object] enumerateKeysAndObjectsUsingBlock:^(NSString *sf, NSString *sql, BOOL *stop){
-		[transform changeKeyFrom:sql to:sf];
+	NSDictionary *mapping = [sObject mappingForSObject:object];
+	
+	[mapping enumerateKeysAndObjectsUsingBlock:^(NSString *sf, NSString *sql, BOOL *stop){
+		
+		if([[transform allKeys] containsObject:sql])
+			[transform changeKeyFrom:sql to:sf];
 	}];
 	
 	
+	
+	
 	// insert to db
-	NSString *serialized = [SFJsonUtils JSONRepresentation:data];
+	NSString *serialized = [SFJsonUtils JSONRepresentation:transform];
+	
 	[self executeUpdate:@"insert into Upload(sObject, Id, createTime, json) values(?, ?, datetime('now', 'localtime'), ?)", object, objectId, serialized];
 	
 	

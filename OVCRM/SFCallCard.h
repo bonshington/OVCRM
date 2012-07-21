@@ -10,4 +10,6 @@
 
 @interface SFCallCard : sObject
 
++(NSArray *)recentCallCard:(int)lookback;
+
 @end

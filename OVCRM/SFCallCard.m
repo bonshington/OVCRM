@@ -56,4 +56,16 @@
 	 ];
 }
 
+
+#pragma mark - Query
+
++(NSArray *)recentCallCard:(int)lookback{
+	OVDatabase *db = [OVDatabase sharedInstance];
+	
+	if(!db.open)
+		[db open];
+	
+	return [[db executeQuery:@"select * from CallCard order by date(CS_Date) desc limit ?", lookback] readToEnd];
+}
+
 @end

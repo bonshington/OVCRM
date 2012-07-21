@@ -13,27 +13,42 @@
 - (void)request:(SFRestRequest *)request 
 didLoadResponse:(id)jsonResponse{
     
-    NSLog(@"Got response for: %@", self.class);
+    NSLog(@"Got response for: %@", [self class]);
     
     [self updateStatus:@"Data transmitted"];
+	
+	
+	if(jsonResponse != nil){
+		
+		[self.mapping setObject:[jsonResponse objectForKey:@"id"] forKey:[self.upload objectAtIndex:uploading forKey:@"Id"]];
+	}
     
     OVDatabase *db = [OVDatabase sharedInstance];
 	
-	[db executeUpdate:@"update Upload set syncTime = datetime('now', 'localtime') where pk = ?", [self.tableView labelInSelectdCellWithTag:tagForUploadPk].text];
+	[db executeUpdate:@"update Upload set syncTime = datetime('now', 'localtime') where pk = ?", [self.upload objectAtIndex:uploading forKey:@"pk"]];
 	
-	[self done];
+	//fetch next upload
+	if(uploading + 1 < self.upload.count){
+		self.progress.progress = (float)(uploading + 1) / (float)self.upload.count;
+		
+		[self upsert:[self.upload objectAtIndex:++uploading forKey:@"pk"]];
+	}
+	else {
+		[self done];
+	}
 }
 
 - (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error{
-    [self updateStatus:@"Error !!"];
+    
+	[self error:error.localizedDescription];
 }
 
 - (void)requestDidCancelLoad:(SFRestRequest *)request{
-    [self updateStatus:@"Cancelled"];
+    [self error:@"Canceled"];
 }
 
 - (void)requestDidTimeout:(SFRestRequest *)request{
-    [self updateStatus:@"Timeout..."];
+    [self error:@"Timeout..."];
 }
 
 @end

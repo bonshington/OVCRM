@@ -14,23 +14,47 @@
 	
 	[self updateStatus:@"Preparing"];
 	
-	NSDictionary *data = [SFJsonUtils objectFromJSONString:[self.tableView labelInSelectdCellWithTag:tagForUploadId].text];
+	NSDictionary *data = [self.upload objectAtIndex:uploading];
 	
-	[self upsertInto:[self.tableView labelInSelectdCellWithTag:tagForUploadObject].text 
-				toId:[self.tableView labelInSelectdCellWithTag:tagForUploadId].text 
-			  values:data];
-}
-
--(void) upsertInto:(NSString *)sfObject toId:(NSString *)objectId values:(NSDictionary *)values{
+	NSMutableDictionary *json = [NSMutableDictionary dictionaryWithDictionary:[SFJsonUtils objectFromJSONString:[data objectForKey:@"json"]]];
 	
-	SFRestRequest *request = [[SFRestAPI sharedInstance] requestForUpsertWithObjectType:sfObject externalIdField:@"Id" externalId:objectId fields:values];
+	NSString *obj = [data objectForKey:@"sObject"];
 	
-    [AppDelegate sharedInstance].sync = self;
+	self.sending = [NSDictionary dictionaryWithObjectsAndKeys:
+					obj, @"sObject", 
+					json, @"json",
+					nil];
+	
+	SFRestRequest *request = nil;
+	
+	
+	if([[data objectForKey:@"Id"] hasPrefix:@"-"]){
+		// create
+		
+		if([obj isEqualToString:@"Stock__c"]){
+			
+			if([[json objectForKey:@"Call_Card__c"] hasPrefix:@"-"]){
+				
+				NSString *guid = [json objectForKey:@"Call_Card__c"] ;
+				
+				[json setValue:[self.mapping objectForKey:guid] forKey:@"Call_Card__c"];
+			}
+		}
+		
+		request = [[SFRestAPI sharedInstance] requestForCreateWithObjectType:obj
+																	  fields:json];
+	}
+	else{
+		request = [[SFRestAPI sharedInstance] requestForUpdateWithObjectType:obj
+																	objectId:[data objectForKey:@"Id"] 
+																	  fields:json];
+	}
+	
+	[AppDelegate sharedInstance].sync = self;
 	
     [[SFRestAPI sharedInstance] send:request delegate:self];
 	
 	[self updateStatus:@"Sending data"];
-	
 }
 
 @end

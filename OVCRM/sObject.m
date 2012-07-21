@@ -17,6 +17,13 @@
 #import "SFGoodsReturn.h"
 #import "SFCollection.h"
 #import "SFCallCard.h"
+#import "SFOrderTaking.h"
+#import "SFOrderDetail.h"
+#import "SFPriceBook.h"
+#import "SFPriceBookDetail.h"
+#import "SFPCBrief.h"
+#import "SFSalesTalk.h"
+#import "SFUser.h"
 
 NSArray *SF_OBJECTS = nil;
 NSDictionary *SF_MAPPING = nil;
@@ -81,7 +88,7 @@ didLoadResponse:(id)jsonResponse{
         [self.controller updateStatus:@"Processing"];
         
         if([db insertOrReplaceTable:self withData:[jsonResponse objectForKey:@"records"]]){
-            [self.controller updateStatus:@"Done"];
+            [self.controller updateStatus:@"Completed"];
         }
         else{
             
@@ -94,15 +101,14 @@ didLoadResponse:(id)jsonResponse{
 
 - (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error{
 	
-    [self.controller updateStatus:error.localizedDescription];
-}
+    [self.controller error:error.localizedDescription];}
 
 - (void)requestDidCancelLoad:(SFRestRequest *)request{
-    [self.controller updateStatus:@"Cancelled"];
+    [self.controller error:@"Cancelled"];
 }
 
 - (void)requestDidTimeout:(SFRestRequest *)request{
-    [self.controller updateStatus:@"Timeout..."];
+    [self.controller error:@"Timeout..."];
 }
 
 
@@ -203,13 +209,20 @@ didLoadResponse:(id)jsonResponse{
 	if(SF_OBJECTS == nil){
 		SF_OBJECTS = [NSArray arrayWithObjects:
 					  [SFAccount new]
-					  ,[SFProduct new]
+					  ,[SFCallCard new]
 					  ,[SFPlan new]
+					  ,[SFProduct new]
 					  ,[SFStock new]
 					  ,[SFMerchandise new]
 					  ,[SFGoodsReturn new]
 					  ,[SFCollection new]
-					  ,[SFCallCard new]
+					  //, [SFOrderTaking new]
+					  //, [SFOrderDetail new]
+					  , [SFPriceBook new]
+					  , [SFPriceBookDetail new]
+					  , [SFPCBrief new]
+					  , [SFSalesTalk new]
+					  , [SFUser new]
 					  , nil];
 		
 	}
@@ -223,7 +236,7 @@ didLoadResponse:(id)jsonResponse{
 		NSMutableDictionary *_mapping = [NSMutableDictionary new];
 	
 		[self.allObject enumerateObjectsUsingBlock:^(sObject *obj, NSUInteger index, BOOL *stop){
-			[_mapping setValue:[obj sqlName] forKey:[obj sfName]];
+			[_mapping setValue:[obj sfName] forKey:[obj sqlName]];
 		}];
 	
 		SF_MAPPING = [NSDictionary dictionaryWithDictionary:_mapping];

@@ -44,8 +44,16 @@
     NSString * uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
     CFRelease(newUniqueId);
 	
-    return uuidString;
+    return [NSString stringWithFormat:@"-%@", uuidString];
 
+}
+
+
+-(BOOL)contains:(NSString *)text{
+	
+	NSRange textRange =[[self lowercaseString] rangeOfString:[text lowercaseString]];
+	
+	return textRange.location != NSNotFound;
 }
 
 @end

@@ -31,11 +31,16 @@
 #define OVSYNC_SECTION_DOWNLOAD 2
 
 
-@interface OVSyncController : UITableViewController
+@interface OVSyncController : UITableViewController{
+	NSUInteger uploading;
+}
 
 @property (nonatomic, retain) NSIndexPath *processing;
 @property (nonatomic, retain) NSArray *upload;
 @property (nonatomic, retain) NSDictionary *download;
+@property (nonatomic, retain) UIProgressView *progress;
+@property (nonatomic, retain) NSDictionary *sending;
+@property (nonatomic, retain) NSMutableDictionary *mapping;
 
 
 -(void)sync;
@@ -58,7 +63,6 @@
 
 -(void) upsert:(NSString *)uploadPk;
 
--(void) upsertInto:(NSString *)sfObject toId:(NSString *)objectId values:(NSDictionary *)values;
 
 @end
 

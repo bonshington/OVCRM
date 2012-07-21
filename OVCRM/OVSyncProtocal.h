@@ -12,6 +12,7 @@
 
 @optional
 -(void)updateStatus:(NSString *)status;
+-(void) error:(NSString *)msg;
 
 @required
 -(void)done;

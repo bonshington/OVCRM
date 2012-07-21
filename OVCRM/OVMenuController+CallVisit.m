@@ -8,6 +8,7 @@
 
 #import "OVMenuController.h"
 #import "OVStepsController.h"
+#import "OVCallCardController.h"
 #import "CallCard.h"
 
 @implementation OVMenuController (CallVisit)
@@ -47,10 +48,9 @@
 	//[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:NO];
 	
 	
-	OVStepsController *controller = [[OVStepsController alloc] initWithPlanId:self.checkinEventId 
-																	accountId:self.checkedAccountId];
+	OVStepsController *steps = [[OVStepsController alloc] initWithRootViewController:[[OVCallCardController alloc] initWithPlanId:self.checkinEventId accountId:self.checkedAccountId]];
 	
-	[[AppDelegate sharedInstance].root presentModalViewController:controller animated:NO];
+	[[AppDelegate sharedInstance].root presentModalViewController:steps animated:YES];
 	
 	
     

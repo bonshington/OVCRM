@@ -16,7 +16,7 @@
 
 -(id) initWithPlanId:(NSString *)_planId accountId:(NSString *)_accountId{
 	
-    self = [super initWithNibName:nil bundle:[NSBundle mainBundle]];
+    self = [super initWithNibName:@"OVStepsController" bundle:[NSBundle mainBundle]];
 	
     if (self) {
         // Custom initialization

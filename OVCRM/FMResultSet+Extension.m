@@ -24,12 +24,12 @@
     
 }
 
--(NSDictionary *) readToEndById{
+-(NSDictionary *) readToEndBy:(NSString *)column{
 	
 	NSMutableDictionary *result = [NSMutableDictionary new];
 	
 	while([self next]){
-        [result setValue:[self resultDictionary] forKey:[self stringForColumn:@"Id"]];
+        [result setValue:[self resultDictionary] forKey:[self stringForColumn:column]];
     }
     
     [self close];

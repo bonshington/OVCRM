@@ -7,12 +7,12 @@
 //
 
 #import "OVSyncController.h"
-
+#import "OVMenuController.h"
 
 
 @implementation OVSyncController
 
-@synthesize upload, download, processing;
+@synthesize upload, download, processing, progress, sending, mapping;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,16 +25,26 @@
 
 - (void)viewDidLoad
 {
+	uploading = 0;
+	self.mapping = [NSMutableDictionary new];
+	
     [super viewDidLoad];
+	
+	self.tableView.userInteractionEnabled = NO;
     
     //self.tableView.allowsSelection = NO;
 
-	self.upload = [[[OVDatabase sharedInstance] executeQuery:@"select * from Upload where syncTime is null order by createTime"] readToEnd];
+	self.upload = [[[OVDatabase sharedInstance] executeQuery:
+					@"select * from Upload \
+					where syncTime is null \
+					order by \
+						case when sObject = 'Event' then 0 \
+							when sObject = 'Call_Card__c' then 1 \
+							when sObject = 'Stock__c' then 2 \
+						end, createTime"] readToEnd];
     
     self.download = [NSDictionary dictionaryWithObjectsAndKeys:
                      
-					 //[SFUser new], @"My Information", // must not be here
-					 
 					 [SFAccount new], @"Account", 
 					 [SFPlan new], @"Plan", 
 					 [SFStock new], @"Stock",
@@ -48,6 +58,7 @@
 					 [SFPCBrief new], @"PC Brief",
 					 [SFSalesTalk new], @"Sales Talk",
 					 [SFMDProductCat new], @"Product Master Data",
+					 
                      nil];
 }
 
@@ -66,7 +77,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-	self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
+	self.processing = [NSIndexPath indexPathForRow:0 inSection:2];
     
     [self sync];
 }
@@ -85,7 +96,7 @@
 			break;
 			
         case OVSYNC_SECTION_UPLOAD:
-            [self upsert:((UILabel *)[cell viewWithTag:tagForUploadPk]).text];
+            [self upsert:[self.upload objectAtIndex:uploading forKey:@"pk"]];
             break;
             
         case OVSYNC_SECTION_DOWNLOAD:
@@ -93,6 +104,18 @@
             break;
     }
     
+}
+
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex{
+	[self.navigationController popViewControllerAnimated:YES];
+	
+	// refresh things
+	OVMenuController *menu = (OVMenuController *)[AppDelegate sharedInstance].master;
+	[menu setActive:YES];
+	[menu reloadData];
 }
 
 @end
