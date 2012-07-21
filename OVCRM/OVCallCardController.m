@@ -106,7 +106,7 @@
 	if(self.callcard_data == nil || self.callcard_data.count == 0){
 		
 		// try resume
-		NSArray *resumeCallcardData = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c'"] readToEnd];
+		NSArray *resumeCallcardData = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c'", self.planId] readToEnd];
 		
 		if(resumeCallcardData != nil && resumeCallcardData.count > 0){
 			
@@ -210,12 +210,16 @@
 
 -(IBAction)next:(id)sender{
 	
+	OVDatabase *db = [OVDatabase sharedInstance];
+	
+	[db executeUpdate:@"delete from Upload where planId = ?", self.planId];
+	
 	// save call card
-	[[OVDatabase sharedInstance] sfInsertInto:@"CallCard" withData:self.callcard];
+	[db sfInsertInto:@"CallCard" withData:self.callcard];
 	
 	// save call card stock
 	[[self.callcard_data allValues] enumerateObjectsUsingBlock:^(NSDictionary *data, NSUInteger index, BOOL *stop){
-		[[OVDatabase sharedInstance] sfInsertInto:@"CallCard_Stock" withData:data];
+		[db sfInsertInto:@"CallCard_Stock" withData:data];
 	}];
 }
 

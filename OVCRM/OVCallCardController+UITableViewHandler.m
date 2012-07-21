@@ -39,11 +39,13 @@
 		NSString *_instock = nil;
 		
 		
-		if(_data != nil && [_data objectForKey:@"OnShelf"] != nil)
-			_onshelf = [_data objectForKey:@"OnShelf"];
+		if(_data != nil && [_data coalesce:@"Quantity_Remain__c", @"", @"OnShelf", nil] != nil)
+			_onshelf = [_data coalesce:@"Quantity_Remain__c", @"", @"OnShelf", nil];
 		
-		if(_data != nil && [_data objectForKey:@"InStock"])
-			_instock = [_data objectForKey:@"InStock"];
+		
+		
+		if(_data != nil && [_data coalesce:@"In_Stock__c", @"InStock", nil] != nil)
+			_instock = [_data coalesce:@"In_Stock__c", @"InStock", nil];
 		
 		
 		
