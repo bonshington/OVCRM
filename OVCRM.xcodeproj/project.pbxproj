@@ -17,11 +17,14 @@
 		081E57FE15B1D24C0007055E /* NSMutableDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E57FD15B1D24C0007055E /* NSMutableDictionary+Extension.m */; };
 		081E580115B1D7C90007055E /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 081E580015B1D7C80007055E /* NSDate+Extension.m */; };
 		0887ED8D15ADD9E600D3312B /* SFCallCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0887ED8C15ADD9E500D3312B /* SFCallCard.m */; };
+<<<<<<< HEAD
 		08CBC31215B99D8D00E7472E /* UITextField+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31115B99D8D00E7472E /* UITextField+Extension.m */; };
 		08CBC31615B9A20D00E7472E /* OVCallCardController+UISearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */; };
 		08CBC31915B9BA1F00E7472E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31815B9BA1F00E7472E /* UIView+Extension.m */; };
 		08CBC31C15BA83E600E7472E /* SFTradeProg.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31B15BA83E500E7472E /* SFTradeProg.m */; };
 		08CBC31F15BA83F600E7472E /* SFCompetitive.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CBC31E15BA83F500E7472E /* SFCompetitive.m */; };
+=======
+>>>>>>> Tong 2012-07-21(2)
 		08FAFCDD15A48317007C52F5 /* SFAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDC15A48317007C52F5 /* SFAccount.m */; };
 		08FAFCE015A48375007C52F5 /* sObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FAFCDF15A48375007C52F5 /* sObject.m */; };
 		08FC15B815A95984005847AC /* OVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FC15B615A95984005847AC /* OVWebViewController.m */; };
@@ -149,8 +152,6 @@
 		18C4C6F415B13DB700C2ACB0 /* SFPriceBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F315B13DB500C2ACB0 /* SFPriceBook.m */; };
 		18C4C6F715B13DDA00C2ACB0 /* SFPCBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */; };
 		18C4C6FA15B13DED00C2ACB0 /* SFSalesTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */; };
-		18CB17D615B979EA009349FC /* OVStepsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB17D415B979EA009349FC /* OVStepsController.m */; };
-		18CB17D715B979EA009349FC /* OVStepsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB17D515B979EA009349FC /* OVStepsController.xib */; };
 		18D52FBF15AAB36600C70E16 /* SFProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FBE15AAB36600C70E16 /* SFProduct.m */; };
 		18D52FC415AABF7D00C70E16 /* OVSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D52FC215AABF7C00C70E16 /* OVSyncController.m */; };
 		18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D52FC315AABF7C00C70E16 /* OVSyncController.xib */; };
@@ -165,10 +166,6 @@
 		18D98DDA15B9396500F83A66 /* tblDelivery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD515B938D700F83A66 /* tblDelivery.m */; };
 		18D98DDB15B9396500F83A66 /* tblDeliveryDetail.h in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */; };
 		18D98DDC15B9396500F83A66 /* tblDeliveryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */; };
-		18D98DE515B94E4300F83A66 /* OVCallCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DE315B94E4300F83A66 /* OVCallCardController.m */; };
-		18D98DE915B94EDE00F83A66 /* OVCallCardController+UITableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */; };
-		18D98DEC15B9564700F83A66 /* SFMDProductCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D98DEB15B9564500F83A66 /* SFMDProductCat.m */; };
-		18D98DEE15B9612E00F83A66 /* OVCallCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D98DED15B9612D00F83A66 /* OVCallCardController.xib */; };
 		18DDF95115A6CCAA004BDDC8 /* OVMenuController+Render.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */; };
 		18DDF95515A6DC49004BDDC8 /* NSArray+LINQ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */; };
 		18EE3EAA15A160DF00A08B29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EE3EA915A160DF00A08B29 /* CoreData.framework */; };
@@ -207,6 +204,17 @@
 		18EE3F6D15A173F400A08B29 /* OVDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F6B15A173F400A08B29 /* OVDetailController.m */; };
 		18EE3F7215A1741500A08B29 /* OVLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F7015A1741500A08B29 /* OVLandingController.m */; };
 		18EE3F7315A1741500A08B29 /* OVLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F7115A1741500A08B29 /* OVLandingController.xib */; };
+<<<<<<< HEAD
+=======
+		6357B2C815BA821500CB8A94 /* OVStepsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6357B2C715BA821500CB8A94 /* OVStepsController.xib */; };
+		6357B2C915BA823F00CB8A94 /* OVStepsController.h in Sources */ = {isa = PBXBuildFile; fileRef = 6357B2C515BA820B00CB8A94 /* OVStepsController.h */; };
+		6357B2CA15BA823F00CB8A94 /* OVStepsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6357B2C615BA820B00CB8A94 /* OVStepsController.m */; };
+		6357B2CE15BA827C00CB8A94 /* OVCallCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6357B2CD15BA827C00CB8A94 /* OVCallCardController.xib */; };
+		6357B2D115BA82BD00CB8A94 /* SFMDProductCat.h in Sources */ = {isa = PBXBuildFile; fileRef = 6357B2CF15BA82A400CB8A94 /* SFMDProductCat.h */; };
+		6357B2D215BA82BD00CB8A94 /* SFMDProductCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6357B2D015BA82A400CB8A94 /* SFMDProductCat.m */; };
+		6357B2D315BA82BD00CB8A94 /* OVCallCardController.h in Sources */ = {isa = PBXBuildFile; fileRef = 6357B2CB15BA827600CB8A94 /* OVCallCardController.h */; };
+		6357B2D415BA82BD00CB8A94 /* OVCallCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6357B2CC15BA827600CB8A94 /* OVCallCardController.m */; };
+>>>>>>> Tong 2012-07-21(2)
 		6367B65615B956A80066991A /* viewDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367B65415B956A40066991A /* viewDatePicker.m */; };
 		6367B65715B956A80066991A /* viewDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6367B65515B956A60066991A /* viewDatePicker.xib */; };
 /* End PBXBuildFile section */
@@ -230,6 +238,7 @@
 		081E580015B1D7C80007055E /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		0887ED8B15ADD9E500D3312B /* SFCallCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCallCard.h; sourceTree = "<group>"; };
 		0887ED8C15ADD9E500D3312B /* SFCallCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCallCard.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		08CBC31015B99D8D00E7472E /* UITextField+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Extension.h"; sourceTree = "<group>"; };
 		08CBC31115B99D8D00E7472E /* UITextField+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Extension.m"; sourceTree = "<group>"; };
 		08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVCallCardController+UISearchBarDelegate.m"; sourceTree = "<group>"; };
@@ -239,6 +248,8 @@
 		08CBC31B15BA83E500E7472E /* SFTradeProg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTradeProg.m; sourceTree = "<group>"; };
 		08CBC31D15BA83F400E7472E /* SFCompetitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCompetitive.h; sourceTree = "<group>"; };
 		08CBC31E15BA83F500E7472E /* SFCompetitive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCompetitive.m; sourceTree = "<group>"; };
+=======
+>>>>>>> Tong 2012-07-21(2)
 		08FAFCCD15A48032007C52F5 /* FMDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		08FAFCCE15A48032007C52F5 /* FMDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		08FAFCCF15A48032007C52F5 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -400,9 +411,6 @@
 		18C4C6F615B13DD900C2ACB0 /* SFPCBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFPCBrief.m; sourceTree = "<group>"; };
 		18C4C6F815B13DEB00C2ACB0 /* SFSalesTalk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSalesTalk.h; sourceTree = "<group>"; };
 		18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSalesTalk.m; sourceTree = "<group>"; };
-		18CB17D315B979EA009349FC /* OVStepsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVStepsController.h; sourceTree = "<group>"; };
-		18CB17D415B979EA009349FC /* OVStepsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVStepsController.m; sourceTree = "<group>"; };
-		18CB17D515B979EA009349FC /* OVStepsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVStepsController.xib; sourceTree = "<group>"; };
 		18D52FBD15AAB36600C70E16 /* SFProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFProduct.h; sourceTree = "<group>"; };
 		18D52FBE15AAB36600C70E16 /* SFProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFProduct.m; sourceTree = "<group>"; };
 		18D52FC115AABF7C00C70E16 /* OVSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVSyncController.h; sourceTree = "<group>"; };
@@ -422,12 +430,6 @@
 		18D98DD515B938D700F83A66 /* tblDelivery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblDelivery.m; sourceTree = "<group>"; };
 		18D98DD615B938D700F83A66 /* tblDeliveryDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tblDeliveryDetail.h; sourceTree = "<group>"; };
 		18D98DD715B938D700F83A66 /* tblDeliveryDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tblDeliveryDetail.m; sourceTree = "<group>"; };
-		18D98DE215B94E4300F83A66 /* OVCallCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OVCallCardController.h; sourceTree = "<group>"; };
-		18D98DE315B94E4300F83A66 /* OVCallCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVCallCardController.m; sourceTree = "<group>"; };
-		18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVCallCardController+UITableViewHandler.m"; sourceTree = "<group>"; };
-		18D98DEA15B9564400F83A66 /* SFMDProductCat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFMDProductCat.h; sourceTree = "<group>"; };
-		18D98DEB15B9564500F83A66 /* SFMDProductCat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFMDProductCat.m; sourceTree = "<group>"; };
-		18D98DED15B9612D00F83A66 /* OVCallCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVCallCardController.xib; sourceTree = "<group>"; };
 		18DDF95015A6CCA9004BDDC8 /* OVMenuController+Render.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OVMenuController+Render.m"; sourceTree = "<group>"; };
 		18DDF95315A6DC49004BDDC8 /* NSArray+LINQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LINQ.h"; sourceTree = "<group>"; };
 		18DDF95415A6DC49004BDDC8 /* NSArray+LINQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LINQ.m"; sourceTree = "<group>"; };
@@ -570,6 +572,18 @@
 		18EE3F7015A1741500A08B29 /* OVLandingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OVLandingController.m; sourceTree = "<group>"; };
 		18EE3F7115A1741500A08B29 /* OVLandingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVLandingController.xib; sourceTree = "<group>"; };
 		18F5685115B005EA003F6DD7 /* OVWebViewProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVWebViewProtocal.h; sourceTree = "<group>"; };
+		6357B2C015BA81A600CB8A94 /* UITextField+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+Extension.h"; sourceTree = "<group>"; };
+		6357B2C115BA81A600CB8A94 /* UITextField+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Extension.m"; sourceTree = "<group>"; };
+		6357B2C315BA81BE00CB8A94 /* UIView+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		6357B2C415BA81BE00CB8A94 /* UIView+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		6357B2C515BA820B00CB8A94 /* OVStepsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVStepsController.h; sourceTree = "<group>"; };
+		6357B2C615BA820B00CB8A94 /* OVStepsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OVStepsController.m; sourceTree = "<group>"; };
+		6357B2C715BA821500CB8A94 /* OVStepsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVStepsController.xib; sourceTree = "<group>"; };
+		6357B2CB15BA827600CB8A94 /* OVCallCardController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OVCallCardController.h; sourceTree = "<group>"; };
+		6357B2CC15BA827600CB8A94 /* OVCallCardController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OVCallCardController.m; sourceTree = "<group>"; };
+		6357B2CD15BA827C00CB8A94 /* OVCallCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OVCallCardController.xib; sourceTree = "<group>"; };
+		6357B2CF15BA82A400CB8A94 /* SFMDProductCat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFMDProductCat.h; sourceTree = "<group>"; };
+		6357B2D015BA82A400CB8A94 /* SFMDProductCat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFMDProductCat.m; sourceTree = "<group>"; };
 		6367B62315B90C5F0066991A /* tblDelivery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tblDelivery.h; sourceTree = "<group>"; };
 		6367B62415B90C600066991A /* tblDelivery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tblDelivery.m; sourceTree = "<group>"; };
 		6367B62515B90C610066991A /* tblDeliveryDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tblDeliveryDetail.h; sourceTree = "<group>"; };
@@ -674,6 +688,10 @@
 		18B1048315A56896000719DB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6357B2C315BA81BE00CB8A94 /* UIView+Extension.h */,
+				6357B2C415BA81BE00CB8A94 /* UIView+Extension.m */,
+				6357B2C015BA81A600CB8A94 /* UITextField+Extension.h */,
+				6357B2C115BA81A600CB8A94 /* UITextField+Extension.m */,
 				188C06ED15A69DE00043DBC7 /* NSDictionary+SFSchema.h */,
 				188C06EE15A69DE00043DBC7 /* NSDictionary+SFSchema.m */,
 				18B1048815A56E21000719DB /* NSDictionary+NullHandling.h */,
@@ -698,10 +716,6 @@
 				081E580015B1D7C80007055E /* NSDate+Extension.m */,
 				18B5AF4815B405CC00089400 /* NSObject+Reflection.h */,
 				18B5AF4915B405CC00089400 /* NSObject+Reflection.m */,
-				08CBC31015B99D8D00E7472E /* UITextField+Extension.h */,
-				08CBC31115B99D8D00E7472E /* UITextField+Extension.m */,
-				08CBC31715B9BA1F00E7472E /* UIView+Extension.h */,
-				08CBC31815B9BA1F00E7472E /* UIView+Extension.m */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -1142,6 +1156,10 @@
 		18EE3F6015A172F900A08B29 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6357B2CB15BA827600CB8A94 /* OVCallCardController.h */,
+				6357B2CC15BA827600CB8A94 /* OVCallCardController.m */,
+				6357B2C515BA820B00CB8A94 /* OVStepsController.h */,
+				6357B2C615BA820B00CB8A94 /* OVStepsController.m */,
 				18D52FE515ABD8F300C70E16 /* SFSearchManager.h */,
 				18D52FE615ABD8F300C70E16 /* SFSearchManager.m */,
 				18D52FEC15ABDA1100C70E16 /* SFSearchManager+UITableViewHandler.m */,
@@ -1162,12 +1180,6 @@
 				08FC15B515A95984005847AC /* OVWebViewController.h */,
 				08FC15B615A95984005847AC /* OVWebViewController.m */,
 				08FC15BE15A95B74005847AC /* OVWebViewController+UIWebViewDeleagte.m */,
-				18D98DE215B94E4300F83A66 /* OVCallCardController.h */,
-				18D98DE315B94E4300F83A66 /* OVCallCardController.m */,
-				18D98DE815B94EDD00F83A66 /* OVCallCardController+UITableViewHandler.m */,
-				08CBC31515B9A20C00E7472E /* OVCallCardController+UISearchBarDelegate.m */,
-				18CB17D315B979EA009349FC /* OVStepsController.h */,
-				18CB17D415B979EA009349FC /* OVStepsController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1175,6 +1187,8 @@
 		18EE3F6115A1730100A08B29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6357B2CF15BA82A400CB8A94 /* SFMDProductCat.h */,
+				6357B2D015BA82A400CB8A94 /* SFMDProductCat.m */,
 				187F5EC415A2D66400EA0A37 /* OVDatabase.h */,
 				187F5EC515A2D66400EA0A37 /* OVDatabase.m */,
 				187F5ED415A2E1FE00EA0A37 /* OVDatabase+FMDB.m */,
@@ -1210,12 +1224,15 @@
 				18C4C6F915B13DEC00C2ACB0 /* SFSalesTalk.m */,
 				0819583815B18AC300CFDFE9 /* SFUser.h */,
 				0819583915B18AC300CFDFE9 /* SFUser.m */,
+<<<<<<< HEAD
 				18D98DEA15B9564400F83A66 /* SFMDProductCat.h */,
 				18D98DEB15B9564500F83A66 /* SFMDProductCat.m */,
 				08CBC31A15BA83E400E7472E /* SFTradeProg.h */,
 				08CBC31B15BA83E500E7472E /* SFTradeProg.m */,
 				08CBC31D15BA83F400E7472E /* SFCompetitive.h */,
 				08CBC31E15BA83F500E7472E /* SFCompetitive.m */,
+=======
+>>>>>>> Tong 2012-07-21(2)
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1223,13 +1240,13 @@
 		18EE3F6215A1730B00A08B29 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18D98DED15B9612D00F83A66 /* OVCallCardController.xib */,
+				6357B2CD15BA827C00CB8A94 /* OVCallCardController.xib */,
+				6357B2C715BA821500CB8A94 /* OVStepsController.xib */,
 				18D52FC315AABF7C00C70E16 /* OVSyncController.xib */,
 				18EE3F7115A1741500A08B29 /* OVLandingController.xib */,
 				18EE3F6315A1736800A08B29 /* RootViewController.xib */,
 				08FC15B715A95984005847AC /* OVWebViewController.xib */,
 				18D52FEE15ABDCE800C70E16 /* OVMenuController.xib */,
-				18CB17D515B979EA009349FC /* OVStepsController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1309,9 +1326,15 @@
 				08FC15E215A96A71005847AC /* jquery.mobile.css in Resources */,
 				18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */,
 				18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */,
+<<<<<<< HEAD
 				18D98DEE15B9612E00F83A66 /* OVCallCardController.xib in Resources */,
 				18CB17D715B979EA009349FC /* OVStepsController.xib in Resources */,
 				6367B65715B956A80066991A /* viewDatePicker.xib in Resources */
+=======
+				6367B65715B956A80066991A /* viewDatePicker.xib in Resources */,
+				6357B2C815BA821500CB8A94 /* OVStepsController.xib in Resources */,
+				6357B2CE15BA827C00CB8A94 /* OVCallCardController.xib in Resources */,
+>>>>>>> Tong 2012-07-21(2)
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,6 +1345,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6357B2D115BA82BD00CB8A94 /* SFMDProductCat.h in Sources */,
+				6357B2D215BA82BD00CB8A94 /* SFMDProductCat.m in Sources */,
+				6357B2D315BA82BD00CB8A94 /* OVCallCardController.h in Sources */,
+				6357B2D415BA82BD00CB8A94 /* OVCallCardController.m in Sources */,
+				6357B2C915BA823F00CB8A94 /* OVStepsController.h in Sources */,
+				6357B2CA15BA823F00CB8A94 /* OVStepsController.m in Sources */,
 				18D98DD915B9396500F83A66 /* tblDelivery.h in Sources */,
 				18D98DDA15B9396500F83A66 /* tblDelivery.m in Sources */,
 				18D98DDB15B9396500F83A66 /* tblDeliveryDetail.h in Sources */,
@@ -1471,6 +1500,7 @@
 				18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */,
 				18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */,
 				18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */,
+<<<<<<< HEAD
 				18D98DE515B94E4300F83A66 /* OVCallCardController.m in Sources */,
 				18D98DE915B94EDE00F83A66 /* OVCallCardController+UITableViewHandler.m in Sources */,
 				18D98DEC15B9564700F83A66 /* SFMDProductCat.m in Sources */,
@@ -1481,6 +1511,9 @@
 				6367B65615B956A80066991A /* viewDatePicker.m in Sources */,
 				08CBC31C15BA83E600E7472E /* SFTradeProg.m in Sources */,
 				08CBC31F15BA83F600E7472E /* SFCompetitive.m in Sources */
+=======
+				6367B65615B956A80066991A /* viewDatePicker.m in Sources */,
+>>>>>>> Tong 2012-07-21(2)
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
