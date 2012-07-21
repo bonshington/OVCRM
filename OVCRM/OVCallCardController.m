@@ -46,7 +46,7 @@
 	if(!db.open)[db open];
 	
 	self.product = [[db executeQuery:
-					 @"select max(pl.Id), p.product_Category, p.product_Code, p.packSize \
+					 @"select p.Id, p.product_Category, p.product_Code, p.packSize \
 					 from	Product p \
 					 join	MD_Product_Category__c md \
 						on	md.Code__c = p.MD_Product_Category_Code__c \
@@ -55,7 +55,8 @@
 	
 	self.filtered = [NSMutableArray arrayWithArray:self.product];
 	
-	//@"select c.* from CallCard c join Plan p on p.Account_ID = c.Account_ID and date(p.Date_Plan) = date(c.CS_Date) where p.Id = '%@' limit 1"
+
+	// load callcard
 	NSArray *_callcard = [[db executeQuery:[NSString stringWithFormat:
 										   @"select c.* \
 										   from		CallCard c \
@@ -64,23 +65,52 @@
 													and date(p.Date_Plan) = date(c.CS_Date) \
 										   where	p.Id = '%@' limit 1", self.planId]] readToEnd];
 	
+	// existing synced
 	if(_callcard != nil && _callcard.count > 0){
 		self.callcard = [NSMutableDictionary dictionaryWithDictionary:[_callcard objectAtIndex:0]];
 	}
 	else {
-		self.callcard = [NSMutableDictionary new];
 		
-		NSString *guid = [NSString guid];
+		// try resume
+		NSArray *resumeCallcard = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Call_Card__c' limit 1", self.planId] readToEnd];
 		
-		[self.callcard setObject:self.accountId forKey:@"Account_ID"];
-		[self.callcard setObject:@"IPAD" forKey:@"Source_System__c"];
-		[self.callcard setObject:[[NSDate date] format:@"yyyy-MM-dd"] forKey:@"CS_Date"];
-		[self.callcard setObject:guid forKey:@"Name"];
-		[self.callcard setObject:guid forKey:@"Id"];
+		if(resumeCallcard != nil && resumeCallcard.count > 0){
+			
+			NSMutableDictionary *loadingCallcard = [NSMutableDictionary dictionaryWithDictionary:[SFJsonUtils objectFromJSONString:[resumeCallcard objectAtIndex:0 forKey:@"json"]]];
+			
+			[loadingCallcard setObject:[resumeCallcard objectAtIndex:0 forKey:@"Id"] forKey:@"id"];
+			
+			[db executeUpdate:@"delete from Upload where pk = ?", [resumeCallcard valueForKey:@"pk"]];
+		}
+		else{
+			
+			// create new
+			self.callcard = [NSMutableDictionary new];
+			
+			NSString *guid = [NSString guid];
+			
+			[self.callcard setObject:self.accountId forKey:@"Account_ID"];
+			[self.callcard setObject:@"IPAD" forKey:@"Source_System__c"];
+			[self.callcard setObject:[[NSDate date] format:@"yyyy-MM-dd"] forKey:@"CS_Date"];
+			[self.callcard setObject:guid forKey:@"Name"];
+			[self.callcard setObject:guid forKey:@"Id"];
+		}
 	}
 	
 	
+	// load callcard data
 	self.callcard_data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"Select * From CallCard_Stock where CallCard_PK = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"Products__c"]];
+	
+	if(self.callcard_data == nil || self.callcard_data.count == 0){
+		
+		// try resume
+		NSArray *resumeCallcardData = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c'"] readToEnd];
+		
+		if(resumeCallcardData != nil && resumeCallcardData.count > 0){
+			
+			
+		}
+	}
 	
 	
 	self.history = [[db executeQuery:
@@ -130,11 +160,10 @@
 	
 	if([self.callcard_data objectForKey:cell.reuseIdentifier] == nil){
 		
-		// use self guid for new insert same as call card. So later can be refer
-		
+		// use self guid for new insert same as call card. So later can be refer		
 		_data = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 				 @"-", @"Id", 
-				 cell.reuseIdentifier, @"Products__c", 
+				 cell.reuseIdentifier, @"prod_db_id__c", 
 				 self.accountId, @"AccountId__c", 
 				 [self.callcard coalesce:@"Id", @"Name", nil], @"CallCard_PK", 
 				 nil];

@@ -40,7 +40,7 @@
 		/* inject script */
 		//[app.db executeUpdate:@"drop table ProductPriceList"];
 		//[app.db executeUpdate:@"delete from Upload"];
-		//[app.db executeUpdate:@"delete from ProductPriceList"];
+		//[app.db executeUpdate:@"update Parameter set label = '2000-01-01' where tag = 'CONFIG' and key = 'LAST_SYNC'"];
 		/*****************/
 		
 		/* init tables */
@@ -55,7 +55,7 @@
 			NSArray *initScript = [[NSArray alloc] initWithObjects:
 								   @"create table if not exists Parameter(tag text, key text, label text, primary key (tag, key))", 
 								   @"insert or replace into Parameter(tag, key, label) values('CONFIG', 'LAST_SYNC', '2000-01-01')",
-								   @"create table if not exists Upload(pk INTEGER PRIMARY KEY AUTOINCREMENT, sObject TEXT, Id TEXT, createTime TEXT, syncTime TEXT, json TEXT)",
+								   @"create table if not exists Upload(pk INTEGER PRIMARY KEY AUTOINCREMENT, sObject TEXT, Id TEXT, planId text, createTime TEXT, syncTime TEXT, json TEXT)",
 								   nil];
 			
 			[app.db beginTransaction];
@@ -99,12 +99,10 @@
 	}];
 	
 	
-	
-	
 	// insert to db
 	NSString *serialized = [SFJsonUtils JSONRepresentation:transform];
 	
-	[self executeUpdate:@"insert into Upload(sObject, Id, createTime, json) values(?, ?, datetime('now', 'localtime'), ?)", object, objectId, serialized];
+	[self executeUpdate:@"insert into Upload(sObject, Id, planId, createTime, json) values(?, ?, ?, datetime('now', 'localtime'), ?)", object, objectId, [[AppDelegate sharedInstance].checkin objectForKey:@"PlanId"], serialized];
 	
 	
 	// update badge

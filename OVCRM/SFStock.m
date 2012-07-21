@@ -33,6 +33,7 @@
 			@"TEXT", @"Stock_Update__c",
 			//@"NUMBER", @"Year__c",
 			@"TEXT", @"Name",
+			@"TEXT", @"prod_db_id__c",
 			nil];
 	
 }

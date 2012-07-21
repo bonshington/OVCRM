@@ -43,6 +43,7 @@
 #import "NSDate+Extension.h"
 #import "UITextField+Extension.h"
 #import "UIView+Extension.h"
+#import "NSArray+LINQ.h"
 
 @interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal, CLLocationManagerDelegate>{
 
