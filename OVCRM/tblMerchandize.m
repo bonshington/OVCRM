@@ -12,7 +12,7 @@
 @implementation tblMerchandize
 
 @synthesize plan_ID;
-@synthesize iD;
+@synthesize Id;
 @synthesize account_ID;
 @synthesize name;
 @synthesize mcd_Price;
@@ -28,7 +28,7 @@ sqlite3_stmt *statement;
 
 -(NSString *)DB_Field
 {
-    return @"iD, account_ID, name, mcd_Price, mcd_Share, date__c ";
+    return @" plan_ID, Id, account_ID, name, mcd_Price, mcd_Share, date__c, mcd_Time  ";
     //@"Plan_ID, ID, Account_ID, Product_Name, MCD_Price, MCD_Share, MCD_Date, MCD_Time ";
 }
 

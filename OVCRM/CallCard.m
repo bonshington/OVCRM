@@ -352,7 +352,10 @@
         _tblcallCard = [muTableCallcard objectAtIndex:0];
         callcard_ID = [NSString stringWithFormat:@"%@",_tblcallCard.Id];
     }
+<<<<<<< HEAD
 	
+=======
+>>>>>>> Tong 2012-07-21
 //    _tblcallCard = [muTableCallcard objectAtIndex:0];
     NSArray *paramArray ;
     paramArray = [NSArray arrayWithObjects:plan_ID, nil];

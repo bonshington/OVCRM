@@ -12,7 +12,7 @@
 
 @interface tblProduct : OVDataseProxy <OVDatabaseConsumeProtocal>
 
-@property(nonatomic,strong) NSString *PK;
+@property(nonatomic,strong) NSString *Id;
 @property(nonatomic,strong) NSString *sale_ID;
 @property(nonatomic,strong) NSString *product_Code;
 @property(nonatomic,strong) NSString *product_Name;

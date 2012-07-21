@@ -12,7 +12,7 @@
 @interface tblMerchandize : OVDataseProxy <OVDatabaseConsumeProtocal>
 
 @property(nonatomic,strong) NSString *plan_ID;
-@property(nonatomic,strong) NSString *iD;
+@property(nonatomic,strong) NSString *Id;
 @property(nonatomic,strong) NSString *account_ID;
 @property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) NSString *mcd_Price;

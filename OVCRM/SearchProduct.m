@@ -384,7 +384,7 @@
             cond = [NSString stringWithFormat:@"%@ and Product_Family like '%@%%'",cond , self.txtProdFamily.text];   
         }
             
-//        NSLog(@"***%@" , cond);
+        NSLog(@"***%@" , cond);
         
         arrProdCode = [[NSMutableArray alloc] init];
         arrProdName = [[NSMutableArray alloc] init];

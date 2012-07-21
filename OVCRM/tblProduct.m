@@ -11,7 +11,7 @@
 
 @implementation tblProduct
 
-@synthesize  PK;
+@synthesize  Id;
 @synthesize  sale_ID;
 @synthesize  product_Code;
 @synthesize  product_Name;
@@ -42,7 +42,7 @@
 
 -(NSString *)DB_Field
 {
-    return @"Id,sale_ID,product_Code,product_Name,lastSyncDate,lastSyncTime,cost,weight,packaging,width,packSize,productLong,height,product_Category,brand,shortName,product_Family,target,unitName,isCancel,Active_Flag,Expire_Flag ";
+    return @"Id,product_Code,product_Name,cost,weight,packaging,width,packSize,productLong,height,product_Category,brand,shortName,product_Family,target,unitName,isCancel,activeFlag,expireFlag";
 }
 
 /*

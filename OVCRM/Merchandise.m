@@ -248,9 +248,19 @@
 
 -(void) loadDataProduct
 {
+    NSDate *now = [NSDate date];
+    NSString *strDate = [self dateToString:now];
+//    NSString *strTime = [self timeToString:now];
+    
+    
     NSMutableArray * tempTable = [[NSMutableArray alloc]init];
     NSString *tableField = [_tblmerchandize DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Merchandise Where account_ID='%@'",tableField ,account_ID]; 
+    NSString *searchString = [[NSString alloc] initWithFormat:@"Select  M.id as Id, M.account_ID, M.name, M.mcd_Price, M.mcd_Share, M.date__c, '' as mcd_Time , P.ID as plan_id From Merchandise M Inner join Plan P On M.date__c = P.ActivityDate Where M.Date__c='%@' AND M.Account_Id='%@'", strDate ,account_ID]; //, () as plan_ID
+    
+//    select M.* , P.ID From Merchandise M
+//    Inner join Plan P On M.Date__c = P.ActivityDate
+//    AND P.Account_ID = M.Account_ID
+//    
     NSLog(@"%@",searchString);
     tempTable = [_tblmerchandize QueryData:searchString];
     
@@ -275,7 +285,7 @@
             ProductInAction * productX = [[ProductInAction alloc]init];
             tblMerchandize * stockX =[[tblMerchandize alloc]init];
             stockX = [tempTable objectAtIndex:ii];
-            productX.mcd_ID = stockX.iD;
+            productX.mcd_ID = stockX.Id;
             productX.pd_Name = stockX.name;
             productX.mcd_Price = [NSString stringWithFormat:@"%@",stockX.mcd_Price];
             productX.mcd_Share = [NSString stringWithFormat:@"%@",stockX.mcd_Share];
@@ -306,7 +316,7 @@
         ProductInAction * product = [muTableData objectAtIndex:ii];
         paramArray = [NSArray arrayWithObjects:product.mcd_ID,account_ID,product.pd_Name,product.mcd_Price,product.mcd_Share,strDate,nil];
         
-        sql = [NSString stringWithFormat:@"Insert or replace Into Merchandise (ID, Account_ID, Name, MCD_Price, MCD_Share, Date__c) Values (?,?,?,?,?,?)"];
+        sql = [NSString stringWithFormat:@"Insert or replace Into Merchandise ( Id, account_ID, name, mcd_Price, mcd_Share, date__c ) Values (?,?,?,?,?,?)"];
         [_tblmerchandize ExecSQL:sql parameterArray:paramArray];
     }
 }
@@ -317,7 +327,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"th_TH"];//@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];//@"th_TH"];
     [dateFormatter setLocale:usLocale];
     return [dateFormatter stringFromDate:sDate];
 }

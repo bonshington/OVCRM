@@ -205,6 +205,11 @@
 		18EE3F6D15A173F400A08B29 /* OVDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F6B15A173F400A08B29 /* OVDetailController.m */; };
 		18EE3F7215A1741500A08B29 /* OVLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE3F7015A1741500A08B29 /* OVLandingController.m */; };
 		18EE3F7315A1741500A08B29 /* OVLandingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE3F7115A1741500A08B29 /* OVLandingController.xib */; };
+<<<<<<< HEAD
+=======
+		6367B65615B956A80066991A /* viewDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6367B65415B956A40066991A /* viewDatePicker.m */; };
+		6367B65715B956A80066991A /* viewDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6367B65515B956A60066991A /* viewDatePicker.xib */; };
+>>>>>>> Tong 2012-07-21
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -566,6 +571,9 @@
 		6367B62415B90C600066991A /* tblDelivery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tblDelivery.m; sourceTree = "<group>"; };
 		6367B62515B90C610066991A /* tblDeliveryDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tblDeliveryDetail.h; sourceTree = "<group>"; };
 		6367B62615B90C620066991A /* tblDeliveryDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tblDeliveryDetail.m; sourceTree = "<group>"; };
+		6367B65315B956A30066991A /* viewDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewDatePicker.h; sourceTree = "<group>"; };
+		6367B65415B956A40066991A /* viewDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewDatePicker.m; sourceTree = "<group>"; };
+		6367B65515B956A60066991A /* viewDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viewDatePicker.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -730,6 +738,9 @@
 				18B5AEC215B3E5AC00089400 /* DeliverySummary.h */,
 				18B5AEC315B3E5AC00089400 /* DeliverySummary.m */,
 				18B5AEC415B3E5AC00089400 /* DeliverySummary.xib */,
+				6367B65315B956A30066991A /* viewDatePicker.h */,
+				6367B65415B956A40066991A /* viewDatePicker.m */,
+				6367B65515B956A60066991A /* viewDatePicker.xib */,
 				18B5AEC515B3E5AC00089400 /* CheckInPage.h */,
 				18B5AEC615B3E5AC00089400 /* CheckInPage.m */,
 				18B5AEC715B3E5AC00089400 /* CheckInPage.xib */,
@@ -1291,8 +1302,12 @@
 				08FC15E215A96A71005847AC /* jquery.mobile.css in Resources */,
 				18D52FC515AABF7D00C70E16 /* OVSyncController.xib in Resources */,
 				18D52FEF15ABDCE800C70E16 /* OVMenuController.xib in Resources */,
+<<<<<<< HEAD
 				18D98DEE15B9612E00F83A66 /* OVCallCardController.xib in Resources */,
 				18CB17D715B979EA009349FC /* OVStepsController.xib in Resources */,
+=======
+				6367B65715B956A80066991A /* viewDatePicker.xib in Resources */,
+>>>>>>> Tong 2012-07-21
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1452,6 +1467,7 @@
 				18B5AF4615B3F75400089400 /* OVDataseProxy.m in Sources */,
 				18B5AF4A15B405CD00089400 /* NSObject+Reflection.m in Sources */,
 				18D98DA615B7F5FC00F83A66 /* SFPriceBookDetail.m in Sources */,
+<<<<<<< HEAD
 				18D98DE515B94E4300F83A66 /* OVCallCardController.m in Sources */,
 				18D98DE915B94EDE00F83A66 /* OVCallCardController+UITableViewHandler.m in Sources */,
 				18D98DEC15B9564700F83A66 /* SFMDProductCat.m in Sources */,
@@ -1459,6 +1475,9 @@
 				08CBC31215B99D8D00E7472E /* UITextField+Extension.m in Sources */,
 				08CBC31615B9A20D00E7472E /* OVCallCardController+UISearchBarDelegate.m in Sources */,
 				08CBC31915B9BA1F00E7472E /* UIView+Extension.m in Sources */,
+=======
+				6367B65615B956A80066991A /* viewDatePicker.m in Sources */,
+>>>>>>> Tong 2012-07-21
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
