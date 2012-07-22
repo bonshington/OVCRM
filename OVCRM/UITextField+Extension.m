@@ -23,7 +23,7 @@
 	if(obj != nil)
 		[ui addTarget:obj action:sel forControlEvents:UIControlEventEditingChanged];
 	
-	if(text != nil && text.length > 0)
+	if(text != nil)
 		ui.text = text;
 	
 	return ui;

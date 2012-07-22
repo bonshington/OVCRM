@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OVProductConsumerController.h"
-#import "SFStepActionProtocal.h"
 
 
 @interface OVMerchandiseViewController : OVProductConsumerController{

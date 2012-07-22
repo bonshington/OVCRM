@@ -33,6 +33,8 @@
 #define tagForInStock		1008
 #define tagForOnShelfPrice	1009
 #define tagForFacing		1010
+#define tagForReturnQty		1011
+#define tafForReturnReason	1012
 
 #define tagForInv			2000
 #define tagForOrder			2100

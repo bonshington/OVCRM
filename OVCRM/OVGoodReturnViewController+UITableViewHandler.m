@@ -1,20 +1,14 @@
 //
-//  OVMerchandiseViewController+UITableViewHandler.m
+//  OVGoodReturnViewController+UITableViewHandler.m
 //  OVCRM
 //
-//  Created by Sopon Srisummasheep on 7/21/55 BE.
+//  Created by Sopon Srisummasheep on 7/22/55 BE.
 //  Copyright (c) 2555 __MyCompanyName__. All rights reserved.
 //
 
-#import "OVMerchandiseViewController.h"
+#import "OVGoodReturnViewController.h"
 
-
-#define MC_ON_SHELF_OFFSET 810
-#define MC_FACING_OFFSET 920
-
-
-@implementation OVMerchandiseViewController (UITableViewHandler)
-
+@implementation OVGoodReturnViewController (UITableViewHandler)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
@@ -32,13 +26,13 @@
 		NSString *text2 = nil;
 		
 		
-		if(_data != nil && [_data objectForKey:@"On_Shelf_Price__c"] != nil)
-			text1 = [NSString stringWithFormat:@"%@", [_data objectForKey:@"On_Shelf_Price__c"]];
+		if(_data != nil && [_data objectForKey:@"Return_Quantity__c"] != nil)
+			text1 = [NSString stringWithFormat:@"%@", [_data objectForKey:@"Return_Quantity__c"]];
 		
 		
 		
-		if(_data != nil && [_data objectForKey:@"Shelf_Share__c"] != nil)
-			text2 = [NSString stringWithFormat:@"%@", [_data objectForKey:@"Shelf_Share__c"]];
+		if(_data != nil && [_data objectForKey:@"Reason_for_Return__c"] != nil)
+			text2 = [NSString stringWithFormat:@"%@", [_data objectForKey:@"Reason_for_Return__c"]];
 		
 		
 		
@@ -49,14 +43,17 @@
 		
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		[cell addSubview:[UITextField newWithCGRect:CGRectMake(MC_ON_SHELF_OFFSET, 7, 80, 30) 
-												tag:tagForOnShelfPrice 
+		
+		
+		
+		[cell addSubview:[UITextField newWithCGRect:CGRectMake(0, 7, 80, 30) 
+												tag:tagForReturnQty 
 											   text:text1 
 										  respondTo:self 
 										   selector:@selector(change:)]];
 		
-		[cell addSubview:[UITextField newWithCGRect:CGRectMake(MC_FACING_OFFSET, 7, 80, 30) 
-												tag:tagForFacing 
+		[cell addSubview:[UITextField newWithCGRect:CGRectMake(0, 7, 80, 30) 
+												tag:tafForReturnReason 
 											   text:text2 
 										  respondTo:self 
 										   selector:@selector(change:)]];

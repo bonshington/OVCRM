@@ -7,7 +7,7 @@
 //
 
 #import "OVProductConsumerController.h"
-#import "SFProduct.h"
+
 
 @implementation OVProductConsumerController
 
@@ -110,7 +110,7 @@
 											   [[UIBarButtonItem alloc] initWithTitle:@"Checkout" style:UIBarButtonSystemItemCancel target:self.delegate action:@selector(checkout:)], 
 											   nil];
 	
-	self.product = [SFProduct availableProduct];
+	self.product = [self.delegate loadProducts];
 	
 	self.filtered = [NSMutableArray arrayWithArray:self.product];
 }

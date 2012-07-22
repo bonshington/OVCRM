@@ -81,7 +81,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-	self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
+	self.processing = [NSIndexPath indexPathForRow:0 inSection:2];
     
     [self sync];
 }

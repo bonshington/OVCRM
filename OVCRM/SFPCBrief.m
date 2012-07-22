@@ -38,7 +38,7 @@
 			@"TEXT", @"Pricing_Information__c",
 			@"TEXT", @"Source_System__c",
 			
-			@"TEXT", @"",
+			//@"TEXT", @"",
 			nil];	
 }
 

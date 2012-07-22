@@ -37,6 +37,10 @@
 	self.title = @"Call Card";
 }
 
+-(NSArray *)loadProducts{
+	return [SFProduct availableProduct];
+}
+
 -(void) loadCallCard{
 
 	OVDatabase *db = [OVDatabase sharedInstance];

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OVProductConsumerController.h"
-#import "SFStepActionProtocal.h"
+
 
 #define CC_UI_OFFSET_ON_SHELF	415
 #define CC_UI_OFFSET_IN_STORE	500

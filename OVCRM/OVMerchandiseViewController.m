@@ -24,6 +24,9 @@
 	self.title = @"Market Intelligence";
 }
 
+-(NSArray *)loadProducts{
+	return [SFProduct availableProduct];
+}
 
 -(void) load{
 	

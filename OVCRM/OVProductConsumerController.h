@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "SFProduct.h"
 #import "SFStepActionProtocal.h"
+
 
 @interface OVProductConsumerController : UIViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>{
 	NSString *previousSearchText;
