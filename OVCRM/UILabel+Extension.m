@@ -23,15 +23,32 @@
 
 +(UILabel *) labelWithRect:(CGRect)rect 
 					   tag:(int)tag 
-					  text:(NSString *)text{
-	
-	if(text == nil || text.length == 0)
-		return nil;
+					  text:(id)text{
 	
 	UILabel *ui = [[UILabel alloc] initWithFrame:rect];
 	
 	ui.tag = tag;
-	ui.text = text;
+	ui.backgroundColor = [UIColor clearColor];
+	
+	if(text != nil)
+		ui.text = text;
+	
+	return ui;
+	
+}
+
++(UILabel *) labelWithRect:(CGRect)rect 
+					   tag:(int)tag 
+					number:(NSNumber *)num{
+	
+	UILabel *ui = [[UILabel alloc] initWithFrame:rect];
+	
+	ui.tag = tag;
+	ui.backgroundColor = [UIColor clearColor];
+	ui.textAlignment = UITextAlignmentRight;
+	
+	if(num != nil)
+		ui.text = [NSString stringWithFormat:@"%@", num];
 	
 	return ui;
 	

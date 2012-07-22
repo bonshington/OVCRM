@@ -12,5 +12,8 @@
 
 +(id) hiddenLabelForText:(NSString *)text withTag:(int)tag;
 +(UILabel *) labelWithRect:(CGRect)rect tag:(int)tag text:(NSString *)text;
++(UILabel *) labelWithRect:(CGRect)rect 
+					   tag:(int)tag 
+					number:(NSNumber *)num;
 
 @end

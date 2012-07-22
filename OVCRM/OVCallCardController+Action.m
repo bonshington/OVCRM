@@ -17,21 +17,24 @@
 	
 	UITableViewCell *cell = (UITableViewCell *)[ui lookupFor:[UITableViewCell class]];
 	
-	NSMutableDictionary *_data = [self.callcard_data objectForKey:cell.reuseIdentifier];
+	NSDictionary *_temp = [self.data objectForKey:cell.reuseIdentifier];
+	NSMutableDictionary *_data = nil;
 	
-	if(_data == nil){
-		
-		// use self guid for new insert same as call card. So later can be refer		
+	
+	if(_temp == nil){
+			
 		_data = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 				 @"-", @"Id", 
 				 cell.reuseIdentifier, @"prod_db_id__c", 
 				 self.accountId, @"AccountID__c", 
-				 [self.callcard coalesce:@"Id", @"Name", nil], @"Call_Card__c", 
+				 [self.callcard objectForKey:@"Name"], @"Call_Card__c", 
+				 cell.textLabel.text, @"Name",
 				 nil];
 		
 	}
 	else{
-		_data = [NSMutableDictionary dictionaryWithDictionary:[self.callcard_data objectForKey:cell.reuseIdentifier]];
+		_data = [NSMutableDictionary dictionaryWithDictionary:_temp];
+		[_data setObject:[self.callcard objectForKey:@"Name"] forKey:@"Name"];
 	}
 	
 	NSString *target = nil;
@@ -54,7 +57,7 @@
 	}
 	
 	
-	[self.callcard_data setObject:_data forKey:cell.reuseIdentifier];	
+	[self.data setObject:_data forKey:cell.reuseIdentifier];	
 	
 }
 
@@ -86,7 +89,7 @@
 	[db sfInsertInto:@"Call_Card__c" withData:self.callcard];
 	
 	// save call card stock
-	[[self.callcard_data allValues] enumerateObjectsUsingBlock:^(NSDictionary *data, NSUInteger index, BOOL *stop){
+	[[self.data allValues] enumerateObjectsUsingBlock:^(NSDictionary *data, NSUInteger index, BOOL *stop){
 		[db sfInsertInto:@"Stock__c" withData:data];
 	}];
 }

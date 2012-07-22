@@ -13,7 +13,7 @@
 
 @implementation OVCallCardController
 
-@synthesize searchBar, tableView, product, callcard, callcard_data, filtered, history;
+@synthesize searchBar, tableView, product, callcard, data, filtered, history;
 
 
 - (void)viewDidLoad
@@ -30,51 +30,42 @@
 	
 	[self loadCallCard];
 	
-	[self loadCallCardData];
+	[self loadData];
 	
 	[self loadHistory];
 	
 	self.title = @"Call Card";
 }
 
--(NSArray *)loadProducts{
-	return [SFProduct availableProduct];
-}
 
 -(void) loadCallCard{
 
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
-	NSArray *_callcard = [[db executeQuery:[NSString stringWithFormat:
-											@"select c.* \
-											from	Call_Card__c c \
-											join	Plan p \
-												on	p.Account_ID = c.Account__c \
-												and date(p.Date_Plan) = date(c.Checking_Date__c) \
-											where	p.Id = '%@' limit 1", self.planId]] readToEnd];
+	NSArray *unsync = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Call_Card__c' and syncTime is null limit 1", self.planId] readToEnd];
 	
-	// existing synced
-	if(_callcard != nil && _callcard.count > 0){
-		self.callcard = [NSMutableDictionary dictionaryWithDictionary:[_callcard objectAtIndex:0]];
+	// resuming
+	if(unsync != nil && unsync.count > 0){
+		
+		self.callcard = [NSMutableDictionary dictionaryWithDictionary:[SFJsonUtils objectFromJSONString:[unsync objectAtIndex:0 forKey:@"json"]]];
+		
+		[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Call_Card__c' and syncTime is null", self.planId];
 	}
-	else {
+	else{
+		// laod existing sync
+		NSArray *existing = [[db executeQuery:[NSString stringWithFormat:
+												@"select c.* \
+												from	Call_Card__c c \
+												join	Plan p \
+													on	p.Account_ID = c.Account__c \
+													and date(p.Date_Plan) = date(c.Checking_Date__c) \
+												where	p.Id = '%@' limit 1", self.planId]] readToEnd];
 		
-		// try resume
-		NSArray *resumeCallcard = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Call_Card__c' limit 1", self.planId] readToEnd];
-		
-		if(resumeCallcard != nil && resumeCallcard.count > 0){
-			
-			NSMutableDictionary *loadingCallcard = [NSMutableDictionary dictionaryWithDictionary:[SFJsonUtils objectFromJSONString:[resumeCallcard objectAtIndex:0 forKey:@"json"]]];
-			
-			[loadingCallcard setObject:[resumeCallcard objectAtIndex:0 forKey:@"Id"] forKey:@"id"];
-			
-			self.callcard = loadingCallcard;
-			
-			[db executeUpdate:@"delete from Upload where pk = ?", [resumeCallcard valueForKey:@"pk"]];
+		if(existing != nil && existing.count > 0){
+			self.callcard = [NSMutableDictionary dictionaryWithDictionary:[existing objectAtIndex:0]];
 		}
 		else{
-			
-			// create new
+			// new data
 			self.callcard = [NSMutableDictionary new];
 			
 			NSString *guid = [NSString guid];
@@ -86,33 +77,38 @@
 			[self.callcard setObject:guid forKey:@"Id"];
 		}
 	}
+	
 }
 
--(void) loadCallCardData{
+-(void) loadData{
 	
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
-	self.callcard_data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"Select * From Stock__c where Call_Card__c = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"prod_db_id__c"]];
+	NSArray *unsync = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c' and syncTime is null", self.planId] readToEnd];
 	
-	if(self.callcard_data == nil || self.callcard_data.count == 0){
+	// resuming
+	if(unsync != nil && unsync.count > 0){
 		
-		// try resume
-		NSArray *resumeCallcardData = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c'", self.planId] readToEnd];
+		self.data = [NSMutableDictionary new];
 		
-		if(resumeCallcardData != nil && resumeCallcardData.count > 0){
+		[unsync enumerateObjectsUsingBlock:^(NSDictionary *upload, NSUInteger index, BOOL *stop){
 			
-			[resumeCallcardData enumerateObjectsUsingBlock:^(NSDictionary *row, NSUInteger index, BOOL *stop){
-				
-				NSMutableDictionary *json = [NSMutableDictionary dictionaryWithDictionary:[SFJsonUtils objectFromJSONString:[row objectForKey:@"json"]]];
-				
-				[json setObject:[row objectForKey:@"Id"] forKey:@"Id"];
-				
-				[self.callcard_data setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
-			}];
+			NSDictionary *json = [upload objectForKey:@"json"];
 			
-			[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Stock__c'"];
-		}
+			[self.data setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
+		}];
+		
+		
+		[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Stock__c' and syncTime is null", self.planId];
 	}
+	else{
+		// load existing
+		
+		self.data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"Select * From Stock__c where Call_Card__c = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"prod_db_id__c"]];
+	}
+	
+	if(self.data == nil)
+		self.data = [NSMutableDictionary new];
 }
 
 -(void) loadHistory{

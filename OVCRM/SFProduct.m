@@ -105,7 +105,7 @@
 
 +(NSArray *) availableProduct{
 	return [[[OVDatabase sharedInstance] executeQuery:
-			 @"select p.Id, p.product_Category, p.product_Code, p.packSize \
+			 @"select p.Id, p.product_Category, p.product_Code, p.packSize, p.weight, p.packaging, p.List_Price__c \
 			 from	Product p \
 			 join	MD_Product_Category__c md \
 			 on	md.Code__c = p.MD_Product_Category_Code__c \

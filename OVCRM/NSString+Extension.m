@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Extension.h"
+#import "AppDelegate.h"
 
 @implementation NSString(Extension)
 
@@ -39,13 +40,25 @@
 }
 
 +(NSString *)guid{
-
-	CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
-    NSString * uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
-    CFRelease(newUniqueId);
 	
-    return [NSString stringWithFormat:@"-%@", uuidString];
-
+	NSDictionary *data = [AppDelegate sharedInstance].checkin;
+	
+	if(data == nil || [data objectForKey:@"myself"] == nil){
+		CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
+		NSString * uuidString = (__bridge_transfer NSString*)CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
+		CFRelease(newUniqueId);
+		
+		return [NSString stringWithFormat:@"-%@", uuidString];
+	}
+	else{
+	
+		return [NSString stringWithFormat:
+				@" %@ (%@ - %@)"
+				, [[data objectForKey:@"AccountData"] objectForKey:@"Name"]
+				, [data objectForKey:@"myself"]
+				, [(NSDate *)[data objectForKey:@"time"] format:@"dd MMM yyyy, HH:mm"]
+				];
+	}
 }
 
 

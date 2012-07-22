@@ -10,8 +10,8 @@
 #import "OVProductConsumerController.h"
 
 
-#define CC_UI_OFFSET_ON_SHELF	415
-#define CC_UI_OFFSET_IN_STORE	500
+#define CC_UI_OFFSET_ON_SHELF	840
+#define CC_UI_OFFSET_IN_STORE	930
 
 
 #define CC_UI_OFFSET_INV		575
@@ -23,11 +23,11 @@
 
 
 @property (nonatomic, retain) NSMutableDictionary *callcard;
-@property (nonatomic, retain) NSMutableDictionary *callcard_data;
+@property (nonatomic, retain) NSMutableDictionary *data;
 @property (nonatomic, retain) NSDictionary *history;
 
 -(void) loadCallCard;
--(void) loadCallCardData;
+-(void) loadData;
 -(void) loadHistory;
 
 
@@ -36,6 +36,9 @@
 
 
 @interface OVCallCardController (UITableViewHandler) <UITableViewDataSource, UITableViewDelegate>
+
+-(void)tableViewCell:(UITableViewCell *)cell renderInputWith:(NSDictionary *)_data;
+-(void)tableViewCell:(UITableViewCell *)cell renderLabelWith:(NSDictionary *)_data;
 
 @end
 

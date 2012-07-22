@@ -14,4 +14,6 @@
 
 -(NSString *) SFString;
 
+-(NSDate *) midnight;
+
 @end

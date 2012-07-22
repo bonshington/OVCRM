@@ -37,13 +37,20 @@
 	
 	[self reloadData];
 	
+	NSArray *planData = [[db executeQuery:@"select * from Plan where Id = ?", self.checkinEventId] readToEnd];
+	NSArray *myself = [[db executeQuery:@"select * from User limit 1"] readToEnd];
 	
-	[AppDelegate sharedInstance].checkin = [NSDictionary dictionaryWithObjectsAndKeys:
-											self.checkinEventId, @"PlanId",
-											[[[db executeQuery:@"select * from Plan where Id = ?", self.checkinEventId] readToEnd]  objectAtIndex:0], @"PlanData",
-											self.checkedAccountId, @"AccountId",
-											result, @"AccountData",
-											nil];
+	NSDictionary *checkinData = [NSDictionary dictionaryWithObjectsAndKeys:
+								 [myself objectAtIndex:0 forKey:@"Name"], @"myself",
+								 self.checkinEventId		, @"PlanId",
+								 planData					, @"PlanData",
+								 self.checkedAccountId		, @"AccountId",
+								 [result objectAtIndex:0]	, @"AccountData",
+								 [NSDate date]				, @"time",
+								 
+								 nil];
+	
+	[AppDelegate sharedInstance].checkin = checkinData;
 	
 	
 	//[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:NO];
@@ -53,8 +60,6 @@
 	
 	[[AppDelegate sharedInstance].root presentModalViewController:steps animated:YES];
 	
-	
-    
 	
 }
 

@@ -20,7 +20,8 @@ didLoadResponse:(id)jsonResponse{
 	
 	if(jsonResponse != nil){
 		
-		[self.mapping setObject:[jsonResponse objectForKey:@"id"] forKey:[self.upload objectAtIndex:uploading forKey:@"Id"]];
+		if([self.upload objectAtIndex:uploading forKey:@"Name"] != nil)
+			[self.mapping setObject:[jsonResponse objectForKey:@"id"] forKey:[self.upload objectAtIndex:uploading forKey:@"Name"]];
 	}
     
     OVDatabase *db = [OVDatabase sharedInstance];

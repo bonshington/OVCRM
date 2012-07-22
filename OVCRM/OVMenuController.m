@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "OVLandingController.h"
 #import "OVWebViewController.h"
+#import "OVPlanViewController.h"
 
 
 @implementation OVMenuController
@@ -155,6 +156,13 @@
 													  withScale:1.0
 													withShining:YES];
 	}
+}
+
+-(void)openPlan:(id)sender{
+	
+	[[AppDelegate sharedInstance].detail pushViewController:[OVPlanViewController new] 
+												   animated:YES];
+	
 }
 
 @end

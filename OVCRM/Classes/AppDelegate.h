@@ -44,6 +44,7 @@
 #import "UITextField+Extension.h"
 #import "UIView+Extension.h"
 #import "NSArray+LINQ.h"
+#import "NSIndexPath+Extension.h"
 
 @interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal, CLLocationManagerDelegate>{
 
@@ -70,7 +71,7 @@
 +(AppDelegate *) sharedInstance;
 
 
-
++(BOOL)isKeyBoardInDisplay;
 
 @end
 

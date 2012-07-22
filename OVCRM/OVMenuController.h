@@ -29,6 +29,8 @@
 
 -(void) loadData;
 
+-(void)openPlan:(id)sender;
+
 - (void) invokeSFObject:(NSString *)sObject 
 		   withMustache:(NSDictionary *)data 
 	 withRightBarButton:(UIBarButtonItem *)button;

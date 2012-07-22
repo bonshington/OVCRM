@@ -11,7 +11,7 @@
 
 @implementation OVProductConsumerController
 
-@synthesize searchBar, tableView, product, filtered, planId, accountId, delegate;
+@synthesize searchBar, tableView, product, filtered, planId, accountId, delegate, indexing;
 
 -(id)initWithPlanId:(NSString *)_planId 
 		  accountId:(NSString *)_accountId{
@@ -28,7 +28,7 @@
 
 -(void)checkout{
 	
-	[[OVDatabase sharedInstance] sfInsertInto:@"Event" 
+	[[OVDatabase sharedInstance] sfInsertInto:@"Plan" 
 									 withData:[NSDictionary dictionaryWithObjectsAndKeys:
 											   self.planId, @"Id", 
 											   [[NSDate date] SFString], @"Time_Out__c",
@@ -110,7 +110,15 @@
 											   [[UIBarButtonItem alloc] initWithTitle:@"Checkout" style:UIBarButtonSystemItemCancel target:self.delegate action:@selector(checkout:)], 
 											   nil];
 	
-	self.product = [self.delegate loadProducts];
+	self.product = [SFProduct availableProduct];//[self.delegate loadProducts];
+	
+	NSMutableDictionary *_indexing = [NSMutableDictionary new];
+	
+	for(NSDictionary *row in self.product){
+		[_indexing setObject:row forKey:[row objectForKey:@"Id"]];
+	}
+	
+	self.indexing = _indexing;
 	
 	self.filtered = [NSMutableArray arrayWithArray:self.product];
 }

@@ -26,4 +26,18 @@
 	return [NSString stringWithFormat:@"%@T%@+07:00", [self format:@"yyyy-MM-dd"], [timeFormatter stringFromDate:self]];
 }
 
+-(NSDate *) midnight{
+	
+	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [calendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:7 * 3600]];
+	
+    NSDateComponents *dateComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                                   fromDate:self];
+    [dateComponents setHour:0];
+    [dateComponents setMinute:0];
+    [dateComponents setSecond:0];
+	
+    return [calendar dateFromComponents:dateComponents];
+}
+
 @end

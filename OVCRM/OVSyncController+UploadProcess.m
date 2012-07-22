@@ -33,7 +33,7 @@
 	SFRestRequest *request = nil;
 	
 	
-	if([[data objectForKey:@"Id"] hasPrefix:@"-"]){
+	if([[data objectForKey:@"Id"] hasPrefix:@" "]){
 		// create
 		
 		if([obj isEqualToString:@"Stock__c"]){

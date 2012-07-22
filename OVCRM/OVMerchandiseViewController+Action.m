@@ -7,6 +7,7 @@
 //
 
 #import "OVMerchandiseViewController.h"
+#import "OVGoodReturnViewController.h"
 
 @implementation OVMerchandiseViewController (Action)
 
@@ -29,6 +30,7 @@
 				 self.accountId, @"Account__c", 
 				 self.planId, @"plan_id__c", 
 				 [planData objectForKey:@"ActivityDate"], @"Date__c",
+				 cell.textLabel.text, @"Name",
 				 nil];
 		
 	}
@@ -63,6 +65,10 @@
 -(IBAction)next:(id)sender{
 	
 	[self save:sender];
+	
+	[self.navigationController pushViewController:[[OVGoodReturnViewController alloc] initWithPlanId:self.planId 
+																						   accountId:self.accountId]
+										 animated:YES];
 }
 
 -(IBAction)checkout:(id)sender{

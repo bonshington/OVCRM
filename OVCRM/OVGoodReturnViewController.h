@@ -10,9 +10,19 @@
 #import "OVProductConsumerController.h"
 
 
-@interface OVGoodReturnViewController : OVProductConsumerController
+@interface OVGoodReturnViewController : OVProductConsumerController<UITextFieldDelegate>{
+	
+	NSArray *reasonsOfReturn;
+	UIImageView *mimic;
+	UITapGestureRecognizer *tapped;
+	UITableViewCell *selected;
+}
 
-@property(nonatomic, retain) NSDictionary *data;
+@property(nonatomic, retain) NSMutableDictionary *data;
+@property(nonatomic, retain) IBOutlet UIPickerView *pickerView;
+
+- (void)openPicker:(id)sender;
+- (void)hidePicker:(id)sender;
 
 @end
 
@@ -25,6 +35,17 @@
 
 
 
-@interface OVGoodReturnViewController (UITableViewHandler)
+@interface OVGoodReturnViewController (UITableViewHandler)<UITableViewDelegate, UITableViewDataSource>
+
+-(void)tableViewCell:(UITableViewCell *)cell renderInputWith:(NSDictionary *)_data;
+-(void)tableViewCell:(UITableViewCell *)cell renderLabelWith:(NSDictionary *)_data;
+
+
+
+@end
+
+
+
+@interface OVGoodReturnViewController (UIPickerViewHandler)<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @end

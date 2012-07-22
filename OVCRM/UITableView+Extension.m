@@ -19,4 +19,8 @@
 	return (UILabel *)[[self selectedCell] viewWithTag:tag];
 }
 
+-(UIView *) viewWithTag:(NSInteger)tag forRow:(NSInteger)row inSection:(NSInteger)section{
+	return[[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]] viewWithTag:tag];
+}
+
 @end

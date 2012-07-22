@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) NSArray *product;
+@property (nonatomic, retain) NSDictionary *indexing;
 @property (nonatomic, retain) NSMutableArray *filtered;
 @property (nonatomic, retain) NSString *planId;
 @property (nonatomic, retain) NSString *accountId;

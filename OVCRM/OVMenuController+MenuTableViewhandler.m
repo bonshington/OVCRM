@@ -10,6 +10,8 @@
 #import "OVWebViewController.h"
 #import "OVSyncController.h"
 
+#define MENU_VISIT_SECTION_HEIGHT 39
+
 @implementation OVMenuController (MenuTableViewhandler)
 
 #pragma mark - Sections
@@ -17,6 +19,18 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	
+	switch(section){
+			
+		case 0: return 40;
+			
+		case 1: return 22;
+	}
+	
+	return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView 
@@ -30,6 +44,49 @@ titleForHeaderInSection:(NSInteger)section{
 	}
     
     return @"???";
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+	switch(section){
+			
+		case 0:{
+			
+			UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+			
+			button.frame = CGRectMake( tableView.frame.size.width - button.frame.size.width - (MENU_VISIT_SECTION_HEIGHT - button.frame.size.height)/2 - 5
+									   , (44 - button.frame.size.height)/2
+									   , button.frame.size.width
+									   , button.frame.size.height);
+			
+			[button addTarget:self action:@selector(openPlan:) forControlEvents:UIControlEventTouchUpInside];
+			
+			
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 200, MENU_VISIT_SECTION_HEIGHT)];
+			label.text = @"Visit";
+			label.backgroundColor = [UIColor clearColor];
+			label.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+			label.textColor = [UIColor colorWithRed:0.298039 green:0.337255 blue:0.423529 alpha:1];
+			label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+			label.shadowColor = [UIColor whiteColor];
+			label.shadowOffset = CGSizeMake(0, 1);
+			
+		
+			UIView *custom = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, MENU_VISIT_SECTION_HEIGHT)];
+			custom.backgroundColor = [UIColor clearColor];
+			custom.opaque = NO;
+			
+			[custom addSubview:label];
+			[custom addSubview:button];
+			
+			
+			return custom;
+		};
+			
+		case 1: return nil;
+	}
+	
+	return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView 
@@ -66,9 +123,6 @@ titleForHeaderInSection:(NSInteger)section{
     switch (tappedCell.tag) {
         case tagForCellPlanVisit:{
             
-			if(self.checkedAccountId != nil)
-				return;
-			
 			[app.detail popToRootViewControllerAnimated:NO];
 			
             NSString *accountId = ((UILabel *)[tappedCell viewWithTag:tagForSFAccountId]).text;
@@ -92,9 +146,6 @@ titleForHeaderInSection:(NSInteger)section{
         }break;
             
         case tagForCellSF:
-			
-			if(self.checkedAccountId != nil)
-				return;
 			
 			[app.detail popToRootViewControllerAnimated:NO];
 			

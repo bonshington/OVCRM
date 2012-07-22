@@ -203,4 +203,19 @@ SFIdentityCoordinator *_coordinator;
 	self.location = newLocation;
 }
 
+
+
+#pragma mark - UI Helper
++(BOOL)isKeyBoardInDisplay  {
+	
+    BOOL isExists = NO;
+    for (UIWindow *keyboardWindow in [[UIApplication sharedApplication] windows])   {
+        if ([[keyboardWindow description] hasPrefix:@"<UITextEffectsWindow"] == YES) {
+            isExists = YES;
+        }  
+    }
+	
+    return isExists;
+}
+
 @end

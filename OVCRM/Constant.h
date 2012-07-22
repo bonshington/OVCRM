@@ -14,6 +14,8 @@
 #define tagForCellSF        104
 #define tagForCellAccount	105
 #define tagForCellCheckOut	106
+#define tagForCellStartDate	107
+#define tagForCellEndDate	108
 
 #define tagForLockStatus	200
 
@@ -34,7 +36,9 @@
 #define tagForOnShelfPrice	1009
 #define tagForFacing		1010
 #define tagForReturnQty		1011
-#define tafForReturnReason	1012
+#define tagForReturnReason	1012
+#define tagForDateTime		1013
+#define tagForInput			1014
 
 #define tagForInv			2000
 #define tagForOrder			2100

@@ -171,7 +171,7 @@
 	[super sync:_controller where:nil];
 	
 	/*[NSString stringWithFormat:
-								   @"Route_no__c = '%@'"
+								   @"Route_no__c = '%@' and Status__c = 'Active'"
 								   , [[AppDelegate sharedInstance].user objectForKey:@"route"]
 								   ]
 	 ];*/

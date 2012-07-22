@@ -24,6 +24,9 @@
 
 @interface OVMerchandiseViewController (UITableViewHandler) <UITableViewDataSource, UITableViewDelegate>
 
+-(void)tableViewCell:(UITableViewCell *)cell renderInputWith:(NSDictionary *)_data;
+-(void)tableViewCell:(UITableViewCell *)cell renderLabelWith:(NSDictionary *)_data;
+
 @end
 
 

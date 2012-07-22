@@ -21,21 +21,8 @@
 	
 	if(cell == nil){
 		
-		NSDictionary *_data = [self.callcard_data objectForKey:prodId];
+		NSDictionary *_data = [self.data objectForKey:prodId];
 		NSDictionary *_history = [self.history objectForKey:prodId];
-		
-		NSString *_onshelf = nil;
-		NSString *_instock = nil;
-		
-		
-		if(_data != nil && [_data objectForKey:@"Quantity_Remain__c"] != nil)
-			_onshelf = [_data objectForKey:@"Quantity_Remain__c"];
-		
-		
-		
-		if(_data != nil && [_data objectForKey:@"In_Stock__c"] != nil)
-			_instock = [_data objectForKey:@"In_Stock__c"];
-		
 		
 		
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:prodId];
@@ -45,30 +32,56 @@
 		
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_ON_SHELF, 7, 80, 30) 
-												tag:tagForOnShelf 
-											   text:_onshelf 
-										  respondTo:self 
-										   selector:@selector(change:)]];
+		[self tableViewCell:cell renderInputWith:_data];
 		
-		[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_IN_STORE, 7, 80, 30) 
-												tag:tagForInStock 
-											   text:_instock 
-										  respondTo:self 
-										   selector:@selector(change:)]];
+		[self tableViewCell:cell renderLabelWith:_history];
 		
-		if(_history != nil){
-			
-			for(int i = 0; i < 4; i++){
-				[UILabel labelWithRect:CGRectMake(CC_UI_OFFSET_INV + (i*CC_UI_SPACE_INV), 7, 100, 30) 
-								   tag:tagForInv + i 
-								  text:[_history objectForKey:[NSString stringWithFormat:@"inv%d", i]]];
-			}
-					
-		}
 	}
 	
 	return cell;
+}
+
+-(void)tableViewCell:(UITableViewCell *)cell renderInputWith:(NSDictionary *)_data{
+	
+	NSString *text1 = nil;
+	NSString *text2 = nil;
+	
+	
+	if(_data != nil && [_data objectForKey:@"Quantity_Remain__c"] != nil)
+		text1 = [_data objectForKey:@"Quantity_Remain__c"];
+		
+	if(_data != nil && [_data objectForKey:@"In_Stock__c"] != nil)
+		text2 = [_data objectForKey:@"In_Stock__c"];
+	
+	
+	[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_ON_SHELF, 7, 80, 30) 
+											tag:tagForOnShelf 
+										   text:text1 
+									  respondTo:self 
+									   selector:@selector(change:)]];
+	
+	[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_IN_STORE, 7, 80, 30) 
+											tag:tagForInStock 
+										   text:text2 
+									  respondTo:self 
+									   selector:@selector(change:)]];
+}
+
+-(void)tableViewCell:(UITableViewCell *)cell renderLabelWith:(NSDictionary *)_data{
+	
+	/*
+	 
+	 if(_history != nil){
+	 
+	 for(int i = 0; i < 4; i++){
+	 [UILabel labelWithRect:CGRectMake(CC_UI_OFFSET_INV + (i*CC_UI_SPACE_INV), 7, 100, 30) 
+	 tag:tagForInv + i 
+	 text:[_history objectForKey:[NSString stringWithFormat:@"inv%d", i]]];
+	 }
+	 
+	 }
+	 
+	 */
 }
 
 @end

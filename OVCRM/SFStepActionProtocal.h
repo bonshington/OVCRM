@@ -15,6 +15,6 @@
 -(IBAction)checkout:(id)sender;
 -(IBAction)save:(id)sender;
 -(IBAction)next:(id)sender;
--(NSArray *)loadProducts;
+//-(NSArray *)loadProducts;
 
 @end
