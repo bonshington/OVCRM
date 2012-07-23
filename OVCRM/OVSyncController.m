@@ -63,6 +63,9 @@
 					 [SFCompetitive new], @"Competitive Activities",
 					 [SFTradeProg new]	, @"Trade Program Execution",
 					 
+					 [SFAR new], @"AR", 
+					 [SFARDetail new], @"AR Detail", 
+					 
                      nil];
 }
 
@@ -81,7 +84,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     // begin
-	self.processing = [NSIndexPath indexPathForRow:0 inSection:1];
+	self.processing = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [self sync];
 }

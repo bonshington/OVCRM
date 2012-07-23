@@ -45,7 +45,7 @@
 @end
 
 
-@interface OVMenuController (MenuTableViewhandler)<UITableViewDelegate, UITableViewDataSource>
+@interface OVMenuController (UITableViewHandler)<UITableViewDelegate, UITableViewDataSource>
 
 @end
 

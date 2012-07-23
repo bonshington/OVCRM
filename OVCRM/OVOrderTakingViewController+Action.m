@@ -6,8 +6,24 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "OVOrderTakingViewController+Action.h"
+#import "OVOrderTakingViewController.h"
 
 @implementation OVOrderTakingViewController (Action)
+
+-(IBAction)change:(id)sender{
+	
+}
+
+-(IBAction)checkout:(id)sender{
+	
+}
+
+-(IBAction)save:(id)sender{
+	
+}
+
+-(IBAction)next:(id)sender{
+	
+}
 
 @end

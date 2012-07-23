@@ -11,7 +11,7 @@
 
 @implementation OVPlanViewController
 
-@synthesize tableView, saveButton, datePicker, account, pickerView, textArea;
+@synthesize tableView, saveButton, datePicker, pickerView, textArea, searchBar;
 
 
 - (void)viewDidLoad{
@@ -19,7 +19,9 @@
     
 	self.navigationItem.rightBarButtonItem = self.saveButton;
 	
-	self.account = [[[OVDatabase sharedInstance] executeQuery:@"select Id, Name, Addr1__c, Amphur__c from Account where Status__c = 'Active' order by Name"] readToEndBy:@"Id"];
+	account = [[[OVDatabase sharedInstance] executeQuery:@"select Id, Name, Addr1__c, Amphur__c from Account where Status__c = 'Active' order by Name"] readToEnd];
+	
+	filtered = [NSMutableArray arrayWithArray:account];
 	
 	tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissDatePicker:)];
     tapped.numberOfTapsRequired = 1;
@@ -38,6 +40,8 @@
 				  nil];
 	
 	self.navigationItem.rightBarButtonItem = self.saveButton;
+	
+	previousSearchText = @"";
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
@@ -88,6 +92,10 @@
 		cell.detailTextLabel.text = @"";
 		[[cell viewWithTag:tagForDateTime] removeFromSuperview];
 	}
+}
+
+-(void)dismissKeyboard:(id)sender{
+	[self.view endEditing:YES];
 }
 
 @end

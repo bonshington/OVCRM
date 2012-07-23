@@ -43,7 +43,7 @@
 	NSDictionary *checkinData = [NSDictionary dictionaryWithObjectsAndKeys:
 								 [myself objectAtIndex:0 forKey:@"Name"], @"myself",
 								 self.checkinEventId		, @"PlanId",
-								 planData					, @"PlanData",
+								 [planData objectAtIndex:0]	, @"PlanData",
 								 self.checkedAccountId		, @"AccountId",
 								 [result objectAtIndex:0]	, @"AccountData",
 								 [NSDate date]				, @"time",

@@ -20,6 +20,7 @@
 	NSDictionary *_temp = [self.data objectForKey:cell.reuseIdentifier];
 	NSMutableDictionary *_data = nil;
 	
+	NSDictionary *planData = [[AppDelegate sharedInstance].checkin objectForKey:@"PlanData"];
 	
 	if(_temp == nil){
 			
@@ -29,6 +30,7 @@
 				 self.accountId, @"AccountID__c", 
 				 [self.callcard objectForKey:@"Name"], @"Call_Card__c", 
 				 cell.textLabel.text, @"Name",
+				 [planData objectForKey:@"ActivityDate"], @"Checking_Date__c",
 				 nil];
 		
 	}

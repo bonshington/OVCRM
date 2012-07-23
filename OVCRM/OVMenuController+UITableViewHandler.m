@@ -12,7 +12,7 @@
 
 #define MENU_VISIT_SECTION_HEIGHT 39
 
-@implementation OVMenuController (MenuTableViewhandler)
+@implementation OVMenuController (UITableViewHandler)
 
 #pragma mark - Sections
 

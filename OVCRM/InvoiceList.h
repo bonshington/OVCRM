@@ -14,10 +14,13 @@
 @class tblParameter;
 
 @interface InvoiceList : UIViewController
-<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+<UIAlertViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     NSString * account_ID;
     NSString * plan_ID;
+	
+	UILabel *lbTotalAmount;
+	UILabel *lbPayTotal;
 }
 
 @property (nonatomic, strong) NSString * account_ID;
@@ -29,8 +32,8 @@
 @property (nonatomic, strong) tblInvoice * tblinvoice;
 @property (nonatomic, strong) tblCollection * tblcollection;
 @property (nonatomic, strong) tblParameter * tblParameter;
-@property (strong, nonatomic) IBOutlet UILabel *lbTotalAmount;
-@property (strong, nonatomic) IBOutlet UILabel *lbPayTotal;
+//@property (strong, nonatomic) IBOutlet UILabel *lbTotalAmount;
+//@property (strong, nonatomic) IBOutlet UILabel *lbPayTotal;
 @property (strong, nonatomic) IBOutlet UITableView * tableData;
 @property (strong, nonatomic) IBOutlet InvoiceDetail * invoiceDetail;
 
@@ -64,6 +67,12 @@
 @property (strong, nonatomic) NSString *branchValue;
 @property (strong, nonatomic) NSMutableDictionary *dicBank;
 
+
+
+/* sue */
+@property (nonatomic, retain) IBOutlet UIView *paymentView;
+/*******/
+
 - (IBAction)touchPayInvoice:(id)sender;
 - (IBAction)enterReceive:(UITextField *)sender;
 
@@ -73,7 +82,12 @@
 
 - (IBAction)segmentChanged:(UISegmentedControl *)sender;
 
+-(void) CalTotalInvoice:(NSString *)invoiceAmt rowIndexSelect:(NSInteger) rowIndex;
 
 
+@end
+
+
+@interface InvoiceList (UITableViewHandler)<UITableViewDataSource,UITableViewDelegate>
 
 @end

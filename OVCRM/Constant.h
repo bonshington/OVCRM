@@ -39,6 +39,7 @@
 #define tagForReturnReason	1012
 #define tagForDateTime		1013
 #define tagForInput			1014
+#define tagForSwitch		1015
 
 #define tagForInv			2000
 #define tagForOrder			2100

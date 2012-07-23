@@ -18,6 +18,12 @@
 	
 	NSDate *start;
 	NSDate *end;
+	
+	NSString *previousSearchText;
+	
+	NSMutableArray *filtered;
+	
+	NSArray *account;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -25,11 +31,12 @@
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, retain) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, retain) IBOutlet UITextView *textArea;
+@property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 
-@property (nonatomic, retain) NSDictionary *account;
 
 -(IBAction)save:(id)sender;
 -(void)validate;
+-(void)dismissKeyboard:(id)sender;
 
 @end
 
@@ -56,4 +63,10 @@
 
 @end
 
+
+@interface OVPlanViewController (UISearchBarHandler)<UISearchBarDelegate>{
+	
+}
+
+@end
 

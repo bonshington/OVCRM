@@ -27,6 +27,8 @@
 #import "SFMDProductCat.h"
 #import "SFCompetitive.h"
 #import "SFTradeProg.h"
+#import "SFARDetail.h"
+#import "SFAR.h"
 
 #define OVSYNC_SECTION_MY_DATA	0
 #define OVSYNC_SECTION_UPLOAD	1

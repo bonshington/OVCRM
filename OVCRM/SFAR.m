@@ -11,11 +11,11 @@
 @implementation SFAR
 
 -(NSString *) sfName{
-	return @"Account_Recievable__c";
+	return @"Account_Receivable__c";
 }
 
 -(NSString *)sqlName{
-	return @"Account_Recievable__c";
+	return @"Invoice";
 }
 
 -(NSDictionary *) schema{
@@ -67,7 +67,7 @@
 			@"TEXT", @"Reference__c",
 			@"TEXT", @"Reference_Date__c",
 			@"TEXT", @"Reference_No__c",
-			@"LOOKUP", @"Salesman__c",
+			@"TEXT", @"Salesman__c",
 			@"TEXT", @"SalesNo__c",
 			@"TEXT", @"Ship_Date__c",
 			@"TEXT", @"Ship_No__c",
@@ -88,11 +88,17 @@
 }
 
 -(NSDictionary *) mapping{
-	return [NSDictionary new];
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			@"Invoice_No"	, @"Invoice_No__c",
+			@"Inv_DueDate"	, @"Invoice_Date__c",
+			@"Inv_Total"	, @"Total_Before_Discount__c",
+			@"Paid"			, @"Paid__c",
+			@"Account_ID"	, @"AccID__c",
+			nil];
 }
 
 -(void) sync:(id<OVSyncProtocal>)_controller{
-	
+	[super syncRecent:_controller];
 }
 
 @end

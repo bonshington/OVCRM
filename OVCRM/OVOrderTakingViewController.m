@@ -8,9 +8,6 @@
 
 #import "OVOrderTakingViewController.h"
 
-@interface OVOrderTakingViewController ()
-
-@end
 
 @implementation OVOrderTakingViewController
 
@@ -36,9 +33,9 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+	
+	return (interfaceOrientation == UIDeviceOrientationLandscapeRight) || (interfaceOrientation == UIDeviceOrientationLandscapeLeft);
 }
 
 @end

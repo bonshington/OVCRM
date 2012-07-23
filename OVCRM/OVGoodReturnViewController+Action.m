@@ -7,6 +7,8 @@
 //
 
 #import "OVGoodReturnViewController.h"
+#import "InvoiceList.h"
+
 
 @implementation OVGoodReturnViewController (Action)
 
@@ -63,6 +65,14 @@
 	
 	[self save:sender];
 	
+	InvoiceList *controller = [InvoiceList new];
+	
+	controller.plan_ID = self.planId;
+	controller.account_ID = self.accountId;
+	
+	[self.navigationController pushViewController:controller
+										 animated:YES];
+	//InvoiceList
 }
 
 -(IBAction)checkout:(id)sender{

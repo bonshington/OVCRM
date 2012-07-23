@@ -51,9 +51,7 @@
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
-	
-	[super sync:_controller where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z and LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
+	[super syncRecent:_controller];
 }
 
 @end

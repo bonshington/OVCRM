@@ -68,7 +68,7 @@
 			@"NUMBER", @"PackSize__c",
 			@"TEXT", @"Price__c",
 			@"TEXT", @"Price_Level__c",
-			@"LOOKUP", @"Products__c",
+			@"TEXT", @"Products__c",
 			@"NUMBER", @"Quantity__c",
 			@"PICKLIST", @"Reason_for_Return__c",
 			@"TEXT", @"Reference_No__c",
@@ -92,7 +92,7 @@
 }
 
 -(void) sync:(id<OVSyncProtocal>)_controller{
-	
+	[super syncRecent:_controller];
 }
 
 @end
