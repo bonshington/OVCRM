@@ -41,7 +41,7 @@
 			@"NUMBER"	, @"Maximum_Stock__c",
 			@"TEXT"		, @"MD_Product_Category_Code__c",
 			@"TEXT"		, @"MD_Product_Class_Code__c",
-			@"TEXT"		, @"MD_Product_IsCancel_Code__c",
+			@"TEXT"		, @"MD_Product_IsCancel_Code__c", // 2 means can do Call card. but whay about 1 and 0?
 			@"TEXT"		, @"MD_Product_VatStatus_Code__c",
 			@"TEXT"		, @"MD_Product_Group__c",
 			@"NUMBER"	, @"Minimum_Stock__c",
@@ -110,7 +110,7 @@
 			 join	MD_Product_Category__c md \
 			 on	md.Code__c = p.MD_Product_Category_Code__c \
 			 where	p.Main_Product__c = '1' and p.isCancel <> 'Inactive' \
-			 order by md.Runing_Number__c"] readToEnd];
+			 order by md.Runing_Number__c, p.MD_Product_IsCancel_Code__c"] readToEnd];
 }
 
 @end

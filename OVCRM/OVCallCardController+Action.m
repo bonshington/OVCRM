@@ -94,6 +94,10 @@
 	[[self.data allValues] enumerateObjectsUsingBlock:^(NSDictionary *data, NSUInteger index, BOOL *stop){
 		[db sfInsertInto:@"Stock__c" withData:data];
 	}];
+	
+	
+	[[AppDelegate sharedInstance].checkin setObject:self.callcard forKey:@"CallCard"];
+	[[AppDelegate sharedInstance].checkin setObject:self.data forKey:@"CallCard_Data"];
 }
 
 @end

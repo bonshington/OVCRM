@@ -130,6 +130,8 @@
 	
 	// add tapped gesture to tableView recognition
     [self.tableView addGestureRecognizer:tapped];
+	
+	
 }
 
 - (void)hidePicker:(id)sender{

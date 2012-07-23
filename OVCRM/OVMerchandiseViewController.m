@@ -52,10 +52,6 @@
 		self.data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"select * from Merchandise__c where Account__c = ? and Date__c in (select ActivityDate from Plan where Id = ?)", self.accountId, self.planId] readToEndBy:@"prod_db_id__c"]];
 	}
 	
-	
-	
-	
-	
 }
 
 

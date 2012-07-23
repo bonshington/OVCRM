@@ -29,6 +29,7 @@
 	
 	ui.tag = tag;
 	ui.backgroundColor = [UIColor clearColor];
+	ui.textAlignment = UITextAlignmentCenter;
 	
 	if(text != nil)
 		ui.text = text;
@@ -46,6 +47,7 @@
 	ui.tag = tag;
 	ui.backgroundColor = [UIColor clearColor];
 	ui.textAlignment = UITextAlignmentRight;
+	ui.baselineAdjustment = UITextAlignmentCenter;
 	
 	if(num != nil)
 		ui.text = [NSString stringWithFormat:@"%@", num];

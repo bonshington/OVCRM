@@ -81,6 +81,7 @@
 }
 
 -(IBAction)save:(id)sender{
+	
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
 	[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Merchandise__c'", self.planId];
@@ -89,6 +90,8 @@
 	[[self.data allValues] enumerateObjectsUsingBlock:^(NSDictionary *data, NSUInteger index, BOOL *stop){
 		[db sfInsertInto:@"Merchandise__c" withData:data];
 	}];
+	
+	[[AppDelegate sharedInstance].checkin setObject:self.data forKey:@"Merchandise"];
 }
 
 

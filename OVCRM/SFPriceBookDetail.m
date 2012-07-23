@@ -37,7 +37,7 @@
 			@"TEXT", @"Discount_Order__c",
 			@"NUMBER", @"In_Stock__c",
 			@"TEXT", @"IsDelMassCreate__c",
-			@"TEXT", @"Is_Main__c",
+			@"TEXT", @"Is_Main__c", // main
 			@"TEXT", @"List_Price__c",
 			@"NUMBER", @"List_Price_Text__c",
 			@"NUMBER", @"Number_Range__c",
@@ -47,18 +47,18 @@
 			@"PICKLIST"	, @"Packaging__c",
 			@"NUMBER"	, @"Pack_Size__c",
 			@"TEXT"		, @"Price_Book__c",
-			@"PICKLIST"	, @"Product_Category__c",
+			@"PICKLIST"	, @"Product_Category__c", //cat
 			@"TEXT"		, @"Product_Category_F__c",
-			@"TEXT"		, @"Product_Code__c",
+			@"TEXT"		, @"Product_Code__c", // code
 			@"PICKLIST"	, @"Product_Family__c",
 			@"TEXT"		, @"Products_Database__c", // fk
 			@"NUMBER"	, @"Report_3__c",
 			@"PICKLIST"	, @"Reason_for_Return__c",
 			@"NUMBER"	, @"Return_Quantity__c",
-			@"NUMBER"	, @"Sales_Price__c",
+			@"NUMBER"	, @"Sales_Price__c", // price
 			@"NUMBER"	, @"Shelf_Share__c",
 			@"TEXT"		, @"Short_Name__c",
-			@"NUMBER", @"SO__c",
+			@"NUMBER", @"SO__c", // so
 			@"NUMBER", @"SO_1st__c",
 			@"NUMBER", @"SO_2nd__c",
 			@"NUMBER", @"SO_3th__c",

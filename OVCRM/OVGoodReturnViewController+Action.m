@@ -8,6 +8,7 @@
 
 #import "OVGoodReturnViewController.h"
 #import "InvoiceList.h"
+#import "OVOrderTakingViewController.h"
 
 
 @implementation OVGoodReturnViewController (Action)
@@ -65,10 +66,12 @@
 	
 	[self save:sender];
 	
-	InvoiceList *controller = [InvoiceList new];
+	//InvoiceList *controller = [InvoiceList new];
 	
-	controller.plan_ID = self.planId;
-	controller.account_ID = self.accountId;
+	OVOrderTakingViewController *controller = [[OVOrderTakingViewController alloc] initWithPlanId:self.planId accountId:self.accountId];
+	
+	//controller.plan_ID = self.planId;
+	//controller.account_ID = self.accountId;
 	
 	[self.navigationController pushViewController:controller
 										 animated:YES];
@@ -92,6 +95,8 @@
 	[[self.data allValues] enumerateObjectsUsingBlock:^(NSDictionary *data, NSUInteger index, BOOL *stop){
 		[db sfInsertInto:@"Goods_Return__c" withData:data];
 	}];
+	
+	[[AppDelegate sharedInstance].checkin setObject:self.data forKey:@"GoodReturn"];
 }
 
 @end

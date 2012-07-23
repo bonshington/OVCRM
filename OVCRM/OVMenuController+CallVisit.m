@@ -40,7 +40,7 @@
 	NSArray *planData = [[db executeQuery:@"select * from Plan where Id = ?", self.checkinEventId] readToEnd];
 	NSArray *myself = [[db executeQuery:@"select * from User limit 1"] readToEnd];
 	
-	NSDictionary *checkinData = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *checkinData = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								 [myself objectAtIndex:0 forKey:@"Name"], @"myself",
 								 self.checkinEventId		, @"PlanId",
 								 [planData objectAtIndex:0]	, @"PlanData",

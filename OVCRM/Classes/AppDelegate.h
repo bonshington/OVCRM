@@ -59,7 +59,7 @@
 @property (nonatomic, retain) NSMutableArray *registeredUploadStatusChange;
 @property (nonatomic, retain) CLLocation *location;
 @property (nonatomic, retain) CLLocationManager *locationManager;
-@property (nonatomic, retain) NSDictionary *checkin;
+@property (nonatomic, retain) NSMutableDictionary *checkin;
 @property (nonatomic, retain) NSString *routeId;
 @property (nonatomic, retain) NSDateFormatter *sqlFormat;
 
