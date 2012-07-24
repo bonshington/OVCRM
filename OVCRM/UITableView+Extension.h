@@ -13,5 +13,6 @@
 -(UITableViewCell *)selectedCell;
 -(UILabel *)labelInSelectdCellWithTag:(int)tag;
 -(UIView *) viewWithTag:(NSInteger)tag forRow:(NSInteger)row inSection:(NSInteger)section;
+-(void) deselectAllRows;
 
 @end

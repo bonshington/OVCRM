@@ -23,4 +23,10 @@
 	return[[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]] viewWithTag:tag];
 }
 
+-(void) deselectAllRows{
+	[self.indexPathsForSelectedRows enumerateObjectsUsingBlock:^(NSIndexPath *each, NSUInteger index, BOOL *stop){
+		[self deselectRowAtIndexPath:each animated:YES];
+	}];
+}
+
 @end

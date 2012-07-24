@@ -50,6 +50,8 @@
 									animated:YES 
 							  scrollPosition:UITableViewScrollPositionNone];
 		
+		[self validate];
+		
 	}
 	
 	previousSearchText = searchText;

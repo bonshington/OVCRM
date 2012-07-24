@@ -45,10 +45,7 @@
 			self.searchBar.placeholder = @"Account...";
 			self.searchBar.delegate = self;
 			self.searchBar.text = previousSearchText;
-			
-			if ([[[self.searchBar subviews] objectAtIndex:0] isKindOfClass:[UIImageView class]]){
-				[[[self.searchBar subviews] objectAtIndex:0] removeFromSuperview];
-			}
+			[self.searchBar removeBackground];
 			
 			UIView *custom = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, OV_PLAN_ACCOUNT_SECTION_HEADER_HEIGHT)];
 			custom.backgroundColor = [UIColor clearColor];
@@ -203,16 +200,15 @@
 			else{
 				[self tableView:self.tableView showDatePickerAtIndexPath:indexPath];
 			}
-			break;
+			
+			return nil;
 			
 		case 2:
-			[tableView.indexPathsForSelectedRows enumerateObjectsUsingBlock:^(NSIndexPath *each, NSUInteger index, BOOL *stop){
-				[tableView deselectRowAtIndexPath:each animated:YES];
-			}];
-			break;
+			[tableView deselectAllRows];
+			return indexPath;
 	}
 	
-	return indexPath;
+	return nil;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
