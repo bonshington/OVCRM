@@ -21,25 +21,30 @@
 	
 	if(cell == nil){
 		
-		NSDictionary *_data = [self.data objectForKey:prodId];
-		NSDictionary *_history = [self.history objectForKey:prodId];
-		
-		
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:prodId];
-		
-		cell.textLabel.text = [prod objectForKey:@"product_Category"];
-		cell.detailTextLabel.text = [prod objectForKey:@"product_Code"];
-		
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
-		[self tableViewCell:cell renderInputWith:_data];
-		
-		[self tableViewCell:cell renderLabelWith:_history];
-		
+		if(tableView == self.historyTable){
+			return [historyManager cellForId:prodId];
+		}
+		else {
+			NSDictionary *_data = [self.data objectForKey:prodId];
+			
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:prodId];
+			
+			cell.textLabel.text = [prod objectForKey:@"product_Category"];
+			cell.detailTextLabel.text = [prod objectForKey:@"product_Code"];
+			
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			
+			[self tableViewCell:cell renderInputWith:_data];
+			
+			[self tableViewCell:cell renderLabelWith:[self.indexing objectForKey:prodId]];
+			
+		}
 	}
 	
 	return cell;
 }
+	
+	
 
 -(void)tableViewCell:(UITableViewCell *)cell renderInputWith:(NSDictionary *)_data{
 	
@@ -69,19 +74,21 @@
 
 -(void)tableViewCell:(UITableViewCell *)cell renderLabelWith:(NSDictionary *)_data{
 	
-	/*
-	 
-	 if(_history != nil){
-	 
-	 for(int i = 0; i < 4; i++){
-	 [UILabel labelWithRect:CGRectMake(CC_UI_OFFSET_INV + (i*CC_UI_SPACE_INV), 7, 100, 30) 
-	 tag:tagForInv + i 
-	 text:[_history objectForKey:[NSString stringWithFormat:@"inv%d", i]]];
-	 }
-	 
-	 }
-	 
-	 */
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(300, 0, 80, 44) 
+										tag:0 
+									 number:[_data objectForKey:@"weight"]]];
+	
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(390, 0, 80, 44) 
+										tag:0 
+									 number:[_data objectForKey:@"packaging"]]];
+	
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(480, 0, 80, 44) 
+										tag:0 
+									 number:[_data objectForKey:@"packSize"]]];
+	
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(570, 0, 80, 44) 
+										tag:0 
+									 number:[_data objectForKey:@"List_Price__c"]]];
 }
 
 @end

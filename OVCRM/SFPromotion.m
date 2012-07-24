@@ -20,11 +20,14 @@
 
 -(NSDictionary *)schema{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
+			
+			@"TEXT", @"Start_Date__c",
 			@"TEXT", @"End_Date__c",
+			
 			@"PICKLIST", @"Quantity_Type__c",
 			@"TEXT", @"Salesman__c",
-			@"TEXT", @"Shop_Type__c",
-			@"TEXT", @"Start_Date__c",
+			@"TEXT", @"Shop_Type__c", // fk to where?
+			
 			@"NUMEBR", @"Value__c",
 			@"NUMBER", @"Volume__c", 
 			nil];

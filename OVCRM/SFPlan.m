@@ -89,7 +89,7 @@
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	[super sync:_controller where:[NSString stringWithFormat:@"User_ID__c = '%@'", [[AppDelegate sharedInstance].user objectForKey:@"userId"]]];
+	[super sync:_controller where:[NSString stringWithFormat:@"User_ID__c like '%@%%'", [[AppDelegate sharedInstance].user objectForKey:@"userId"]]];
 }
 
 +(NSArray *) selectToday{

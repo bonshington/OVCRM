@@ -10,4 +10,6 @@
 
 @interface SFPromotionCriteria : sObject
 
++(NSArray *)current;
+
 @end

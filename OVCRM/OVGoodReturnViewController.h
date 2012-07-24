@@ -21,8 +21,7 @@
 @property(nonatomic, retain) NSMutableDictionary *data;
 @property(nonatomic, retain) IBOutlet UIPickerView *pickerView;
 
-- (void)openPicker:(id)sender;
-- (void)hidePicker:(id)sender;
+
 
 @end
 
@@ -48,4 +47,9 @@
 
 @interface OVGoodReturnViewController (UIPickerViewHandler)<UIPickerViewDataSource, UIPickerViewDelegate>
 
+- (void)openPicker:(id)sender;
+- (void)hidePicker:(id)sender;
+- (void)didHidePicker:(id)sender;
+
 @end
+

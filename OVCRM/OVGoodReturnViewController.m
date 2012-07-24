@@ -7,7 +7,7 @@
 //
 
 #import "OVGoodReturnViewController.h"
-#import <QuartzCore/QuartzCore.h>
+
 
 @implementation OVGoodReturnViewController
 
@@ -83,88 +83,7 @@
 	
 }
 
-- (void)openPicker:(id)sender{
-	
-	[self.view endEditing:YES];
-	
-	UIButton *button = (UIButton *)sender;
-	selected = [button lookupFor:[UITableViewCell class]];
-	
-	// capture cell image
-	UIGraphicsBeginImageContext(selected.frame.size);
-	[selected.layer renderInContext:UIGraphicsGetCurrentContext()];
-	UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	mimic = [[UIImageView alloc] initWithImage:cellImage];
-	
-	
-	CGRect positionToScreen = [self.tableView convertRect:[self.tableView rectForRowAtIndexPath:[self.tableView indexPathForCell:selected]] 
-												   toView:self.view];
-	
-	self.pickerView.frame = CGRectMake(self.tableView.frame.size.width
-									   , positionToScreen.origin.y+ selected.frame.size.height
-									   , self.pickerView.frame.size.width
-									   , self.pickerView.frame.size.height);
-	
-	mimic.frame = CGRectMake(0
-							 , positionToScreen.origin.y
-							 , selected.frame.size.width
-							 , selected.frame.size.height);
-	
-	// display as cell itself
-	[self.view addSubview:mimic];
-	
-	self.tableView.scrollEnabled = NO;
-	self.searchBar.userInteractionEnabled = NO;
-	
-	
-	[UIView beginAnimations:nil context: NULL];
-	[UIView setAnimationDuration: 0.25];
-	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	
-	[self.tableView setAlpha:0.3];
-	
-	self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x - self.pickerView.frame.size.width
-									   , self.pickerView.frame.origin.y
-									   , self.pickerView.frame.size.width
-									   , self.pickerView.frame.size.height);
-	
-	[UIView commitAnimations];
-	
-	// add tapped gesture to tableView recognition
-    [self.tableView addGestureRecognizer:tapped];
-	
-	
-}
 
-- (void)hidePicker:(id)sender{
-	
-	if(mimic == nil)
-		return;
-	
-	
-	[mimic removeFromSuperview];
-
-	[UIView beginAnimations:nil context: NULL];
-	[UIView setAnimationDuration: 0.25];
-	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	
-	[self.tableView setAlpha:1];
-	
-	pickerView.frame = CGRectMake(self.tableView.frame.size.width
-								  , pickerView.frame.origin.y
-								  , self.pickerView.frame.size.width
-								  , self.pickerView.frame.size.height);
-	
-	[UIView commitAnimations];
-	
-	[self.tableView removeGestureRecognizer:tapped];
-	self.tableView.scrollEnabled = YES;
-	self.searchBar.userInteractionEnabled = YES;
-	
-	mimic = nil;
-	selected = nil;
-}
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
 	

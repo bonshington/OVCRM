@@ -13,7 +13,7 @@
 
 @implementation OVOrderTakingViewController
 
-@synthesize tableView, historyView, searchBar, filtered, product, selected, data, swipeLeft, swipeRight, columnView, historyColumnView;
+@synthesize tableView, historyTable, searchBar, filtered, product, selected, data, historyColumn;
 
 
 -(id)initWithPlanId:(NSString *)_planId 
@@ -41,27 +41,20 @@
 	callcard = [[AppDelegate sharedInstance].checkin objectForKey:@"CallCard_Data"];
 	
 	
-	[[self.historyColumnView subviews] enumerateObjectsUsingBlock:^(UIView *sub, NSUInteger index, BOOL *stop){
-		sub.backgroundColor = [UIColor clearColor];
-	}];
-	
-	
 	// load/resume
 	self.selected = [NSMutableArray new];
 	
 	
-	history = [[OVHistoryManager alloc] initWithTableView:self.historyView 
-												   column:self.historyColumnView 
-												container:self.tableView];
+	historyManager = [[OVHistoryManager alloc] initWithTableView:self.historyTable 
+														  column:self.historyColumn
+													   container:self.tableView];
 	
 	
 	// add gesture recognition
-	[self.swipeLeft addTarget:history action:@selector(show:)];
-	[self.swipeRight addTarget:history action:@selector(hide:)];
-	
-	
-	[self.tableView addGestureRecognizer:self.swipeLeft];
-	[self.historyView addGestureRecognizer:self.swipeRight];
+	swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:historyManager action:@selector(show:)];
+	swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:historyManager action:@selector(hide:)];
+	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
 	
 	
 	self.product = [SFProduct sellingForAccount:accountId];
@@ -70,8 +63,17 @@
 	
 	self.title = @"Order Taking";
 	
+}
+
+-(void) viewDidAppear:(BOOL)animated{
 	
-	
+	[self.tableView addGestureRecognizer:swipeLeft];
+	[self.historyTable addGestureRecognizer:swipeRight];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+	[self.tableView removeGestureRecognizer:swipeLeft];
+	[self.historyTable removeGestureRecognizer:swipeRight];
 }
 
 

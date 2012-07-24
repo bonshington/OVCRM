@@ -66,6 +66,11 @@
 					 [SFAR new], @"AR", 
 					 [SFARDetail new], @"AR Detail", 
 					 
+					 [SFPromotion new], @"Promotion",
+					 [SFPromotionCriteria new], @"Promotion Criteria",
+					 [SFPromotionDiscount new], @"Promotion DIscount",
+					 [SFPromotionLine new], @"Promotion Line",
+					 
                      nil];
 }
 

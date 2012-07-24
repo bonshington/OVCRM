@@ -30,17 +30,58 @@
 		_tableView.hidden = YES;
 		
 		[_container addSubview:_tableView];
+		
+		
+		[[_column subviews] enumerateObjectsUsingBlock:^(UIView *sub, NSUInteger index, BOOL *stop){
+			sub.backgroundColor = [UIColor clearColor];
+		}];
 	
 		
 		// load data;
 		NSString *accountId = [[AppDelegate sharedInstance].checkin objectForKey:@"AccountId"];
 		_data = [[SFProduct sellingForAccount:accountId] dictionaryFromObjectForKey:@"Id"];
+		
+		
+		
+		
+		
+		/*
+		 
+		 
+		 -(void) loadHistory{
+		 self.history = [[[OVDatabase sharedInstance] executeQuery:
+		 @"select 	st.prod_db_id__c \
+		 , max(case when c0.Id = st.Stock__c then c0.Checking_Date__c else nil end) as date0 \
+		 , max(case when c1.Id = st.Stock__c then c1.Checking_Date__c else nil end) as date1 \
+		 , max(case when c2.Id = st.Stock__c then c2.Checking_Date__c else nil end) as date2 \
+		 , max(case when c3.Id = st.Stock__c then c3.Checking_Date__c else nil end) as date3 \
+		 \
+		 , max(case when c0.Id = st.Stock__c then st.In_Stock__c else nil end) as inv0 \
+		 , max(case when c1.Id = st.Stock__c then st.In_Stock__c else nil end) as inv1 \
+		 , max(case when c2.Id = st.Stock__c then st.In_Stock__c else nil end) as inv2 \
+		 , max(case when c3.Id = st.Stock__c then st.In_Stock__c else nil end) as inv3 \
+		 \
+		 from 	CallCard_Stock st \
+		 left join (select Id, CS_Date from Call_Card__c where Id not like '-%' and Checking_Date__c <> date('now') order by Checking_Date__c desc limit 1, 0) c0 on c0.Id = st.Stock__c \
+		 left join (select Id, CS_Date from Call_Card__c where Id not like '-%' and Checking_Date__c <> date('now') order by Checking_Date__c desc limit 1, 1) c1 on c1.Id = st.Stock__c \
+		 left join (select Id, CS_Date from Call_Card__c where Id not like '-%' and Checking_Date__c <> date('now') order by Checking_Date__c desc limit 1, 2) c2 on c2.Id = st.Stock__c \
+		 left join (select Id, CS_Date from Call_Card__c where Id not like '-%' and Checking_Date__c <> date('now') order by Checking_Date__c desc limit 1, 3) c3 on c3.Id = st.Stock__c \
+		 group by st.prod_db_id__c"] 
+		 readToEndBy:@"prod_db_id__c"];
+		 }
+		 
+		 */
+		
+		
 	}
 	
 	return self;
 }
 
 -(void) show:(id)sender{
+	
+	if(!_tableView.hidden)
+		return;
 	
 	_tableView.hidden = NO;
 	_column.hidden = NO;

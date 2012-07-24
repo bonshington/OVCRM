@@ -29,6 +29,10 @@
 #import "SFTradeProg.h"
 #import "SFARDetail.h"
 #import "SFAR.h"
+#import "SFPromotion.h"
+#import "SFPromotionCriteria.h"
+#import "SFPromotionLine.h"
+#import "SFPromotionDiscount.h"
 
 #define OVSYNC_SECTION_MY_DATA	0
 #define OVSYNC_SECTION_UPLOAD	1

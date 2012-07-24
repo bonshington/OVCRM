@@ -19,7 +19,7 @@
 }
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-	if(tableView == self.historyView){
+	if(tableView == self.historyTable){
 		return @" ";
 	}
 	else{
@@ -78,9 +78,9 @@
 	
 	if(cell == nil){
 		
-		if(tableView == self.historyView){
+		if(tableView == self.historyTable){
 			
-			cell = [history cellForId:prodId];
+			cell = [historyManager cellForId:prodId];
 			
 		}
 		else {
@@ -127,15 +127,15 @@
 
 -(UITableViewCell *) tableViewCell:(UITableViewCell *)cell productForData:(NSDictionary *)_data{
 	
-	[cell addSubview:[UILabel labelWithRect:CGRectMake(295, 0, 85, 44) 
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(300, 0, 80, 44) 
 										tag:0 
 									 number:[_data objectForKey:@"weight"]]];
 	
-	[cell addSubview:[UILabel labelWithRect:CGRectMake(385, 0, 85, 44) 
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(390, 0, 80, 44) 
 										tag:0 
 									 number:[_data objectForKey:@"packaging"]]];
 	
-	[cell addSubview:[UILabel labelWithRect:CGRectMake(475, 0, 85, 44) 
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(480, 0, 80, 44) 
 										tag:0 
 									 number:[_data objectForKey:@"packSize"]]];
 	

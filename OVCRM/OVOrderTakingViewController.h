@@ -20,18 +20,17 @@
 	
 	
 	NSDictionary *callcard;
-	OVHistoryManager *history;
+	OVHistoryManager *historyManager;
+	
+	UISwipeGestureRecognizer *swipeLeft;
+	UISwipeGestureRecognizer *swipeRight;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) IBOutlet UITableView *historyView;
+@property (nonatomic, retain) IBOutlet UITableView *historyTable;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 
-@property (nonatomic, retain) IBOutlet UIView *columnView;
-@property (nonatomic, retain) IBOutlet UIView *historyColumnView;
-
-@property (nonatomic, retain) IBOutlet UIGestureRecognizer *swipeLeft;
-@property (nonatomic, retain) IBOutlet UIGestureRecognizer *swipeRight;
+@property (nonatomic, retain) IBOutlet UIView *historyColumn;
 
 @property (nonatomic, retain) NSArray *product;
 @property (nonatomic, retain) NSMutableArray *filtered;
