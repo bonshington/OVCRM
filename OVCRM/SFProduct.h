@@ -10,6 +10,8 @@
 
 @interface SFProduct : sObject
 
+
 +(NSArray *) availableProduct;
++(NSArray *) sellingForAccount:(NSString *)accountId;
 
 @end

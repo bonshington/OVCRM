@@ -61,4 +61,15 @@
 	return [[self objectAtIndex:index] objectForKey:key];
 }
 
+-(NSDictionary *) dictionaryFromObjectForKey:(id)key{
+	
+	NSMutableDictionary *result = [NSMutableDictionary new];
+	
+	[self enumerateObjectsUsingBlock:^(NSDictionary * element, NSUInteger index, BOOL *stop){
+		[result setObject:element forKey:[element objectForKey:key]];
+	}];
+	
+	return result;
+}
+
 @end

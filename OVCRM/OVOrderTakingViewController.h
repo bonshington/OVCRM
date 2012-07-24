@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OVProductConsumerController.h"
+#import "OVHistoryManager.h"
 
 #define UITableView_HistoryView_Width 355
 
@@ -17,9 +18,9 @@
 	NSString *accountId;
 	NSString *previousSearchText;
 	
-	CGRect originalHistoryFrame;
 	
 	NSDictionary *callcard;
+	OVHistoryManager *history;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -42,10 +43,7 @@
 -(id)initWithPlanId:(NSString *)_planId 
 		  accountId:(NSString *)_accountId;
 
--(IBAction)showHistory:(id)sender;
--(IBAction)hideHistory:(id)sender;
-
--(IBAction)doneHideHistory:(id)sender;
+-(void) loadData;
 
 @end
 
@@ -54,7 +52,6 @@
 
 -(UITableViewCell *) tableViewCell:(UITableViewCell *)cell callcardForIndexPath:(NSIndexPath *)indexPath;
 -(UITableViewCell *) tableViewCell:(UITableViewCell *)cell productForData:(NSDictionary *)_data;
--(UITableViewCell *) tableViewCell:(UITableViewCell *)cell historyForIndexPath:(NSIndexPath *)indexPath forData:(NSDictionary *)_data;
 
 @end
 

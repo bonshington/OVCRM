@@ -84,31 +84,34 @@
 	
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
-	NSArray *unsync = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c' and syncTime is null", self.planId] readToEnd];
+	NSMutableDictionary *merge = [NSMutableDictionary new];
 	
-	// resuming
-	if(unsync != nil && unsync.count > 0){
+	
+	NSDictionary *existing = [[db executeQuery:@"Select * From Stock__c where Call_Card__c = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"prod_db_id__c"];
+	
+	if(existing != nil){
+		[existing enumerateKeysAndObjectsUsingBlock:^(NSString *prodId, NSDictionary *row, BOOL *stop){
+			[merge setObject:row forKey:prodId];
+		}];
+	}
+	
+	
+	NSArray *resume = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Stock__c' and syncTime is null", self.planId] readToEnd];
+
+	if(resume != nil && resume.count > 0){
 		
-		self.data = [NSMutableDictionary new];
-		
-		[unsync enumerateObjectsUsingBlock:^(NSDictionary *upload, NSUInteger index, BOOL *stop){
+		[resume enumerateObjectsUsingBlock:^(NSDictionary *upload, NSUInteger index, BOOL *stop){
 			
 			NSDictionary *json = [upload objectForKey:@"json"];
 			
-			[self.data setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
+			[merge setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
 		}];
-		
 		
 		[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Stock__c' and syncTime is null", self.planId];
 	}
-	else{
-		// load existing
-		
-		self.data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"Select * From Stock__c where Call_Card__c = ?", [self.callcard objectForKey:@"Id"]] readToEndBy:@"prod_db_id__c"]];
-	}
 	
-	if(self.data == nil)
-		self.data = [NSMutableDictionary new];
+	
+	self.data = merge;
 }
 
 -(void) loadHistory{

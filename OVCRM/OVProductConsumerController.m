@@ -83,7 +83,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return (interfaceOrientation == UIDeviceOrientationLandscapeRight) || (interfaceOrientation == UIDeviceOrientationLandscapeLeft);
+	return 
+	(interfaceOrientation == UIDeviceOrientationLandscapeRight) || 
+	(interfaceOrientation == UIDeviceOrientationLandscapeLeft);
 }
 
 
@@ -93,11 +95,7 @@
 {
     [super viewDidLoad];
 	
-	[self.searchBar setTranslucent:YES];
-	
-	if ([[[self.searchBar subviews] objectAtIndex:0] isKindOfClass:[UIImageView class]]){
-		[[[self.searchBar subviews] objectAtIndex:0] removeFromSuperview];
-	}
+	[self.searchBar removeBackground];
 	
 	
 	// add right buttons

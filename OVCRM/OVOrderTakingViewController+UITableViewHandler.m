@@ -72,25 +72,34 @@
 	}
 	
 	
-	NSString *cellId = [_data objectForKey:@"prod_db_id__c"];
+	NSString *prodId = [_data objectForKey:@"Id"];
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:prodId];
 	
 	if(cell == nil){
 		
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-		
 		if(tableView == self.historyView){
-			[self tableViewCell:cell historyForIndexPath:indexPath forData:_data];
+			
+			cell = [history cellForId:prodId];
+			
 		}
 		else {
-			cell.textLabel.text = [_data objectForKey:@"product_Category"];
-			cell.detailTextLabel.text = [_data objectForKey:@"product_Code"];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:prodId];
+			
+			cell.textLabel.text = [_data objectForKey:@"name"];
+			cell.detailTextLabel.text = [_data objectForKey:@"code"];
 			
 			
 			[self tableViewCell:cell productForData:_data];
 			
 			[self tableViewCell:cell callcardForIndexPath:indexPath];
+			
+			
+			[cell addSubview:[UITextField newWithCGRect:CGRectMake(self.tableView.frame.size.width - 93, 7, 80, 30)
+													tag:0 
+												   text:@"" 
+											  respondTo:self 
+											   selector:@selector(change:)]];
 		}
 		
 	}
@@ -111,7 +120,7 @@
 	
 	[cell addSubview:[UILabel labelWithRect:CGRectMake(700, 0, 125, 44) 
 										tag:0 
-									   text:[NSString stringWithFormat:@"%@/%@", text1, text2]]];
+									   text:[NSString stringWithFormat:@"%@ / %@", text1, text2]]];
 	
 	return cell;
 }
@@ -131,15 +140,6 @@
 									 number:[_data objectForKey:@"packSize"]]];
 	
 	
-	
-	return cell;
-}
-
--(UITableViewCell *) tableViewCell:(UITableViewCell *)cell historyForIndexPath:(NSIndexPath *)indexPath forData:(NSDictionary *)_data{
-	
-	[cell addSubview:[UILabel labelWithRect:CGRectMake(565, 0, 85, 44) 
-										tag:0 
-									 number:[_data objectForKey:@"sales price??"]]];
 	
 	return cell;
 }

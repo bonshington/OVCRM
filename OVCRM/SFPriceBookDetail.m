@@ -47,8 +47,8 @@
 			@"PICKLIST"	, @"Packaging__c",
 			@"NUMBER"	, @"Pack_Size__c",
 			@"TEXT"		, @"Price_Book__c",
-			@"PICKLIST"	, @"Product_Category__c", //cat
-			@"TEXT"		, @"Product_Category_F__c",
+			@"PICKLIST"	, @"Product_Category__c", 
+			@"TEXT"		, @"Product_Category_F__c", //cat
 			@"TEXT"		, @"Product_Code__c", // code
 			@"PICKLIST"	, @"Product_Family__c",
 			@"TEXT"		, @"Products_Database__c", // fk

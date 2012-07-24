@@ -45,6 +45,8 @@
 			@"TEXT"		,@"Start_Promotion__c",
 			@"TEXT"		,@"Unit__c",
 			@"TEXT"		,@"Unit_of_Measurement__c",
+			
+			@"PICKLIST"	, @"Status__c",
 			nil];
 }
 

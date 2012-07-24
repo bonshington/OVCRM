@@ -51,32 +51,35 @@
 	if(!db.open)
 		[db open];
 	
-	self.data = [NSMutableDictionary new];
+	NSMutableDictionary *merge = [NSMutableDictionary new];
 	
-	NSArray *unsync = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Goods_Return__c' and syncTime is null", self.planId] readToEnd];
+	NSArray *resume = [[db executeQuery:@"select * from Upload where planId = ? and sObject = 'Goods_Return__c' and syncTime is null", self.planId] readToEnd];
 	
 	// resume
-	if(unsync != nil && unsync.count > 0){
+	if(resume != nil && resume.count > 0){
 		
-		[unsync enumerateObjectsUsingBlock:^(NSDictionary *upload, NSUInteger index, BOOL *stop){
+		[resume enumerateObjectsUsingBlock:^(NSDictionary *upload, NSUInteger index, BOOL *stop){
 		
 			NSDictionary *json = [SFJsonUtils objectFromJSONString:[upload objectForKey:@"json"]];
 			
-			[self.data setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
+			[merge setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
 		}];
 	}
-	else{
-		// load synced
-		self.data = [NSMutableDictionary dictionaryWithDictionary:
-					 [[db executeQuery:
-					   @"select * from Goods_Return__c where Account__c = ? and Return_Date__c in (select ActivityDate from Plan where Id = ?)", self.accountId, self.planId] readToEndBy:@"prod_db_id__c"]];
+	
+	
+	NSArray *existing = [[db executeQuery:
+							   @"select * from Goods_Return__c where Account__c = ? and Return_Date__c in (select ActivityDate from Plan where Id = ?)", self.accountId, self.planId] readToEnd];
+	
+	if(existing != nil && existing.count > 0){
 		
+		[existing enumerateObjectsUsingBlock:^(NSDictionary *row, NSUInteger index, BOOL *stop){
+			[merge setObject:row forKey:[row objectForKey:@"prod_db_id__c"]];
+		}];
 		
+		[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Goods_Return__c' and syncTime is null", self.planId];
 	}
 	
-	// incase load not found
-	if(self.data == nil)
-		self.data = [NSMutableDictionary new];
+	self.data = merge;
 	
 }
 

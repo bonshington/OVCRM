@@ -45,9 +45,12 @@
 #import "UIView+Extension.h"
 #import "NSArray+LINQ.h"
 #import "NSIndexPath+Extension.h"
+#import "UISearchBar+Extension.h"
 
 @interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal, CLLocationManagerDelegate>{
 
+	NSString *planId;
+	NSString *accountId;
 }
 
 @property (nonatomic, copy, getter = getUser) NSDictionary *user;
@@ -72,6 +75,15 @@
 
 
 +(BOOL)isKeyBoardInDisplay;
+
+@end
+
+
+
+@interface AppDelegate (Action)
+
+-(void) checkinAccount:(NSString *)_accountId withPlan:(NSString *)_planId;
+-(void) checkout;
 
 @end
 

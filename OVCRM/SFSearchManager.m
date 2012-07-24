@@ -43,13 +43,13 @@
     
     
     [result setObject:[[db executeQuery:
-						@"select 'Event' as obj, Id, What as label, Description as detail \
-						from	Event \
-						where	(What like :text or Account_name__c like :text or StartDateTime like :text) \
+						@"select 'Plan' as obj, Id, Account_Name as label, Description as detail \
+						from	Plan \
+						where	(Account_Name like :text or Description like :text or ActivityDate like :text) \
 						limit 25"
 				withParameterDictionary:params] 
 					   readToEnd]
-               forKey:@"Event"];
+               forKey:@"Plan"];
 	
 	
 	

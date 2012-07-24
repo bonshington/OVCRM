@@ -113,4 +113,20 @@
 			 order by md.Runing_Number__c, p.MD_Product_IsCancel_Code__c"] readToEnd];
 }
 
++(NSArray *) sellingForAccount:(NSString *)accountId{
+	return [[[OVDatabase sharedInstance] executeQuery:
+			 @"select 	p.Id, pl.Product_Category_F__c as name, pl.ProductCode as code, pl.SalesPrice as price, p.product_Category, p.product_Code, p.packSize, p.weight, p.packaging, p.List_Price__c \
+			 from 	ProductPrice pp \
+			 join	ProductPriceList pl \
+				on	pl.ProductPrice_PK = pp.Id \
+			 join	Product p \
+				on	p.Id = pl.Products_Database__c \
+				and	p.Main_Product__c = '1' \
+				and p.isCancel <> 'Inactive' \
+			 where	pp.Account = ? \
+				and pp.Status__c = 'Sales ( Order Taking )' \
+			 order by pl.Number_Range__c"
+			 , accountId] readToEnd];
+}
+
 @end

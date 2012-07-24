@@ -33,7 +33,17 @@
 		[db open];
 	
 	
-	self.data = [NSMutableDictionary new];
+	NSMutableDictionary *merge = [NSMutableDictionary new];
+	
+	
+	NSArray *existing = [[db executeQuery:@"select * from Merchandise__c where Account__c = ? and Date__c in (select ActivityDate from Plan where Id = ?)", self.accountId, self.planId] readToEnd];
+	
+	if(existing != nil && existing.count > 0){
+		[existing enumerateObjectsUsingBlock:^(NSDictionary *row, NSUInteger index, BOOL *stop){
+			[merge setObject:row forKey:[row objectForKey:@"prod_db_id__c"]];
+		}];
+	}
+	
 	
 	//check unsync for resuming
 	NSArray *unsync = [[db executeQuery:@"select * from Upload where planId = ? and syncTime is null and sObject = 'Merchandise__c'", self.planId] readToEnd];
@@ -44,14 +54,13 @@
 			
 			NSDictionary *json =  [SFJsonUtils objectFromJSONString:[upload objectForKey:@"json"]];
 			
-			[self.data setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
+			[merge setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
 		}];
-	}
-	else{// check existing
 		
-		self.data = [NSMutableDictionary dictionaryWithDictionary:[[db executeQuery:@"select * from Merchandise__c where Account__c = ? and Date__c in (select ActivityDate from Plan where Id = ?)", self.accountId, self.planId] readToEndBy:@"prod_db_id__c"]];
+		[db executeUpdate:@"delete from Upload where planId = ? and sObject = 'Merchandise__c' and syncTime is null", self.planId];
 	}
 	
+	self.data = merge;
 }
 
 

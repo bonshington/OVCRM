@@ -41,10 +41,11 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUITableView" id="823566894">
 						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 44}, {1024, 660}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="271490126">
 							<int key="NSColorSpace">3</int>
@@ -342,6 +343,7 @@
 										<string key="NSFrame">{{270, 0}, {85, 44}}</string>
 										<reference key="NSSuperview" ref="837645022"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="823566894"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<reference key="IBUIBackgroundColor" ref="600482637"/>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -4785,7 +4787,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<string key="NSFrame">{{0, 64}, {1024, 704}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="823566894"/>
+				<reference key="NSNextKeyView" ref="885905895"/>
 				<reference key="IBUIBackgroundColor" ref="372817579"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<array key="IBUIGestureRecognizers" id="0"/>
@@ -4811,6 +4813,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<string key="NSFrame">{{0, 64}, {415, 960}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -4923,22 +4926,6 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<reference key="destination" ref="841351856"/>
 					</object>
 					<int key="connectionID">123</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">hideHistory:</string>
-						<reference key="source" ref="790600702"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">149</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">showHistory:</string>
-						<reference key="source" ref="851965045"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">148</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -5130,34 +5117,11 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<object class="IBPartialClassDescription">
 					<string key="className">OVOrderTakingViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="doneHideHistory:">id</string>
-						<string key="hideHistory:">id</string>
-						<string key="showHistory:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="doneHideHistory:">
-							<string key="name">doneHideHistory:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="hideHistory:">
-							<string key="name">hideHistory:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="showHistory:">
-							<string key="name">showHistory:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="columnView">UIView</string>
 						<string key="historyColumnView">UIView</string>
 						<string key="historyView">UITableView</string>
-						<string key="productDummyColumn">UIView</string>
-						<string key="productHistoryColumn">UIView</string>
 						<string key="searchBar">UISearchBar</string>
-						<string key="selectedDummyColumn">UIView</string>
-						<string key="selectedHistoryColumn">UIView</string>
 						<string key="swipeLeft">UIGestureRecognizer</string>
 						<string key="swipeRight">UIGestureRecognizer</string>
 						<string key="tableView">UITableView</string>
@@ -5175,25 +5139,9 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 							<string key="name">historyView</string>
 							<string key="candidateClassName">UITableView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="productDummyColumn">
-							<string key="name">productDummyColumn</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="productHistoryColumn">
-							<string key="name">productHistoryColumn</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="searchBar">
 							<string key="name">searchBar</string>
 							<string key="candidateClassName">UISearchBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="selectedDummyColumn">
-							<string key="name">selectedDummyColumn</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="selectedHistoryColumn">
-							<string key="name">selectedHistoryColumn</string>
-							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="swipeLeft">
 							<string key="name">swipeLeft</string>

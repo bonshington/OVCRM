@@ -45,3 +45,5 @@
 #define tagForOrder			2100
 
 #define SETTING_MENU_SEARCH_LIMIT 25
+
+#define UITableView_HistoryView_Width 355

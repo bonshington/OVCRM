@@ -18,7 +18,7 @@
 
 @implementation OVMenuController
 
-@synthesize checkinEventId, checkedAccountId, todayPlan, resultView, resultManager, tableView;
+@synthesize todayPlan, resultView, resultManager, tableView;//checkinEventId, checkedAccountId
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -163,6 +163,10 @@
 	[[AppDelegate sharedInstance].detail pushViewController:[OVPlanViewController new] 
 												   animated:YES];
 	
+}
+
+-(void) checkin:(id)sender{
+	[[AppDelegate sharedInstance] checkinAccount:accountId withPlan:planId];
 }
 
 @end
