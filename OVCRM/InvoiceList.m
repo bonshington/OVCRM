@@ -7,7 +7,7 @@
 //
 
 #import "InvoiceList.h"
-
+#import "OVCompetitiveCTR.h"
 #import "tblInvoice.h"
 #import "tblCollection.h"
 #import "TakeOrder.h"
@@ -42,8 +42,9 @@
 @synthesize tblinvoice = _tblinvoice;
 @synthesize tblcollection = _tblcollection;
 @synthesize tblParameter = _tblParameter;
-//@synthesize lbTotalAmount;
-//@synthesize lbPayTotal;
+@synthesize lbTotalAmount;
+@synthesize lbPayTotal;
+@synthesize totalAmount,payTotal;
 @synthesize invoiceDetail = _invoiceDetail;
 @synthesize muTableData;
 @synthesize payType;
@@ -69,7 +70,7 @@
 
 - (void)viewDidLoad
 {
-    [self setTitle:@"Ovaltine(CLT)"];
+    [self setTitle:@"Collection"];
     UIBarButtonItem * barButtonNext = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(nextToTakeOrder)];
     [self.navigationItem setRightBarButtonItem:barButtonNext animated:YES];
     
@@ -78,9 +79,11 @@
     _tblcollection = [[tblCollection alloc]init];
     _tblParameter = [[tblParameter alloc] init];
     muTableData = [[NSMutableArray alloc]init];
+    lbTotalAmount = [[UILabel alloc]init];
+    lbPayTotal = [[UILabel alloc]init];
     [_tblinvoice OpenConnection];
     [_tblcollection OpenConnection];
-    part2TxtReceive.text = [[NSString alloc]initWithFormat:@"0"];
+    part2TxtReceive.text = [[NSString alloc]initWithFormat:@""];
     [self setPart2Hidden:YES];
     [self LoadBankData];
     
@@ -243,17 +246,17 @@
 -(void) nextToTakeOrder
 {
     if ([lbPayTotal.text doubleValue] >= [part2TxtReceive.text doubleValue]-0.0001) {
-        [self saveCollect];
-        TakeOrder * nextView = [[TakeOrder alloc]initWithNibName:@"TakeOrder" bundle:nil];
-        nextView.account_ID = account_ID;
-        nextView.plan_ID = plan_ID;
-        [self.navigationController pushViewController:nextView animated:YES];
+//        [self saveCollect];
+        OVCompetitiveCTR * nextView = [[OVCompetitiveCTR alloc]initWithNibName:@"OVCompetitiveCTR" bundle:nil];
+        nextView.accountID = account_ID;
+        nextView.planID = plan_ID;
+        [self.navigationController pushViewController:nextView animated:YES];    
     }else {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error" 
-                                                        message:@"ค่าเงินรับเกิน" 
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil ];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Error" 
+                                                            message:@"ค่าเงินรับเกิน" 
+                                                            delegate:nil
+                                                    cancelButtonTitle:@"OK" 
+                                                    otherButtonTitles:nil ];
         [alert show];
     }
 }
@@ -273,14 +276,14 @@
         invoice.paid = [NSString stringWithFormat:@"Y"]; 
         double payAmount = [lbPayTotal.text doubleValue];
         payAmount = payAmount + [invoice.inv_Total doubleValue];
-        lbPayTotal.text = [NSString stringWithFormat:@"%.2f",payAmount];
-        part2lbMoney.text = [NSString stringWithFormat:@"%.2f",payAmount];
+        lbPayTotal.text = [NSString stringWithFormat:@"%.2f ฿",payAmount];
+        part2lbMoney.text = [NSString stringWithFormat:@"%.2f ฿",payAmount];
     }else {
         invoice.paid = [NSString stringWithFormat:@"N"]; 
         double payAmount = [lbPayTotal.text doubleValue];
         payAmount = payAmount - [invoice.inv_Total doubleValue];
-        lbPayTotal.text = [NSString stringWithFormat:@"%.2f",payAmount];
-        part2lbMoney.text = [NSString stringWithFormat:@"%.2f",payAmount];
+        lbPayTotal.text = [NSString stringWithFormat:@"%.2f ฿",payAmount];
+        part2lbMoney.text = [NSString stringWithFormat:@"%.2f ฿",payAmount];
     }
 }
 
@@ -290,8 +293,8 @@
     invoice.paid = [NSString stringWithFormat:@"Y"]; 
     double payAmount = [lbPayTotal.text doubleValue];
     payAmount = payAmount + [invoice.inv_Total doubleValue];
-    lbPayTotal.text = [NSString stringWithFormat:@"%.2f",payAmount];
-    part2lbMoney.text = [NSString stringWithFormat:@"%.2f",payAmount];
+    lbPayTotal.text = [NSString stringWithFormat:@"%.2f ฿",payAmount];
+    part2lbMoney.text = [NSString stringWithFormat:@"%.2f ฿",payAmount];
 }
 
 
@@ -369,8 +372,8 @@
 
 -(void) loadDataProduct
 {
-    NSString *tableField = [_tblinvoice DB_Field] ;
-    NSString *searchString = [[NSString alloc] initWithFormat:@"select %@ from Invoice -- Where Account_ID='%@' AND Paid<>'1'",tableField ,account_ID]; 
+//    NSString *tableField = [_tblinvoice DB_Field] ;
+    NSString *searchString = [[NSString alloc] initWithFormat:@"select Id, Invoice_No, Inv_DueDate, Inv_Total, Paid, Customer_Name__c as Account_ID from Invoice Where Customer_Name__c='%@' AND Paid<>'1'",account_ID]; 
 	NSLog(@"%@",searchString);
     muTableData = [_tblinvoice QueryData:searchString];
     
@@ -381,6 +384,7 @@
         sum += [invoice.inv_Total doubleValue];
     }
     lbTotalAmount.text = [[NSString alloc] initWithFormat:@"%.2f",sum];
+//    lbTotalAmount.text = totalAmount;
     [tableData reloadData];
 }
 
@@ -472,7 +476,7 @@
 }
 
 -(void) saveCollect{
-        //[self updateInvoicePaid];
+        [self updateInvoicePaid];
         [self InsertCollect];
 }
 
@@ -485,7 +489,8 @@
         tblInvoice * invoice = [muTableData objectAtIndex:ii];
         if ([invoice.paid isEqualToString:@"Y"]) {
             paramArray = [NSArray arrayWithObjects:nil];//invoice.invoice_No,
-            sql = [NSString stringWithFormat:@"Update Invoice Set Paid='Y' Where Invoice_No='%@'",invoice.invoice_No];
+            sql = [NSString stringWithFormat:@"Update Invoice Set Paid='1' Where Invoice_No='%@'",invoice.invoice_No];
+            NSLog(@"%@",sql);
             [_tblcollection ExecSQL:sql parameterArray:paramArray];
         }
     }
@@ -499,7 +504,7 @@
     //*************** Delete old collection of this Plan *****************
     sql = [NSString stringWithFormat:@"Delete From Collection Where Plan_ID=?"];
     paramDeleteArray = [NSArray arrayWithObjects:plan_ID,nil];
-    [_tblcollection ExecSQL:sql parameterArray:paramDeleteArray];
+//    [_tblcollection ExecSQL:sql parameterArray:paramDeleteArray];
     
     //********************************************************************
     
@@ -548,6 +553,9 @@
             //Edit by Toon , ให้PK เก็บค่าเท่ากับ Plan_ID ไปก่อน เนื่องจากเป็นค่าที่รับจากฝั่ง Saleforce
             paramArray = [NSArray arrayWithObjects:plan_ID,plan_ID,strDate,strTime,invoice.invoice_No,myPay,payType,branch,bank,chequeNo,TotalPay,nil];
             sql = [NSString stringWithFormat:@"Insert Into Collection (Plan_ID, ID, Collect_Date, Collect_Time, Invoice_No, Amount, PayType, Branch, Bank, ChequeNo, TotalPay) Values (?,?,?,?,?,?,?,?,?,?,?)"];
+//            paramArray = [NSArray arrayWithObjects:@"",branch,nil];
+//            sql = [NSString stringWithFormat:@"Insert Into Collection (Id , Branch , Credit_Balance__c , Over_Credit_Amount__c , Invoice_No , ChequeNo , Amount , Grand_Total__c , Over_Credit__c , PayType , Sum_Net_Total__c , Bank , Customer_Code__c , Credit_Limit__c , Source_System__c , Customer_Name__c ) Values (?,?,?,?,?,?,?,?,?,?,?)"];
+
             [_tblcollection ExecSQL:sql parameterArray:paramArray];
         }
     }
@@ -572,19 +580,23 @@
 
 -(void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSString *selectItem  = [arrPickerList objectAtIndex:[pickerView selectedRowInComponent:0]];
+//    NSString *selectItem  = [arrPickerList objectAtIndex:[pickerView selectedRowInComponent:0]];
     
-    if ([self.pickerType  isEqualToString:@"BA"]) //Bank
-    {      
-        [self.part2BtnBank setTitle:selectItem forState:UIControlStateNormal];       
-        self.bankValue = [dicBank objectForKey:selectItem];
-        [self.part2BtnBranch setTitle:@"(สาขา...)" forState:UIControlStateNormal]; //Reset value of Branch again
+    NSString *selectItem = [[NSString alloc]initWithFormat:@""];
+    if (arrPickerList.count>0) {
+        selectItem = [arrPickerList objectAtIndex:[pickerView selectedRowInComponent:0]];
+        if ([self.pickerType  isEqualToString:@"BA"]) //Bank
+        {      
+            [self.part2BtnBank setTitle:selectItem forState:UIControlStateNormal];       
+            self.bankValue = [dicBank objectForKey:selectItem];
+            [self.part2BtnBranch setTitle:@"(สาขา...)" forState:UIControlStateNormal]; //Reset value of Branch again
+        }
+        else //Branch
+        {               
+            [self.part2BtnBranch setTitle:selectItem forState:UIControlStateNormal];
+            self.branchValue = selectItem; 
+        }   
     }
-    else //Branch
-    {               
-        [self.part2BtnBranch setTitle:selectItem forState:UIControlStateNormal];
-        self.branchValue = selectItem; 
-    }   
     self.myPicker.hidden = YES;
 }
 

@@ -32,8 +32,11 @@
 @property (nonatomic, strong) tblInvoice * tblinvoice;
 @property (nonatomic, strong) tblCollection * tblcollection;
 @property (nonatomic, strong) tblParameter * tblParameter;
-//@property (strong, nonatomic) IBOutlet UILabel *lbTotalAmount;
-//@property (strong, nonatomic) IBOutlet UILabel *lbPayTotal;
+@property (strong, nonatomic) IBOutlet UILabel *lbTotalAmount;
+@property (strong, nonatomic) IBOutlet UILabel *lbPayTotal;
+@property (strong, nonatomic) NSString * totalAmount;
+@property (strong, nonatomic) NSString * payTotal;
+
 @property (strong, nonatomic) IBOutlet UITableView * tableData;
 @property (strong, nonatomic) IBOutlet InvoiceDetail * invoiceDetail;
 

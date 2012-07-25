@@ -62,10 +62,16 @@ NSDictionary *SF_MAPPING = nil;
 
 -(void)syncRecent:(id<OVSyncProtocal>)_controlller{
 	
+	[self sync:_controlller where:nil];
+	
+	/*
+	
 	NSString *lastSyncDate = [[AppDelegate sharedInstance].user objectForKey:@"lastSyncDate"];
 	
 	[self sync:_controlller 
 		 where:[NSString stringWithFormat:@"CreatedDate >= %@T00:00:00z or LastModifiedDate >= %@T00:00:00z", lastSyncDate, lastSyncDate]];
+	 
+	 */
 }
 
 #pragma mark - SFRestDelegate
@@ -257,7 +263,12 @@ didLoadResponse:(id)jsonResponse{
 
 +(NSString *)SFNameForSqlTable:(NSString *)table{
 	
-	return [[sObject new].allTable objectForKey:table];
+	NSString *sfName = [[sObject new].allTable objectForKey:table];
+	
+	if(sfName != nil)
+		return sfName;
+	else
+		return table;
 }
 
 +(NSDictionary *)mappingForSObject:(NSString *)object{

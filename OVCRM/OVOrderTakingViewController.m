@@ -7,13 +7,13 @@
 //
 
 #import "OVOrderTakingViewController.h"
-
+#import "SFPromotionCriteria.h"
 
 
 
 @implementation OVOrderTakingViewController
 
-@synthesize tableView, historyTable, searchBar, filtered, product, selected, data, historyColumn;
+@synthesize tableView, historyTable, searchBar, filtered, product, data, historyColumn;
 
 
 -(id)initWithPlanId:(NSString *)_planId 
@@ -37,12 +37,7 @@
 	
 	[self.searchBar removeBackground];
 	
-	
-	callcard = [[AppDelegate sharedInstance].checkin objectForKey:@"CallCard_Data"];
-	
-	
-	// load/resume
-	self.selected = [NSMutableArray new];
+	[self loadData];
 	
 	
 	historyManager = [[OVHistoryManager alloc] initWithTableView:self.historyTable 
@@ -51,14 +46,18 @@
 	
 	
 	// add gesture recognition
-	swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:historyManager action:@selector(show:)];
-	swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:historyManager action:@selector(hide:)];
-	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+	swipeOpenHistory = [[UISwipeGestureRecognizer alloc] initWithTarget:historyManager action:@selector(show:)];
+	swipeCloseHistory = [[UISwipeGestureRecognizer alloc] initWithTarget:historyManager action:@selector(hide:)];
+	
+	swipeOpenSummary = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showSummary:)];
+	swipeCloseSummary = [[UISwipeGestureRecognizer alloc] initWithTarget:summaryManager action:@selector(hide:)];
 	
 	
-	self.product = [SFProduct sellingForAccount:accountId];
-	self.filtered = [NSMutableArray arrayWithArray:self.product];
+	swipeOpenHistory.direction = UISwipeGestureRecognizerDirectionLeft;
+	swipeCloseHistory.direction = UISwipeGestureRecognizerDirectionRight;
+	
+	swipeOpenSummary.direction = UISwipeGestureRecognizerDirectionRight;
+	swipeOpenSummary.direction = UISwipeGestureRecognizerDirectionLeft;
 	
 	
 	self.title = @"Order Taking";
@@ -67,13 +66,20 @@
 
 -(void) viewDidAppear:(BOOL)animated{
 	
-	[self.tableView addGestureRecognizer:swipeLeft];
-	[self.historyTable addGestureRecognizer:swipeRight];
+	[self.tableView addGestureRecognizer:swipeOpenHistory];
+	[self.historyTable addGestureRecognizer:swipeCloseHistory];
+	
+	[self.tableView addGestureRecognizer:swipeOpenSummary];
+	[summaryManager.view addGestureRecognizer:swipeCloseSummary];
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
-	[self.tableView removeGestureRecognizer:swipeLeft];
-	[self.historyTable removeGestureRecognizer:swipeRight];
+	
+	[self.tableView removeGestureRecognizer:swipeOpenHistory];
+	[self.historyTable removeGestureRecognizer:swipeCloseHistory];
+	
+	[self.tableView removeGestureRecognizer:swipeOpenSummary];
+	[summaryManager.view removeGestureRecognizer:swipeCloseSummary];
 }
 
 
@@ -84,12 +90,26 @@
 
 -(void) loadData{
 	
+	promotionCriteria = [SFPromotionCriteria current];
+	
+	callcard = [[AppDelegate sharedInstance].checkin objectForKey:@"CallCard_Data"];
+	
+	self.product = [SFProduct sellingForAccount:accountId];
+	self.filtered = [NSMutableArray arrayWithArray:self.product];
+	
+	self.data = [NSMutableDictionary new];
 	
 	// load exist
+	[[OVDatabase sharedInstance] executeQuery:@""];
+	
 	
 	// load resume
 	
 	
+}
+
+-(void)showSummary:(id)sender{
+	[summaryManager showWithData:self.data];
 }
 
 

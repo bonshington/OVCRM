@@ -38,4 +38,16 @@
 	return [super syncRecent:_controller];
 }
 
+
++(NSDictionary *)current{
+	return [[[OVDatabase sharedInstance] executeQuery:
+			 @"select * from Promotion_Line_Item__c	\
+			 where 	Promotion__c in (	\
+				select Id from Promotion__c	\
+				where start_date__c <= date('now') and date('now') <= end_date__c	\
+			 )	\
+			 "] readToEndBy:@"Products_Database__c"];
+}
+
+
 @end

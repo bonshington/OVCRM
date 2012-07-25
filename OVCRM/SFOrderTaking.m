@@ -20,6 +20,11 @@
 
 -(NSDictionary *)schema{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
+			@"LOOKUP"	, @"CreatedBy", 
+			@"DATETIME"	, @"CreatedDate", 
+			@"LOOKUP"	, @"LastModifiedBy",
+			@"DATETIME"	, @"LastModifiedDate", 
+			
 			@"TEXT", @"Account_Name__c",
 			@"TEXT", @"Account_Number__c",
 			@"NUMBER", @"Amount__c",

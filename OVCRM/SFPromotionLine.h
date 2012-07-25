@@ -10,4 +10,6 @@
 
 @interface SFPromotionLine : sObject
 
++(NSDictionary *)current;
+
 @end

@@ -98,13 +98,13 @@
 	[UIView setAnimationDuration: 0.25];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseIn];
 	
-	_tableView.frame = CGRectMake(_container.frame.size.width - UITableView_HistoryView_Width
+	_tableView.frame = CGRectMake(containerWidth - UITableView_HistoryView_Width
 								  , 0
 								  , UITableView_HistoryView_Width
 								  , _container.contentSize.height);
 	
 	
-	_column.frame = CGRectMake(_container.frame.size.width - UITableView_HistoryView_Width
+	_column.frame = CGRectMake(containerWidth - UITableView_HistoryView_Width
 							   , 0
 							   , UITableView_HistoryView_Width
 							   , _column.frame.size.height);

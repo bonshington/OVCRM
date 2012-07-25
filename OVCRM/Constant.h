@@ -47,3 +47,4 @@
 #define SETTING_MENU_SEARCH_LIMIT 25
 
 #define UITableView_HistoryView_Width 355
+#define UITableView_SummaryView_Width 400

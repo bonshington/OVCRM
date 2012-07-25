@@ -10,21 +10,6 @@
 
 @implementation OVOrderTakingViewController (UISearchBarHandler)
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-	
-	NSIndexPath *firstProductRow = nil;
-	
-	if(self.selected.count == 0)
-		firstProductRow = [NSIndexPath indexPathForRow:0 inSection:0];
-	else
-		firstProductRow = [NSIndexPath indexPathForRow:0 inSection:1];
-	
-	[self.tableView scrollToRowAtIndexPath:firstProductRow 
-						  atScrollPosition:UITableViewScrollPositionTop 
-								  animated:YES];
-	
-	return true;
-}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 	

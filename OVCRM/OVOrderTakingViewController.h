@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "OVProductConsumerController.h"
 #import "OVHistoryManager.h"
+#import "OVOrderSummaryManager.h"
 
-#define UITableView_HistoryView_Width 355
 
 @interface OVOrderTakingViewController : UIViewController{
 
@@ -20,10 +20,16 @@
 	
 	
 	NSDictionary *callcard;
-	OVHistoryManager *historyManager;
 	
-	UISwipeGestureRecognizer *swipeLeft;
-	UISwipeGestureRecognizer *swipeRight;
+	OVHistoryManager *historyManager;
+	OVOrderSummaryManager *summaryManager;
+	
+	UISwipeGestureRecognizer *swipeOpenHistory;
+	UISwipeGestureRecognizer *swipeCloseHistory;
+	UISwipeGestureRecognizer *swipeOpenSummary;
+	UISwipeGestureRecognizer *swipeCloseSummary;
+	
+	NSDictionary *promotionCriteria;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -34,7 +40,7 @@
 
 @property (nonatomic, retain) NSArray *product;
 @property (nonatomic, retain) NSMutableArray *filtered;
-@property (nonatomic ,retain) NSMutableArray *selected;
+//@property (nonatomic ,retain) NSMutableArray *selected;
 @property (nonatomic, retain) NSMutableDictionary *data;
 
 

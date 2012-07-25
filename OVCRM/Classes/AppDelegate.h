@@ -23,7 +23,7 @@
  */
 
 
-#import <CoreLocation/CLLocationManager.h>
+#import <CoreLocation/CLLocationManagerDelegate.h>
 #import "SFNativeRestAppDelegate.h"
 #import "FMDatabase.h"
 #import "OVDatabase.h"
@@ -46,6 +46,7 @@
 #import "NSArray+LINQ.h"
 #import "NSIndexPath+Extension.h"
 #import "UISearchBar+Extension.h"
+
 
 @interface AppDelegate : SFNativeRestAppDelegate <OVUploadProtocal, CLLocationManagerDelegate>{
 

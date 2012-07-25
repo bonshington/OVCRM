@@ -15,6 +15,7 @@
 			<string>IBUIButton</string>
 			<string>IBUIViewController</string>
 			<string>IBUILabel</string>
+			<string>IBUISwitch</string>
 			<string>IBUITextField</string>
 			<string>IBUISegmentedControl</string>
 			<string>IBUITableView</string>
@@ -79,7 +80,7 @@
 				<string key="NSFrame">{{0, 64}, {1024, 704}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="937248914"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -204,7 +205,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">มูลค่าที่ต้องชำระ</string>
+						<string key="IBUIText">Payable</string>
 						<object class="NSColor" key="IBUITextColor" id="407640567">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -226,7 +227,7 @@
 					<object class="IBUILabel" id="68150312">
 						<reference key="NSNextResponder" ref="173036358"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{388, 65}, {200, 29}}</string>
+						<string key="NSFrame">{{388, 65}, {264, 29}}</string>
 						<reference key="NSSuperview" ref="173036358"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="757391378"/>
@@ -236,7 +237,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">0.00</string>
+						<string key="IBUIText">0.00 ฿</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -255,6 +256,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
+						<float key="IBUIAlpha">0.0</float>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -280,7 +282,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">รับเงิน</string>
+						<string key="IBUIText">Receive</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -292,7 +294,7 @@
 					<object class="IBUILabel" id="402897997">
 						<reference key="NSNextResponder" ref="173036358"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{602, 102}, {50, 29}}</string>
+						<string key="NSFrame">{{626, 102}, {26, 29}}</string>
 						<reference key="NSSuperview" ref="173036358"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="915105792"/>
@@ -302,7 +304,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">บาท</string>
+						<string key="IBUIText">฿</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -314,7 +316,7 @@
 					<object class="IBUITextField" id="1071496814">
 						<reference key="NSNextResponder" ref="173036358"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{388, 102}, {200, 31}}</string>
+						<string key="NSFrame">{{388, 102}, {245, 31}}</string>
 						<reference key="NSSuperview" ref="173036358"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="402897997"/>
@@ -325,6 +327,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<int key="IBUIBorderStyle">3</int>
+						<string key="IBUIPlaceholder">0.00</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -360,7 +363,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">เลขที่เช็ค</string>
+						<string key="IBUIText">Cheque No.</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -411,7 +414,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">เลขที่โอน</string>
+						<string key="IBUIText">Transfer No.</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -462,7 +465,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">ธนาคาร</string>
+						<string key="IBUIText">Bank</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -484,7 +487,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">สาขา</string>
+						<string key="IBUIText">Branch</string>
 						<reference key="IBUITextColor" ref="407640567"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -506,7 +509,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">(ธนาคาร...)</string>
+						<string key="IBUINormalTitle">(Bank...)</string>
 						<reference key="IBUIHighlightedTitleColor" ref="12169490"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -529,7 +532,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">(สาขา...)</string>
+						<string key="IBUINormalTitle">(Branch...)</string>
 						<reference key="IBUIHighlightedTitleColor" ref="12169490"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -555,6 +558,20 @@
 					<int key="interfaceOrientation">3</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+			</object>
+			<object class="IBUISwitch" id="179417648">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<string key="NSFrameSize">{79, 27}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
+				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<bool key="IBUIOpaque">NO</bool>
+				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+				<int key="IBUIContentHorizontalAlignment">0</int>
+				<int key="IBUIContentVerticalAlignment">0</int>
+				<bool key="IBUIOn">YES</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -850,6 +867,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
 						<reference key="object" ref="962763272"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -960,6 +978,11 @@
 						<reference key="object" ref="405719646"/>
 						<reference key="parent" ref="173036358"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">151</int>
+						<reference key="object" ref="179417648"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -969,6 +992,7 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="100.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="101.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="151.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.CustomClassName">InvoiceDetail</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -995,7 +1019,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">149</int>
+			<int key="maxID">153</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1057,8 +1081,9 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnPayInvoice">UIButton</string>
-						<string key="headerView">UIView</string>
 						<string key="invoiceDetail">InvoiceDetail</string>
+						<string key="lbPayTotal">UILabel</string>
+						<string key="lbTotalAmount">UILabel</string>
 						<string key="myPicker">UIPickerView</string>
 						<string key="part2BtnBank">UIButton</string>
 						<string key="part2BtnBranch">UIButton</string>
@@ -1083,13 +1108,17 @@
 							<string key="name">btnPayInvoice</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="headerView">
-							<string key="name">headerView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="invoiceDetail">
 							<string key="name">invoiceDetail</string>
 							<string key="candidateClassName">InvoiceDetail</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lbPayTotal">
+							<string key="name">lbPayTotal</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lbTotalAmount">
+							<string key="name">lbTotalAmount</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="myPicker">
 							<string key="name">myPicker</string>

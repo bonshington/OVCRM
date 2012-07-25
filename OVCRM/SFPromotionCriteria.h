@@ -10,6 +10,6 @@
 
 @interface SFPromotionCriteria : sObject
 
-+(NSArray *)current;
++(NSDictionary *)current;
 
 @end

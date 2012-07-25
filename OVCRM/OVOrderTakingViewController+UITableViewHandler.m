@@ -10,67 +10,14 @@
 
 @implementation OVOrderTakingViewController (UITableViewHandler)
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-
-	if(self.selected.count == 0)
-		return 1;
-	else 
-		return 2;
-}
-
--(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-	if(tableView == self.historyTable){
-		return @" ";
-	}
-	else{
-		switch (section) {
-			case 0: 
-				if(self.selected.count == 0)
-					return @"Product";
-				else 
-					return @"Taking";
-				
-			case 1: return @"Product";
-				
-			default:return nil;
-		}
-	}
-
-}
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	switch (section) {
-		case 0: 
-			if(self.selected.count == 0)
-				return self.filtered.count;
-			else 
-				return self.selected.count;
-			
-		case 1: return self.filtered.count;
-			
-		default:return 0;
-	}
+	return self.filtered.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	NSDictionary *_data = nil;
-	
-	switch (indexPath.section) {
-		case 0: 
-			if(self.selected.count == 0)
-				_data = [self.filtered objectAtIndex:indexPath.row];
-			else 
-				_data = [self.selected objectAtIndex:indexPath.row];
-			
-			break;
-			
-		case 1: _data = [self.filtered objectAtIndex:indexPath.row];
-			break;
-			
-		default:return nil;
-	}
-	
+	NSDictionary *_data = [self.filtered objectAtIndex:indexPath.row];
 	
 	NSString *prodId = [_data objectForKey:@"Id"];
 	
@@ -89,17 +36,27 @@
 			cell.textLabel.text = [_data objectForKey:@"name"];
 			cell.detailTextLabel.text = [_data objectForKey:@"code"];
 			
+			cell.textLabel.backgroundColor = [UIColor clearColor];
+			cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+			
 			
 			[self tableViewCell:cell productForData:_data];
 			
 			[self tableViewCell:cell callcardForIndexPath:indexPath];
 			
+			UITextField *input = [UITextField newWithCGRect:CGRectMake(self.tableView.frame.size.width - 93, 7, 80, 30)
+														tag:0 
+													   text:@"" 
+												  respondTo:self 
+												   selector:@selector(change:)];
 			
-			[cell addSubview:[UITextField newWithCGRect:CGRectMake(self.tableView.frame.size.width - 93, 7, 80, 30)
-													tag:0 
-												   text:@"" 
-											  respondTo:self 
-											   selector:@selector(change:)]];
+			[cell addSubview:input];
+			
+			if([promotionCriteria objectForKey:prodId] != nil){
+				cell.contentView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:0.85 alpha:0.8];
+				
+				//input.placeholder = @"condition";
+			}
 		}
 		
 	}
