@@ -12,7 +12,7 @@
 @implementation SFPriceBook
 
 -(NSString *) sfName{ return @"Price_Book__c"; }
--(NSString *) sqlName{ return @"ProductPrice"; }
+-(NSString *) sqlName{ return @"Price_Book__c"; }
 
 -(NSDictionary *) schema{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -51,19 +51,12 @@
 }
 
 -(NSDictionary *) mapping{
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"PriceBookName", @"Name",
-			@"Account"		, @"Account__c",
-			@"CurrencyOrPercent", @"Currency_or__c",
-			@"Description "	, @"Description__c",
-			@"DiscountCondition", @"Discount_Condition__c",
-			@"RateOrValue"	, @"Rate_or_Value__c", 
-			nil];
+	return [NSDictionary new];
 }
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	[super syncRecent:_controller];
+	[super sync:_controller where:[NSString stringWithFormat:@"Account__c in (select Id from Account where Route_No__c = '%@')", [AppDelegate sharedInstance].routeId]];
 }
 
 @end

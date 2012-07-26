@@ -12,6 +12,7 @@
 
 
 +(NSArray *) availableProduct;
-+(NSArray *) sellingForAccount:(NSString *)accountId;
++(NSArray *) sellableForAccount:(NSString *)accountId;
++(NSArray *) subProductOf:(NSString *)prodId;
 
 @end

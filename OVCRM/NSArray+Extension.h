@@ -15,6 +15,6 @@
 
 -(id) objectAtIndex:(NSUInteger)index forKey:(id)key;
 
--(NSDictionary *) dictionaryFromObjectForKey:(id)key;
+-(NSMutableDictionary *) dictionaryFromObjectForKey:(id)key;
 
 @end

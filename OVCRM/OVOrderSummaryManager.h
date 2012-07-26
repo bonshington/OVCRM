@@ -10,16 +10,18 @@
 
 @interface OVOrderSummaryManager : NSObject <UITableViewDataSource, UITableViewDelegate>{
 	UITableView *_container;
-	UITableView *_tableView;
 	NSDictionary *_data;
+	NSMutableDictionary *_complementary;
+	NSDictionary *criteria;
+	NSDictionary *sellable;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView *view;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
-
--(id) initWithTableView:(UITableView *)tableView;
+-(id) initWithTableView:(UITableView *)_tableView;
 
 -(void) filterData;
+-(void) loadPromotionLine;
 
 -(void)showWithData:(NSDictionary *)data;
 -(void)hide:(id)sender;

@@ -66,12 +66,15 @@
 	
 	[self save:sender];
 	
+	/*
 	InvoiceList *controller = [InvoiceList new];
-	
-	//OVOrderTakingViewController *controller = [[OVOrderTakingViewController alloc] initWithPlanId:self.planId accountId:self.accountId];
-	
 	controller.plan_ID = self.planId;
 	controller.account_ID = self.accountId;
+	*/
+	
+	OVOrderTakingViewController *controller = [[OVOrderTakingViewController alloc] initWithPlanId:self.planId accountId:self.accountId];
+	
+	
 	
 	[self.navigationController pushViewController:controller
 										 animated:YES];

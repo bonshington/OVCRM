@@ -17,4 +17,6 @@
 
 +(NSString *)guid;
 
+-(BOOL) isInteger;
+
 @end

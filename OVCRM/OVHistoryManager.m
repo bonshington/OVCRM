@@ -39,7 +39,7 @@
 		
 		// load data;
 		NSString *accountId = [[AppDelegate sharedInstance].checkin objectForKey:@"AccountId"];
-		_data = [[SFProduct sellingForAccount:accountId] dictionaryFromObjectForKey:@"Id"];
+		_data = [[SFProduct sellableForAccount:accountId] dictionaryFromObjectForKey:@"Id"];
 		
 		
 		

@@ -15,7 +15,7 @@
 #import "OVSyncProtocal.h"
 
 
-@interface sObject : NSObject<SFRestDelegate, SFObjectProtocal>
+@interface sObject : NSObject<SFObjectProtocal, SFRestDelegate>
 
 @property (nonatomic, retain) id<OVSyncProtocal> controller;
 @property (nonatomic, retain, getter = getAllObject) NSArray *allObject; 

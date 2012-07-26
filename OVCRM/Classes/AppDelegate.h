@@ -65,7 +65,15 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) NSMutableDictionary *checkin;
 @property (nonatomic, retain) NSString *routeId;
+
 @property (nonatomic, retain) NSDateFormatter *sqlFormat;
+
+
+#pragma mark - Indexing
+@property (nonatomic, retain, getter = getProduct, setter = setProduct:) NSArray *product;
+@property (nonatomic, retain, getter = getIndexing) NSDictionary *indexing;
+@property (nonatomic, retain, getter = getIgetSellablexing, setter = setSellable:) NSDictionary *sellable;
+
 
 -(SFIdentityData *) getIdentity;
 
@@ -85,6 +93,19 @@
 
 -(void) checkinAccount:(NSString *)_accountId withPlan:(NSString *)_planId;
 -(void) checkout;
+
+@end
+
+
+@interface AppDelegate (Accessor)
+
+-(NSArray *)getProduct;
+-(void)setProduct:(NSArray *)prod;
+
+-(NSArray *)getIndexing;
+
+-(NSDictionary *)getSellable;
+-(void)setSellable:(NSDictionary *)obj;
 
 @end
 

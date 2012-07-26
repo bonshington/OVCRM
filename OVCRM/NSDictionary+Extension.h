@@ -13,5 +13,7 @@
 -(id)objectAtIndex:(NSInteger)index;
 -(id)objectForKeyLike:(NSString *)key;
 -(id) keyAtIndex:(NSInteger)index;
+- (NSInteger)integerForKey:(NSString *)key;
+- (float)floatForKey:(NSString *)key;
 
 @end

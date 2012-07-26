@@ -8,6 +8,8 @@
 
 #import "SFOrderDetail.h"
 
+#import "AppDelegate.h"
+
 @implementation SFOrderDetail
 
 -(NSString *)sfName{ return @"Opportunity_Product__c";}
@@ -20,16 +22,16 @@
 			@"LOOKUP"	, @"LastModifiedBy",
 			@"DATETIME"	, @"LastModifiedDate", 
 			
-			@"TEXT", @"Account_ID__c", 
-			@"NUMBER", @"Allocation__c", 
-			@"PICKLIST", @"Brand__c", 
-			@"PICKLIST", @"Class__c", 
-			@"TEXT", @"DeleteEx__c", 
-			@"NUMBER", @"Discount_Order__c", 
-			@"TEXT", @"Is_Main__c", 
-			@"NUMBER", @"List_Price__c", 
+			@"TEXT"		, @"Account_ID__c", //fk
+			@"NUMBER"	, @"Allocation__c", 
+			@"PICKLIST"	, @"Brand__c", 
+			@"PICKLIST"	, @"Class__c", 
+			@"TEXT"		, @"DeleteEx__c", 
+			@"NUMBER"	, @"Discount_Order__c", 
+			@"TEXT"		, @"Is_Main__c",  //
+			@"NUMBER"	, @"List_Price__c", 
 			@"NUMBER", @"Number_Range__c", 
-			@"TEXT", @"Order_Taking__c", 
+			@"TEXT", @"Order_Taking__c",  //fk
 			@"TEXT", @"Premium__c", 
 			@"PICKLIST", @"Product_Category__c", 
 			@"TEXT", @"Product_Code__c", 
@@ -38,7 +40,7 @@
 			@"TEXT", @"Product_Group__c", 
 			@"TEXT", @"Product_Name__c", 
 			@"TEXT", @"Product__c", 
-			@"TEXT", @"Products_Database_ID__c", 
+			@"TEXT", @"Products_Database_ID__c", // fk
 			@"TEXT", @"Product_Type__c", 
 			@"NUMBER", @"Quantity__c", 
 			@"PICKLIST", @"Quantity_Type__c", 
@@ -56,7 +58,12 @@
 }
 
 -(void) sync:(id<OVSyncProtocal>)_controlller{
-	[super syncRecent:_controlller];
+	
+	[super sync:_controlller where:nil];
+	
+	
+	//[super sync:_controlller where:[NSString stringWithFormat:@"Account_ID__c in (select Id from Account where Route_No__c = '%@')", [AppDelegate sharedInstance].routeId]];
+	
 }
 
 @end

@@ -13,7 +13,7 @@
 
 
 -(NSString *) sfName{ return @"Product__c"; }
--(NSString *) sqlName{ return @"ProductPriceList"; }
+-(NSString *) sqlName{ return @"Product__c"; }
 
 -(NSDictionary *) schema{
 	return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -46,7 +46,7 @@
 			@"NUMBER", @"Order__c",
 			@"PICKLIST"	, @"Packaging__c",
 			@"NUMBER"	, @"Pack_Size__c",
-			@"TEXT"		, @"Price_Book__c",
+			@"TEXT"		, @"Price_Book__c", // fk
 			@"PICKLIST"	, @"Product_Category__c", 
 			@"TEXT"		, @"Product_Category_F__c", //cat
 			@"TEXT"		, @"Product_Code__c", // code
@@ -70,20 +70,14 @@
 }
 
 -(NSDictionary *) mapping{
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			@"Brand"			, @"Brand__c",
-			@"ProductPrice_PK"	, @"Price_Book__c",
-			@"ProductCode"		, @"Product_Code__c",
-			@"ProductFamily"	, @"Product_Family__c",
-			@"SalesPrice"		, @"Sales_Price__c",
-			@"ProductName"		, @"Name", 
-			@"ProductPrice_PK"	, @"Price_Book__c",
-			nil];
+	return [NSDictionary new];
 }
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     
-	[super syncRecent:_controller];
+	// select all pricebook id
+	
+	[self sync:_controller where:nil];
 }
 
 @end

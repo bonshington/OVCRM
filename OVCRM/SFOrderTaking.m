@@ -7,6 +7,7 @@
 //
 
 #import "SFOrderTaking.h"
+#import "AppDelegate.h"
 
 @implementation SFOrderTaking
 
@@ -25,7 +26,7 @@
 			@"LOOKUP"	, @"LastModifiedBy",
 			@"DATETIME"	, @"LastModifiedDate", 
 			
-			@"TEXT", @"Account_Name__c",
+			@"TEXT", @"Account_Name__c", // fk
 			@"TEXT", @"Account_Number__c",
 			@"NUMBER", @"Amount__c",
 			@"NUMBER", @"Amount_Text__c",
@@ -33,7 +34,7 @@
 			@"TEXT", @"Close_Date__c",
 			@"TEXT", @"Coupon_Issued__c",
 			@"TEXT", @"Description__c",
-			@"TEXT", @"EventID__c",
+			@"TEXT", @"EventID__c", // fk
 			@"NUMBER", @"Month__c",
 			@"TEXT", @"Month_Formula__c",
 			@"TEXT", @"Order_Taking_Name__c",
@@ -54,7 +55,8 @@
 }
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
-	[super sync:_controller where:[NSString stringWithFormat:@""]];
+	
+	[super sync:_controller where:[NSString stringWithFormat:@"Account_Name__c in (select Id from Account where Route_no__c = '%@')", [AppDelegate sharedInstance].routeId]];
 }
 
 @end

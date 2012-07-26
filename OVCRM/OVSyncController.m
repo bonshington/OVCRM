@@ -33,7 +33,9 @@
 	
 	self.tableView.userInteractionEnabled = NO;
     
-    //self.tableView.allowsSelection = NO;
+#pragma mark - Clear indexing
+	
+	[AppDelegate sharedInstance].product = nil;
 
 	self.upload = [[[OVDatabase sharedInstance] executeQuery:
 					@"select * from Upload \
@@ -68,9 +70,12 @@
 					 
 					 [SFPromotion new], @"Promotion",
 					 [SFPromotionCriteria new], @"Promotion Criteria",
-					 [SFPromotionDiscount new], @"Promotion DIscount",
-					 [SFPromotionLine new], @"Promotion Line",
+					 //[SFPromotionDiscount new], @"Promotion DIscount",
+					 [SFPromotionLine new], @"Promotion Items",
 					 
+					 [SFOrderTaking new], @"Order",
+					 [SFOrderDetail new], @"Order Detail",
+					
                      nil];
 }
 

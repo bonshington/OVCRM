@@ -61,7 +61,7 @@
 	OVStepsController *steps = [[OVStepsController alloc] initWithRootViewController:firstStep];
 	
 	[self.root presentModalViewController:steps 
-														 animated:YES];
+								 animated:YES];
 	
 	
 }
@@ -69,6 +69,7 @@
 -(void) checkout{
     
 	[self.db executeUpdate:@"update Plan set Visit_TimeOut = datetime('now', 'localtime') where Id = ?", planId];
+	
 	[self.db sfInsertInto:@"Event" 
 			withData:[NSDictionary dictionaryWithObjectsAndKeys:
 					  planId, @"Id", 
@@ -76,7 +77,6 @@
 					  nil]];
 	
 	accountId = nil;
-	
 	
 	[[AppDelegate sharedInstance].detail popToRootViewControllerAnimated:YES];
 	

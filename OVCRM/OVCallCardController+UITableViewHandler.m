@@ -61,13 +61,13 @@
 	
 	[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_ON_SHELF, 7, 80, 30) 
 											tag:tagForOnShelf 
-										   text:text1 
+										 number:text1 
 									  respondTo:self 
 									   selector:@selector(change:)]];
 	
 	[cell addSubview:[UITextField newWithCGRect:CGRectMake(CC_UI_OFFSET_IN_STORE, 7, 80, 30) 
 											tag:tagForInStock 
-										   text:text2 
+										 number:text2 
 									  respondTo:self 
 									   selector:@selector(change:)]];
 }

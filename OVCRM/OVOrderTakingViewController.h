@@ -19,6 +19,7 @@
 	NSString *previousSearchText;
 	
 	
+	NSDictionary *sellable;
 	NSDictionary *callcard;
 	
 	OVHistoryManager *historyManager;
@@ -40,15 +41,16 @@
 
 @property (nonatomic, retain) NSArray *product;
 @property (nonatomic, retain) NSMutableArray *filtered;
-//@property (nonatomic ,retain) NSMutableArray *selected;
-@property (nonatomic, retain) NSMutableDictionary *data;
 
+@property (nonatomic, retain) NSMutableDictionary *data;
+@property (nonatomic, retain) NSMutableDictionary *detail;
 
 
 -(id)initWithPlanId:(NSString *)_planId 
 		  accountId:(NSString *)_accountId;
 
 -(void) loadData;
+-(void)showSummary:(id)sender;
 
 @end
 

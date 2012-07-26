@@ -18,13 +18,18 @@
 		self.filtered = [NSMutableArray arrayWithArray:self.product];
 		
 	}
-	else{
+	
+	if(searchText == nil || searchText.length == 0){
+		
+		self.filtered = [NSMutableArray arrayWithArray:self.product];
+	}
+	else {
 		
 		NSMutableArray *removing = [NSMutableArray new];
 		
 		for(NSDictionary *prod in self.filtered){
-			if(!([[prod objectForKey:@"product_Category"] contains:searchText] 
-				 ||[[prod objectForKey:@"product_Code"] contains:searchText]) ){
+			if(!([[prod objectForKey:@"Product_Category_F__c"] contains:searchText] 
+				 ||[[prod objectForKey:@"Product_Code__c"] contains:searchText]) ){
 				
 				[removing addObject:prod];
 			}

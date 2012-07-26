@@ -58,10 +58,14 @@
 }
 
 -(id) objectAtIndex:(NSUInteger)index forKey:(id)key{
-	return [[self objectAtIndex:index] objectForKey:key];
+	
+	if(self == nil || self.count == 0)
+		return nil;
+	else
+		return [[self objectAtIndex:index] objectForKey:key];
 }
 
--(NSDictionary *) dictionaryFromObjectForKey:(id)key{
+-(NSMutableDictionary *) dictionaryFromObjectForKey:(id)key{
 	
 	NSMutableDictionary *result = [NSMutableDictionary new];
 	

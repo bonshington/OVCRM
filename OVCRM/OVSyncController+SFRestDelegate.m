@@ -13,12 +13,13 @@
 - (void)request:(SFRestRequest *)request 
 didLoadResponse:(id)jsonResponse{
     
-    NSLog(@"Got response for: %@", [self class]);
-    
+    NSLog(@"Got response form upload: %@", [self class]);
+
     [self updateStatus:@"Data transmitted"];
 	
 	
 	if(jsonResponse != nil){
+		
 		
 		if([self.upload objectAtIndex:uploading forKey:@"Name"] != nil)
 			[self.mapping setObject:[jsonResponse objectForKey:@"id"] forKey:[self.upload objectAtIndex:uploading forKey:@"Name"]];
@@ -28,6 +29,7 @@ didLoadResponse:(id)jsonResponse{
 	
 	[db executeUpdate:@"update Upload set syncTime = datetime('now', 'localtime') where pk = ?", [self.upload objectAtIndex:uploading forKey:@"pk"]];
 	
+	
 	//fetch next upload
 	if(uploading + 1 < self.upload.count){
 		self.progress.progress = (float)(uploading + 1) / (float)self.upload.count;
@@ -36,7 +38,7 @@ didLoadResponse:(id)jsonResponse{
 	}
 	else {
 		[self done];
-	}
+	}	
 }
 
 - (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error{

@@ -19,7 +19,7 @@
 	
 	NSDictionary *_data = [self.filtered objectAtIndex:indexPath.row];
 	
-	NSString *prodId = [_data objectForKey:@"Id"];
+	NSString *prodId = [_data objectForKey:@"Products_Database__c"];
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:prodId];
 	
@@ -33,8 +33,8 @@
 		else {
 			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:prodId];
 			
-			cell.textLabel.text = [_data objectForKey:@"name"];
-			cell.detailTextLabel.text = [_data objectForKey:@"code"];
+			cell.textLabel.text = [_data objectForKey:@"Product_Category_F__c"];
+			cell.detailTextLabel.text = [_data objectForKey:@"Product_Code__c"];
 			
 			cell.textLabel.backgroundColor = [UIColor clearColor];
 			cell.detailTextLabel.backgroundColor = [UIColor clearColor];
@@ -45,8 +45,8 @@
 			[self tableViewCell:cell callcardForIndexPath:indexPath];
 			
 			UITextField *input = [UITextField newWithCGRect:CGRectMake(self.tableView.frame.size.width - 93, 7, 80, 30)
-														tag:0 
-													   text:@"" 
+														tag:tagForInput
+													   text:[[self.detail objectForKey:prodId] objectForKey:@"Quantity__c"]
 												  respondTo:self 
 												   selector:@selector(change:)];
 			
@@ -86,15 +86,20 @@
 	
 	[cell addSubview:[UILabel labelWithRect:CGRectMake(300, 0, 80, 44) 
 										tag:0 
-									 number:[_data objectForKey:@"weight"]]];
+									 number:[_data objectForKey:@"Weight__c"]]];
 	
 	[cell addSubview:[UILabel labelWithRect:CGRectMake(390, 0, 80, 44) 
 										tag:0 
-									 number:[_data objectForKey:@"packaging"]]];
+									 number:[_data objectForKey:@"Packaging__c"]]];
 	
-	[cell addSubview:[UILabel labelWithRect:CGRectMake(480, 0, 80, 44) 
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(480, 0, 70, 44) 
 										tag:0 
-									 number:[_data objectForKey:@"packSize"]]];
+									 number:[_data objectForKey:@"Pack_Size__c"]]];
+	
+	[cell addSubview:[UILabel labelWithRect:CGRectMake(570, 0, 80, 44) 
+										tag:0 
+									 number:[_data objectForKey:@"Sales_Price__c"]]];
+	
 	
 	
 	

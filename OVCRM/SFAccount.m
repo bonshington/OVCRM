@@ -153,18 +153,20 @@
                 delegate:this];
 }
 
+
 +(NSDictionary *) selectAccountContextOf:(NSString *)accountId{
 
 	OVDatabase *db = [OVDatabase sharedInstance];
 	
 	return [NSDictionary dictionaryWithObjectsAndKeys:
 			[[db executeQuery:@"select * from Account where Id = ?", accountId] readToEnd], @"Account", 
-			[[db executeQuery:@"select * from Event where WhatId = ?", accountId] readToEnd], @"Event",
-			[[db executeQuery:@"select * from Stock where 1=1 or AccountId__c = ? order by Stock_Update__c desc, Product_Name asc", accountId] readToEnd], @"Stock", 
-			[[db executeQuery:@"select * from Merchandise where 1=1 or Account_ID = ? order by Date__c desc, Name asc", accountId] readToEnd], @"Merchandise",
-			[[db executeQuery:@"select * from Collection where"] readToEnd], @"Collection",
+			[[db executeQuery:@"select * from Plan where Account_ID = ?", accountId] readToEnd], @"Event",
+			[[db executeQuery:@"select * from Stock__c where 1=1 or AccountID__c = ? order by Stock_Update__c desc, Name asc", accountId] readToEnd], @"Stock", 
+			[[db executeQuery:@"select * from Merchandise__c where 1=1 or Account__c = ? order by Date__c desc, Name asc", accountId] readToEnd], @"Merchandise",
+			[[db executeQuery:@"select * from Collection"] readToEnd], @"Collection",
 			nil];
 }
+
 
 -(void)sync:(id<OVSyncProtocal>)_controller{
     

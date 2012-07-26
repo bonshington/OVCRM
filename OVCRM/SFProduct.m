@@ -105,7 +105,7 @@
 
 +(NSArray *) availableProduct{
 	return [[[OVDatabase sharedInstance] executeQuery:
-			 @"select p.Id, p.product_Category, p.product_Code, p.packSize, p.weight, p.packaging, p.List_Price__c \
+			 @"select p.Id, p.product_Category, p.product_Code, p.packSize, p.weight, p.packaging, p.List_Price__c, p.product_Name, p.shortName \
 			 from	Product p \
 			 join	MD_Product_Category__c md \
 			 on	md.Code__c = p.MD_Product_Category_Code__c \
@@ -113,20 +113,19 @@
 			 order by md.Runing_Number__c, p.MD_Product_IsCancel_Code__c"] readToEnd];
 }
 
-+(NSArray *) sellingForAccount:(NSString *)accountId{
++(NSArray *) sellableForAccount:(NSString *)accountId{
 	return [[[OVDatabase sharedInstance] executeQuery:
-			 @"select 	p.Id, pl.Product_Category_F__c as name, pl.ProductCode as code, pl.SalesPrice as price, p.product_Category, p.product_Code, p.packSize, p.weight, p.packaging, p.List_Price__c \
-			 from 	ProductPrice pp \
-			 join	ProductPriceList pl \
-				on	pl.ProductPrice_PK = pp.Id \
-			 join	Product p \
-				on	p.Id = pl.Products_Database__c \
-				and	p.Main_Product__c = '1' \
-				and p.isCancel <> 'Inactive' \
-			 where	pp.Account = ? \
-				and pp.Status__c = 'Sales ( Order Taking )' \
-			 order by pl.Number_Range__c"
+			 @"select * from Product__c  \
+			 where	Price_Book__c in (select Id from Price_Book__c where Account__c = ? and Status__c = 'Sales ( Order Taking )' and Active__c = '1' and (Start_Date__c is null or Start_Date__c <= DATE('now')) and (End_Date__c is null or DATE('now') >= End_Date__c) ) \
+				and	Is_Main__c = 'True'	\
+			 order by Number_Range__c"
 			 , accountId] readToEnd];
+}
+
++(NSArray *) subProductOf:(NSString *)prodId{
+	return [[[OVDatabase sharedInstance] executeQuery:
+			 @"select * from Product where product_Category in (select product_Category from Product where Id = ?) and isCancel <> 'Inactive' -- and Main_Product__c <> '1' ", prodId] 
+			readToEnd];
 }
 
 @end

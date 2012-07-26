@@ -30,4 +30,26 @@
 	return [[self allKeys] objectAtIndex:index];
 }
 
+- (NSInteger)integerForKey:(NSString *)key{
+	
+	id val = [self objectForKey:key];
+	
+	if(val == nil)
+		return 0;
+	else
+		return [val integerValue];
+	
+}
+
+- (float)floatForKey:(NSString *)key{
+	
+	id val = [self objectForKey:key];
+	
+	if(val == nil)
+		return 0;
+	else
+		return [val floatValue];
+
+}
+
 @end

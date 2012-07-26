@@ -33,6 +33,8 @@
 #import "SFPromotionCriteria.h"
 #import "SFPromotionLine.h"
 #import "SFPromotionDiscount.h"
+#import "SFOrderTaking.h"
+#import "SFOrderDetail.h"
 
 #define OVSYNC_SECTION_MY_DATA	0
 #define OVSYNC_SECTION_UPLOAD	1
@@ -67,7 +69,7 @@
 @end
 
 
-@interface OVSyncController (UploadProcess)<SFRestDelegate>
+@interface OVSyncController (UploadProcess)
 
 -(void) upsert:(NSString *)uploadPk;
 
@@ -79,3 +81,5 @@
 @interface OVSyncController (SFRestDelegate)<SFRestDelegate>
 
 @end
+
+

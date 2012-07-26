@@ -69,4 +69,13 @@
 	return textRange.location != NSNotFound;
 }
 
+-(BOOL) isInteger{
+	NSScanner *sc = [NSScanner scannerWithString:self];
+	if ( [sc scanInteger:NULL] )
+	{
+		return [sc isAtEnd];
+	}
+	return NO;
+}
+
 @end

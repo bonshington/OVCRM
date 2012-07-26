@@ -120,7 +120,7 @@
 		
 		[resume enumerateObjectsUsingBlock:^(NSDictionary *upload, NSUInteger index, BOOL *stop){
 			
-			NSDictionary *json = [upload objectForKey:@"json"];
+			NSDictionary *json = [SFJsonUtils objectFromJSONString:[upload objectForKey:@"json"]];
 			
 			[merge setObject:json forKey:[json objectForKey:@"prod_db_id__c"]];
 		}];

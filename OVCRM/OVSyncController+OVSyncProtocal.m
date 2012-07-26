@@ -54,7 +54,7 @@
 		// update last sync
 		NSString *today = [[NSDate date] format:@"yyyy-MM-dd"];
 		
-		NSLog(@"Sync complete for: %@", today);
+		NSLog(@"Sync complete at: %@", today);
 
 		[[OVDatabase sharedInstance] executeUpdate:@"update Parameter set label = ? where tag = 'CONFIG' and key = 'LAST_SYNC'", today];
 		

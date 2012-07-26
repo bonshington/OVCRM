@@ -28,11 +28,7 @@
 
 -(void)checkout{
 	
-	[[OVDatabase sharedInstance] sfInsertInto:@"Plan" 
-									 withData:[NSDictionary dictionaryWithObjectsAndKeys:
-											   self.planId, @"Id", 
-											   [[NSDate date] SFString], @"Time_Out__c",
-											   nil]];
+	[[AppDelegate sharedInstance] checkout];
 }
 
 
@@ -43,7 +39,11 @@
 	if(previousSearchText == nil || ![searchText hasPrefix:previousSearchText]){
 		
 		self.filtered = [NSMutableArray arrayWithArray:self.product];
+	}
+	
+	if(searchText == nil || searchText.length == 0){
 		
+		self.filtered = [NSMutableArray arrayWithArray:self.product];
 	}
 	else{
 		
@@ -60,6 +60,7 @@
 		for(id prod in removing)
 			[self.filtered removeObject:prod];
 	}
+	
 	
 	[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 	
@@ -108,15 +109,14 @@
 											   [[UIBarButtonItem alloc] initWithTitle:@"Checkout" style:UIBarButtonSystemItemCancel target:self.delegate action:@selector(checkout:)], 
 											   nil];
 	
-	self.product = [SFProduct availableProduct];//[self.delegate loadProducts];
 	
-	NSMutableDictionary *_indexing = [NSMutableDictionary new];
-	
-	for(NSDictionary *row in self.product){
-		[_indexing setObject:row forKey:[row objectForKey:@"Id"]];
+	if([AppDelegate sharedInstance].product == nil){
+		[AppDelegate sharedInstance].product = [SFProduct availableProduct];
 	}
 	
-	self.indexing = _indexing;
+	self.product = [AppDelegate sharedInstance].product;
+	
+	self.indexing = [AppDelegate sharedInstance].indexing;
 	
 	self.filtered = [NSMutableArray arrayWithArray:self.product];
 }

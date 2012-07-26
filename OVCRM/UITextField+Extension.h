@@ -11,5 +11,6 @@
 @interface UITextField (Extension)
 
 +(id) newWithCGRect:(CGRect)rect tag:(NSInteger)tag text:(NSString *)text respondTo:(id)obj selector:(SEL)sel;
++(id) newWithCGRect:(CGRect)rect tag:(NSInteger)tag number:(NSString *)text respondTo:(id)obj selector:(SEL)sel;
 
 @end

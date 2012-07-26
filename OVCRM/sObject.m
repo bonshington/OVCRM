@@ -24,6 +24,7 @@
 #import "SFPCBrief.h"
 #import "SFSalesTalk.h"
 #import "SFUser.h"
+#import "SFAR.h"
 
 NSArray *SF_OBJECTS = nil;
 NSDictionary *SF_MAPPING = nil;
@@ -41,6 +42,7 @@ NSDictionary *SF_MAPPING = nil;
 	NSLog(@"SF query for: \"%@\" where %@", [self sfName], condition);
 	
 	if(condition == nil){
+		//[sObject loadObject:[self sfName] delegate:self];
 		[sObject loadWithQuery:[NSString stringWithFormat:
 								@"select Id,%@ from %@"
 								, [[self toSFColumns] componentsJoinedByString:@","]
@@ -57,7 +59,6 @@ NSDictionary *SF_MAPPING = nil;
 					  delegate:self];
 
 	}
-	
 }
 
 -(void)syncRecent:(id<OVSyncProtocal>)_controlller{
@@ -73,50 +74,6 @@ NSDictionary *SF_MAPPING = nil;
 	 
 	 */
 }
-
-#pragma mark - SFRestDelegate
-
-- (void)request:(SFRestRequest *)request 
-didLoadResponse:(id)jsonResponse{
-    
-    NSLog(@"Got response for: %@", self.class);
-    
-	if(jsonResponse == nil || ((NSArray *)jsonResponse).count == 0) 
-		return;
-	
-	
-    [self.controller updateStatus:@"Recieved data"];
-    
-    OVDatabase *db = [OVDatabase sharedInstance];
-    
-    if([db initSqlTableOf:self]){
-        
-        [self.controller updateStatus:@"Processing"];
-        
-        if([db insertOrReplaceTable:self withData:[jsonResponse objectForKey:@"records"]]){
-            [self.controller updateStatus:@"Completed"];
-        }
-        else{
-            
-            [self.controller updateStatus:@"Failed"];
-        }
-    }
-    
-    [self.controller done];
-}
-
-- (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error{
-	
-    [self.controller error:error.localizedDescription];}
-
-- (void)requestDidCancelLoad:(SFRestRequest *)request{
-    [self.controller error:@"Cancelled"];
-}
-
-- (void)requestDidTimeout:(SFRestRequest *)request{
-    [self.controller error:@"Timeout..."];
-}
-
 
 #pragma mark - sObject
 
@@ -229,6 +186,7 @@ didLoadResponse:(id)jsonResponse{
 					  , [SFPCBrief new]
 					  , [SFSalesTalk new]
 					  , [SFUser new]
+					  , [SFAR new]
 					  , nil];
 		
 	}
@@ -254,8 +212,8 @@ didLoadResponse:(id)jsonResponse{
 
 +(void) loadWithQuery:(NSString *)query delegate:(id<SFRestDelegate>)responder{
     
-    SFRestRequest *request = [[SFRestAPI sharedInstance] requestForQuery:query];    
-
+	SFRestRequest *request = [[SFRestAPI sharedInstance] requestForQuery:query];    
+	
     [AppDelegate sharedInstance].sync = responder;
 
     [[SFRestAPI sharedInstance] send:request delegate:responder];
@@ -282,6 +240,63 @@ didLoadResponse:(id)jsonResponse{
 	}
 	
 	return nil;
+}
+
+
+#pragma mark - SFRestDelegate
+
+- (void)request:(SFRestRequest *)request 
+didLoadResponse:(id)jsonResponse{
+    
+    NSLog(@"Got response for download: %@", self.class);
+    
+	if(jsonResponse == nil || ((NSArray *)jsonResponse).count == 0) 
+		return;
+	
+	NSString *nextRecordURL = [jsonResponse objectForKey:@"nextRecordsUrl"];
+	
+	
+    [self.controller updateStatus:@"Recieve data"];
+    
+    OVDatabase *db = [OVDatabase sharedInstance];
+    
+    if([db initSqlTableOf:self]){
+        
+        [self.controller updateStatus:@"Processing"];
+        
+        if([db insertOrReplaceTable:self withData:[jsonResponse objectForKey:@"records"]]){
+            [self.controller updateStatus:@"Completed"];
+        }
+        else{
+            
+            [self.controller updateStatus:@"Failed"];
+        }
+    }
+	
+	if(nextRecordURL != nil && nextRecordURL.length > 0){
+		
+		[self.controller updateStatus:@"Recieving data..."];
+		
+		// continue load
+		nextRecordURL = [nextRecordURL stringByReplacingOccurrencesOfString:@"/services/data" withString:@""];
+		SFRestRequest *more = [SFRestRequest requestWithMethod:SFRestMethodGET path:nextRecordURL queryParams:nil];
+		[[SFRestAPI sharedInstance] send:more delegate:self];
+	}
+    else{
+		[self.controller done];
+	}
+}
+
+- (void)request:(SFRestRequest *)request didFailLoadWithError:(NSError*)error{
+	
+    [self.controller error:error.localizedDescription];}
+
+- (void)requestDidCancelLoad:(SFRestRequest *)request{
+    [self.controller error:@"Cancelled"];
+}
+
+- (void)requestDidTimeout:(SFRestRequest *)request{
+    [self.controller error:@"Timeout..."];
 }
 
 
